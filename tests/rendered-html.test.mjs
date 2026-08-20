@@ -56,5 +56,6 @@ test("keeps the consultation request focused and low-friction", async () => {
   const html = await response.text();
   assert.match(html, /Full name/i);
   assert.match(html, /What is breaking/i);
+  assert.match(html, /Prepare email request/i);
   assert.doesNotMatch(html, /Which condition best describes|First name|Last name/i);
 });

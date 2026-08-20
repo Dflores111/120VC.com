@@ -34,8 +34,9 @@ export function ConsultationForm() {
         <label>Role or title (optional)<input name="role" autoComplete="organization-title" /></label>
         <label className="form-wide">What is breaking—or what outcome is at risk?<textarea name="situation" rows={5} required /></label>
       </div>
-      <button className="button button-primary form-submit" type="submit">Send consultation request <span aria-hidden="true">↗</span></button>
+      <button className="button button-primary form-submit" type="submit">Prepare email request <span aria-hidden="true">↗</span></button>
       <p className="form-privacy">Confidential · Diagnostic · No generic presentation · No predetermined offer</p>
+      <p className="form-fallback">If your email app does not open, send your context directly to <a href="mailto:info@120vc.com">info@120vc.com</a>.</p>
       {prepared && <p className="form-status" role="status">Your email request is prepared. Send it from your email app to complete the request.</p>}
     </form>
   );
