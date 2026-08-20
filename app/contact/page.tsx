@@ -21,7 +21,7 @@ export default function ContactPage() {
           <div className="inner-hero-grid" aria-hidden="true" />
           <div className="inner-hero-copy">
             <p className="eyebrow eyebrow-light"><span className="eyebrow-mark" />Leadership System Consultation</p>
-            <h1>Diagnose where execution is breaking—and what should change.</h1>
+            <h1>Find where execution is breaking.</h1>
             <p className="inner-description">A confidential readiness, fit, and diagnostic conversation for enterprise leaders accountable for a high-stakes team, initiative, transformation, function, or portfolio.</p>
           </div>
           <div className="inner-hero-aside">

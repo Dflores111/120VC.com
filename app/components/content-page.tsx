@@ -3,6 +3,12 @@ import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import type { PageLink, SitePage } from "../site-data";
 
+function headlineLengthClass(text: string) {
+  if (text.length > 68) return "headline-long";
+  if (text.length > 50) return "headline-medium";
+  return "";
+}
+
 function ArrowLink({ link, className = "" }: { link: PageLink; className?: string }) {
   return (
     <a className={`content-card-link ${className}`} href={link.href}>
@@ -25,7 +31,7 @@ export function ContentPage({ page }: { page: SitePage }) {
           <div className="inner-hero-grid" aria-hidden="true" />
           <div className="inner-hero-copy">
             <p className="eyebrow eyebrow-light"><span className="eyebrow-mark" />{page.eyebrow}</p>
-            <h1>{page.title}</h1>
+            <h1 className={headlineLengthClass(page.title)}>{page.title}</h1>
             <p className="inner-description">{page.description}</p>
             <div className="hero-actions">
               <a className="button button-primary" href={page.primaryCta?.href || "/contact"}>{page.primaryCta?.label || "Book a consultation"}<span aria-hidden="true">↗</span></a>
@@ -59,7 +65,7 @@ export function ContentPage({ page }: { page: SitePage }) {
                   <p>{section.eyebrow || "What to understand"}</p>
                 </div>
                 <div className="content-section-body">
-                  <h2>{section.title}</h2>
+                  <h2 className={headlineLengthClass(section.title)}>{section.title}</h2>
                   {section.paragraphs?.map((paragraph) => <p className="content-paragraph" key={paragraph}>{paragraph}</p>)}
                   {section.bullets && (
                     <ul className="content-list">
@@ -95,7 +101,7 @@ export function ContentPage({ page }: { page: SitePage }) {
         <section className="final-cta">
           <div>
             <p className="section-index">The next decision</p>
-            <h2>Diagnose where execution is breaking—and what should change.</h2>
+            <h2>Find where execution is breaking.</h2>
           </div>
           <div>
             <p>The consultation clarifies the outcome at risk, the leadership condition, and the most useful next step. It is a readiness and fit conversation, not a scripted product demo.</p>

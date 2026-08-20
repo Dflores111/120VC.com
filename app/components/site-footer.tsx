@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/no-img-element -- The remote SVG is the canonical 120VC brand asset. */
+import Link from "next/link";
+
 const columns = [
   {
     title: "Problems",
@@ -45,9 +48,9 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="footer-lead">
-        <a className="footer-brand" href="/" aria-label="120VC home">
+        <Link className="footer-brand" href="/" aria-label="120VC home">
           <img src="https://www.120vc.com/wp-content/uploads/2026/02/Asset-2.svg" alt="120VC" />
-        </a>
+        </Link>
         <p>120VC is an Execution Leadership firm. We install a shared leadership system inside live work so enterprise teams can turn strategy into more predictable execution.</p>
       </div>
 
