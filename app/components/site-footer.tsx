@@ -58,7 +58,11 @@ export function SiteFooter() {
         {columns.map((column) => (
           <div className="footer-column" key={column.title}>
             <h2>{column.title}</h2>
-            {column.links.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
+            {column.links.map(([label, href]) => (
+              href.startsWith("/")
+                ? <Link href={href} key={href}>{label}</Link>
+                : <a href={href} key={href}>{label}</a>
+            ))}
           </div>
         ))}
       </div>

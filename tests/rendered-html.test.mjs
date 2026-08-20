@@ -18,10 +18,23 @@ test("server-renders the buyer-first 120VC homepage", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /Make strategy/i);
-  assert.match(html, /Install the system behind delivery/i);
+  assert.match(html, /Proof before process/i);
   assert.match(html, /Book a consultation/i);
-  assert.match(html, /Evidence leaders can inspect/i);
-  assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|98%|227%/i);
+  assert.match(html, /98%/i);
+  assert.match(html, /227%/i);
+  assert.match(html, /J\. Scott, founder and CEO of 120VC/i);
+  assert.equal((html.match(/<section\b/g) || []).length, 7);
+  assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Name the outcome|Leadership transfer/i);
+});
+
+test("keeps homepage affordances truthful", async () => {
+  const response = await render("/");
+  const html = await response.text();
+  assert.match(html, /<a href="[^"]+" class="path-v3-card">/i);
+  assert.match(html, /<a href="[^"]+" class="founder-v3-link">/i);
+
+  const css = readFileSync(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.doesNotMatch(css, /\.outcome-v3-item:hover|\.proof-logo:hover|\.proof-stat:hover|\.how-v3-steps li:hover|\.value-hero-media:hover/i);
 });
 
 test("server-renders representative commercial and role pages", async () => {
@@ -47,8 +60,16 @@ test("server-renders every configured buyer-journey route", async () => {
     assert.equal(response.status, 200, slug);
     const html = await response.text();
     assert.match(html, /<h1/i, slug);
-    assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|98%|227%/i, slug);
+    assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i, slug);
   }
+});
+
+test("shows the real founder portrait on the J. Scott page", async () => {
+  const response = await render("/founder-jason-scott");
+  const html = await response.text();
+  assert.equal(response.status, 200);
+  assert.match(html, /Jason-Scott-120VC-CEO-Founder-img\.webp/i);
+  assert.match(html, /J\. Scott, founder and CEO of 120VC/i);
 });
 
 test("keeps the consultation request focused and low-friction", async () => {

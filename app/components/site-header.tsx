@@ -3,10 +3,9 @@ import Link from "next/link";
 
 const primaryLinks = [
   ["Problems", "/problems-we-solve"],
-  ["How it works", "/leadership-system"],
   ["Solutions", "/leadership-services"],
   ["Results", "/case-studies"],
-  ["Who we help", "/who-we-help"],
+  ["How it works", "/leadership-system"],
   ["Insights", "/insights"],
   ["About", "/about"],
 ] as const;

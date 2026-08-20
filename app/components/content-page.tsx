@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element -- 120VC CMS images are served directly in the vinext deployment. */
+import Link from "next/link";
 import { GlowCard, Reveal } from "./motion-kit";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
@@ -10,14 +12,20 @@ function headlineLengthClass(text: string) {
 }
 
 function ArrowLink({ link, className = "" }: { link: PageLink; className?: string }) {
-  return (
-    <a className={`content-card-link ${className}`} href={link.href}>
+  const content = (
+    <>
       {link.label && <span className="card-label">{link.label}</span>}
       <h3>{link.title}</h3>
       <p>{link.description}</p>
       <span className="card-arrow">Explore <i aria-hidden="true">↗</i></span>
-    </a>
+    </>
   );
+
+  if (link.href.startsWith("http")) {
+    return <a className={`content-card-link ${className}`} href={link.href}>{content}</a>;
+  }
+
+  return <Link className={`content-card-link ${className}`} href={link.href}>{content}</Link>;
 }
 
 export function ContentPage({ page }: { page: SitePage }) {
@@ -34,11 +42,20 @@ export function ContentPage({ page }: { page: SitePage }) {
             <h1 className={headlineLengthClass(page.title)}>{page.title}</h1>
             <p className="inner-description">{page.description}</p>
             <div className="hero-actions">
-              <a className="button button-primary" href={page.primaryCta?.href || "/contact"}>{page.primaryCta?.label || "Book a consultation"}<span aria-hidden="true">↗</span></a>
-              {page.secondaryCta && <a className="button button-dark-outline" href={page.secondaryCta.href}>{page.secondaryCta.label}<span aria-hidden="true">↗</span></a>}
+              <Link className="button button-primary" href={page.primaryCta?.href || "/contact"}>{page.primaryCta?.label || "Book a consultation"}<span aria-hidden="true">↗</span></Link>
+              {page.secondaryCta && <Link className="button button-dark-outline" href={page.secondaryCta.href}>{page.secondaryCta.label}<span aria-hidden="true">↗</span></Link>}
             </div>
           </div>
-          <div className="inner-hero-aside">
+          <div className={`inner-hero-aside ${page.heroImage ? "inner-hero-aside-person" : ""}`}>
+            {page.heroImage && (
+              <img
+                className="inner-hero-person-image"
+                src={page.heroImage.src}
+                alt={page.heroImage.alt}
+                width={page.heroImage.width}
+                height={page.heroImage.height}
+              />
+            )}
             <p className="section-index">The condition</p>
             <p>{page.intro}</p>
           </div>
@@ -105,7 +122,7 @@ export function ContentPage({ page }: { page: SitePage }) {
           </div>
           <div>
             <p>The consultation clarifies the outcome at risk, the leadership condition, and the most useful next step. It is a readiness and fit conversation, not a scripted product demo.</p>
-            <a className="button button-light" href={page.primaryCta?.href || "/contact"}>{page.primaryCta?.label || "Book a consultation"}<span aria-hidden="true">↗</span></a>
+            <Link className="button button-light" href={page.primaryCta?.href || "/contact"}>{page.primaryCta?.label || "Book a consultation"}<span aria-hidden="true">↗</span></Link>
           </div>
         </section>
       </main>

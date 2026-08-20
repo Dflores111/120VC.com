@@ -22,6 +22,7 @@ export type SitePage = {
   intro: string;
   seoTitle: string;
   seoDescription: string;
+  heroImage?: { src: string; alt: string; width: number; height: number };
   facts?: Array<{ label: string; value: string }>;
   sections: PageSection[];
   related?: PageLink[];
@@ -668,33 +669,38 @@ export const pages: Record<string, SitePage> = {
 
   "case-studies": {
     slug: "case-studies",
-    eyebrow: "Results",
-    title: "Evidence should make the decision easier.",
-    description: "Evaluate 120VC through operating shifts, implementation evidence, measurement discipline, and approved client references.",
-    intro: "Enterprise buyers should not have to rely on bold language alone. Until offer-specific claims and permissions are documented, this page explains exactly what counts as proof and what a useful result story must show.",
+    eyebrow: "Results and evidence",
+    title: "Evaluate the results—and the evidence behind them.",
+    description: "Review 120VC's published performance figures, the context they require, and the evidence an enterprise buying team should inspect.",
+    intro: "120VC publishes a 98% transformation and project success rate, 227% performance improvement versus industry averages, and more than 25 years across global enterprise transformation. These are first-party figures; a sound evaluation should also inspect the population, baseline, timeframe, calculation method, attribution limits, and relevant references.",
     seoTitle: "Execution Leadership Results and Evidence",
     seoDescription: "Review how 120VC measures operating shifts, implementation evidence, enterprise outcomes, attribution, and client references.",
+    facts: [
+      { label: "Transformation and project success rate", value: "98%" },
+      { label: "Performance improvement vs. industry averages", value: "227%" },
+      { label: "Global enterprise transformation", value: "25+ years" },
+      { label: "Source type", value: "120VC-published figures" },
+    ],
     sections: [
       {
-        eyebrow: "What counts as proof",
-        title: "Authority, method, implementation, and outcomes are different forms of evidence.",
-        cards: [
-          { title: "Outcome proof", description: "A measurable result occurred in a defined context after a specific intervention, with timeframe and attribution limits.", href: "/contact?request=reference" },
-          { title: "Implementation proof", description: "The buyer can see the roles, expectations, practices, artifacts, milestones, and operating changes involved.", href: "/leadership-system" },
-          { title: "Method proof", description: "The buyer can see a coherent system for changing priorities, decisions, commitments, rhythm, and measurement.", href: "/leadership-system" },
+        eyebrow: "What 120VC publishes",
+        title: "The figures are the start of the evaluation—not the end.",
+        bullets: [
+          "98% transformation and project success rate",
+          "227% performance improvement versus industry averages",
+          "More than 25 years across global enterprise transformation",
+          "Enterprise experience published across named organizations and industries",
         ],
+        statement: "Ask what was measured, across which population, over what period, against which baseline, and with what attribution limits.",
       },
       {
-        eyebrow: "First observable shift",
-        title: "Progress should appear in how the work operates before the final result arrives.",
+        eyebrow: "What counts as evidence",
+        title: "Method, implementation, operating shifts, and outcomes answer different questions.",
         bullets: [
-          "A priority becomes explicit.",
-          "Work is stopped or reshaped.",
-          "A decision holds.",
-          "Ownership becomes visible.",
-          "Risk surfaces earlier.",
-          "An escalation is avoided.",
-          "The execution rhythm begins to hold.",
+          "Method proof shows the coherent system being installed.",
+          "Implementation proof shows roles, practices, artifacts, milestones, and operating changes.",
+          "Operating proof shows priorities clarifying, decisions holding, risks surfacing earlier, and ownership becoming visible.",
+          "Outcome proof connects a defined result to context, timeframe, baseline, and reasonable attribution.",
         ],
       },
       {
@@ -707,7 +713,7 @@ export const pages: Record<string, SitePage> = {
           "Exceptions and qualification language",
           "Client permission and supporting source",
         ],
-        statement: "Public logos do not automatically prove an offer-specific outcome or grant permission to attribute one.",
+        statement: "A published logo shows enterprise experience. It does not, by itself, prove a specific outcome or endorsement.",
       },
     ],
     primaryCta: { label: "Request a relevant client reference", href: "/contact?request=reference" },
@@ -1005,6 +1011,12 @@ export const pages: Record<string, SitePage> = {
     intro: "J. Scott’s work focuses on the gap between what organizations intend and what their leadership systems allow them to deliver. His point of view is direct: insight matters only when it changes priorities, decisions, commitments, behavior, and outcomes.",
     seoTitle: "Meet J. Scott, Founder of 120VC",
     seoDescription: "Meet J. Scott, founder of 120VC and creator of its Execution Leadership system for enterprise teams and transformation.",
+    heroImage: {
+      src: "https://www.120vc.com/wp-content/uploads/2026/02/Jason-Scott-120VC-CEO-Founder-img.webp",
+      alt: "J. Scott, founder and CEO of 120VC",
+      width: 532,
+      height: 530,
+    },
     sections: [
       {
         title: "The work began with the execution condition—not a leadership-content category.",
