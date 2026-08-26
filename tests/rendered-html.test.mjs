@@ -80,6 +80,40 @@ test("makes every visually interactive homepage surface a real control", async (
   assert.match(css, /prefers-reduced-motion[\s\S]*\.reveal/i);
 });
 
+test("adds purposeful human imagery and restrained motion without false interaction", async () => {
+  const html = await (await render("/")).text();
+  for (const image of [
+    "team-working-together.jpg",
+    "execution-friction.jpg",
+    "aligned-leadership-team.jpg",
+    "strategy-execution-gap-book.jpg",
+  ]) {
+    assert.match(html, new RegExp(image, "i"), image);
+  }
+  assert.match(html, /aria-label="Close the gap between strategy and execution\.?"/i);
+  assert.match(html, /person-img-with-orange-back\.webp/i);
+  assert.match(html, /href="https:\/\/www\.120vc\.com\/book-download-the-strategy-execution-gap\/"/i);
+  assert.doesNotMatch(html, /flip-card|testimonial-marquee|testimonials-columns|circular-testimonials/i);
+
+  const css = `${readFileSync(new URL("../app/globals.css", import.meta.url), "utf8")}\n${readFileSync(new URL("../app/master.css", import.meta.url), "utf8")}`;
+  const textEffect = readFileSync(new URL("../app/components/text-effect.tsx", import.meta.url), "utf8");
+  assert.match(css, /\.text-effect-word/i);
+  assert.match(css, /prefers-reduced-motion[\s\S]*\.text-effect-word/i);
+  assert.match(textEffect, /useReducedMotion/i);
+  assert.doesNotMatch(textEffect, /repeat\s*:/i);
+  assert.doesNotMatch(css, /\.image-mask[^\n,{]*:hover|\.closing-outcome[^\n,{]*:hover|animation:[^;]*infinite/i);
+});
+
+test("keeps navigation language congruent with real destinations and activation state", async () => {
+  const html = await (await render("/")).text();
+  assert.match(html, /href="\/resources\/insights"/i);
+  assert.doesNotMatch(html, /href="\/insights"/i);
+  assert.match(html, /href="\/consultation"/i);
+  assert.doesNotMatch(html, /href="\/contact"/i);
+  assert.match(html, /Explore the Execution Health Framework/i);
+  assert.doesNotMatch(html, /Take the Execution Health Diagnostic|Case Studies|Client References/i);
+});
+
 test("renders the commercial core and progressive-disclosure hubs", async () => {
   for (const [path, pattern] of [
     ["/leadership-system", /One shared system to prioritize/i],
@@ -88,8 +122,8 @@ test("renders the commercial core and progressive-disclosure hubs", async () => 
     ["/leadership-services/compare-solutions", /Choose the installation scope/i],
     ["/results", /Evidence should make the decision easier/i],
     ["/results/methodology", /Every claim needs a definition/i],
-    ["/resources", /Understand the condition\. Put the system to work/i],
-    ["/resources/tools", /Put the system to work/i],
+    ["/resources", /Understand the condition\. See the system in practice/i],
+    ["/resources/tools", /See the system in practice/i],
     ["/for-leaders", /Built for executives accountable/i],
     ["/about/the-120-standard", /Not a slogan\. A way of operating/i],
   ]) {
@@ -97,6 +131,17 @@ test("renders the commercial core and progressive-disclosure hubs", async () => 
     assert.equal(response.status, 200, path);
     assert.match(await response.text(), pattern, path);
   }
+});
+
+test("repeats each content page's declared next step instead of forcing consultation", async () => {
+  const guide = await (await render("/resources/guides-and-books")).text();
+  const guideEnding = guide.slice(guide.indexOf('<section class="final-cta"'));
+  assert.match(guideEnding, /Download The Strategy Execution Gap/i);
+  assert.doesNotMatch(guideEnding, /Book a Consultation/i);
+
+  const solution = await (await render("/leadership-services")).text();
+  const solutionEnding = solution.slice(solution.indexOf('<section class="final-cta"'));
+  assert.match(solutionEnding, /Book a Leadership System Consultation/i);
 });
 
 test("server-renders every configured buyer-journey route", async () => {

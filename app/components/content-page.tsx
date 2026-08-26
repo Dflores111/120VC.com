@@ -30,6 +30,9 @@ function ArrowLink({ link, className = "" }: { link: PageLink; className?: strin
 }
 
 export function ContentPage({ page }: { page: SitePage }) {
+  const finalCta = page.primaryCta || { label: "Book a Consultation", href: "/consultation" };
+  const consultationOutcome = finalCta.href.startsWith("/consultation") || finalCta.href.startsWith("/contact");
+
   return (
     <div className="site-shell inner-site">
       <a className="skip-link" href="#main-content">Skip to content</a>
@@ -119,11 +122,13 @@ export function ContentPage({ page }: { page: SitePage }) {
         <section className="final-cta">
           <div>
             <p className="section-index">The next decision</p>
-            <h2>Find where execution is breaking.</h2>
+            <h2>{consultationOutcome ? "Find where execution is breaking." : finalCta.label}</h2>
           </div>
           <div>
-            <p>The consultation clarifies the outcome at risk, the leadership condition, and the most useful next step. It is a readiness and fit conversation, not a scripted product demo.</p>
-            <Link className="button button-light" href="/consultation">Book a Consultation<span aria-hidden="true">→</span></Link>
+            <p>{consultationOutcome
+              ? "The consultation clarifies the outcome at risk, the leadership condition, and the most useful next step. It is a readiness and fit conversation, not a scripted product demo."
+              : "Continue with the primary next step for this page, or use the related paths above to keep evaluating the condition and approach."}</p>
+            <CtaLink className="button button-light" href={finalCta.href}>{finalCta.label}<span aria-hidden="true">{finalCta.href.startsWith("/") ? "→" : "↗"}</span></CtaLink>
           </div>
         </section>
       </main>

@@ -191,7 +191,7 @@ export const pages: Record<string, SitePage> = {
     ],
     related: [solutions[0], solutions[1], { title: "The Execution Leadership System", description: "See the shared operating system installed inside live work.", href: "/leadership-system" }],
     primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
-    secondaryCta: { label: "Take the Execution Health Diagnostic", href: "/resources/assessments/execution-health-diagnostic" },
+    secondaryCta: { label: "Explore the Execution Health Framework", href: "/resources/assessments/execution-health-diagnostic" },
   },
 
   "problems-we-solve/leadership-team-alignment": {
@@ -229,7 +229,7 @@ export const pages: Record<string, SitePage> = {
     ],
     related: [solutions[1], solutions[0]],
     primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
-    secondaryCta: { label: "Take the Execution Health Diagnostic", href: "/resources/assessments/execution-health-diagnostic" },
+    secondaryCta: { label: "Explore the Execution Health Framework", href: "/resources/assessments/execution-health-diagnostic" },
   },
 
   "problems-we-solve/transformation-execution": {
@@ -266,7 +266,7 @@ export const pages: Record<string, SitePage> = {
     ],
     related: [solutions[2], solutions[1]],
     primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
-    secondaryCta: { label: "Take the Execution Health Diagnostic", href: "/resources/assessments/execution-health-diagnostic" },
+    secondaryCta: { label: "Explore the Execution Health Framework", href: "/resources/assessments/execution-health-diagnostic" },
   },
 
   "problems-we-solve/project-portfolio-roi": {
@@ -303,7 +303,7 @@ export const pages: Record<string, SitePage> = {
     ],
     related: [solutions[3], { title: "Project Leadership Managed Services", description: "Place experienced execution leaders inside critical work.", href: "/project-leadership-managed-services" }],
     primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
-    secondaryCta: { label: "Take the Execution Health Diagnostic", href: "/resources/assessments/execution-health-diagnostic" },
+    secondaryCta: { label: "Explore the Execution Health Framework", href: "/resources/assessments/execution-health-diagnostic" },
   },
 
   "problems-we-solve/internal-function-performance": {
@@ -340,7 +340,7 @@ export const pages: Record<string, SitePage> = {
     ],
     related: [solutions[2], solutions[3]],
     primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
-    secondaryCta: { label: "Take the Execution Health Diagnostic", href: "/resources/assessments/execution-health-diagnostic" },
+    secondaryCta: { label: "Explore the Execution Health Framework", href: "/resources/assessments/execution-health-diagnostic" },
   },
 
   "leadership-services": {
@@ -398,7 +398,7 @@ export const pages: Record<string, SitePage> = {
         eyebrow: "The installation path",
         title: "Diagnose. Install. Compound.",
         cards: [
-          { title: "01 — Diagnose the condition", description: "Clarify the outcome at risk, what is happening now, the leadership authority involved, and the work carrying the pressure.", href: "/contact" },
+          { title: "01 — Diagnose the condition", description: "Clarify the outcome at risk, what is happening now, the leadership authority involved, and the work carrying the pressure.", href: "/consultation" },
           { title: "02 — Install inside live work", description: "Apply shared practices to current priorities, decisions, dependencies, commitments, meetings, and outcomes.", href: "/leadership-services" },
           { title: "03 — Transfer ownership", description: "Build the operating rhythm and leadership capability required for the system to become less dependent on 120VC.", href: "/executive-leadership-coaching-and-development-performance-accelerator" },
         ],
@@ -513,7 +513,7 @@ export const pages: Record<string, SitePage> = {
     ],
     related: [solutions[0], { title: "COO execution leadership", description: "See how the condition appears from the COO seat.", href: roles[0].href }],
     primaryCta: { label: "Discuss Leadership Team Transformation", href: "/consultation" },
-    secondaryCta: { label: "Take the Leadership Team Execution Assessment", href: "/resources/assessments/leadership-team-execution-assessment" },
+    secondaryCta: { label: "Explore the Leadership Team Assessment Framework", href: "/resources/assessments/leadership-team-execution-assessment" },
   },
 
   "enterprise-digital-transformation": {
@@ -550,7 +550,7 @@ export const pages: Record<string, SitePage> = {
     ],
     related: [{ title: "Internal Function Performance", description: "Diagnose the recognizable buyer condition first.", href: "/problems-we-solve/internal-function-performance" }, solutions[3]],
     primaryCta: { label: "Discuss Enterprise Transformation", href: "/consultation" },
-    secondaryCta: { label: "Take the Cost Center to Value Engine Assessment", href: "/resources/assessments/cost-center-to-value-engine-assessment" },
+    secondaryCta: { label: "Explore the Cost Center Assessment Framework", href: "/resources/assessments/cost-center-to-value-engine-assessment" },
   },
 
   "roi-driven-project-portfolio-services": {
@@ -594,7 +594,7 @@ export const pages: Record<string, SitePage> = {
     ],
     related: [{ title: "Project Leadership Managed Services", description: "Embed execution leadership inside critical initiatives.", href: "/project-leadership-managed-services" }, { title: "Smartsheet Portfolio Visibility", description: "Give leaders decision-ready portfolio information.", href: "/smartsheet-dashboards" }],
     primaryCta: { label: "Request a Portfolio ROI Audit", href: "/consultation?condition=portfolio" },
-    secondaryCta: { label: "Take the Portfolio ROI Diagnostic", href: "/resources/assessments/portfolio-roi-diagnostic" },
+    secondaryCta: { label: "Explore the Portfolio ROI Framework", href: "/resources/assessments/portfolio-roi-diagnostic" },
   },
 
   "project-leadership-managed-services": {
@@ -625,7 +625,7 @@ export const pages: Record<string, SitePage> = {
       },
     ],
     related: [solutions[3], { title: "Smartsheet Portfolio Visibility", description: "Support decision-making with visible portfolio reality.", href: "/smartsheet-dashboards" }],
-    primaryCta: { label: "Discuss a Project Leadership Scope", href: "/contact?condition=project" },
+    primaryCta: { label: "Discuss a Project Leadership Scope", href: "/consultation?condition=project" },
     secondaryCta: { label: "Explore Portfolio Services", href: solutions[3].href },
   },
 
@@ -663,7 +663,7 @@ export const pages: Record<string, SitePage> = {
       },
     ],
     related: [solutions[3], { title: "Project Leadership Managed Services", description: "Add experienced leadership inside work at risk.", href: "/project-leadership-managed-services" }],
-    primaryCta: { label: "Discuss Portfolio Visibility", href: "/contact?condition=visibility" },
+    primaryCta: { label: "Discuss Portfolio Visibility", href: "/consultation?condition=visibility" },
     secondaryCta: { label: "Explore Portfolio Services", href: solutions[3].href },
   },
 
@@ -712,7 +712,7 @@ export const pages: Record<string, SitePage> = {
       },
     ],
     primaryCta: { label: "See How Results Are Measured", href: "/results/methodology" },
-    secondaryCta: { label: "Request a Relevant Client Reference", href: "/contact?request=reference" },
+    secondaryCta: { label: "Request a Relevant Client Reference", href: "/consultation?request=reference" },
   },
 
   "who-we-help": {
@@ -963,7 +963,7 @@ export const pages: Record<string, SitePage> = {
         eyebrow: "The hierarchy",
         title: "Company. Category. System. Standard.",
         cards: [
-          { title: "120VC is the company", description: "An Execution Leadership firm working with senior enterprise leaders accountable for major outcomes.", href: "/contact" },
+          { title: "120VC is the company", description: "An Execution Leadership firm working with senior enterprise leaders accountable for major outcomes.", href: "/consultation" },
           { title: "Execution Leadership is the category", description: "The discipline of leading through a shared system so decisions become coordinated action.", href: "/leadership-system" },
           { title: "The system is what we install", description: "Priorities, decisions, commitments, accountability, rhythm, development, and measurement.", href: "/leadership-system" },
           { title: "The 120 is the standard", description: "Intentionality, discipline, trust, transparency, and accountability under pressure.", href: "/founder-jason-scott" },
@@ -1035,8 +1035,8 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    primaryCta: { label: "Discuss a speaking or executive briefing", href: "/contact?request=speaking" },
-    secondaryCta: { label: "Read 120VC Insights", href: "/insights" },
+    primaryCta: { label: "Discuss a speaking or executive briefing", href: "/consultation?request=speaking" },
+    secondaryCta: { label: "Read 120VC Insights", href: "/resources/insights" },
   },
 
   faq: {
@@ -1169,7 +1169,7 @@ Object.assign(pages, {
       { title: "Results", description: "Return to the complete results framework.", href: "/results" },
       { title: "Case Studies", description: "See how the standard becomes an outcome story.", href: "/case-studies" },
     ],
-    primaryCta: { label: "Request a Relevant Client Reference", href: "/contact?request=reference" },
+    primaryCta: { label: "Request a Relevant Client Reference", href: "/consultation?request=reference" },
     secondaryCta: consultation,
   },
 
@@ -1223,7 +1223,7 @@ Object.assign(pages, {
         ],
       },
     ],
-    primaryCta: { label: "Request a Relevant Client Reference", href: "/contact?request=reference" },
+    primaryCta: { label: "Request a Relevant Client Reference", href: "/consultation?request=reference" },
     secondaryCta: { label: "Review Results", href: "/results" },
   },
 
@@ -1361,8 +1361,8 @@ Object.assign(pages, {
   resources: {
     slug: "resources",
     eyebrow: "120VC resources",
-    title: "Understand the condition. Put the system to work.",
-    description: "Use practical tools, diagnostics, guides, briefings, and insights designed for leaders accountable for execution.",
+    title: "Understand the condition. See the system in practice.",
+    description: "Explore practical tool frameworks, diagnostics, guides, briefings, and insights for leaders accountable for execution.",
     intro: "Resources are organized by the buyer problem they help solve, then by format. Start with the condition you are carrying—not a content library taxonomy.",
     seoTitle: "120VC Execution Leadership Resources",
     seoDescription: "Explore practical tools, diagnostics, books, briefings, insights, and podcasts for enterprise execution leaders.",
@@ -1371,8 +1371,8 @@ Object.assign(pages, {
         eyebrow: "Choose by need",
         title: "What would help you make the next decision?",
         cards: [
-          { title: "Tools", description: "Put prioritization, decisions, focusing, and synchronization practices into use.", href: "/resources/tools" },
-          { title: "Assessments", description: "Diagnose priority clarity, decision drag, hidden dependencies, and rescue dependence.", href: "/resources/assessments" },
+          { title: "Tool Frameworks", description: "See how prioritization, decisions, focusing, and synchronization practices work.", href: "/resources/tools" },
+          { title: "Assessment Frameworks", description: "Explore priority clarity, decision drag, hidden dependencies, and rescue dependence.", href: "/resources/assessments" },
           { title: "Guides and Books", description: "Build a forwardable case for closing the Strategy Execution Gap.", href: "/resources/guides-and-books" },
           { title: "Executive Briefings", description: "Bring the condition, system, or economic case into the leadership room.", href: "/resources/executive-briefings" },
           { title: "Insights", description: "Read practical thinking organized around the issue you need to solve.", href: "/resources/insights" },
@@ -1387,14 +1387,14 @@ Object.assign(pages, {
   "resources/tools": {
     slug: "resources/tools",
     eyebrow: "Execution Leadership tools",
-    title: "Put the system to work.",
-    description: "Use practical methods to define problems, make decisions, prioritize work, focus execution, and synchronize teams.",
+    title: "See the system in practice.",
+    description: "Explore practical methods for defining problems, making decisions, prioritizing work, focusing execution, and synchronizing teams.",
     intro: "The public tool library explains the method before asking for contact information. Interactive save, export, share, reminder, and data-retention behavior remains approval-dependent.",
     seoTitle: "Execution Leadership Tools",
     seoDescription: "Explore 120VC tools for prioritization, decision making, focusing, team synchronization, and work rationalization.",
     sections: [
       {
-        eyebrow: "Phase-one tools",
+        eyebrow: "Phase-one tool frameworks",
         title: "Start with the next useful decision.",
         cards: [
           { title: "2×2 Prioritization Matrix", description: "Decide what deserves focus—and what should wait, change, or stop.", href: "/resources/tools/2x2-prioritization-matrix" },
@@ -1415,26 +1415,26 @@ Object.assign(pages, {
       },
     ],
     primaryCta: { label: "Explore the Execution Leadership System", href: "/leadership-system" },
-    secondaryCta: { label: "View Assessments", href: "/resources/assessments" },
+    secondaryCta: { label: "Explore Assessment Frameworks", href: "/resources/assessments" },
   },
 
   "resources/assessments": {
     slug: "resources/assessments",
     eyebrow: "Execution diagnostics",
-    title: "Diagnose the condition before choosing the solution.",
-    description: "Assess how priorities, decisions, accountability, dependencies, and execution currently operate.",
+    title: "Explore the condition before choosing the solution.",
+    description: "See how priorities, decisions, accountability, dependencies, and execution can be examined.",
     intro: "Assessment results should describe the strongest visible condition. They must not be called benchmarks until 120VC has sufficient validated benchmark data.",
     seoTitle: "Execution Leadership Assessments",
     seoDescription: "Explore 120VC diagnostics for execution health, leadership teams, high-stakes initiatives, portfolios, and internal functions.",
     sections: [
       {
-        title: "Choose the diagnostic that matches the accountability scope.",
+        title: "Choose the diagnostic framework that matches the accountability scope.",
         cards: [
-          { title: "Execution Health Diagnostic", description: "Assess priority clarity, decisions, dependencies, rhythm, accountability, and rescue dependence.", href: "/resources/assessments/execution-health-diagnostic" },
-          { title: "Leadership Team Execution Assessment", description: "Evaluate whether senior leaders are operating through one shared system.", href: "/resources/assessments/leadership-team-execution-assessment" },
+          { title: "Execution Health Diagnostic", description: "Review priority clarity, decisions, dependencies, rhythm, accountability, and rescue dependence.", href: "/resources/assessments/execution-health-diagnostic" },
+          { title: "Leadership Team Execution Assessment", description: "See whether senior leaders are operating through one shared system.", href: "/resources/assessments/leadership-team-execution-assessment" },
           { title: "High-Stakes Initiative Readiness", description: "Examine whether a critical initiative has the conditions required to execute.", href: "/resources/assessments/high-stakes-initiative-readiness" },
           { title: "Portfolio ROI Diagnostic", description: "Examine investment logic, work overload, governance, and portfolio decisions.", href: "/resources/assessments/portfolio-roi-diagnostic" },
-          { title: "Cost Center to Value Engine Assessment", description: "Evaluate whether an internal function can connect activity to business value.", href: "/resources/assessments/cost-center-to-value-engine-assessment" },
+          { title: "Cost Center to Value Engine Assessment", description: "See whether an internal function can connect activity to business value.", href: "/resources/assessments/cost-center-to-value-engine-assessment" },
         ],
       },
       {
@@ -1444,7 +1444,7 @@ Object.assign(pages, {
       },
     ],
     primaryCta: { label: "Book a Leadership System Consultation", href: "/consultation" },
-    secondaryCta: { label: "Explore Tools", href: "/resources/tools" },
+    secondaryCta: { label: "Explore Tool Frameworks", href: "/resources/tools" },
   },
 
   "resources/guides-and-books": {
@@ -1483,7 +1483,7 @@ Object.assign(pages, {
         bullets: ["Strategy Execution Gap", "Leadership team execution", "Enterprise transformation", "Portfolio investment discipline", "Execution Leadership System", "AI, agency, and accountability"],
       },
     ],
-    primaryCta: { label: "Discuss an Executive Briefing", href: "/contact?request=speaking" },
+    primaryCta: { label: "Discuss an Executive Briefing", href: "/consultation?request=speaking" },
     secondaryCta: { label: "Meet J. Scott", href: "/founder-jason-scott" },
   },
 
@@ -1502,8 +1502,8 @@ Object.assign(pages, {
         paragraphs: ["[APPROVAL REQUIRED] Add only verified podcast episodes with working destinations, accurate descriptions, and approved media usage."],
       },
     ],
-    primaryCta: { label: "Read 120VC Insights", href: "/insights" },
-    secondaryCta: { label: "Discuss a Podcast or Briefing", href: "/contact?request=speaking" },
+    primaryCta: { label: "Read 120VC Insights", href: "/resources/insights" },
+    secondaryCta: { label: "Discuss a Podcast or Briefing", href: "/consultation?request=speaking" },
   },
 
   "about/the-120-standard": {
@@ -1550,7 +1550,7 @@ Object.assign(pages, {
         statement: "[APPROVAL REQUIRED] No open role is implied by this page.",
       },
     ],
-    primaryCta: { label: "Contact 120VC", href: "/contact" },
+    primaryCta: { label: "Book a Consultation", href: "/consultation" },
     secondaryCta: { label: "Read The 120 Standard", href: "/about/the-120-standard" },
   },
 
@@ -1563,7 +1563,7 @@ Object.assign(pages, {
     seoTitle: "120VC Privacy",
     seoDescription: "120VC website privacy information.",
     sections: [{ eyebrow: "Legal publishing hold", title: "The production privacy policy requires legal approval.", paragraphs: ["[APPROVAL REQUIRED] Confirm data collection, processors, retention, cookies, contact rights, form routing, and interactive-tool storage before public launch."] }],
-    primaryCta: { label: "Contact 120VC", href: "/contact" },
+    primaryCta: { label: "Book a Consultation", href: "/consultation" },
   },
 
   terms: {
@@ -1575,7 +1575,7 @@ Object.assign(pages, {
     seoTitle: "120VC Website Terms",
     seoDescription: "120VC website terms information.",
     sections: [{ eyebrow: "Legal publishing hold", title: "Production terms require approved legal copy.", paragraphs: ["[APPROVAL REQUIRED] Confirm website use, intellectual property, disclaimers, interactive-tool terms, jurisdiction, and contact information before public launch."] }],
-    primaryCta: { label: "Contact 120VC", href: "/contact" },
+    primaryCta: { label: "Book a Consultation", href: "/consultation" },
   },
 
   "cookie-policy": {
@@ -1587,7 +1587,7 @@ Object.assign(pages, {
     seoTitle: "120VC Cookie Policy",
     seoDescription: "120VC website cookie information.",
     sections: [{ eyebrow: "Legal publishing hold", title: "Cookie disclosure follows the verified integration inventory.", paragraphs: ["[APPROVAL REQUIRED] Identify necessary, analytics, functional, and marketing cookies; define consent behavior; and approve retention before public launch."] }],
-    primaryCta: { label: "Contact 120VC", href: "/contact" },
+    primaryCta: { label: "Book a Consultation", href: "/consultation" },
   },
 } satisfies Record<string, SitePage>);
 

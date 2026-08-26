@@ -7,6 +7,7 @@ import { Reveal } from "./components/motion-kit";
 import { RippleLink } from "./components/ripple-link";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
+import { TextEffect } from "./components/text-effect";
 
 export const metadata: Metadata = {
   title: "Close the Strategy Execution Gap",
@@ -103,7 +104,7 @@ export default function Home() {
         <section className="master-hero" aria-labelledby="home-title">
           <div className="master-hero-copy">
             <p className="eyebrow"><span className="eyebrow-mark" aria-hidden="true" />Execution Leadership for complex enterprises</p>
-            <h1 id="home-title">Close the gap between strategy and execution.</h1>
+            <TextEffect as="h1" id="home-title" delay={0.08}>Close the gap between strategy and execution.</TextEffect>
             <p className="master-hero-lede">120VC installs a shared Execution Leadership System inside live work so leadership teams align priorities, make decisions that hold, and deliver critical initiatives more predictably.</p>
             <div className="master-hero-actions">
               <RippleLink className="button button-primary" href="#how-it-works">See How It Works <span aria-hidden="true">↓</span></RippleLink>
@@ -115,10 +116,10 @@ export default function Home() {
           <div className="master-hero-visual">
             <ImageMask
               className="master-hero-image"
-              src="https://www.120vc.com/wp-content/uploads/2026/02/A-man-and-woman-stand-by-a-glass-wall-focused-on-a-tablet-they-are-holding-together-1024x644.webp"
-              alt="Two professionals reviewing work together beside a glass wall"
-              width={1024}
-              height={644}
+              src="/images/story/team-working-together.jpg"
+              alt="A leadership team working through priorities together in a shared workspace"
+              width={1800}
+              height={1008}
               variant="step"
               priority
             />
@@ -161,14 +162,16 @@ export default function Home() {
               <Link className="text-link" href="/problems-we-solve/strategy-execution-gap">Understand the Strategy Execution Gap <span aria-hidden="true">→</span></Link>
             </Reveal>
 
-            <Reveal className="gap-diagram-reveal" delay={140}>
-              <figure className="gap-diagram">
-                <figcaption>Where clear intent becomes fragmented work</figcaption>
-                <div className="gap-diagram-state gap-diagram-start"><strong>Strategy</strong><span>One direction</span></div>
-                <div className="gap-diagram-break" aria-hidden="true"><i /><i /><i /><i /></div>
-                <div className="gap-diagram-state gap-diagram-end"><strong>Execution</strong><span>Competing interpretations</span></div>
-                <p className="gap-diagram-note">The problem is not a lack of effort. It is a missing shared leadership system.</p>
-              </figure>
+            <Reveal className="diagnostic-scene-reveal" delay={140}>
+              <ImageMask
+                className="diagnostic-scene"
+                src="/images/story/execution-friction.jpg"
+                alt="A leadership team in a tense meeting while one leader appears overwhelmed"
+                width={1600}
+                height={1066}
+                variant="panel"
+                caption={<><strong>The visible symptom:</strong> capable leaders spend their time resolving collisions instead of moving outcomes.</>}
+              />
             </Reveal>
           </div>
         </section>
@@ -194,7 +197,7 @@ export default function Home() {
 
           <div className="system-lower">
             <Reveal className="tool-proof" delay={120}>
-              <p className="section-kicker">Put the system to work.</p>
+              <p className="section-kicker">Preview the system in practice.</p>
               <div className="tool-link-row">
                 {tools.map(([name, copy, href]) => (
                   <Link href={href} className="tool-link" key={name}>
@@ -202,7 +205,7 @@ export default function Home() {
                   </Link>
                 ))}
               </div>
-              <Link className="text-link text-link-light" href="/resources/tools">Explore All Tools <span aria-hidden="true">→</span></Link>
+              <Link className="text-link text-link-light" href="/resources/tools">Explore All Tool Frameworks <span aria-hidden="true">→</span></Link>
             </Reveal>
             <Reveal className="system-cta" delay={180}>
               <p>See the operating practices, installation path, and leadership conditions that make the system transferable.</p>
@@ -258,21 +261,40 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <Reveal className="founder-proof" delay={120}>
-            <ImageMask
-              src="https://www.120vc.com/wp-content/uploads/2026/02/person-img-with-orange-back.webp"
-              alt="J. Scott, founder and CEO of 120VC"
-              width={600}
-              height={596}
-              variant="portrait"
-            />
-            <div>
-              <p className="section-kicker">Founder authority—not client proof</p>
-              <h3>Execution Leadership had to become a system.</h3>
-              <p>Meet J. Scott and the enterprise experience that shaped the category, the system, and The 120 Standard.</p>
-              <Link className="text-link text-link-light" href="/founder-jason-scott">Meet J. Scott <span aria-hidden="true">→</span></Link>
-            </div>
-          </Reveal>
+          <aside className="evidence-aside" aria-label="120VC authority">
+            <Reveal className="founder-proof" delay={120}>
+              <ImageMask
+                src="https://www.120vc.com/wp-content/uploads/2026/02/person-img-with-orange-back.webp"
+                alt="J. Scott, founder and CEO of 120VC"
+                width={600}
+                height={596}
+                variant="portrait"
+              />
+              <div>
+                <p className="section-kicker">Founder authority—not client proof</p>
+                <h3>Execution Leadership had to become a system.</h3>
+                <p>Meet J. Scott and the enterprise experience that shaped the category, the system, and The 120 Standard.</p>
+                <Link className="text-link text-link-light" href="/founder-jason-scott">Meet J. Scott <span aria-hidden="true">→</span></Link>
+              </div>
+            </Reveal>
+
+            <Reveal delay={190}>
+              <a className="book-proof" href="https://www.120vc.com/book-download-the-strategy-execution-gap/">
+                <img
+                  src="/images/story/strategy-execution-gap-book.jpg"
+                  alt="The Strategy Execution Gap by J. Scott"
+                  width="900"
+                  height="900"
+                  loading="lazy"
+                />
+                <span>
+                  <small>Go deeper on the problem</small>
+                  <strong>Read The Strategy Execution Gap</strong>
+                  <i>Download the book <b aria-hidden="true">↗</b></i>
+                </span>
+              </a>
+            </Reveal>
+          </aside>
         </section>
 
         <section className="closing-section" aria-labelledby="closing-title">
@@ -286,7 +308,18 @@ export default function Home() {
             </div>
             <small>Confidential · Diagnostic · No scripted demo · No predetermined offer</small>
           </Reveal>
-          <div className="closing-mark" aria-hidden="true"><span>Strategy</span><i /><strong>Execution</strong></div>
+          <Reveal className="closing-outcome-reveal" delay={100}>
+            <figure className="closing-outcome">
+              <img
+                src="/images/story/aligned-leadership-team.jpg"
+                alt="A senior leadership team smiling together while reviewing work"
+                width="1600"
+                height="1066"
+                loading="lazy"
+              />
+              <figcaption><strong>The outcome:</strong> leaders who can align, decide, and move the work together.</figcaption>
+            </figure>
+          </Reveal>
         </section>
       </main>
 

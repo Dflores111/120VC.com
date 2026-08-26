@@ -45,7 +45,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
-        <noscript><style>{`.reveal{opacity:1!important;transform:none!important}`}</style></noscript>
+        <noscript><style>{`.reveal,.text-effect-word{opacity:1!important;transform:none!important}`}</style></noscript>
         {children}
       </body>
     </html>

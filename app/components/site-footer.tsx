@@ -15,8 +15,8 @@ const columns = [
   {
     title: "Solutions",
     links: [
-      ["ELPA", "/executive-leadership-coaching-and-development-performance-accelerator"],
       ["Leadership Team Transformation", "/transformation-leadership-team-development-coaching-and-program"],
+      ["Executive Leadership Performance Accelerator", "/executive-leadership-coaching-and-development-performance-accelerator"],
       ["Enterprise Transformation", "/enterprise-digital-transformation"],
       ["Project Portfolio Services", "/roi-driven-project-portfolio-services"],
     ],
@@ -34,31 +34,38 @@ const columns = [
     title: "Results",
     links: [
       ["Results", "/results"],
-      ["Case Studies", "/case-studies"],
       ["Operating Shifts", "/results/operating-shifts"],
       ["Measurement Methodology", "/results/methodology"],
-      ["Client References", "/results/client-references"],
     ],
   },
   {
     title: "Resources",
     links: [
-      ["Tools", "/resources/tools"],
-      ["Assessments", "/resources/assessments"],
+      ["Tool Frameworks", "/resources/tools"],
+      ["Assessment Frameworks", "/resources/assessments"],
       ["Guides and Books", "/resources/guides-and-books"],
       ["Executive Briefings", "/resources/executive-briefings"],
-      ["Insights", "/insights"],
-      ["Podcasts", "/resources/podcasts"],
+      ["Insights", "/resources/insights"],
     ],
   },
   {
-    title: "Company",
+    title: "For Leaders",
+    links: [
+      ["Chief Operating Officer", "/for-the-chief-operating-officer"],
+      ["Chief Financial Officer", "/for-the-chief-financial-officer"],
+      ["CIO or CTO", "/for-the-chief-technology-and-chief-information-officer"],
+      ["Chief Transformation Officer", "/for-the-chief-transformation-officer"],
+      ["Division President or VP", "/for-the-vp-and-division-presidents"],
+    ],
+  },
+  {
+    title: "About",
     links: [
       ["About", "/about"],
       ["J. Scott", "/founder-jason-scott"],
       ["The 120 Standard", "/about/the-120-standard"],
-      ["Careers", "/about/careers"],
-      ["Contact", "/contact"],
+      ["Frequently Asked Questions", "/faq"],
+      ["Consultation", "/consultation"],
     ],
   },
 ] as const;

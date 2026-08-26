@@ -19,15 +19,15 @@ const navItems: NavItem[] = [
       { label: "Transformation Execution", href: "/problems-we-solve/transformation-execution", description: "Change is active but not becoming normal work." },
       { label: "Project Portfolio ROI", href: "/problems-we-solve/project-portfolio-roi", description: "The portfolio is busy but return is unclear." },
       { label: "Internal Function Performance", href: "/problems-we-solve/internal-function-performance", description: "A necessary function cannot show business value." },
-      { label: "Take the Execution Health Diagnostic", href: "/resources/assessments/execution-health-diagnostic", description: "Identify the operating condition before choosing a solution." },
+      { label: "Explore the Execution Health Framework", href: "/resources/assessments/execution-health-diagnostic", description: "See what the diagnostic will evaluate before it is activated." },
     ],
   },
   {
     label: "Solutions",
     href: "/leadership-services",
     links: [
-      { label: "Executive Leadership Performance Accelerator", href: "/executive-leadership-coaching-and-development-performance-accelerator", description: "Install the system around one executive, team, and critical outcome." },
       { label: "Leadership Team Transformation", href: "/transformation-leadership-team-development-coaching-and-program", description: "Help the senior team prioritize, decide, and execute as one." },
+      { label: "Executive Leadership Performance Accelerator", href: "/executive-leadership-coaching-and-development-performance-accelerator", description: "Install the system around one executive, team, and critical outcome." },
       { label: "Enterprise Transformation", href: "/enterprise-digital-transformation", description: "Make enterprise or functional change become normal work." },
       { label: "Project Portfolio Services", href: "/roi-driven-project-portfolio-services", description: "Treat projects as investments that must produce return." },
       { label: "Project Leadership Managed Services", href: "/project-leadership-managed-services" },
@@ -51,22 +51,19 @@ const navItems: NavItem[] = [
     label: "Results",
     href: "/results",
     links: [
-      { label: "Case Studies", href: "/case-studies", description: "Approved outcome stories and publishing status." },
       { label: "Operating Shifts", href: "/results/operating-shifts", description: "The observable changes that precede business outcomes." },
       { label: "Measurement Methodology", href: "/results/methodology", description: "Definitions, baselines, periods, and proof governance." },
-      { label: "Client References", href: "/results/client-references" },
     ],
   },
   {
     label: "Resources",
     href: "/resources",
     links: [
-      { label: "Tools", href: "/resources/tools", description: "Put prioritization, decisions, and focus into practice." },
-      { label: "Assessments", href: "/resources/assessments", description: "Diagnose the condition before choosing the solution." },
+      { label: "Tool Frameworks", href: "/resources/tools", description: "Preview the prioritization, decision, and focusing practices." },
+      { label: "Assessment Frameworks", href: "/resources/assessments", description: "See what each diagnostic will evaluate before activation." },
       { label: "Guides and Books", href: "/resources/guides-and-books" },
       { label: "Executive Briefings", href: "/resources/executive-briefings" },
       { label: "Insights", href: "/resources/insights" },
-      { label: "Podcasts", href: "/resources/podcasts" },
     ],
   },
   {
@@ -87,8 +84,8 @@ const navItems: NavItem[] = [
       { label: "About 120VC", href: "/about", description: "Company, category, system, and standard." },
       { label: "J. Scott", href: "/founder-jason-scott", description: "The founder and point of view behind the system." },
       { label: "The 120 Standard", href: "/about/the-120-standard", description: "Intentionality, discipline, trust, transparency, accountability." },
-      { label: "Careers", href: "/about/careers" },
-      { label: "Contact", href: "/contact" },
+      { label: "Frequently Asked Questions", href: "/faq" },
+      { label: "Consultation", href: "/consultation" },
     ],
   },
 ];
@@ -110,7 +107,7 @@ const navOwnership: Record<string, string[]> = {
   ],
   "How It Works": ["/leadership-system"],
   Results: ["/results", "/case-studies"],
-  Resources: ["/resources", "/insights"],
+  Resources: ["/resources", "/resources/insights", "/insights"],
   "For Leaders": [
     "/for-leaders",
     "/for-the-chief-operating-officer",
@@ -119,7 +116,7 @@ const navOwnership: Record<string, string[]> = {
     "/for-the-chief-transformation-officer",
     "/for-the-vp-and-division-presidents",
   ],
-  About: ["/about", "/founder-jason-scott", "/faq", "/contact"],
+  About: ["/about", "/founder-jason-scott", "/faq", "/consultation", "/contact"],
 };
 
 function navItemIsCurrent(pathname: string, item: NavItem) {
@@ -250,14 +247,13 @@ export function SiteHeader() {
                 >
                   {item.label}<span aria-hidden="true">⌄</span>
                 </button>
-                {open && (
-                  <div className="mega-menu" id={id} aria-label={`${item.label} navigation`}>
+                <div className="mega-menu" id={id} aria-label={`${item.label} navigation`} hidden={!open}>
                     <div className="mega-menu-intro">
                       <p className="section-kicker">{item.label}</p>
                       <Link href={item.href} onClick={() => setDesktopOpen(null)}>Explore {item.label} <span aria-hidden="true">→</span></Link>
                     </div>
                     <div className="mega-menu-links">
-                      {item.links.map((link) => (
+                      {item.links.filter((link) => link.href !== item.href).map((link) => (
                         <Link href={link.href} key={link.href} aria-current={pathname === link.href ? "page" : undefined} onClick={() => setDesktopOpen(null)}>
                           <strong>{link.label}</strong>
                           {link.description && <span>{link.description}</span>}
@@ -265,7 +261,6 @@ export function SiteHeader() {
                       ))}
                     </div>
                   </div>
-                )}
               </div>
             );
           })}
@@ -309,14 +304,12 @@ export function SiteHeader() {
                     <button type="button" aria-expanded={open} aria-controls={id} onClick={() => setMobileSection(open ? null : item.label)}>
                       {item.label}<span aria-hidden="true">{open ? "−" : "+"}</span>
                     </button>
-                    {open && (
-                      <div id={id} className="mobile-nav-links">
+                      <div id={id} className="mobile-nav-links" hidden={!open}>
                         <Link className="mobile-nav-overview" href={item.href} onClick={closeMobile}>Explore {item.label} <span aria-hidden="true">→</span></Link>
-                        {item.links.map((link) => (
+                        {item.links.filter((link) => link.href !== item.href).map((link) => (
                           <Link href={link.href} key={link.href} aria-current={pathname === link.href ? "page" : undefined} onClick={closeMobile}>{link.label}</Link>
                         ))}
                       </div>
-                    )}
                   </div>
                 );
               })}

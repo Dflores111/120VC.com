@@ -302,7 +302,12 @@ img { max-width: 100%; }
   border-bottom: 1px solid rgba(255,255,255,.16);
 }
 
-.footer-brand { display: block; width: 170px; filter: brightness(0) invert(1); }
+.footer-brand {
+  display: block;
+  width: 170px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.22);
+}
 
 .footer-lead > p {
   margin: 0;
