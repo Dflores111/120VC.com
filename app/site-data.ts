@@ -2241,7 +2241,16 @@ Object.assign(pages, {
 } satisfies Record<string, SitePage>);
 
 export const allPages = Object.values(pages);
+const firstWaveProblemPreviewHolds = new Set([
+  "problems-we-solve/strategy-execution-gap",
+  "problems-we-solve/leadership-team-alignment",
+  "problems-we-solve/transformation-execution",
+  "problems-we-solve/project-portfolio-roi",
+  "problems-we-solve/internal-function-performance",
+]);
 export function pageHasApprovalHold(page: SitePage) {
-  return JSON.stringify(page).includes("[APPROVAL REQUIRED]");
+  return firstWaveProblemPreviewHolds.has(page.slug)
+    || JSON.stringify(page).includes("[APPROVAL REQUIRED]")
+    || JSON.stringify(page).includes("PLACEHOLDER TESTIMONIAL — NOT APPROVED FOR PUBLICATION");
 }
 export { problems, solutions, roles };

@@ -168,7 +168,7 @@ test("keeps every internal navigation outcome resolvable", async () => {
     const html = await (await render(path)).text();
     for (const match of html.matchAll(/href="(\/[^"#]*)"/g)) {
       const destination = match[1].split("?")[0].replace(/\/$/, "") || "/";
-      if (!destination.startsWith("/_next")) destinations.add(destination);
+      if (!destination.startsWith("/_next") && !destination.startsWith("/images/")) destinations.add(destination);
     }
   }
 
@@ -176,6 +176,86 @@ test("keeps every internal navigation outcome resolvable", async () => {
     const response = await render(destination);
     assert.equal(response.status, 200, `broken internal destination: ${destination}`);
   }
+});
+
+test("renders a differentiated first wave and keeps draft proof out of production", async () => {
+  const journeys = [
+    ["/problems-we-solve/strategy-execution-gap", "strategy", /Why clear strategy still fragments/i, /The breakdown begins after agreement/i],
+    ["/problems-we-solve/leadership-team-alignment", "alignment", /Strong executives\. Separate functions/i, /Agreement in the room can hide drift after it/i],
+    ["/problems-we-solve/transformation-execution", "transformation", /A launch is not a transformation/i, /Move from launch to normal work/i],
+    ["/problems-we-solve/project-portfolio-roi", "portfolio", /A well-reported portfolio can still be poorly invested/i, /Every initiative needs a next decision/i],
+    ["/problems-we-solve/internal-function-performance", "function", /When a necessary function becomes a cost center/i, /Move from request to recommendation to outcome/i],
+  ];
+
+  for (const [path, variant, headline, visualConcept] of journeys) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const html = await response.text();
+    assert.match(html, new RegExp(`problem-site-${variant}`), path);
+    assert.match(html, headline, path);
+    assert.match(html, visualConcept, path);
+    assert.match(html, /Condition at a glance/i, path);
+    assert.doesNotMatch(html, /data-proof-status="placeholder"/i, path);
+    assert.doesNotMatch(html, /PLACEHOLDER TESTIMONIAL — NOT APPROVED FOR PUBLICATION/i, path);
+    assert.match(html, /name="robots" content="noindex, nofollow"/i, path);
+    assert.doesNotMatch(html, /flip-card|testimonial-marquee|testimonials-columns|circular-testimonials/i, path);
+  }
+
+  const proofData = readFileSync(new URL("../app/problem-page-data.ts", import.meta.url), "utf8");
+  const proofComponent = readFileSync(new URL("../app/components/problem-page.tsx", import.meta.url), "utf8");
+  assert.equal((proofData.match(/name: "Placeholder Name"/g) || []).length, 5);
+  assert.match(proofComponent, /PLACEHOLDER TESTIMONIAL — NOT APPROVED FOR PUBLICATION/);
+  assert.match(proofComponent, /process\.env\.NODE_ENV !== "production"/);
+});
+
+test("makes the problem hub a progressive-disclosure router with real linked outcomes", async () => {
+  const html = await (await render("/problems-we-solve")).text();
+  assert.match(html, /Start with what is breaking/i);
+  assert.match(html, /Which pattern looks most like your organization/i);
+  for (const path of [
+    "/problems-we-solve/strategy-execution-gap",
+    "/problems-we-solve/leadership-team-alignment",
+    "/problems-we-solve/transformation-execution",
+    "/problems-we-solve/project-portfolio-roi",
+    "/problems-we-solve/internal-function-performance",
+  ]) {
+    assert.match(html, new RegExp(`<a href="${path}" class="problem-hub-card">`, "i"), path);
+  }
+  assert.match(html, /Explore the Execution Health Framework/i);
+});
+
+test("adds two contextual book lead-path previews without claiming a connected capture", async () => {
+  for (const [path, sourcePage, sourceCta] of [
+    ["/problems-we-solve/strategy-execution-gap", "strategy-execution-gap", "problem-book"],
+    ["/problems-we-solve/transformation-execution", "transformation-execution", "transformation-book"],
+  ]) {
+    const html = await (await render(path)).text();
+    assert.match(html, /strategy-gap-book\.png/i, path);
+    assert.match(html, /Work email/i, path);
+    assert.match(html, /Company/i, path);
+    assert.match(html, /Role or title/i, path);
+    assert.match(html, new RegExp(`name="source_page" value="${sourcePage}"`, "i"), path);
+    assert.match(html, new RegExp(`name="source_cta" value="${sourceCta}"`, "i"), path);
+    assert.match(html, /OWNER PREVIEW — LEAD CAPTURE NOT CONNECTED/i, path);
+    assert.match(html, /Contact details are not sent or stored/i, path);
+  }
+
+  const portfolio = await (await render("/problems-we-solve/project-portfolio-roi")).text();
+  const internalFunction = await (await render("/problems-we-solve/internal-function-performance")).text();
+  assert.doesNotMatch(portfolio, /strategy-gap-book\.png/i);
+  assert.doesNotMatch(internalFunction, /strategy-gap-book\.png/i);
+});
+
+test("keeps static problem media inert and limits spotlight feedback to linked cards", async () => {
+  const css = readFileSync(new URL("../app/problem-pages.css", import.meta.url), "utf8");
+  assert.doesNotMatch(css, /\.problem-(?:hero-media|clipped-media|section-outcome)[^\n,{]*:hover/i);
+  assert.doesNotMatch(css, /animation:[^;]*infinite/i);
+  assert.match(css, /prefers-reduced-motion[\s\S]*\.problem-site \.glow-card::before/i);
+
+  const portfolio = await (await render("/problems-we-solve/project-portfolio-roi")).text();
+  assert.match(portfolio, /<a href="\/roi-driven-project-portfolio-services" class="problem-link-card">/i);
+  assert.match(portfolio, /<a href="\/results\/methodology" class="problem-link-card">/i);
+  assert.match(portfolio, /<a href="\/resources\/assessments\/portfolio-roi-diagnostic" class="problem-link-card">/i);
 });
 
 test("shows the authentic founder portrait without treating founder authority as client proof", async () => {

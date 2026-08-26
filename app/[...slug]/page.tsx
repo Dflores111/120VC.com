@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ContentPage } from "../components/content-page";
+import { ProblemHub, ProblemPage } from "../components/problem-page";
+import { isProblemPageSlug, problemPageConfigs } from "../problem-page-data";
 import { allPages, pageHasApprovalHold, pages } from "../site-data";
 
 type Props = { params: Promise<{ slug: string[] }> };
@@ -53,6 +55,8 @@ export default async function DynamicPage({ params }: Props) {
   const key = slug.join("/");
   const page = pages[key];
   if (!page) notFound();
+  if (key === "problems-we-solve") return <ProblemHub />;
+  if (isProblemPageSlug(key)) return <ProblemPage config={problemPageConfigs[key]} />;
   return (
     <>
       {key === "faq" && <FaqJsonLd />}

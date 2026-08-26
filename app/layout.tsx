@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./master.css";
+import "./problem-pages.css";
 
 const SITE_URL = "https://www.120vc.com";
 const description = "120VC installs an Execution Leadership System inside live enterprise work so strategy becomes coordinated, measurable execution.";
