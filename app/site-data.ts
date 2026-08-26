@@ -30,7 +30,7 @@ export type SitePage = {
   secondaryCta?: { label: string; href: string };
 };
 
-const consultation = { label: "Book a leadership system consultation", href: "/contact" };
+const consultation = { label: "Book a Leadership System Consultation", href: "/consultation" };
 
 const problems: PageLink[] = [
   {
@@ -116,8 +116,8 @@ export const pages: Record<string, SitePage> = {
   "problems-we-solve": {
     slug: "problems-we-solve",
     eyebrow: "Problems we solve",
-    title: "Start with what is happening—not our category name.",
-    description: "Five recognizable execution conditions route enterprise leaders to the right 120VC response.",
+    title: "Start with what is breaking.",
+    description: "Execution failure can appear as a stalled transformation, an overloaded portfolio, unstable priorities, slow decisions, or a leadership team that cannot execute as one.",
     intro: "Most buyers do not begin by searching for Execution Leadership. They begin with a strategy that is stalling, a team that is fragmenting, a transformation that is not sticking, a portfolio that is underperforming, or a function that cannot prove value.",
     seoTitle: "Enterprise Strategy Execution Problems",
     seoDescription: "Diagnose strategy execution gaps, leadership team misalignment, transformation fatigue, portfolio underperformance, and internal-function value problems.",
@@ -145,7 +145,7 @@ export const pages: Record<string, SitePage> = {
   "problems-we-solve/strategy-execution-gap": {
     slug: "problems-we-solve/strategy-execution-gap",
     eyebrow: "The Strategy Execution Gap",
-    title: "Your strategy is clear. Execution keeps changing what it means.",
+    title: "Why capable organizations still struggle to execute.",
     description: "Close the distance between executive intent and the priorities, decisions, commitments, and work required to deliver it.",
     intro: "The executive team agrees on direction. Then functions interpret it differently, current work consumes capacity, decisions reopen, and the strategy becomes one more demand competing for attention.",
     seoTitle: "Close the Strategy Execution Gap",
@@ -190,8 +190,8 @@ export const pages: Record<string, SitePage> = {
       },
     ],
     related: [solutions[0], solutions[1], { title: "The Execution Leadership System", description: "See the shared operating system installed inside live work.", href: "/leadership-system" }],
-    primaryCta: consultation,
-    secondaryCta: { label: "Explore the system", href: "/leadership-system" },
+    primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
+    secondaryCta: { label: "Take the Execution Health Diagnostic", href: "/resources/assessments/execution-health-diagnostic" },
   },
 
   "problems-we-solve/leadership-team-alignment": {
@@ -228,14 +228,14 @@ export const pages: Record<string, SitePage> = {
       },
     ],
     related: [solutions[1], solutions[0]],
-    primaryCta: consultation,
-    secondaryCta: { label: "Explore team transformation", href: solutions[1].href },
+    primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
+    secondaryCta: { label: "Take the Execution Health Diagnostic", href: "/resources/assessments/execution-health-diagnostic" },
   },
 
   "problems-we-solve/transformation-execution": {
     slug: "problems-we-solve/transformation-execution",
     eyebrow: "Transformation execution",
-    title: "The transformation is active. The operating condition is not changing.",
+    title: "A transformation has not succeeded because it launched.",
     description: "Make change part of leadership priorities, resource decisions, commitments, adoption ownership, and normal execution rhythm.",
     intro: "Transformation theater appears when the program looks healthy while the organization continues to prioritize, decide, and work the old way.",
     seoTitle: "Enterprise Transformation Execution",
@@ -265,14 +265,14 @@ export const pages: Record<string, SitePage> = {
       },
     ],
     related: [solutions[2], solutions[1]],
-    primaryCta: consultation,
-    secondaryCta: { label: "Explore Enterprise Transformation", href: solutions[2].href },
+    primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
+    secondaryCta: { label: "Take the Execution Health Diagnostic", href: "/resources/assessments/execution-health-diagnostic" },
   },
 
   "problems-we-solve/project-portfolio-roi": {
     slug: "problems-we-solve/project-portfolio-roi",
     eyebrow: "Project portfolio ROI",
-    title: "Your portfolio can be well reported and poorly invested.",
+    title: "Your portfolio can be well reported and still poorly invested.",
     description: "Move beyond project status to decide which initiatives deserve time, talent, attention, and capital.",
     intro: "Most organizations can report schedule, budget, milestones, and risk. Fewer can show which work should exist, which investments should stop, or how the portfolio improves customer, team, and financial outcomes.",
     seoTitle: "Improve Project Portfolio ROI",
@@ -302,14 +302,14 @@ export const pages: Record<string, SitePage> = {
       },
     ],
     related: [solutions[3], { title: "Project Leadership Managed Services", description: "Place experienced execution leaders inside critical work.", href: "/project-leadership-managed-services" }],
-    primaryCta: { label: "Request a Portfolio ROI Audit", href: "/contact?condition=portfolio" },
-    secondaryCta: { label: "Explore Portfolio Services", href: solutions[3].href },
+    primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
+    secondaryCta: { label: "Take the Execution Health Diagnostic", href: "/resources/assessments/execution-health-diagnostic" },
   },
 
   "problems-we-solve/internal-function-performance": {
     slug: "problems-we-solve/internal-function-performance",
     eyebrow: "Internal function performance",
-    title: "Necessary work is not the same as visible business value.",
+    title: "Necessary work is not automatically strategic work.",
     description: "Help HR, IT, Finance, PMO, and shared services move from reactive demand to measurable internal business partnership.",
     intro: "Internal functions become trapped when demand arrives as instructions, activity substitutes for outcomes, and leaders cannot show how the work improves the customer, the team, or financial performance.",
     seoTitle: "Transform Internal Functions Into Business Partners",
@@ -339,15 +339,15 @@ export const pages: Record<string, SitePage> = {
       },
     ],
     related: [solutions[2], solutions[3]],
-    primaryCta: consultation,
-    secondaryCta: { label: "Explore Enterprise Transformation", href: solutions[2].href },
+    primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
+    secondaryCta: { label: "Take the Execution Health Diagnostic", href: "/resources/assessments/execution-health-diagnostic" },
   },
 
   "leadership-services": {
     slug: "leadership-services",
     eyebrow: "Solutions",
-    title: "One execution system. Four ways to install it where the work is breaking.",
-    description: "Choose a 120VC scope by execution condition, leadership unit, and work—not by a list of loosely related services.",
+    title: "One system. Installed where execution is breaking.",
+    description: "120VC begins with the business condition, the leaders accountable for it, and the work that must change.",
     intro: "Every 120VC solution uses the same core Execution Leadership System. The scope changes based on who must lead differently, which work carries the risk, and what operating condition must change.",
     seoTitle: "Execution Leadership Solutions",
     seoDescription: "Compare ELPA, Leadership Team Transformation, Enterprise Transformation, and ROI-Driven Project Portfolio Services.",
@@ -369,9 +369,9 @@ export const pages: Record<string, SitePage> = {
   "leadership-system": {
     slug: "leadership-system",
     eyebrow: "The Execution Leadership System",
-    title: "Install the system that carries strategy after the meeting ends.",
-    description: "One shared way to turn leadership intent into priorities, decisions, commitments, execution rhythm, and measurable outcomes.",
-    intro: "120VC does not ask leaders to remember a model after training. We install a practical leadership operating system inside the priorities and initiatives already under pressure.",
+    title: "One shared system to prioritize, decide, commit, and execute.",
+    description: "Most leadership teams do not lack intelligence, effort, tools, or ambition. They lack one disciplined system connecting leadership intent to daily execution.",
+    intro: "120VC does not ask leaders to remember a model after training. We install the system inside the priorities and initiatives already under pressure.",
     seoTitle: "The 120VC Execution Leadership System",
     seoDescription: "See how 120VC installs a leadership operating system for priorities, decisions, accountability, execution rhythm, and measurable outcomes.",
     facts: [
@@ -400,7 +400,7 @@ export const pages: Record<string, SitePage> = {
         cards: [
           { title: "01 — Diagnose the condition", description: "Clarify the outcome at risk, what is happening now, the leadership authority involved, and the work carrying the pressure.", href: "/contact" },
           { title: "02 — Install inside live work", description: "Apply shared practices to current priorities, decisions, dependencies, commitments, meetings, and outcomes.", href: "/leadership-services" },
-          { title: "03 — Transfer ownership", description: "Build the operating rhythm and leadership capability required for the system to become less dependent on 120VC.", href: "/case-studies" },
+          { title: "03 — Transfer ownership", description: "Build the operating rhythm and leadership capability required for the system to become less dependent on 120VC.", href: "/executive-leadership-coaching-and-development-performance-accelerator" },
         ],
       },
       {
@@ -419,7 +419,7 @@ export const pages: Record<string, SitePage> = {
       },
       {
         eyebrow: "The Three Pillars",
-        title: "Performance should improve without creating a hidden failure somewhere else.",
+        title: "Performance should improve without hidden failure.",
         paragraphs: [
           "Every meaningful decision should improve Customer Satisfaction, Team Member Satisfaction, or Profitability—and should not improve one by unnecessarily damaging the other two.",
         ],
@@ -433,9 +433,9 @@ export const pages: Record<string, SitePage> = {
   "executive-leadership-coaching-and-development-performance-accelerator": {
     slug: "executive-leadership-coaching-and-development-performance-accelerator",
     eyebrow: "Executive Leadership Performance Accelerator",
-    title: "Build execution leaders by changing how live work gets led.",
-    description: "ELPA installs the full Execution Leadership System with an accountable executive and the relevant direct-report team.",
-    intro: "Leadership development fails when insight is separated from operating pressure. ELPA turns current priorities, decisions, dependencies, commitments, and outcomes into the environment where leadership capability is built.",
+    title: "Install the execution system into your highest-stakes work.",
+    description: "ELPA installs that system into work your leadership team already owns, with an accountable executive and the relevant direct-report team.",
+    intro: "It changes how the team prioritizes, decides, commits, coaches, rationalizes work, and executes.",
     seoTitle: "Executive Leadership Performance Accelerator",
     seoDescription: "Install an enterprise execution leadership system with an accountable executive and team through live-work leadership development.",
     facts: [
@@ -473,15 +473,15 @@ export const pages: Record<string, SitePage> = {
       },
     ],
     related: [{ title: "Leadership Team Transformation", description: "Focus the system on the senior team’s shared operation.", href: solutions[1].href }, { title: "How the system works", description: "See the practices and installation path behind ELPA.", href: "/leadership-system" }],
-    primaryCta: consultation,
+    primaryCta: { label: "Assess ELPA Readiness and Fit", href: "/consultation" },
     secondaryCta: { label: "See the system", href: "/leadership-system" },
   },
 
   "transformation-leadership-team-development-coaching-and-program": {
     slug: "transformation-leadership-team-development-coaching-and-program",
     eyebrow: "Leadership Team Transformation",
-    title: "Turn a room of strong executives into one team that can execute.",
-    description: "Install shared priorities, decision rules, commitments, challenge, accountability, and execution rhythm across the senior team.",
+    title: "Turn strong executives into one leadership team.",
+    description: "120VC installs a shared Execution Leadership System into the team’s current priorities and decisions so senior leaders can operate as one leadership unit.",
     intro: "A leadership team is not aligned because its members respect one another or agree in the meeting. It is aligned when the decision holds, enterprise priorities outrank functional convenience, and shared commitments survive pressure.",
     seoTitle: "Leadership Team Transformation",
     seoDescription: "Transform senior executive team alignment, decision quality, accountability, and cross-functional execution through live work.",
@@ -512,16 +512,16 @@ export const pages: Record<string, SitePage> = {
       },
     ],
     related: [solutions[0], { title: "COO execution leadership", description: "See how the condition appears from the COO seat.", href: roles[0].href }],
-    primaryCta: consultation,
-    secondaryCta: { label: "See the Executive Team condition", href: "/problems-we-solve/leadership-team-alignment" },
+    primaryCta: { label: "Discuss Leadership Team Transformation", href: "/consultation" },
+    secondaryCta: { label: "Take the Leadership Team Execution Assessment", href: "/resources/assessments/leadership-team-execution-assessment" },
   },
 
   "enterprise-digital-transformation": {
     slug: "enterprise-digital-transformation",
     eyebrow: "Enterprise Transformation",
-    title: "Turn internal functions into measurable business-performance partners.",
-    description: "Change how HR, IT, Finance, PMO, and shared services evaluate demand, make recommendations, own commitments, and prove value.",
-    intro: "An internal function becomes strategic when it helps the enterprise make better investments and produce better outcomes—not when it changes its language, tools, or reporting alone.",
+    title: "Turn internal functions into measurable business value.",
+    description: "120VC changes how HR, IT, Finance, and PMO prioritize, advise, allocate resources, execute, and measure their contribution to the business.",
+    intro: "Kill the Cost Center™. An internal function becomes strategic when it helps the enterprise make better investments and produce better outcomes—not when it changes its language, tools, or reporting alone.",
     seoTitle: "Enterprise and Internal Function Transformation",
     seoDescription: "Transform HR, IT, Finance, PMO, or shared services into accountable business-performance partners with measurable outcomes.",
     facts: [
@@ -542,15 +542,15 @@ export const pages: Record<string, SitePage> = {
         ],
       },
       {
-        title: "This is operating transformation—not a technology modernization project.",
+        title: "This is operating transformation—not software.",
         paragraphs: [
           "Tools may support visibility. Process changes may remove friction. Coaching may build capability. The core work changes the leadership system that decides what the function should do, how it should operate, and how it will prove value.",
         ],
       },
     ],
     related: [{ title: "Internal Function Performance", description: "Diagnose the recognizable buyer condition first.", href: "/problems-we-solve/internal-function-performance" }, solutions[3]],
-    primaryCta: consultation,
-    secondaryCta: { label: "Diagnose the condition", href: "/problems-we-solve/internal-function-performance" },
+    primaryCta: { label: "Discuss Enterprise Transformation", href: "/consultation" },
+    secondaryCta: { label: "Take the Cost Center to Value Engine Assessment", href: "/resources/assessments/cost-center-to-value-engine-assessment" },
   },
 
   "roi-driven-project-portfolio-services": {
@@ -593,8 +593,8 @@ export const pages: Record<string, SitePage> = {
       },
     ],
     related: [{ title: "Project Leadership Managed Services", description: "Embed execution leadership inside critical initiatives.", href: "/project-leadership-managed-services" }, { title: "Smartsheet Portfolio Visibility", description: "Give leaders decision-ready portfolio information.", href: "/smartsheet-dashboards" }],
-    primaryCta: { label: "Request a Portfolio ROI Audit", href: "/contact?condition=portfolio" },
-    secondaryCta: { label: "See the Portfolio ROI condition", href: "/problems-we-solve/project-portfolio-roi" },
+    primaryCta: { label: "Request a Portfolio ROI Audit", href: "/consultation?condition=portfolio" },
+    secondaryCta: { label: "Take the Portfolio ROI Diagnostic", href: "/resources/assessments/portfolio-roi-diagnostic" },
   },
 
   "project-leadership-managed-services": {
@@ -669,29 +669,24 @@ export const pages: Record<string, SitePage> = {
 
   "case-studies": {
     slug: "case-studies",
-    eyebrow: "Results and evidence",
-    title: "Evaluate the results—and the evidence behind them.",
-    description: "Review 120VC's published performance figures, the context they require, and the evidence an enterprise buying team should inspect.",
-    intro: "120VC publishes a 98% transformation and project success rate, 227% performance improvement versus industry averages, and more than 25 years across global enterprise transformation. These are first-party figures; a sound evaluation should also inspect the population, baseline, timeframe, calculation method, attribution limits, and relevant references.",
+    eyebrow: "Case studies",
+    title: "Outcome stories require context—not just a result.",
+    description: "120VC case studies will show the condition, intervention, first operating shift, outcome, timeframe, and attribution required for an enterprise buying team to evaluate the work.",
+    intro: "Client-specific stories remain held until name, quote, outcome, source, attribution, and publication permissions are approved. The evidence standard below is live; unsupported stories are not.",
     seoTitle: "Execution Leadership Results and Evidence",
     seoDescription: "Review how 120VC measures operating shifts, implementation evidence, enterprise outcomes, attribution, and client references.",
-    facts: [
-      { label: "Transformation and project success rate", value: "98%" },
-      { label: "Performance improvement vs. industry averages", value: "227%" },
-      { label: "Global enterprise transformation", value: "25+ years" },
-      { label: "Source type", value: "120VC-published figures" },
-    ],
     sections: [
       {
-        eyebrow: "What 120VC publishes",
-        title: "The figures are the start of the evaluation—not the end.",
+        eyebrow: "Publishing gate",
+        title: "No client story appears until the proof record is complete.",
         bullets: [
-          "98% transformation and project success rate",
-          "227% performance improvement versus industry averages",
-          "More than 25 years across global enterprise transformation",
-          "Enterprise experience published across named organizations and industries",
+          "Relationship and name permission confirmed",
+          "Offer and intervention accurately identified",
+          "Result source and measurement period documented",
+          "Attribution and qualification language approved",
+          "Quote, logo, and publication permissions recorded",
         ],
-        statement: "Ask what was measured, across which population, over what period, against which baseline, and with what attribution limits.",
+        statement: "[APPROVAL REQUIRED] One case story and one client testimonial are required before public launch.",
       },
       {
         eyebrow: "What counts as evidence",
@@ -716,8 +711,8 @@ export const pages: Record<string, SitePage> = {
         statement: "A published logo shows enterprise experience. It does not, by itself, prove a specific outcome or endorsement.",
       },
     ],
-    primaryCta: { label: "Request a relevant client reference", href: "/contact?request=reference" },
-    secondaryCta: consultation,
+    primaryCta: { label: "See How Results Are Measured", href: "/results/methodology" },
+    secondaryCta: { label: "Request a Relevant Client Reference", href: "/contact?request=reference" },
   },
 
   "who-we-help": {
@@ -728,7 +723,7 @@ export const pages: Record<string, SitePage> = {
     intro: "The visible pressure changes by role. The underlying need is consistent: a leadership system that turns enterprise intent into coordinated execution across work the leader does not control alone.",
     seoTitle: "Execution Leadership for Enterprise Executives",
     seoDescription: "See how 120VC helps COOs, CFOs, CIOs, CTOs, transformation leaders, division presidents, and VPs close the Strategy Execution Gap.",
-    sections: [{ eyebrow: "Choose your seat", title: "What are you accountable for making work?", cards: roles }],
+    sections: [{ eyebrow: "Choose your seat", title: "Which outcome are you accountable for?", cards: roles }],
     related: problems,
     primaryCta: consultation,
     secondaryCta: { label: "Explore problems we solve", href: "/problems-we-solve" },
@@ -1066,7 +1061,7 @@ export const pages: Record<string, SitePage> = {
         paragraphs: ["Coaching and consulting may be part of the installation, but 120VC is not an advice-only consultancy, generic coaching company, or software product. We work alongside leaders while the system is applied to real priorities, decisions, commitments, and outcomes. Technology may support visibility; it is not the leadership system."],
       },
       {
-        title: "What does installed inside live work mean?",
+        title: "What does “installed inside live work” mean?",
         paragraphs: ["Leaders apply the system to current priorities, initiatives, decisions, dependencies, commitments, meetings, portfolio choices, and business outcomes. They do not learn it in isolation and wait until later to use it."],
       },
       {
@@ -1083,7 +1078,7 @@ export const pages: Record<string, SitePage> = {
       },
       {
         title: "How are timing and investment determined?",
-        paragraphs: ["Duration and investment depend on the installation scope, leadership unit, current condition, business significance, and level of ongoing execution support. Commercial terms are provided after a qualified consultation and scope recommendation; this site does not publish unresolved fixed-duration or seat-pricing claims."],
+        paragraphs: ["Duration and investment depend on the installation scope, leadership unit, current condition, business significance, and level of ongoing execution support. Commercial terms are provided after a qualified consultation and scope recommendation."],
       },
       {
         title: "What happens during the initial consultation?",
@@ -1095,5 +1090,1158 @@ export const pages: Record<string, SitePage> = {
   },
 };
 
+Object.assign(pages, {
+  results: {
+    slug: "results",
+    eyebrow: "Results",
+    title: "Evidence should make the decision easier.",
+    description: "Review operating shifts, case-study governance, measurement methodology, and the client-reference process without asking a logo or percentage to carry more meaning than it can support.",
+    intro: "Enterprise proof must answer what changed, where it changed, how it was measured, over what period, and what can reasonably be attributed to the work.",
+    seoTitle: "Execution Leadership Results",
+    seoDescription: "Evaluate 120VC results through operating shifts, measurement methodology, case-study context, and client-reference governance.",
+    sections: [
+      {
+        eyebrow: "What proof must answer",
+        title: "Proof needs context, timeframe, and attribution.",
+        bullets: [
+          "The execution condition before the work began",
+          "The leadership unit, initiative, or function involved",
+          "What 120VC installed inside live work",
+          "The first observable operating shift",
+          "The business outcome, baseline, period, and source",
+          "The limits of attribution and the client permission status",
+        ],
+      },
+      {
+        eyebrow: "Current publishing status",
+        title: "The evidence framework is ready. Client-specific proof is still gated.",
+        paragraphs: [
+          "The master build requires at least one approved case story, one approved testimonial, and a complete metric record before public launch. Those items remain approval-dependent and are not being reconstructed from marketing claims.",
+        ],
+        statement: "Proof depth belongs here so the homepage can stay clear, skimmable, and honest.",
+      },
+    ],
+    related: [
+      { title: "Measurement Methodology", description: "See the evidence fields required before a result is published.", href: "/results/methodology" },
+      { title: "Case Studies", description: "Review the case-story structure and current publishing gate.", href: "/case-studies" },
+      { title: "Operating Shifts", description: "Understand the changes that should appear before a final business outcome.", href: "/results/operating-shifts" },
+    ],
+    primaryCta: { label: "See How Results Are Measured", href: "/results/methodology" },
+    secondaryCta: consultation,
+  },
+
+  "results/methodology": {
+    slug: "results/methodology",
+    eyebrow: "Measurement methodology",
+    title: "Every claim needs a definition, baseline, period, and source.",
+    description: "Use the 120VC evidence standard to distinguish method proof, implementation proof, operating shifts, and business outcomes.",
+    intro: "A result is not evaluation-ready because the number is memorable. It is ready when the buyer can inspect what was measured, how it was calculated, and what the evidence can reasonably support.",
+    seoTitle: "120VC Measurement Methodology",
+    seoDescription: "See how 120VC governs definitions, baselines, populations, time periods, calculations, attribution, and proof permissions.",
+    sections: [
+      {
+        eyebrow: "Required metric record",
+        title: "The number and its evidence travel together.",
+        bullets: [
+          "Metric definition and intended interpretation",
+          "Baseline or comparison condition",
+          "Population and inclusion rules",
+          "Measurement period",
+          "Calculation method and source",
+          "Attribution, exceptions, and qualification language",
+          "Approval status and review date",
+        ],
+      },
+      {
+        eyebrow: "Evidence ladder",
+        title: "Different evidence answers different buyer questions.",
+        bullets: [
+          "Method proof: is there a coherent system?",
+          "Implementation proof: was the system actually installed?",
+          "Operating proof: did priorities, decisions, ownership, risk, or rhythm change?",
+          "Outcome proof: did the defined business result change over the stated period?",
+          "Attribution proof: what can reasonably be connected to the intervention?",
+        ],
+        statement: "The unresolved headline performance claims remain unpublished until every required field is confirmed.",
+      },
+    ],
+    related: [
+      { title: "Results", description: "Return to the complete results framework.", href: "/results" },
+      { title: "Case Studies", description: "See how the standard becomes an outcome story.", href: "/case-studies" },
+    ],
+    primaryCta: { label: "Request a Relevant Client Reference", href: "/contact?request=reference" },
+    secondaryCta: consultation,
+  },
+
+  "results/operating-shifts": {
+    slug: "results/operating-shifts",
+    eyebrow: "Operating shifts",
+    title: "The first proof is a different way of operating.",
+    description: "See the observable leadership changes that should appear before a long-cycle business outcome is complete.",
+    intro: "First value is not a fabricated ROI promise. It is a visible change in how leaders prioritize, decide, commit, expose risk, and run the work.",
+    seoTitle: "Execution Leadership Operating Shifts",
+    seoDescription: "Learn which observable operating shifts indicate that an Execution Leadership System is beginning to hold.",
+    sections: [
+      {
+        title: "Look for changes the leadership team can observe.",
+        bullets: [
+          "A priority becomes explicit and conflicting work is removed",
+          "A decision closes with clear authority and remains closed",
+          "Dependencies surface early enough for a real tradeoff",
+          "Commitments show an owner, outcome, timing, and next move",
+          "An execution rhythm replaces recurring status theater",
+          "Executive rescue becomes the exception rather than the operating model",
+        ],
+      },
+      {
+        title: "Operating shifts are leading evidence—not the final claim.",
+        paragraphs: [
+          "A case study should connect these shifts to the relevant business result over an appropriate measurement period. The methodology keeps the two related without pretending they are identical.",
+        ],
+      },
+    ],
+    primaryCta: { label: "See How Results Are Measured", href: "/results/methodology" },
+    secondaryCta: consultation,
+  },
+
+  "results/client-references": {
+    slug: "results/client-references",
+    eyebrow: "Client references",
+    title: "A relevant reference is part of evaluation—not decoration.",
+    description: "Request a reference aligned to the execution condition, solution, and buying stage when permission and relevance allow.",
+    intro: "A reference conversation should help a qualified buying group evaluate fit, installation burden, leadership participation, and the realities of the work.",
+    seoTitle: "120VC Client Reference Process",
+    seoDescription: "Understand how qualified enterprise buyers can request a relevant 120VC client reference.",
+    sections: [
+      {
+        title: "Reference access follows relevance and permission.",
+        bullets: [
+          "The prospective condition and solution are understood",
+          "The reference client has approved participation",
+          "The conversation respects confidentiality and time",
+          "The reference is not asked to validate a different offer or outcome",
+        ],
+      },
+    ],
+    primaryCta: { label: "Request a Relevant Client Reference", href: "/contact?request=reference" },
+    secondaryCta: { label: "Review Results", href: "/results" },
+  },
+
+  "leadership-system/installation": {
+    slug: "leadership-system/installation",
+    eyebrow: "System installation",
+    title: "Install the system inside the work already carrying the risk.",
+    description: "Diagnose the condition, apply the operating practices to live priorities and decisions, and transfer the rhythm leaders can keep running.",
+    intro: "120VC does not ask leaders to learn a framework outside the work and remember it later. Installation begins where current priorities, decisions, commitments, and outcomes make the condition visible.",
+    seoTitle: "Execution Leadership System Installation",
+    seoDescription: "See how 120VC diagnoses, installs, compounds, and transfers an Execution Leadership System inside live enterprise work.",
+    sections: [
+      {
+        eyebrow: "Diagnose",
+        title: "Make the condition and consequence visible.",
+        bullets: ["Business outcome at risk", "Current priorities and conflicting work", "Decision authority and dependencies", "Leadership rhythm and rescue patterns", "First observable signal of value"],
+      },
+      {
+        eyebrow: "Install and compound",
+        title: "Use the system where the work must move.",
+        paragraphs: ["Leaders apply shared practices to current work, then use each execution cycle to strengthen judgment, accountability, transparency, and the operating rhythm the organization can retain."],
+        statement: "Installed in the work. Built to hold without us.",
+      },
+    ],
+    primaryCta: consultation,
+    secondaryCta: { label: "Explore Operating Practices", href: "/leadership-system/operating-practices" },
+  },
+
+  "leadership-system/operating-practices": {
+    slug: "leadership-system/operating-practices",
+    eyebrow: "Operating practices",
+    title: "Turn leadership intent into repeatable execution behavior.",
+    description: "The system gives leaders one shared way to define conditions, prioritize work, make recommendations, commit, focus, synchronize, and improve.",
+    intro: "The practices are useful because they change the next decision and the next move—not because they create another vocabulary list.",
+    seoTitle: "Execution Leadership Operating Practices",
+    seoDescription: "Explore the practical prioritization, decision, focusing, synchronization, coaching, and accountability practices inside the 120VC system.",
+    sections: [
+      {
+        title: "The core practices connect decisions to execution.",
+        bullets: [
+          "Challenge · Opportunity: define a condition worth solving",
+          "1-3-1: make a recommendation after evaluating viable choices",
+          "2×2 Prioritization: decide what deserves focus and what should stop",
+          "Daily and Weekly Focusing: turn priorities into intentional use of time",
+          "Weekly Team DOING: align reality, decisions, and commitments",
+          "Accountability and coaching: own the result, learning, and required change",
+        ],
+      },
+      {
+        title: "Tools prove the method. Outcomes prove the result.",
+        paragraphs: ["Visitors can understand the practices before buying. Public interactive implementations remain subject to the master specification’s intellectual-property, legal, data-retention, and export approvals."],
+      },
+    ],
+    primaryCta: { label: "Explore All Tools", href: "/resources/tools" },
+    secondaryCta: { label: "See the Installation Path", href: "/leadership-system/installation" },
+  },
+
+  "leadership-system/three-pillars": {
+    slug: "leadership-system/three-pillars",
+    eyebrow: "The Three Pillars",
+    title: "Judge decisions across customer, team, and profitability.",
+    description: "The Three Pillars keep execution from optimizing one visible result while weakening the system that must sustain it.",
+    intro: "Strong execution connects customer satisfaction, team member satisfaction, and profitability instead of treating them as competing slogans.",
+    seoTitle: "The 120VC Three Pillars",
+    seoDescription: "Learn how Customer Satisfaction, Team Member Satisfaction, and Profitability guide 120VC execution decisions.",
+    sections: [
+      {
+        title: "One decision standard. Three connected outcomes.",
+        cards: [
+          { title: "Customer Satisfaction", description: "Does the decision create useful value and a better condition for the customer?", href: "/leadership-system" },
+          { title: "Team Member Satisfaction", description: "Does the operating condition help capable people do clear, meaningful work?", href: "/leadership-system" },
+          { title: "Profitability", description: "Does the work produce sustainable economic value and responsible use of resources?", href: "/leadership-system" },
+        ],
+      },
+    ],
+    primaryCta: { label: "Explore the Execution Leadership System", href: "/leadership-system" },
+    secondaryCta: { label: "See The 120 Standard", href: "/about/the-120-standard" },
+  },
+
+  "leadership-system/execution-leadership": {
+    slug: "leadership-system/execution-leadership",
+    eyebrow: "Execution Leadership",
+    title: "Leadership is what turns decisions into coordinated execution.",
+    description: "Execution Leadership is the discipline of leading through one shared system so people can move critical work under pressure.",
+    intro: "It is not a personality type, title, software product, or motivational program. It is how leaders prioritize, decide, commit, expose reality, and improve while the work is live.",
+    seoTitle: "What Is Execution Leadership?",
+    seoDescription: "Understand Execution Leadership as the discipline connecting enterprise strategy, decisions, commitments, and coordinated execution.",
+    sections: [
+      {
+        title: "Execution Leadership closes the gap after agreement.",
+        bullets: ["One shared priority system", "Explicit decision authority", "Visible commitments and dependencies", "Early risk and productive challenge", "A leadership rhythm that produces decisions", "Learning that improves the next cycle"],
+      },
+      {
+        title: "The category names the condition conventional fixes leave behind.",
+        paragraphs: ["Strategy, technology, talent, training, and transformation can all be necessary. Their value is limited when leadership lacks a shared system for turning intent into coordinated action."],
+      },
+    ],
+    primaryCta: { label: "Explore the Execution Leadership System", href: "/leadership-system" },
+    secondaryCta: { label: "Diagnose the Strategy Execution Gap", href: "/problems-we-solve/strategy-execution-gap" },
+  },
+
+  "leadership-services/compare-solutions": {
+    slug: "leadership-services/compare-solutions",
+    eyebrow: "Compare solutions",
+    title: "Choose the installation scope by condition, team, and work.",
+    description: "Compare four ways to install the same Execution Leadership System without relying on unresolved duration, pricing, or phase claims.",
+    intro: "The right scope follows the outcome at risk, the leadership authority involved, the team that must operate differently, and the live work where the system must hold.",
+    seoTitle: "Compare 120VC Execution Leadership Solutions",
+    seoDescription: "Compare ELPA, Leadership Team Transformation, Enterprise Transformation, and Project Portfolio Services.",
+    sections: [
+      { eyebrow: "Four starting points", title: "Where must the system be installed?", cards: solutions },
+      {
+        title: "Commercial details follow a qualified diagnosis.",
+        paragraphs: ["Exact phases, duration, participation, deliverables, and investment remain scope-dependent and approval-controlled. The consultation clarifies fit before it recommends an offer."],
+      },
+    ],
+    primaryCta: consultation,
+    secondaryCta: { label: "Explore All Solutions", href: "/leadership-services" },
+  },
+
+  "for-leaders": {
+    slug: "for-leaders",
+    eyebrow: "For leaders who own the outcome",
+    title: "Built for executives accountable for what the organization actually delivers.",
+    description: "The visible pressure differs by role. The underlying need is one leadership system that turns intent into coordinated execution.",
+    intro: "Use the role path that matches your mandate, then move into the problem, solution, evidence, and next step most relevant to your buying group.",
+    seoTitle: "Execution Leadership for Enterprise Leaders",
+    seoDescription: "See how 120VC helps COOs, CFOs, CIOs, CTOs, transformation leaders, division presidents, and VPs improve execution.",
+    sections: [{ eyebrow: "Choose your seat", title: "Which outcome are you accountable for?", cards: roles }],
+    related: problems,
+    primaryCta: consultation,
+    secondaryCta: { label: "Explore Problems We Solve", href: "/problems-we-solve" },
+  },
+
+  resources: {
+    slug: "resources",
+    eyebrow: "120VC resources",
+    title: "Understand the condition. Put the system to work.",
+    description: "Use practical tools, diagnostics, guides, briefings, and insights designed for leaders accountable for execution.",
+    intro: "Resources are organized by the buyer problem they help solve, then by format. Start with the condition you are carrying—not a content library taxonomy.",
+    seoTitle: "120VC Execution Leadership Resources",
+    seoDescription: "Explore practical tools, diagnostics, books, briefings, insights, and podcasts for enterprise execution leaders.",
+    sections: [
+      {
+        eyebrow: "Choose by need",
+        title: "What would help you make the next decision?",
+        cards: [
+          { title: "Tools", description: "Put prioritization, decisions, focusing, and synchronization practices into use.", href: "/resources/tools" },
+          { title: "Assessments", description: "Diagnose priority clarity, decision drag, hidden dependencies, and rescue dependence.", href: "/resources/assessments" },
+          { title: "Guides and Books", description: "Build a forwardable case for closing the Strategy Execution Gap.", href: "/resources/guides-and-books" },
+          { title: "Executive Briefings", description: "Bring the condition, system, or economic case into the leadership room.", href: "/resources/executive-briefings" },
+          { title: "Insights", description: "Read practical thinking organized around the issue you need to solve.", href: "/resources/insights" },
+          { title: "Podcasts", description: "Hear conversations about leadership, execution, teams, and enterprise change.", href: "/resources/podcasts" },
+        ],
+      },
+    ],
+    primaryCta: { label: "Explore Execution Leadership Tools", href: "/resources/tools" },
+    secondaryCta: { label: "Diagnose the Execution Condition", href: "/resources/assessments" },
+  },
+
+  "resources/tools": {
+    slug: "resources/tools",
+    eyebrow: "Execution Leadership tools",
+    title: "Put the system to work.",
+    description: "Use practical methods to define problems, make decisions, prioritize work, focus execution, and synchronize teams.",
+    intro: "The public tool library explains the method before asking for contact information. Interactive save, export, share, reminder, and data-retention behavior remains approval-dependent.",
+    seoTitle: "Execution Leadership Tools",
+    seoDescription: "Explore 120VC tools for prioritization, decision making, focusing, team synchronization, and work rationalization.",
+    sections: [
+      {
+        eyebrow: "Phase-one tools",
+        title: "Start with the next useful decision.",
+        cards: [
+          { title: "2×2 Prioritization Matrix", description: "Decide what deserves focus—and what should wait, change, or stop.", href: "/resources/tools/2x2-prioritization-matrix" },
+          { title: "1-3-1 Decision Builder", description: "Define one problem, evaluate three viable solutions, and make one recommendation.", href: "/resources/tools/1-3-1-decision-builder" },
+          { title: "Challenge · Opportunity Builder", description: "Turn a vague complaint, request, or idea into a condition the team can act on.", href: "/resources/tools/challenge-opportunity-builder" },
+          { title: "Daily Focusing Exercise", description: "End the day with clarity. Start tomorrow intentionally.", href: "/resources/tools/daily-focusing-exercise" },
+          { title: "Weekly Focusing Exercise", description: "Turn priorities into a week your calendar can actually support.", href: "/resources/tools/weekly-focusing-exercise" },
+          { title: "Weekly Team DOING", description: "Replace status updates with live alignment, decisions, and commitments.", href: "/resources/tools/weekly-team-doing" },
+          { title: "Execution Week Planner", description: "Protect the time required to deliver your highest-priority outcomes.", href: "/resources/tools/execution-week-planner" },
+          { title: "Three Pillars Decision Filter", description: "Evaluate a decision across customer, team, and profitability.", href: "/resources/tools/three-pillars-decision-filter" },
+          { title: "Work Rationalization Tool", description: "Decide what to continue, reshape, consolidate, delay, or stop.", href: "/resources/tools/work-rationalization-tool" },
+        ],
+      },
+      {
+        eyebrow: "Publishing hold",
+        title: "Learn the method now. Interactive workspaces follow IP and data approval.",
+        paragraphs: ["[APPROVAL REQUIRED] Public intellectual-property scope, legal language, stored data, email behavior, reminders, consent, and export formats must be confirmed before interactive tools are activated."],
+      },
+    ],
+    primaryCta: { label: "Explore the Execution Leadership System", href: "/leadership-system" },
+    secondaryCta: { label: "View Assessments", href: "/resources/assessments" },
+  },
+
+  "resources/assessments": {
+    slug: "resources/assessments",
+    eyebrow: "Execution diagnostics",
+    title: "Diagnose the condition before choosing the solution.",
+    description: "Assess how priorities, decisions, accountability, dependencies, and execution currently operate.",
+    intro: "Assessment results should describe the strongest visible condition. They must not be called benchmarks until 120VC has sufficient validated benchmark data.",
+    seoTitle: "Execution Leadership Assessments",
+    seoDescription: "Explore 120VC diagnostics for execution health, leadership teams, high-stakes initiatives, portfolios, and internal functions.",
+    sections: [
+      {
+        title: "Choose the diagnostic that matches the accountability scope.",
+        cards: [
+          { title: "Execution Health Diagnostic", description: "Assess priority clarity, decisions, dependencies, rhythm, accountability, and rescue dependence.", href: "/resources/assessments/execution-health-diagnostic" },
+          { title: "Leadership Team Execution Assessment", description: "Evaluate whether senior leaders are operating through one shared system.", href: "/resources/assessments/leadership-team-execution-assessment" },
+          { title: "High-Stakes Initiative Readiness", description: "Examine whether a critical initiative has the conditions required to execute.", href: "/resources/assessments/high-stakes-initiative-readiness" },
+          { title: "Portfolio ROI Diagnostic", description: "Examine investment logic, work overload, governance, and portfolio decisions.", href: "/resources/assessments/portfolio-roi-diagnostic" },
+          { title: "Cost Center to Value Engine Assessment", description: "Evaluate whether an internal function can connect activity to business value.", href: "/resources/assessments/cost-center-to-value-engine-assessment" },
+        ],
+      },
+      {
+        eyebrow: "Publishing hold",
+        title: "Scoring, reports, capture, and routing require approved implementation rules.",
+        paragraphs: ["[APPROVAL REQUIRED] Questions, scoring logic, personalized reports, data storage, consent, and HubSpot routing must be validated before assessments are activated."],
+      },
+    ],
+    primaryCta: { label: "Book a Leadership System Consultation", href: "/consultation" },
+    secondaryCta: { label: "Explore Tools", href: "/resources/tools" },
+  },
+
+  "resources/guides-and-books": {
+    slug: "resources/guides-and-books",
+    eyebrow: "Guides and books",
+    title: "Build the case for closing the Strategy Execution Gap.",
+    description: "Use forwardable resources that help a buying group understand the condition, system, installation burden, and next decision.",
+    intro: "The strongest resource helps the reader move one stage forward—it does not force a consultation before the problem is understood.",
+    seoTitle: "120VC Guides and Books",
+    seoDescription: "Explore 120VC books and guides about the Strategy Execution Gap and the Execution Leadership System.",
+    sections: [
+      {
+        title: "Start with the problem your stakeholders can recognize.",
+        cards: [
+          { title: "The Strategy Execution Gap", description: "Understand why clear strategy still fragments as it moves into priorities, decisions, and work.", href: "https://www.120vc.com/book-download-the-strategy-execution-gap/", label: "Free book" },
+          { title: "Explore the Execution Leadership System", description: "See how one shared system is installed inside current enterprise work.", href: "/leadership-system", label: "System overview" },
+          { title: "Evaluate ELPA", description: "Understand the executive, team, work, and readiness required for this installation scope.", href: "/executive-leadership-coaching-and-development-performance-accelerator", label: "Solution overview" },
+        ],
+      },
+    ],
+    primaryCta: { label: "Download The Strategy Execution Gap", href: "https://www.120vc.com/book-download-the-strategy-execution-gap/" },
+    secondaryCta: { label: "Explore the System", href: "/leadership-system" },
+  },
+
+  "resources/executive-briefings": {
+    slug: "resources/executive-briefings",
+    eyebrow: "Executive briefings",
+    title: "Bring the execution condition into the leadership room.",
+    description: "Use a focused briefing to align a buying group around the problem, system, implementation burden, economic consequence, and next decision.",
+    intro: "A briefing is useful when several stakeholders need a shared, forwardable explanation before they can evaluate an installation scope.",
+    seoTitle: "120VC Executive Briefings",
+    seoDescription: "Discuss a 120VC executive briefing about strategy execution, leadership teams, transformation, or portfolio ROI.",
+    sections: [
+      {
+        title: "Briefings follow the condition—not a generic keynote deck.",
+        bullets: ["Strategy Execution Gap", "Leadership team execution", "Enterprise transformation", "Portfolio investment discipline", "Execution Leadership System", "AI, agency, and accountability"],
+      },
+    ],
+    primaryCta: { label: "Discuss an Executive Briefing", href: "/contact?request=speaking" },
+    secondaryCta: { label: "Meet J. Scott", href: "/founder-jason-scott" },
+  },
+
+  "resources/podcasts": {
+    slug: "resources/podcasts",
+    eyebrow: "Podcasts",
+    title: "Conversations about leadership that changes the work.",
+    description: "Explore approved podcast appearances and conversations about execution, teams, transformation, accountability, and enterprise value.",
+    intro: "Podcast listings require a verified title, source, destination, publication date, and participant information before they appear here.",
+    seoTitle: "120VC Podcasts",
+    seoDescription: "Explore approved 120VC podcast conversations about Execution Leadership and the Strategy Execution Gap.",
+    sections: [
+      {
+        eyebrow: "Publishing gate",
+        title: "The page structure is ready. The episode inventory requires approval.",
+        paragraphs: ["[APPROVAL REQUIRED] Add only verified podcast episodes with working destinations, accurate descriptions, and approved media usage."],
+      },
+    ],
+    primaryCta: { label: "Read 120VC Insights", href: "/insights" },
+    secondaryCta: { label: "Discuss a Podcast or Briefing", href: "/contact?request=speaking" },
+  },
+
+  "about/the-120-standard": {
+    slug: "about/the-120-standard",
+    eyebrow: "The 120 Standard",
+    title: "Not a slogan. A way of operating.",
+    description: "The 120 Standard defines how leaders behave when outcomes matter.",
+    intro: "Intentionality, discipline, trust, transparency, and accountability shape the decisions, commitments, and learning required under pressure.",
+    seoTitle: "The 120 Standard",
+    seoDescription: "Understand the Intentionality, Discipline, Trust, Transparency, and Accountability behind The 120 Standard.",
+    sections: [
+      {
+        title: "The standard becomes visible in behavior.",
+        bullets: [
+          "Intentionality: know what matters, why it matters, and what outcome defines success.",
+          "Discipline: honor priorities, decisions, commitments, and rhythm under pressure.",
+          "Trust: create confidence through clarity, honesty, visibility, and follow-through.",
+          "Transparency: make reality visible early enough to act.",
+          "Accountability: own the commitment, result, learning, and change required.",
+        ],
+      },
+      {
+        eyebrow: "The Three Pillars",
+        title: "The outcome standard is customer, team, and profitability.",
+        bullets: ["Customer Satisfaction", "Team Member Satisfaction", "Profitability"],
+      },
+    ],
+    primaryCta: { label: "See How the Standard Becomes a System", href: "/leadership-system" },
+    secondaryCta: { label: "Meet J. Scott", href: "/founder-jason-scott" },
+  },
+
+  "about/careers": {
+    slug: "about/careers",
+    eyebrow: "Careers at 120VC",
+    title: "Help leaders change the work—not just talk about it.",
+    description: "Learn what 120VC expects from people who lead alongside enterprise teams when outcomes matter.",
+    intro: "Current openings, role requirements, location, and application instructions must come from an approved recruiting source before publication.",
+    seoTitle: "Careers at 120VC",
+    seoDescription: "Learn about the 120VC operating standard and how to inquire about approved career opportunities.",
+    sections: [
+      {
+        title: "The work requires The 120 Standard.",
+        bullets: ["Intentionality", "Discipline", "Trust", "Transparency", "Accountability"],
+        statement: "[APPROVAL REQUIRED] No open role is implied by this page.",
+      },
+    ],
+    primaryCta: { label: "Contact 120VC", href: "/contact" },
+    secondaryCta: { label: "Read The 120 Standard", href: "/about/the-120-standard" },
+  },
+
+  privacy: {
+    slug: "privacy",
+    eyebrow: "Privacy",
+    title: "Privacy information for the rebuilt 120VC website.",
+    description: "The final policy must reflect the approved platform, analytics, forms, HubSpot routing, tool storage, cookies, and retention behavior.",
+    intro: "The current owner-only prototype does not replace approved legal copy for the production website.",
+    seoTitle: "120VC Privacy",
+    seoDescription: "120VC website privacy information.",
+    sections: [{ eyebrow: "Legal publishing hold", title: "The production privacy policy requires legal approval.", paragraphs: ["[APPROVAL REQUIRED] Confirm data collection, processors, retention, cookies, contact rights, form routing, and interactive-tool storage before public launch."] }],
+    primaryCta: { label: "Contact 120VC", href: "/contact" },
+  },
+
+  terms: {
+    slug: "terms",
+    eyebrow: "Terms",
+    title: "Terms for the rebuilt 120VC website.",
+    description: "The final terms must be supplied and approved for the production platform and public tool experience.",
+    intro: "This owner-only prototype does not invent or replace legal terms.",
+    seoTitle: "120VC Website Terms",
+    seoDescription: "120VC website terms information.",
+    sections: [{ eyebrow: "Legal publishing hold", title: "Production terms require approved legal copy.", paragraphs: ["[APPROVAL REQUIRED] Confirm website use, intellectual property, disclaimers, interactive-tool terms, jurisdiction, and contact information before public launch."] }],
+    primaryCta: { label: "Contact 120VC", href: "/contact" },
+  },
+
+  "cookie-policy": {
+    slug: "cookie-policy",
+    eyebrow: "Cookie policy",
+    title: "Cookie information for the rebuilt 120VC website.",
+    description: "The final policy must match the analytics, consent, embedded content, and marketing technology actually deployed.",
+    intro: "A cookie policy cannot be finalized before the production integration inventory and consent behavior are approved.",
+    seoTitle: "120VC Cookie Policy",
+    seoDescription: "120VC website cookie information.",
+    sections: [{ eyebrow: "Legal publishing hold", title: "Cookie disclosure follows the verified integration inventory.", paragraphs: ["[APPROVAL REQUIRED] Identify necessary, analytics, functional, and marketing cookies; define consent behavior; and approve retention before public launch."] }],
+    primaryCta: { label: "Contact 120VC", href: "/contact" },
+  },
+} satisfies Record<string, SitePage>);
+
+Object.assign(pages, {
+  "resources/tools/challenge-opportunity-builder": {
+    slug: "resources/tools/challenge-opportunity-builder",
+    eyebrow: "Challenge · Opportunity Builder",
+    title: "Turn a vague issue into a condition your team can act on.",
+    description: "Turn a vague complaint, request, or idea into a clear condition before the team debates solutions.",
+    intro: "The useful starting point is not an assumed answer. It is a concise statement of what is happening, what supports it, who it affects, and why it matters.",
+    seoTitle: "Challenge and Opportunity Builder",
+    seoDescription: "Learn how the 120VC Challenge and Opportunity method turns a vague issue into an actionable business condition.",
+    sections: [
+      {
+        eyebrow: "The method",
+        title: "Define the condition before choosing the response.",
+        bullets: [
+          "What is happening?",
+          "What evidence supports it?",
+          "Who is affected?",
+          "What is the consequence?",
+          "What would become possible if it changed?",
+          "What condition should the team address?",
+        ],
+        statement: "The intended output is one concise Challenge · Opportunity statement.",
+      },
+      {
+        eyebrow: "Activation status",
+        title: "The interactive workspace is not active yet.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm the public intellectual-property boundary, completed example, refinement behavior, local save, sharing, data retention, and consent before activating this builder."],
+      },
+    ],
+    related: [
+      { title: "1-3-1 Decision Builder", description: "Move from a defined condition to three viable solutions and one recommendation.", href: "/resources/tools/1-3-1-decision-builder" },
+      { title: "Strategy Execution Gap", description: "Understand why clear intent still fragments during execution.", href: "/problems-we-solve/strategy-execution-gap" },
+    ],
+    primaryCta: { label: "See the 1-3-1 Decision Builder", href: "/resources/tools/1-3-1-decision-builder" },
+    secondaryCta: { label: "View All Tools", href: "/resources/tools" },
+  },
+
+  "resources/tools/1-3-1-decision-builder": {
+    slug: "resources/tools/1-3-1-decision-builder",
+    eyebrow: "1-3-1 Decision Builder",
+    title: "Define one problem. Evaluate three viable solutions. Make one recommendation.",
+    description: "Structure a recommendation so leaders can inspect the problem, choices, tradeoffs, and recommended next move.",
+    intro: "The method improves decision quality by requiring a clear problem, relevant facts, multiple viable paths, and one accountable recommendation.",
+    seoTitle: "1-3-1 Decision Builder",
+    seoDescription: "Learn the 120VC 1-3-1 method for defining one problem, evaluating three solutions, and making one recommendation.",
+    sections: [
+      {
+        eyebrow: "Decision sequence",
+        title: "Move from the problem to one inspectable recommendation.",
+        bullets: [
+          "Define the problem",
+          "Add relevant facts and constraints",
+          "Describe solution one",
+          "Describe solution two",
+          "Describe solution three",
+          "Compare risks and benefits",
+          "Make one recommendation",
+          "Prepare the decision document for review",
+        ],
+      },
+      {
+        eyebrow: "Activation status",
+        title: "Saving, review, export, and sharing remain disabled.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm the public template, completed example, document format, local save, review workflow, export behavior, sharing, retention, and consent before activating the builder."],
+      },
+    ],
+    related: [
+      { title: "Challenge · Opportunity Builder", description: "Clarify the condition before evaluating solutions.", href: "/resources/tools/challenge-opportunity-builder" },
+      { title: "2×2 Prioritization Matrix", description: "Decide which work deserves focus after the recommendation is made.", href: "/resources/tools/2x2-prioritization-matrix" },
+    ],
+    primaryCta: { label: "See the 2×2 Prioritization Matrix", href: "/resources/tools/2x2-prioritization-matrix" },
+    secondaryCta: { label: "View All Tools", href: "/resources/tools" },
+  },
+
+  "resources/tools/2x2-prioritization-matrix": {
+    slug: "resources/tools/2x2-prioritization-matrix",
+    eyebrow: "2×2 Prioritization Matrix",
+    title: "Decide what deserves focus—and what should wait, change, or stop.",
+    description: "Make priorities, tradeoffs, ownership, expected outcomes, and conflicts visible before capacity breaks.",
+    intro: "Prioritization is not a longer ranked list. It is a decision about where limited time, talent, attention, and resources will—and will not—go.",
+    seoTitle: "2x2 Prioritization Matrix",
+    seoDescription: "Learn how the 120VC 2x2 Prioritization Matrix makes focus, tradeoffs, ownership, and conflicts visible.",
+    sections: [
+      {
+        eyebrow: "Planned workspace",
+        title: "The approved experience must make movement and tradeoffs explicit.",
+        bullets: [
+          "Add a priority or initiative",
+          "Drag or assign it to a quadrant",
+          "Edit the description",
+          "Add the expected outcome",
+          "Add the owner",
+          "Flag a conflict",
+          "Reorder within each quadrant",
+          "Review the completed matrix before export or sharing",
+        ],
+        statement: "Keyboard controls and dropdown assignment must be available as alternatives to drag and drop.",
+      },
+      {
+        eyebrow: "Activation status",
+        title: "The interactive matrix and its outputs are not active yet.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm quadrant definitions, examples, conflict logic, keyboard behavior, local save, PDF export, sharing, retention, and consent before activating the matrix."],
+      },
+    ],
+    related: [
+      { title: "Weekly Focusing Exercise", description: "Turn selected priorities into a week the calendar can support.", href: "/resources/tools/weekly-focusing-exercise" },
+      { title: "Work Rationalization Tool", description: "Decide which existing work should continue, change, wait, or stop.", href: "/resources/tools/work-rationalization-tool" },
+    ],
+    primaryCta: { label: "See Weekly Focusing", href: "/resources/tools/weekly-focusing-exercise" },
+    secondaryCta: { label: "View All Tools", href: "/resources/tools" },
+  },
+
+  "resources/tools/daily-focusing-exercise": {
+    slug: "resources/tools/daily-focusing-exercise",
+    eyebrow: "Daily Focusing Exercise",
+    title: "End the day with clarity. Start tomorrow intentionally.",
+    description: "Use a short daily reflection to connect attention, accomplishments, outcomes, learning, and tomorrow’s intended work.",
+    intro: "The Daily Focusing Exercise is designed for repeat use. One completion is a focusing practice—not evidence of commercial intent or a business outcome.",
+    seoTitle: "Daily Focusing Exercise",
+    seoDescription: "Learn the 120VC Daily Focusing Exercise for reflecting on outcomes and preparing tomorrow’s intentional work.",
+    sections: [
+      {
+        eyebrow: "The reflection",
+        title: "Close today and prepare tomorrow through four prompts.",
+        bullets: [
+          "Three Gratitudes — What are you grateful for today?",
+          "Today’s Accomplishments and Outcomes — What did you accomplish, and what outcome did it create?",
+          "Tomorrow’s Planned Accomplishments and Outcomes — What will you accomplish tomorrow, and what outcome should it create?",
+          "Reflection or Insight — What did you learn, notice, or need to carry forward?",
+        ],
+      },
+      {
+        eyebrow: "Activation status",
+        title: "Copy, email, print, save, and reminder actions remain disabled.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm the public worksheet, completed example, local save, email delivery, print format, reminder consent, retention, and next-tool behavior before activating the exercise."],
+      },
+    ],
+    related: [
+      { title: "Weekly Focusing Exercise", description: "Move from daily reflection to an executable week.", href: "/resources/tools/weekly-focusing-exercise" },
+      { title: "Execution Week Planner", description: "Protect time for the week’s highest-priority outcomes.", href: "/resources/tools/execution-week-planner" },
+    ],
+    primaryCta: { label: "See Weekly Focusing", href: "/resources/tools/weekly-focusing-exercise" },
+    secondaryCta: { label: "View All Tools", href: "/resources/tools" },
+  },
+
+  "resources/tools/weekly-focusing-exercise": {
+    slug: "resources/tools/weekly-focusing-exercise",
+    eyebrow: "Weekly Focusing Exercise",
+    title: "Turn priorities into a week your calendar can actually support.",
+    description: "Connect declared priorities to a realistic week before urgent work consumes the available capacity.",
+    intro: "The purpose is defined: help a leader move from priorities to an intentional week. The proprietary prompts and approved workspace have not yet been supplied.",
+    seoTitle: "Weekly Focusing Exercise",
+    seoDescription: "Understand the purpose of the 120VC Weekly Focusing Exercise for turning priorities into an executable week.",
+    sections: [
+      {
+        eyebrow: "Purpose",
+        title: "Make the week reflect what leadership says matters.",
+        paragraphs: ["The practice should help a leader see whether the available calendar, commitments, and attention can realistically support the outcomes they have prioritized."],
+      },
+      {
+        eyebrow: "Activation status",
+        title: "The prompts and interactive workspace require approval.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm the proprietary prompts, fields, instructions, completed example, save and export behavior, calendar relationship, data retention, and consent before activating Weekly Focusing."],
+      },
+    ],
+    related: [
+      { title: "Daily Focusing Exercise", description: "Close each day and prepare the next one intentionally.", href: "/resources/tools/daily-focusing-exercise" },
+      { title: "Weekly Team DOING", description: "Bring individual focus into team alignment and commitments.", href: "/resources/tools/weekly-team-doing" },
+    ],
+    primaryCta: { label: "See Weekly Team DOING", href: "/resources/tools/weekly-team-doing" },
+    secondaryCta: { label: "View All Tools", href: "/resources/tools" },
+  },
+
+  "resources/tools/weekly-team-doing": {
+    slug: "resources/tools/weekly-team-doing",
+    eyebrow: "Weekly Team DOING",
+    title: "Replace status updates with live alignment, decisions, and commitments.",
+    description: "Use the team’s weekly execution rhythm to expose reality, resolve decisions, and leave with visible commitments.",
+    intro: "The purpose is defined: synchronize the team around current work. The proprietary agenda, prompts, artifacts, and facilitation rules have not yet been supplied.",
+    seoTitle: "Weekly Team DOING",
+    seoDescription: "Understand the purpose of 120VC Weekly Team DOING for team alignment, decisions, and commitments.",
+    sections: [
+      {
+        eyebrow: "Purpose",
+        title: "Make the weekly rhythm produce movement—not reporting theater.",
+        paragraphs: ["The practice should help the team inspect current reality, make required decisions, surface dependencies, and leave with clear ownership and next moves."],
+      },
+      {
+        eyebrow: "Activation status",
+        title: "The agenda and team workspace require approval.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm the proprietary agenda, prompts, roles, facilitation guidance, commitment format, completed example, save and sharing behavior, retention, and consent before activation."],
+      },
+    ],
+    related: [
+      { title: "Weekly Focusing Exercise", description: "Prepare individual priorities before the team synchronizes.", href: "/resources/tools/weekly-focusing-exercise" },
+      { title: "Execution Week Planner", description: "Protect the time required to deliver the commitments made.", href: "/resources/tools/execution-week-planner" },
+    ],
+    primaryCta: { label: "Explore Operating Practices", href: "/leadership-system/operating-practices" },
+    secondaryCta: { label: "View All Tools", href: "/resources/tools" },
+  },
+
+  "resources/tools/execution-week-planner": {
+    slug: "resources/tools/execution-week-planner",
+    eyebrow: "Execution Week Planner",
+    title: "Protect the time required to deliver your highest-priority outcomes.",
+    description: "Make the relationship between priority outcomes, commitments, and available time visible before the week begins.",
+    intro: "The purpose is defined: protect execution time for the work that matters most. The approved planning fields and interaction behavior have not yet been supplied.",
+    seoTitle: "Execution Week Planner",
+    seoDescription: "Understand the purpose of the 120VC Execution Week Planner for protecting time around priority outcomes.",
+    sections: [
+      {
+        eyebrow: "Purpose",
+        title: "Give the priority a credible place in the week.",
+        paragraphs: ["The planner should help a leader see whether scheduled time and current commitments are consistent with the outcomes they say they will deliver."],
+      },
+      {
+        eyebrow: "Activation status",
+        title: "The planning workspace requires approval.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm the proprietary planning fields, time model, completed example, conflict behavior, local save, export, calendar relationship, retention, and consent before activation."],
+      },
+    ],
+    related: [
+      { title: "Weekly Focusing Exercise", description: "Choose the outcomes the week must support.", href: "/resources/tools/weekly-focusing-exercise" },
+      { title: "Daily Focusing Exercise", description: "Use daily reflection to keep the week intentional.", href: "/resources/tools/daily-focusing-exercise" },
+    ],
+    primaryCta: { label: "See the Daily Focusing Exercise", href: "/resources/tools/daily-focusing-exercise" },
+    secondaryCta: { label: "View All Tools", href: "/resources/tools" },
+  },
+
+  "resources/tools/three-pillars-decision-filter": {
+    slug: "resources/tools/three-pillars-decision-filter",
+    eyebrow: "Three Pillars Decision Filter",
+    title: "Evaluate a decision across customer, team, and profitability.",
+    description: "Inspect whether a proposed decision improves value without creating an avoidable hidden failure elsewhere in the system.",
+    intro: "The Three Pillars are Customer Satisfaction, Team Member Satisfaction, and Profitability. The approved decision-filter questions and scoring behavior have not yet been supplied.",
+    seoTitle: "Three Pillars Decision Filter",
+    seoDescription: "Understand the purpose of the 120VC Three Pillars Decision Filter across customer, team, and profitability.",
+    sections: [
+      {
+        eyebrow: "Decision standard",
+        title: "Consider three connected outcomes before committing.",
+        bullets: ["Customer Satisfaction", "Team Member Satisfaction", "Profitability"],
+        statement: "The tool is method proof. A completed filter is not outcome proof.",
+      },
+      {
+        eyebrow: "Activation status",
+        title: "The filter questions and output require approval.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm the proprietary questions, guidance, output language, completed example, save and export behavior, retention, and consent before activating the filter."],
+      },
+    ],
+    related: [
+      { title: "The Three Pillars", description: "Understand the outcome standard behind the filter.", href: "/leadership-system/three-pillars" },
+      { title: "1-3-1 Decision Builder", description: "Structure the recommendation the filter will help examine.", href: "/resources/tools/1-3-1-decision-builder" },
+    ],
+    primaryCta: { label: "Understand the Three Pillars", href: "/leadership-system/three-pillars" },
+    secondaryCta: { label: "View All Tools", href: "/resources/tools" },
+  },
+
+  "resources/tools/work-rationalization-tool": {
+    slug: "resources/tools/work-rationalization-tool",
+    eyebrow: "Work Rationalization Tool",
+    title: "Decide what to continue, reshape, consolidate, delay, or stop.",
+    description: "Challenge existing work against current priorities, capacity, expected outcomes, and the cost of continuing without a decision.",
+    intro: "The purpose is defined: make explicit decisions about current work. The approved evaluation criteria and recommendation logic have not yet been supplied.",
+    seoTitle: "Work Rationalization Tool",
+    seoDescription: "Understand the purpose of the 120VC Work Rationalization Tool for continuing, changing, delaying, consolidating, or stopping work.",
+    sections: [
+      {
+        eyebrow: "Purpose",
+        title: "Treat continuing the work as a decision—not a default.",
+        paragraphs: ["The practice should help leaders examine whether current work still deserves capacity and which explicit change—continue, reshape, consolidate, delay, or stop—best protects the priority outcome."],
+      },
+      {
+        eyebrow: "Activation status",
+        title: "The criteria and recommendation workspace require approval.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm the proprietary criteria, decision guidance, completed example, conflict behavior, local save, export, sharing, retention, and consent before activation."],
+      },
+    ],
+    related: [
+      { title: "2×2 Prioritization Matrix", description: "Make competing priorities and conflicts visible.", href: "/resources/tools/2x2-prioritization-matrix" },
+      { title: "Project Portfolio ROI", description: "Understand why visible activity can still produce weak investment value.", href: "/problems-we-solve/project-portfolio-roi" },
+    ],
+    primaryCta: { label: "See the 2×2 Prioritization Matrix", href: "/resources/tools/2x2-prioritization-matrix" },
+    secondaryCta: { label: "View All Tools", href: "/resources/tools" },
+  },
+
+  "resources/assessments/execution-health-diagnostic": {
+    slug: "resources/assessments/execution-health-diagnostic",
+    eyebrow: "Execution Health Diagnostic",
+    title: "Identify the execution condition before choosing the response.",
+    description: "Assess the overall execution condition across priorities, decisions, ownership, dependencies, risk, rhythm, accountability, and executive rescue.",
+    intro: "This is the flagship diagnostic and primary ICP-capture assessment. It must describe the strongest visible condition without presenting an unvalidated benchmark.",
+    seoTitle: "Execution Health Diagnostic",
+    seoDescription: "Understand the dimensions and intended experience of the 120VC Execution Health Diagnostic.",
+    sections: [
+      {
+        eyebrow: "Diagnostic dimensions",
+        title: "Assess the system connecting leadership intent to execution.",
+        bullets: [
+          "Priority clarity",
+          "Decision discipline",
+          "Work rationalization",
+          "Executive alignment",
+          "Visible commitments",
+          "Cross-functional dependencies",
+          "Risk visibility",
+          "Execution rhythm",
+          "Accountability",
+          "Dependence on executive rescue",
+        ],
+      },
+      {
+        eyebrow: "Intended experience",
+        title: "The result should name a condition—not claim a benchmark.",
+        bullets: [
+          "Ask 10–15 approved questions",
+          "Show an immediate high-level result",
+          "Offer the complete report",
+          "Request work email and minimum relevant context only when value increases",
+          "Route to a useful tool, briefing, case study, or consultation",
+        ],
+        statement: "Do not call the result a benchmark until 120VC has sufficient validated benchmark data.",
+      },
+      {
+        eyebrow: "Activation status",
+        title: "Questions, scoring, result logic, and routing are not active.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm every question, scoring rule, condition threshold, result explanation, complete report, capture fields, consent, HubSpot routing, retention, and analytics boundaries before activation."],
+      },
+    ],
+    related: [
+      { title: "Problems We Solve", description: "Recognize the execution condition before choosing a solution.", href: "/problems-we-solve" },
+      { title: "Execution Leadership System", description: "See the shared system the diagnostic is intended to examine.", href: "/leadership-system" },
+    ],
+    primaryCta: { label: "Understand the Execution Condition", href: "/problems-we-solve" },
+    secondaryCta: { label: "View All Assessments", href: "/resources/assessments" },
+  },
+
+  "resources/assessments/leadership-team-execution-assessment": {
+    slug: "resources/assessments/leadership-team-execution-assessment",
+    eyebrow: "Leadership Team Execution Assessment",
+    title: "Evaluate whether senior leaders are operating through one shared system.",
+    description: "Examine whether the leadership team aligns priorities, makes decisions that hold, owns shared commitments, and executes as one unit.",
+    intro: "The assessment purpose is defined. The approved dimensions, questions, scoring logic, and result language have not yet been supplied.",
+    seoTitle: "Leadership Team Execution Assessment",
+    seoDescription: "Understand the purpose of the 120VC Leadership Team Execution Assessment.",
+    sections: [
+      {
+        eyebrow: "Buyer question",
+        title: "Is the team aligned in the room—or operating as one after it?",
+        paragraphs: ["The assessment is intended to help leaders distinguish agreement and functional strength from coordinated enterprise priorities, decisions, commitments, and execution."],
+      },
+      {
+        eyebrow: "Activation status",
+        title: "The assessment model requires approval.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm dimensions, questions, response scale, scoring, result language, report, capture fields, consent, HubSpot routing, retention, and relevant proof before activation."],
+      },
+    ],
+    related: [
+      { title: "Leadership Team Alignment", description: "Understand the condition the assessment is intended to diagnose.", href: "/problems-we-solve/leadership-team-alignment" },
+      { title: "Leadership Team Transformation", description: "See the relevant installation scope when the team must operate as one.", href: "/transformation-leadership-team-development-coaching-and-program" },
+    ],
+    primaryCta: { label: "Understand Leadership Team Alignment", href: "/problems-we-solve/leadership-team-alignment" },
+    secondaryCta: { label: "View All Assessments", href: "/resources/assessments" },
+  },
+
+  "resources/assessments/high-stakes-initiative-readiness": {
+    slug: "resources/assessments/high-stakes-initiative-readiness",
+    eyebrow: "High-Stakes Initiative Readiness",
+    title: "Evaluate whether a critical initiative has the conditions required to execute.",
+    description: "Examine readiness before a critical initiative depends on unstable priorities, reopened decisions, hidden dependencies, or executive rescue.",
+    intro: "The assessment purpose is defined. The approved readiness dimensions, questions, thresholds, and result language have not yet been supplied.",
+    seoTitle: "High-Stakes Initiative Readiness Assessment",
+    seoDescription: "Understand the purpose of the 120VC High-Stakes Initiative Readiness assessment.",
+    sections: [
+      {
+        eyebrow: "Buyer question",
+        title: "Can the initiative execute under real organizational pressure?",
+        paragraphs: ["The assessment is intended to help the accountable executive examine the execution condition before timing, dependencies, ownership, or competing work put the outcome at risk."],
+      },
+      {
+        eyebrow: "Activation status",
+        title: "The readiness model requires approval.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm dimensions, questions, response scale, scoring, readiness thresholds, result language, report, capture fields, consent, HubSpot routing, retention, and relevant proof before activation."],
+      },
+    ],
+    related: [
+      { title: "Strategy Execution Gap", description: "Understand why clear intent can fragment during live execution.", href: "/problems-we-solve/strategy-execution-gap" },
+      { title: "Executive Leadership Performance Accelerator", description: "See the relevant scope for an accountable executive, team, and critical outcome.", href: "/executive-leadership-coaching-and-development-performance-accelerator" },
+    ],
+    primaryCta: { label: "Understand the Strategy Execution Gap", href: "/problems-we-solve/strategy-execution-gap" },
+    secondaryCta: { label: "View All Assessments", href: "/resources/assessments" },
+  },
+
+  "resources/assessments/portfolio-roi-diagnostic": {
+    slug: "resources/assessments/portfolio-roi-diagnostic",
+    eyebrow: "Portfolio ROI Diagnostic",
+    title: "Evaluate investment logic, work overload, governance, and portfolio decisions.",
+    description: "Examine whether the portfolio helps leaders fund, stop, reshape, consolidate, delay, or accelerate work based on return.",
+    intro: "The diagnostic purpose is defined. The approved portfolio dimensions, questions, scoring logic, and result language have not yet been supplied.",
+    seoTitle: "Portfolio ROI Diagnostic",
+    seoDescription: "Understand the purpose of the 120VC Portfolio ROI Diagnostic for investment logic, overload, governance, and decisions.",
+    sections: [
+      {
+        eyebrow: "Buyer question",
+        title: "Is the portfolio governing investment—or only reporting activity?",
+        paragraphs: ["The diagnostic is intended to help leaders examine whether portfolio visibility leads to explicit investment decisions and clearer use of capital, capacity, and executive attention."],
+      },
+      {
+        eyebrow: "Activation status",
+        title: "The portfolio diagnostic model requires approval.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm dimensions, questions, response scale, scoring, result language, report, capture fields, consent, HubSpot routing, retention, Portfolio ROI Audit relationship, and proof before activation."],
+      },
+    ],
+    related: [
+      { title: "Project Portfolio ROI", description: "Understand the recognizable portfolio condition.", href: "/problems-we-solve/project-portfolio-roi" },
+      { title: "Project Portfolio Services", description: "See the relevant installation scope for investment and execution discipline.", href: "/roi-driven-project-portfolio-services" },
+    ],
+    primaryCta: { label: "Understand Project Portfolio ROI", href: "/problems-we-solve/project-portfolio-roi" },
+    secondaryCta: { label: "View All Assessments", href: "/resources/assessments" },
+  },
+
+  "resources/assessments/cost-center-to-value-engine-assessment": {
+    slug: "resources/assessments/cost-center-to-value-engine-assessment",
+    eyebrow: "Cost Center to Value Engine Assessment",
+    title: "Evaluate whether an internal function can connect activity to business value.",
+    description: "Examine whether HR, IT, Finance, PMO, or another internal function can challenge demand, recommend better choices, and show customer, team, and financial value.",
+    intro: "The assessment purpose is defined. The approved dimensions, questions, scoring logic, and result language have not yet been supplied.",
+    seoTitle: "Cost Center to Value Engine Assessment",
+    seoDescription: "Understand the purpose of the 120VC Cost Center to Value Engine Assessment for internal functions.",
+    sections: [
+      {
+        eyebrow: "Buyer question",
+        title: "Can the function connect necessary work to measurable enterprise value?",
+        paragraphs: ["The assessment is intended to help leaders distinguish reactive activity and service delivery from an operating condition that improves decisions, outcomes, and the function’s internal business partnership."],
+      },
+      {
+        eyebrow: "Activation status",
+        title: "The value-engine assessment model requires approval.",
+        paragraphs: ["[APPROVAL REQUIRED] Confirm dimensions, questions, response scale, scoring, result language, report, capture fields, consent, HubSpot routing, retention, commercial path, and relevant proof before activation."],
+      },
+    ],
+    related: [
+      { title: "Internal Function Performance", description: "Understand why necessary activity is not automatically visible business value.", href: "/problems-we-solve/internal-function-performance" },
+      { title: "Enterprise Transformation", description: "See the relevant installation scope for an internal function changing its business role.", href: "/enterprise-digital-transformation" },
+    ],
+    primaryCta: { label: "Understand Internal Function Performance", href: "/problems-we-solve/internal-function-performance" },
+    secondaryCta: { label: "View All Assessments", href: "/resources/assessments" },
+  },
+
+  "resources/insights": {
+    slug: "resources/insights",
+    eyebrow: "120VC insights",
+    title: "Practical thinking for leaders closing the Strategy Execution Gap.",
+    description: "Explore insights by the business problem they help a leader understand—not only by article, download, or podcast format.",
+    intro: "Start with the execution condition, leadership mandate, or decision in front of you. Each topic should route to a useful tool, assessment, problem page, and one next-stage action.",
+    seoTitle: "Execution Leadership Insights",
+    seoDescription: "Explore 120VC insights about strategy execution, executive teams, portfolio ROI, transformation, AI, and practical leadership systems.",
+    sections: [
+      {
+        eyebrow: "Choose by problem",
+        title: "What does your buying group need to understand next?",
+        cards: [
+          { title: "Strategy Execution", description: "Why strategy fails after it leaves the executive room—and what reconnects intent to daily work.", href: "/resources/insights/strategy-execution" },
+          { title: "Executive Team Performance", description: "How senior leaders align priorities, handle tension, decide, and execute as one team.", href: "/resources/insights/executive-team-performance" },
+          { title: "Portfolio ROI and PMO", description: "How leaders rationalize work and turn governance into an investment discipline.", href: "/resources/insights/portfolio-roi-and-pmo" },
+          { title: "Enterprise Transformation", description: "How internal functions and transformation teams create measurable business value.", href: "/resources/insights/enterprise-transformation" },
+          { title: "AI and Leadership", description: "What AI exposes—and why agency, judgment, accountability, and Execution Leadership still matter.", href: "/resources/insights/ai-and-leadership" },
+          { title: "Practical Leadership Systems", description: "Prioritization, recommendations, accountability, coaching, focusing, and work rationalization.", href: "/resources/insights/practical-leadership-systems" },
+        ],
+      },
+      {
+        eyebrow: "Content governance",
+        title: "Topic architecture is ready. The complete resource inventory is not.",
+        paragraphs: ["[APPROVAL REQUIRED] Add only verified articles, guides, recordings, and downloads with working destinations, accurate metadata, approved claims, and one intentional next-stage path."],
+      },
+    ],
+    primaryCta: { label: "Understand the Strategy Execution Gap", href: "/problems-we-solve/strategy-execution-gap" },
+    secondaryCta: { label: "Explore All Resources", href: "/resources" },
+  },
+
+  "resources/insights/strategy-execution": {
+    slug: "resources/insights/strategy-execution",
+    eyebrow: "Strategy Execution insights",
+    title: "Why strategy fails after it leaves the executive room.",
+    description: "Understand why clear direction fragments across priorities, decisions, commitments, dependencies, and daily work.",
+    intro: "This topic helps problem-aware leaders name the Strategy Execution Gap before they evaluate the system or a solution scope.",
+    seoTitle: "Strategy Execution Insights",
+    seoDescription: "Explore 120VC thinking about strategy implementation and the Strategy Execution Gap.",
+    sections: [
+      {
+        eyebrow: "Start with the condition",
+        title: "Clear strategy still needs a system that carries it into execution.",
+        paragraphs: ["Use this topic to understand the distance between leadership intent and what the organization actually prioritizes, decides, owns, and delivers."],
+      },
+      {
+        eyebrow: "Content governance",
+        title: "The topic page is ready for an approved resource inventory.",
+        paragraphs: ["[APPROVAL REQUIRED] Add only verified strategy-execution resources with approved claims, working destinations, accurate metadata, and one intentional next-stage CTA."],
+      },
+    ],
+    related: [
+      { title: "Strategy Execution Gap", description: "Diagnose the condition in buyer language.", href: "/problems-we-solve/strategy-execution-gap" },
+      { title: "Challenge · Opportunity Builder", description: "Turn a vague issue into a condition the team can act on.", href: "/resources/tools/challenge-opportunity-builder" },
+    ],
+    primaryCta: { label: "Understand the Strategy Execution Gap", href: "/problems-we-solve/strategy-execution-gap" },
+    secondaryCta: { label: "View All Insights", href: "/resources/insights" },
+  },
+
+  "resources/insights/executive-team-performance": {
+    slug: "resources/insights/executive-team-performance",
+    eyebrow: "Executive Team Performance insights",
+    title: "Help strong executives operate as one leadership team.",
+    description: "Understand how senior leaders align enterprise priorities, use productive challenge, make decisions, and own shared commitments.",
+    intro: "This topic helps leaders distinguish individual executive strength from a shared system that continues to hold after the meeting ends.",
+    seoTitle: "Executive Team Performance Insights",
+    seoDescription: "Explore 120VC thinking about executive team alignment, decisions, accountability, and execution.",
+    sections: [
+      {
+        eyebrow: "Start with the condition",
+        title: "Agreement is not the same as coordinated execution.",
+        paragraphs: ["Use this topic to examine whether the senior team is leading one enterprise or continuing to optimize separate functions in parallel."],
+      },
+      {
+        eyebrow: "Content governance",
+        title: "The topic page is ready for an approved resource inventory.",
+        paragraphs: ["[APPROVAL REQUIRED] Add only verified executive-team resources with approved claims, working destinations, accurate metadata, and one intentional next-stage CTA."],
+      },
+    ],
+    related: [
+      { title: "Leadership Team Alignment", description: "Recognize the condition before choosing the response.", href: "/problems-we-solve/leadership-team-alignment" },
+      { title: "Leadership Team Execution Assessment", description: "Review the intended diagnostic path and its activation status.", href: "/resources/assessments/leadership-team-execution-assessment" },
+    ],
+    primaryCta: { label: "Understand Leadership Team Alignment", href: "/problems-we-solve/leadership-team-alignment" },
+    secondaryCta: { label: "View All Insights", href: "/resources/insights" },
+  },
+
+  "resources/insights/portfolio-roi-and-pmo": {
+    slug: "resources/insights/portfolio-roi-and-pmo",
+    eyebrow: "Portfolio ROI and PMO insights",
+    title: "Run the portfolio as an investment system—not an activity report.",
+    description: "Understand portfolio rationalization, funding logic, governance, capacity, visibility, and continued-investment decisions.",
+    intro: "This topic helps leaders move from project status to the investment choices required to protect return and scarce enterprise capacity.",
+    seoTitle: "Portfolio ROI and PMO Insights",
+    seoDescription: "Explore 120VC thinking about portfolio ROI, PMO governance, rationalization, funding, and execution.",
+    sections: [
+      {
+        eyebrow: "Start with the condition",
+        title: "Visible activity does not prove the portfolio is well invested.",
+        paragraphs: ["Use this topic to examine which work should remain funded, which should change, and whether governance produces decisions rather than reporting alone."],
+      },
+      {
+        eyebrow: "Content governance",
+        title: "The topic page is ready for an approved resource inventory.",
+        paragraphs: ["[APPROVAL REQUIRED] Add only verified portfolio and PMO resources with approved claims, working destinations, accurate metadata, and one intentional next-stage CTA."],
+      },
+    ],
+    related: [
+      { title: "Project Portfolio ROI", description: "Recognize the portfolio condition in buyer language.", href: "/problems-we-solve/project-portfolio-roi" },
+      { title: "Portfolio ROI Diagnostic", description: "Review the intended diagnostic path and its activation status.", href: "/resources/assessments/portfolio-roi-diagnostic" },
+    ],
+    primaryCta: { label: "Understand Project Portfolio ROI", href: "/problems-we-solve/project-portfolio-roi" },
+    secondaryCta: { label: "View All Insights", href: "/resources/insights" },
+  },
+
+  "resources/insights/enterprise-transformation": {
+    slug: "resources/insights/enterprise-transformation",
+    eyebrow: "Enterprise Transformation insights",
+    title: "Make change become normal work and measurable business value.",
+    description: "Understand how transformation intent becomes priorities, operating behavior, adoption ownership, and measurable outcomes.",
+    intro: "This topic helps transformation and internal-function leaders evaluate whether change is altering the operating condition or remaining a separate program.",
+    seoTitle: "Enterprise Transformation Insights",
+    seoDescription: "Explore 120VC thinking about enterprise transformation, internal functions, adoption, and business value.",
+    sections: [
+      {
+        eyebrow: "Start with the condition",
+        title: "A transformation has not succeeded because it launched.",
+        paragraphs: ["Use this topic to examine whether leaders changed priorities, resource decisions, commitments, adoption ownership, and the normal execution rhythm."],
+      },
+      {
+        eyebrow: "Content governance",
+        title: "The topic page is ready for an approved resource inventory.",
+        paragraphs: ["[APPROVAL REQUIRED] Add only verified transformation resources with approved claims, working destinations, accurate metadata, and one intentional next-stage CTA."],
+      },
+    ],
+    related: [
+      { title: "Transformation Execution", description: "Recognize why change remains active without becoming normal work.", href: "/problems-we-solve/transformation-execution" },
+      { title: "Cost Center to Value Engine Assessment", description: "Review the intended internal-function diagnostic path.", href: "/resources/assessments/cost-center-to-value-engine-assessment" },
+    ],
+    primaryCta: { label: "Understand Transformation Execution", href: "/problems-we-solve/transformation-execution" },
+    secondaryCta: { label: "View All Insights", href: "/resources/insights" },
+  },
+
+  "resources/insights/ai-and-leadership": {
+    slug: "resources/insights/ai-and-leadership",
+    eyebrow: "AI and Leadership insights",
+    title: "AI can expose the work. Leadership must still own the decision.",
+    description: "Examine why agency, judgment, accountability, and coordinated execution remain leadership responsibilities as AI changes how work is performed.",
+    intro: "This topic should help leaders separate useful AI capability from the human authority, tradeoffs, commitments, and accountability required to change an enterprise outcome.",
+    seoTitle: "AI and Leadership Insights",
+    seoDescription: "Explore 120VC thinking about AI, agency, judgment, accountability, and Execution Leadership.",
+    sections: [
+      {
+        eyebrow: "Start with the leadership question",
+        title: "More intelligence does not remove the need for ownership.",
+        paragraphs: ["Use this topic to examine what AI can accelerate or reveal—and which decisions, consequences, and commitments still require accountable leadership."],
+      },
+      {
+        eyebrow: "Content governance",
+        title: "The topic page is ready for an approved resource inventory.",
+        paragraphs: ["[APPROVAL REQUIRED] Add only verified AI and leadership resources with approved claims, working destinations, accurate metadata, and one intentional next-stage CTA."],
+      },
+    ],
+    related: [
+      { title: "Execution Leadership", description: "Understand the category and the leadership responsibility it names.", href: "/leadership-system/execution-leadership" },
+      { title: "1-3-1 Decision Builder", description: "See the method for making one accountable recommendation.", href: "/resources/tools/1-3-1-decision-builder" },
+    ],
+    primaryCta: { label: "Understand Execution Leadership", href: "/leadership-system/execution-leadership" },
+    secondaryCta: { label: "View All Insights", href: "/resources/insights" },
+  },
+
+  "resources/insights/practical-leadership-systems": {
+    slug: "resources/insights/practical-leadership-systems",
+    eyebrow: "Practical Leadership Systems insights",
+    title: "Turn leadership principles into repeatable operating behavior.",
+    description: "Explore practical approaches to prioritization, recommendations, accountability, coaching, focusing, synchronization, and work rationalization.",
+    intro: "This topic connects leadership ideas to the shared practices leaders use while real priorities, decisions, dependencies, and outcomes are under pressure.",
+    seoTitle: "Practical Leadership Systems Insights",
+    seoDescription: "Explore 120VC thinking about practical leadership systems, decisions, priorities, accountability, and execution rhythm.",
+    sections: [
+      {
+        eyebrow: "Start with the operating behavior",
+        title: "The value is not the vocabulary. It is the behavior the practice creates.",
+        paragraphs: ["Use this topic to understand how tools and operating practices can make priorities, recommendations, commitments, risk, and learning more visible inside live work."],
+      },
+      {
+        eyebrow: "Content governance",
+        title: "The topic page is ready for an approved resource inventory.",
+        paragraphs: ["[APPROVAL REQUIRED] Add only verified practical-system resources with approved claims, working destinations, accurate metadata, and one intentional next-stage CTA."],
+      },
+    ],
+    related: [
+      { title: "Operating Practices", description: "See the methods inside the Execution Leadership System.", href: "/leadership-system/operating-practices" },
+      { title: "Execution Leadership Tools", description: "Choose the practical method that matches the next decision.", href: "/resources/tools" },
+    ],
+    primaryCta: { label: "Explore Operating Practices", href: "/leadership-system/operating-practices" },
+    secondaryCta: { label: "View All Insights", href: "/resources/insights" },
+  },
+} satisfies Record<string, SitePage>);
+
 export const allPages = Object.values(pages);
+export function pageHasApprovalHold(page: SitePage) {
+  return JSON.stringify(page).includes("[APPROVAL REQUIRED]");
+}
 export { problems, solutions, roles };

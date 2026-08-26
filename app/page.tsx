@@ -1,223 +1,292 @@
-/* eslint-disable @next/next/no-img-element -- 120VC CMS images are served directly in the vinext deployment. */
+/* eslint-disable @next/next/no-img-element -- Approved brand and source-site assets are served from their verified origin. */
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ExecutionPath } from "./components/execution-path";
+import { ImageMask } from "./components/image-mask";
+import { Reveal } from "./components/motion-kit";
 import { RippleLink } from "./components/ripple-link";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 
 export const metadata: Metadata = {
-  title: "Execution Leadership for Enterprise Teams",
-  description: "Clear priorities, decisions that hold, and teams that deliver. 120VC installs Execution Leadership inside live enterprise work.",
+  title: "Close the Strategy Execution Gap",
+  description: "120VC installs a shared Execution Leadership System inside live enterprise work so priorities align, decisions hold, and critical initiatives execute more predictably.",
   alternates: { canonical: "/" },
 };
 
-const proofLogos = [
-  ["Amgen", "https://www.120vc.com/wp-content/uploads/2026/06/amgen-logo.webp"],
-  ["AT&T", "https://www.120vc.com/wp-content/uploads/2026/06/att-logo.webp"],
+const authorityLogos = [
+  ["Sony", "https://www.120vc.com/wp-content/uploads/2026/06/sony-logo.webp"],
+  ["DIRECTV", "https://4248494.fs1.hubspotusercontent-na1.net/hubfs/4248494/CLIENT-LOGOS_0009_directv.png"],
+  ["Activision", "https://www.120vc.com/wp-content/uploads/2026/06/activision-logo.webp"],
   ["Blizzard Entertainment", "https://www.120vc.com/wp-content/uploads/2026/06/blizzard-logo.webp"],
-  ["CA Technologies", "https://www.120vc.com/wp-content/uploads/2026/06/ca-tech-logo.webp"],
-  ["Cisco", "https://www.120vc.com/wp-content/uploads/2026/06/cisco-logo.webp"],
-  ["Comcast", "https://www.120vc.com/wp-content/uploads/2026/06/comcast-logo.webp"],
-  ["Disney", "https://www.120vc.com/wp-content/uploads/2026/06/dizni-logo.webp"],
-  ["Epic Games", "https://www.120vc.com/wp-content/uploads/2026/06/epic-games-logo.webp"],
-  ["Hoag", "https://www.120vc.com/wp-content/uploads/2026/06/hoag-logo.webp"],
-  ["Mattel", "https://www.120vc.com/wp-content/uploads/2026/06/mattel-logo.webp"],
+  ["Trader Joe’s", "https://4248494.fs1.hubspotusercontent-na1.net/hubfs/4248494/CLIENT-LOGOS_0004_trader-joes.png"],
+  ["ResMed", "https://www.120vc.com/wp-content/uploads/2026/06/resmed-logo.webp"],
+  ["Sysco", "https://investors.sysco.com/~/media/Images/S/Sysco-IR/logo/logo.png"],
 ] as const;
 
-const proofStats = [
-  ["98%", "Transformation and project success rate"],
-  ["227%", "Performance improvement vs. industry averages"],
-  ["25+ years", "Across global enterprise transformation"],
+const executionSignals = [
+  ["Priorities keep changing.", "Important work loses to whatever became urgent today."],
+  ["Decisions reopen.", "The meeting ends, but the decision does not hold."],
+  ["Dependencies appear too late.", "Cross-functional issues surface after delivery is already at risk."],
+  ["Leaders keep rescuing the work.", "A few executives become the operating system for everyone else."],
 ] as const;
 
-const buyerOutcomes = [
-  ["Clear priorities", "Leaders know what matters now, what waits, and what will not be funded."],
-  ["Decisions that hold", "Authority, tradeoffs, and next moves stay clear after the meeting ends."],
-  ["Reliable commitments", "Ownership is visible, risk surfaces earlier, and fewer problems require executive rescue."],
+const systemSteps = [
+  ["01", "Diagnose", "Identify where execution is breaking, what it is costing, and who must participate."],
+  ["02", "Install", "Apply one shared system to live priorities, decisions, commitments, and initiatives."],
+  ["03", "Compound", "Transfer ownership so the team can operate and extend the system without depending on 120VC."],
 ] as const;
 
-const installationSteps = [
-  ["01", "Diagnose", "Find the condition breaking execution and the outcome it puts at risk."],
-  ["02", "Install", "Apply the leadership system to live priorities, decisions, and commitments."],
-  ["03", "Transfer", "Build the operating rhythm and capability the organization can keep."],
+const tools = [
+  ["2×2 Prioritization Matrix", "Decide what deserves focus—and what should wait, change, or stop.", "/resources/tools/2x2-prioritization-matrix"],
+  ["1-3-1 Decision Builder", "Define one problem. Evaluate three viable solutions. Make one recommendation.", "/resources/tools/1-3-1-decision-builder"],
+  ["Daily Focusing Exercise", "End the day with clarity. Start tomorrow intentionally.", "/resources/tools/daily-focusing-exercise"],
 ] as const;
 
-const startingPaths = [
+const solutions = [
   {
-    label: "Executive performance",
-    title: "Move a critical priority through the team.",
-    copy: "For an accountable executive and direct-report team who need coordinated delivery around live work.",
-    href: "/executive-leadership-coaching-and-development-performance-accelerator",
-  },
-  {
-    label: "Leadership team execution",
-    title: "Turn agreement into coordinated action.",
-    copy: "For strong executives whose shared decisions fragment as work moves across functions.",
+    eyebrow: "The executive team",
+    title: "Leadership Team Transformation",
+    description: "Help senior leaders prioritize, decide, and execute as one team.",
+    cta: "Explore Leadership Team Transformation",
     href: "/transformation-leadership-team-development-coaching-and-program",
+    visual: "align",
   },
   {
-    label: "Transformation and portfolio",
-    title: "Make change and investment deliver return.",
-    copy: "For leaders who need adoption, ownership, and clearer value from enterprise change or project investment.",
-    href: "/leadership-services",
+    eyebrow: "The high-stakes initiative",
+    title: "Executive Leadership Performance Accelerator",
+    description: "Install the full system around live priorities and execution.",
+    cta: "Explore ELPA",
+    href: "/executive-leadership-coaching-and-development-performance-accelerator",
+    visual: "focus",
+  },
+  {
+    eyebrow: "The internal function",
+    title: "Enterprise Transformation",
+    description: "Move HR, IT, Finance, or PMO from reactive activity to measurable value.",
+    cta: "Explore Enterprise Transformation",
+    href: "/enterprise-digital-transformation",
+    visual: "change",
+  },
+  {
+    eyebrow: "The project portfolio",
+    title: "ROI-Driven Project Portfolio Services",
+    description: "Decide which work should be funded, stopped, reshaped, or accelerated.",
+    cta: "Explore Portfolio Services",
+    href: "/roi-driven-project-portfolio-services",
+    visual: "portfolio",
   },
 ] as const;
+
+const evidenceFields = [
+  ["Context", "What condition existed, who owned it, and what was at stake."],
+  ["Intervention", "What 120VC installed and where it entered the live work."],
+  ["Operating shift", "What changed first in priorities, decisions, ownership, or rhythm."],
+  ["Outcome", "What changed, over what period, from which baseline, and with whose attribution."],
+] as const;
+
+function SolutionVisual({ type }: { type: string }) {
+  return (
+    <span className={`solution-visual solution-visual-${type}`} aria-hidden="true">
+      <i /><i /><i /><i />
+    </span>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="site-shell home-v3">
+    <div className="site-shell home-master">
       <a className="skip-link" href="#main-content">Skip to content</a>
       <SiteHeader />
 
-      <main id="main-content">
-        <section className="value-hero" aria-labelledby="home-title">
-          <div className="value-hero-copy">
-            <p className="eyebrow"><span className="eyebrow-mark" aria-hidden="true" />Execution Leadership for enterprise teams</p>
-            <h1 id="home-title">Make strategy <em>deliver.</em></h1>
-            <p className="value-hero-lede">Clear priorities. Decisions that hold. Teams that deliver without constant escalation. 120VC installs the leadership system inside live work so execution becomes more predictable.</p>
-            <div className="value-hero-actions">
-              <RippleLink className="button button-primary" href="/contact">Book a consultation <span aria-hidden="true">↗</span></RippleLink>
-              <RippleLink className="button button-secondary" href="#proof">See published results <span aria-hidden="true">↓</span></RippleLink>
+      <main id="main-content" tabIndex={-1}>
+        <section className="master-hero" aria-labelledby="home-title">
+          <div className="master-hero-copy">
+            <p className="eyebrow"><span className="eyebrow-mark" aria-hidden="true" />Execution Leadership for complex enterprises</p>
+            <h1 id="home-title">Close the gap between strategy and execution.</h1>
+            <p className="master-hero-lede">120VC installs a shared Execution Leadership System inside live work so leadership teams align priorities, make decisions that hold, and deliver critical initiatives more predictably.</p>
+            <div className="master-hero-actions">
+              <RippleLink className="button button-primary" href="#how-it-works">See How It Works <span aria-hidden="true">↓</span></RippleLink>
+              <RippleLink className="button button-secondary" href="/consultation">Book a Consultation <span aria-hidden="true">→</span></RippleLink>
             </div>
+            <p className="master-hero-reassurance">A confidential readiness and fit conversation.</p>
           </div>
 
-          <figure className="value-hero-media">
-            <img
+          <div className="master-hero-visual">
+            <ImageMask
+              className="master-hero-image"
               src="https://www.120vc.com/wp-content/uploads/2026/02/A-man-and-woman-stand-by-a-glass-wall-focused-on-a-tablet-they-are-holding-together-1024x644.webp"
-              alt="Two enterprise leaders reviewing work together"
-              width="1024"
-              height="644"
-              fetchPriority="high"
+              alt="Two professionals reviewing work together beside a glass wall"
+              width={1024}
+              height={644}
+              variant="step"
+              priority
             />
-          </figure>
+            <ExecutionPath />
+          </div>
         </section>
 
-        <section className="proof-v3-section" id="proof" aria-labelledby="proof-title">
-          <div className="proof-v3-heading">
-            <div>
-              <p className="section-index">120VC-published results</p>
-              <h2 id="proof-title">Proof before process.</h2>
-            </div>
-            <p>We report performance across decades of enterprise work. Here is what we publish—and how to evaluate it responsibly.</p>
+        <section className="authority-section" aria-labelledby="authority-title">
+          <div className="authority-heading">
+            <p className="section-kicker">Enterprise experience</p>
+            <h2 id="authority-title">120VC has helped leaders and teams at:</h2>
           </div>
-
-          <div className="proof-logo-field" aria-label="Organizations shown in 120VC's published enterprise experience">
-            <p>Enterprise experience published by 120VC</p>
-            <div className="proof-logo-grid">
-              {proofLogos.map(([name, src]) => (
-                <div className="proof-logo" key={name}>
-                  <img src={src} alt={name} width="180" height="80" loading="lazy" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="proof-stat-grid" aria-describedby="proof-method-note">
-            {proofStats.map(([value, label]) => (
-              <div className="proof-stat" key={value}>
-                <strong>{value}</strong>
-                <span>{label}</span>
-              </div>
+          <ul className="authority-logo-grid" aria-label="Organizations where 120VC has helped leaders and teams">
+            {authorityLogos.map(([name, src]) => (
+              <li key={name}>
+                <img src={src} alt={name} width="164" height="58" loading="lazy" />
+              </li>
             ))}
-          </div>
-
-          <div className="proof-v3-note" id="proof-method-note">
-            <p>These are first-party figures published by 120VC. Ask for the population, baseline, timeframe, and calculation method during evaluation.</p>
-            <Link className="text-link" href="/case-studies">See the evidence standard <span aria-hidden="true">↗</span></Link>
-          </div>
-        </section>
-
-        <section className="outcomes-v3-section" aria-labelledby="outcomes-title">
-          <div className="outcomes-v3-heading">
-            <p className="section-index">What you get</p>
-            <h2 id="outcomes-title">Lead the work with less friction.</h2>
-            <p>The value is not another framework to remember. It is a clearer way for leaders and teams to move important work under pressure.</p>
-          </div>
-          <div className="outcome-v3-grid">
-            {buyerOutcomes.map(([title, copy], index) => (
-              <article className="outcome-v3-item" key={title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </article>
-            ))}
-          </div>
-          <p className="outcome-v3-payoff">More predictable execution—without depending on constant executive heroics.</p>
-        </section>
-
-        <section className="founder-v3-section" aria-labelledby="founder-title">
-          <figure className="founder-v3-media">
-            <img
-              src="https://www.120vc.com/wp-content/uploads/2026/02/Jason-Scott-120VC-CEO-Founder-img.webp"
-              alt="J. Scott, founder and CEO of 120VC"
-              width="532"
-              height="530"
-              loading="lazy"
-            />
-            <figcaption><strong>J. Scott</strong><span>Founder and CEO, 120VC</span></figcaption>
-          </figure>
-          <div className="founder-v3-copy">
-            <p className="section-index">The person behind the system</p>
-            <h2 id="founder-title">Built in enterprise work—not a workshop.</h2>
-            <p>J. Scott is the creator of the Execution Leadership System and architect of the Executive Leadership Performance Accelerator. For more than 25 years, he has led transformations inside complex, high-pressure organizations.</p>
-            <p className="founder-v3-experience"><span>Experience includes</span> AT&amp;T, Blizzard Entertainment, Sony Pictures, Trader Joe&apos;s, First American Financial, and ResMed.</p>
-            <Link className="founder-v3-link" href="/founder-jason-scott">Meet J. Scott <span aria-hidden="true">↗</span></Link>
+          </ul>
+          <div className="authority-context">
+            <p><strong>Enterprise experience across complex global organizations.</strong> The public launch still requires relationship, logo-permission, and proof-governance confirmation for every named organization.</p>
+            <Link className="text-link" href="/results/methodology">See How Results Are Measured <span aria-hidden="true">→</span></Link>
           </div>
         </section>
 
-        <section className="how-v3-section" aria-labelledby="how-title">
-          <div className="how-v3-heading">
-            <p className="eyebrow eyebrow-light"><span className="eyebrow-mark" aria-hidden="true" />How the work moves</p>
-            <h2 id="how-title">Diagnose. Install. Transfer.</h2>
-            <p>Start with the three moves that turn a leadership problem into capability the organization can keep. The deeper practices are available when you need them.</p>
-            <RippleLink className="button button-dark-outline" href="/leadership-system">See the full system <span aria-hidden="true">↗</span></RippleLink>
+        <section className="diagnostic-section" aria-labelledby="diagnostic-title">
+          <Reveal className="diagnostic-heading">
+            <p className="section-kicker">The condition</p>
+            <h2 id="diagnostic-title">Your strategy may be clear. Execution still fragments.</h2>
+            <p>The Strategy Execution Gap is the distance between what leadership intends and what the organization actually delivers.</p>
+          </Reveal>
+
+          <div className="diagnostic-grid">
+            <Reveal delay={80}>
+              <ul className="signal-list">
+                {executionSignals.map(([title, copy], index) => (
+                  <li key={title}><span>{String(index + 1).padStart(2, "0")}</span><p><strong>{title}</strong>{copy}</p></li>
+                ))}
+              </ul>
+              <Link className="text-link" href="/problems-we-solve/strategy-execution-gap">Understand the Strategy Execution Gap <span aria-hidden="true">→</span></Link>
+            </Reveal>
+
+            <Reveal className="gap-diagram-reveal" delay={140}>
+              <figure className="gap-diagram">
+                <figcaption>Where clear intent becomes fragmented work</figcaption>
+                <div className="gap-diagram-state gap-diagram-start"><strong>Strategy</strong><span>One direction</span></div>
+                <div className="gap-diagram-break" aria-hidden="true"><i /><i /><i /><i /></div>
+                <div className="gap-diagram-state gap-diagram-end"><strong>Execution</strong><span>Competing interpretations</span></div>
+                <p className="gap-diagram-note">The problem is not a lack of effort. It is a missing shared leadership system.</p>
+              </figure>
+            </Reveal>
           </div>
-          <ol className="how-v3-steps">
-            {installationSteps.map(([number, title, copy]) => (
-              <li key={number}>
-                <span>{number}</span>
-                <div><h3>{title}</h3><p>{copy}</p></div>
+        </section>
+
+        <section className="system-section" id="how-it-works" aria-labelledby="system-title">
+          <Reveal className="system-heading">
+            <p className="eyebrow eyebrow-light"><span className="eyebrow-mark" aria-hidden="true" />The 120VC approach</p>
+            <h2 id="system-title">Installed in the work. Built to hold without us.</h2>
+            <p>Not software. Not another workshop. The way leadership operates.</p>
+          </Reveal>
+
+          <ol className="system-step-grid">
+            {systemSteps.map(([number, title, copy], index) => (
+              <li key={title}>
+                <Reveal delay={index * 90}>
+                  <span className="system-step-number">{number}</span>
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                </Reveal>
               </li>
             ))}
           </ol>
+
+          <div className="system-lower">
+            <Reveal className="tool-proof" delay={120}>
+              <p className="section-kicker">Put the system to work.</p>
+              <div className="tool-link-row">
+                {tools.map(([name, copy, href]) => (
+                  <Link href={href} className="tool-link" key={name}>
+                    <strong>{name}</strong><span>{copy}</span><i aria-hidden="true">→</i>
+                  </Link>
+                ))}
+              </div>
+              <Link className="text-link text-link-light" href="/resources/tools">Explore All Tools <span aria-hidden="true">→</span></Link>
+            </Reveal>
+            <Reveal className="system-cta" delay={180}>
+              <p>See the operating practices, installation path, and leadership conditions that make the system transferable.</p>
+              <RippleLink className="button button-light" href="/leadership-system">Explore the Execution Leadership System <span aria-hidden="true">→</span></RippleLink>
+            </Reveal>
+          </div>
         </section>
 
-        <section className="paths-v3-section" aria-labelledby="paths-title">
-          <div className="paths-v3-heading">
-            <p className="section-index">Choose a starting point</p>
-            <h2 id="paths-title">Start with the result at risk.</h2>
-            <p>The right entry point depends on where execution is breaking. Each path opens the detail only when you want it.</p>
-          </div>
-          <div className="paths-v3-grid">
-            {startingPaths.map((path) => (
-              <Link className="path-v3-card" href={path.href} key={path.href}>
-                <span>{path.label}</span>
-                <h3>{path.title}</h3>
-                <p>{path.copy}</p>
-                <strong>Explore this path <i aria-hidden="true">↗</i></strong>
-              </Link>
+        <section className="solution-section" aria-labelledby="solution-title">
+          <Reveal className="solution-heading">
+            <p className="section-kicker">Find the right starting point</p>
+            <h2 id="solution-title">Where is execution breaking?</h2>
+            <p>One shared system. Four installation scopes based on the leadership unit, live work, and outcome at risk.</p>
+          </Reveal>
+
+          <div className="solution-grid">
+            {solutions.map((solution, index) => (
+              <Reveal key={solution.title} delay={index * 70}>
+                <Link className="solution-card" href={solution.href}>
+                  <SolutionVisual type={solution.visual} />
+                  <span className="solution-eyebrow">{solution.eyebrow}</span>
+                  <h3>{solution.title}</h3>
+                  <p>{solution.description}</p>
+                  <strong>{solution.cta} <i aria-hidden="true">→</i></strong>
+                </Link>
+              </Reveal>
             ))}
           </div>
-          <div className="paths-v3-more">
-            <Link className="text-link" href="/leadership-services">Compare every service <span aria-hidden="true">↗</span></Link>
-            <Link className="text-link" href="/faq">Read common buyer questions <span aria-hidden="true">↗</span></Link>
-          </div>
+
+          <Reveal className="solution-router" delay={180}>
+            <div><span>Not sure which condition applies?</span><p>You do not need to diagnose the offer before speaking with us.</p></div>
+            <RippleLink className="button button-secondary" href="/consultation">Book a Leadership System Consultation <span aria-hidden="true">→</span></RippleLink>
+          </Reveal>
         </section>
 
-        <section className="decision-v3-section">
-          <div className="decision-v3-primary">
-            <p className="section-index">A useful first conversation</p>
-            <h2>Bring the result at risk.</h2>
-            <p>We will clarify what is breaking, what it is costing, and whether 120VC is the right fit. No generic presentation and no premature scope.</p>
-            <RippleLink className="button button-light" href="/contact">Book a consultation <span aria-hidden="true">↗</span></RippleLink>
-            <small>Confidential · Diagnostic · Built for a longer buying cycle</small>
+        <section className="evidence-section" aria-labelledby="evidence-title">
+          <div className="evidence-main">
+            <Reveal>
+              <p className="eyebrow eyebrow-light"><span className="eyebrow-mark" aria-hidden="true" />The evidence standard</p>
+              <h2 id="evidence-title">Evidence should survive scrutiny.</h2>
+              <p className="evidence-lede">120VC proof is evaluated in context—not as an unsupported percentage or a logo wall that implies more than it proves.</p>
+            </Reveal>
+            <div className="evidence-grid">
+              {evidenceFields.map(([title, copy], index) => (
+                <Reveal key={title} delay={index * 70}>
+                  <article><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{copy}</p></article>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal className="evidence-governance" delay={180}>
+              <p>Client-specific metrics, case stories, and testimonials remain unpublished until their source, timeframe, attribution, and permissions are approved.</p>
+              <Link className="text-link text-link-light" href="/results/methodology">See How Results Are Measured <span aria-hidden="true">→</span></Link>
+            </Reveal>
           </div>
-          <div className="decision-v3-resource">
-            <p className="section-index">Still building the case?</p>
-            <h3>Take the case into the room.</h3>
-            <p>Use the free book to help stakeholders recognize why clear strategy still breaks down in execution.</p>
-            <a className="resource-v3-link" href="https://www.120vc.com/book-download-the-strategy-execution-gap/">Download the free book <span aria-hidden="true">↗</span></a>
-          </div>
+
+          <Reveal className="founder-proof" delay={120}>
+            <ImageMask
+              src="https://www.120vc.com/wp-content/uploads/2026/02/person-img-with-orange-back.webp"
+              alt="J. Scott, founder and CEO of 120VC"
+              width={600}
+              height={596}
+              variant="portrait"
+            />
+            <div>
+              <p className="section-kicker">Founder authority—not client proof</p>
+              <h3>Execution Leadership had to become a system.</h3>
+              <p>Meet J. Scott and the enterprise experience that shaped the category, the system, and The 120 Standard.</p>
+              <Link className="text-link text-link-light" href="/founder-jason-scott">Meet J. Scott <span aria-hidden="true">→</span></Link>
+            </div>
+          </Reveal>
+        </section>
+
+        <section className="closing-section" aria-labelledby="closing-title">
+          <Reveal className="closing-copy">
+            <p className="section-kicker">The next useful decision</p>
+            <h2 id="closing-title">Where is execution breaking in your organization?</h2>
+            <p>Bring one real business condition. We will help identify what is underneath it, whether 120VC is relevant, and what should happen next.</p>
+            <div className="closing-actions">
+              <RippleLink className="button button-primary" href="/consultation">Book a Leadership System Consultation <span aria-hidden="true">→</span></RippleLink>
+              <a className="button button-secondary" href="https://www.120vc.com/book-download-the-strategy-execution-gap/">Download The Strategy Execution Gap <span aria-hidden="true">↗</span></a>
+            </div>
+            <small>Confidential · Diagnostic · No scripted demo · No predetermined offer</small>
+          </Reveal>
+          <div className="closing-mark" aria-hidden="true"><span>Strategy</span><i /><strong>Execution</strong></div>
         </section>
       </main>
 

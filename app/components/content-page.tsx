@@ -7,25 +7,26 @@ import type { PageLink, SitePage } from "../site-data";
 
 function headlineLengthClass(text: string) {
   if (text.length > 68) return "headline-long";
-  if (text.length > 50) return "headline-medium";
+  if (text.length > 44) return "headline-medium";
   return "";
 }
 
+function CtaLink({ href, className, children }: { href: string; className: string; children: React.ReactNode }) {
+  if (href.startsWith("/")) {
+    return <Link className={className} href={href}>{children}</Link>;
+  }
+  return <a className={className} href={href}>{children}</a>;
+}
+
 function ArrowLink({ link, className = "" }: { link: PageLink; className?: string }) {
-  const content = (
-    <>
+  return (
+    <CtaLink className={`content-card-link ${className}`} href={link.href}>
       {link.label && <span className="card-label">{link.label}</span>}
       <h3>{link.title}</h3>
       <p>{link.description}</p>
-      <span className="card-arrow">Explore <i aria-hidden="true">↗</i></span>
-    </>
+      <span className="card-arrow">Explore <i aria-hidden="true">{link.href.startsWith("/") ? "→" : "↗"}</i></span>
+    </CtaLink>
   );
-
-  if (link.href.startsWith("http")) {
-    return <a className={`content-card-link ${className}`} href={link.href}>{content}</a>;
-  }
-
-  return <Link className={`content-card-link ${className}`} href={link.href}>{content}</Link>;
 }
 
 export function ContentPage({ page }: { page: SitePage }) {
@@ -34,7 +35,7 @@ export function ContentPage({ page }: { page: SitePage }) {
       <a className="skip-link" href="#main-content">Skip to content</a>
       <SiteHeader />
 
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <section className="inner-hero">
           <div className="inner-hero-grid" aria-hidden="true" />
           <div className="inner-hero-copy">
@@ -42,8 +43,8 @@ export function ContentPage({ page }: { page: SitePage }) {
             <h1 className={headlineLengthClass(page.title)}>{page.title}</h1>
             <p className="inner-description">{page.description}</p>
             <div className="hero-actions">
-              <Link className="button button-primary" href={page.primaryCta?.href || "/contact"}>{page.primaryCta?.label || "Book a consultation"}<span aria-hidden="true">↗</span></Link>
-              {page.secondaryCta && <Link className="button button-dark-outline" href={page.secondaryCta.href}>{page.secondaryCta.label}<span aria-hidden="true">↗</span></Link>}
+              <CtaLink className="button button-primary" href={page.primaryCta?.href || "/consultation"}>{page.primaryCta?.label || "Book a Consultation"}<span aria-hidden="true">{(page.primaryCta?.href || "/consultation").startsWith("/") ? "→" : "↗"}</span></CtaLink>
+              {page.secondaryCta && <CtaLink className="button button-dark-outline" href={page.secondaryCta.href}>{page.secondaryCta.label}<span aria-hidden="true">{page.secondaryCta.href.startsWith("/") ? "→" : "↗"}</span></CtaLink>}
             </div>
           </div>
           <div className={`inner-hero-aside ${page.heroImage ? "inner-hero-aside-person" : ""}`}>
@@ -79,7 +80,7 @@ export function ContentPage({ page }: { page: SitePage }) {
               <section className={`content-section ${index % 2 ? "content-section-alt" : ""}`}>
                 <div className="content-section-index">
                   <span>{String(index + 1).padStart(2, "0")}</span>
-                  <p>{section.eyebrow || "What to understand"}</p>
+                  <p>{section.eyebrow || (page.slug === "faq" ? `Question ${String(index + 1).padStart(2, "0")}` : "What to understand")}</p>
                 </div>
                 <div className="content-section-body">
                   <h2 className={headlineLengthClass(section.title)}>{section.title}</h2>
@@ -122,7 +123,7 @@ export function ContentPage({ page }: { page: SitePage }) {
           </div>
           <div>
             <p>The consultation clarifies the outcome at risk, the leadership condition, and the most useful next step. It is a readiness and fit conversation, not a scripted product demo.</p>
-            <Link className="button button-light" href={page.primaryCta?.href || "/contact"}>{page.primaryCta?.label || "Book a consultation"}<span aria-hidden="true">↗</span></Link>
+            <Link className="button button-light" href="/consultation">Book a Consultation<span aria-hidden="true">→</span></Link>
           </div>
         </section>
       </main>
