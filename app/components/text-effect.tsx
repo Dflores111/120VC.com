@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import { motion, type Variants } from "motion/react";
+import { useHydratedReducedMotion } from "./use-hydrated-reduced-motion";
 
 type TextEffectProps = {
   children: string;
@@ -8,6 +9,7 @@ type TextEffectProps = {
   className?: string;
   id?: string;
   delay?: number;
+  trigger?: boolean;
 };
 
 const containerVariants: Variants = {
@@ -27,14 +29,9 @@ const wordVariants: Variants = {
   },
 };
 
-export function TextEffect({ children, as = "p", className = "", id, delay = 0 }: TextEffectProps) {
-  const reduceMotion = useReducedMotion();
+export function TextEffect({ children, as = "p", className = "", id, delay = 0, trigger = true }: TextEffectProps) {
+  const reduceMotion = useHydratedReducedMotion();
   const Tag = as === "h1" ? motion.h1 : as === "h2" ? motion.h2 : motion.p;
-
-  if (reduceMotion) {
-    const StaticTag = as;
-    return <StaticTag className={className} id={id}>{children}</StaticTag>;
-  }
 
   return (
     <Tag
@@ -42,12 +39,12 @@ export function TextEffect({ children, as = "p", className = "", id, delay = 0 }
       className={`text-effect ${className}`}
       aria-label={children}
       initial="hidden"
-      animate="visible"
+      animate={reduceMotion || trigger ? "visible" : "hidden"}
       variants={{
         ...containerVariants,
         visible: {
           ...containerVariants.visible,
-          transition: { staggerChildren: 0.055, delayChildren: delay },
+          transition: { staggerChildren: reduceMotion ? 0 : 0.055, delayChildren: reduceMotion ? 0 : delay },
         },
       }}
     >
@@ -56,7 +53,7 @@ export function TextEffect({ children, as = "p", className = "", id, delay = 0 }
           <motion.span
             className="text-effect-word"
             aria-hidden="true"
-            variants={wordVariants}
+            variants={reduceMotion ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } } : wordVariants}
             key={`${segment}-${index}`}
           >
             {segment}

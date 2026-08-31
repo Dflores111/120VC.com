@@ -1,0 +1,100 @@
+import Link from "next/link";
+import type { CSSProperties } from "react";
+import { ImageMask } from "./image-mask";
+import { SiteFooter } from "./site-footer";
+import { SiteHeader } from "./site-header";
+import { SolutionScopeCards, type SolutionScope } from "./solution-scope-cards";
+
+const solutionScopes: readonly SolutionScope[] = [
+  {
+    label: "Leadership Performance",
+    title: "Leadership Performance",
+    description: "Help an executive or senior team prioritize, decide, commit, and lead critical work differently.",
+    bestWhen: "A leader or leadership team owns a high-stakes outcome, but alignment does not survive contact with the work.",
+    change: "One shared way to make tradeoffs, hold decisions, and turn leadership intent into visible commitments.",
+    outcome: "Tradeoffs are explicit, decisions remain closed, and commitments have visible owners.",
+    href: "/executive-leadership-coaching-and-development-performance-accelerator",
+    image: "/images/problems/alignment-outcome.jpg",
+    imageAlt: "Senior leaders in an aligned working conversation.",
+    imageWidth: 1800,
+    imageHeight: 1200,
+    tone: "clay",
+  },
+  {
+    label: "Enterprise Transformation",
+    title: "Enterprise Transformation",
+    description: "Move an internal function or enterprise change from activity and adoption pressure to measurable business value.",
+    bestWhen: "A transformation has sponsorship and activity, but priorities, operating behavior, or business value are not changing.",
+    change: "Leaders challenge demand, make real tradeoffs, and own operating change together—not as a separate program.",
+    outcome: "Demand becomes a choice, adoption becomes operating behavior, and progress is discussed in business terms.",
+    href: "/enterprise-digital-transformation",
+    image: "/images/problems/function-outcome.jpg",
+    imageAlt: "A cross-functional team working together around an enterprise outcome.",
+    imageWidth: 1800,
+    imageHeight: 1200,
+    tone: "sage",
+  },
+  {
+    label: "Portfolio & Project Execution",
+    title: "Portfolio & Project Execution",
+    description: "Make investment logic, ownership, dependencies, and delivery reality visible across critical work.",
+    bestWhen: "Too many initiatives compete for the same capacity or a critical project needs accountable execution leadership now.",
+    change: "Work is continued, accelerated, reshaped, or stopped—and the remaining commitments have clear owners and outcomes.",
+    outcome: "Investment choices become visible, dependencies surface sooner, and delivery conversations produce decisions instead of status.",
+    href: "/roi-driven-project-portfolio-services",
+    image: "/images/problems/portfolio-outcome.jpg",
+    imageAlt: "Leaders reviewing a focused set of portfolio priorities.",
+    imageWidth: 1800,
+    imageHeight: 1200,
+    tone: "ink",
+  },
+];
+
+export function HowWeHelpExperience() {
+  return (
+    <div className="site-shell hierarchy-site solutions-experience-site supporting-v2">
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <SiteHeader />
+
+      <main id="main-content" tabIndex={-1}>
+        <section className="solutions-experience-hero supporting-hero" data-major-section data-journey-stage="evaluate" aria-labelledby="solutions-experience-title">
+          <div className="solutions-hero-copy supporting-hero-copy">
+            <h1 id="solutions-experience-title">We help leadership teams fix broken execution.</h1>
+            <p>120VC identifies the break, installs one shared execution system inside live work, and transfers ownership to the leaders accountable for results.</p>
+            <Link className="button button-primary" href="#solution-families">Compare our services <span aria-hidden="true" data-direction="down">↓</span></Link>
+          </div>
+          <ImageMask
+            className="solutions-hero-image"
+            src="/images/story/team-working-together.jpg"
+            alt="A leadership team working together around a shared view of priorities."
+            width={1800}
+            height={1008}
+            variant="step"
+            priority
+            style={{ "--image-position": "54% 48%" } as CSSProperties}
+          />
+        </section>
+
+        <section className="solution-family-section supporting-decision-section" id="solution-families" data-major-section data-journey-stage="evaluate" aria-labelledby="solution-family-title">
+          <header className="supporting-section-heading supporting-section-heading-centered solution-family-heading">
+            <h2 id="solution-family-title">
+              Stronger <span className="headline-keyword">leadership</span>. Faster <span className="headline-keyword">transformation</span>. Focused <span className="headline-keyword">portfolios</span>.
+            </h2>
+            <p>We install the same execution system around the business problem, accountable team, and outcome in each area.</p>
+          </header>
+          <SolutionScopeCards scopes={solutionScopes} />
+        </section>
+
+        <section className="solution-reassurance" data-major-section data-journey-stage="act" aria-labelledby="solutions-close-title">
+          <div>
+            <h2 id="solutions-close-title">Not sure which service fits?</h2>
+            <p>Bring the business outcome that is not moving. We will locate the break before recommending a service.</p>
+          </div>
+          <Link className="button button-primary" href="/consultation?source=how-we-help">Talk through the problem <span aria-hidden="true">→</span></Link>
+        </section>
+      </main>
+
+      <SiteFooter />
+    </div>
+  );
+}

@@ -768,6 +768,8 @@ button { font: inherit; }
 .form-review > p:not(.section-index) { max-width: 62ch; color: rgba(255,255,255,.72); }
 .form-review .button { margin-top: 24px; }
 .form-edit { min-height: 44px; margin-top: 18px; padding: 8px 0; border: 0; border-bottom: 2px solid currentColor; background: transparent; color: var(--white); font-weight: 700; cursor: pointer; }
+.form-edit:hover,
+.form-edit:focus-visible { padding-inline: 12px; border-bottom-color: var(--signal-orange); background: var(--white); color: var(--ink); }
 
 @media (max-width: 1180px) {
   .global-header {

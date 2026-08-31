@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { AnalyticsBridge } from "./components/analytics-bridge";
 import "./globals.css";
 import "./master.css";
-import "./problem-pages.css";
+import "./hierarchy.css";
 
 const SITE_URL = "https://www.120vc.com";
 const description = "120VC installs an Execution Leadership System inside live enterprise work so strategy becomes coordinated, measurable execution.";
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body>
+        <AnalyticsBridge />
         <link rel="preconnect" href="https://www.120vc.com" />
         <script
           type="application/ld+json"

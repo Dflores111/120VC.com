@@ -12,6 +12,7 @@ export type PageSection = {
   bullets?: string[];
   cards?: PageLink[];
   statement?: string;
+  visibility?: "audience" | "review";
 };
 
 export type SitePage = {
@@ -36,27 +37,27 @@ const problems: PageLink[] = [
   {
     title: "Strategy is not becoming execution",
     description: "The direction is clear at the top, but priorities, decisions, and daily work do not stay aligned.",
-    href: "/problems-we-solve/strategy-execution-gap",
+    href: "/problems-we-solve?condition=strategy-drift",
   },
   {
     title: "The leadership team is not operating as one",
     description: "Capable executives optimize their functions while shared commitments and enterprise decisions drift.",
-    href: "/problems-we-solve/leadership-team-alignment",
+    href: "/problems-we-solve?condition=leadership-fragmentation",
   },
   {
     title: "Transformation is not becoming normal work",
     description: "The program is active, but adoption, leadership behavior, and measurable operating change are not holding.",
-    href: "/problems-we-solve/transformation-execution",
+    href: "/problems-we-solve?condition=transformation-stall",
   },
   {
     title: "The portfolio is busy but return is unclear",
     description: "Projects are reported, yet leaders cannot confidently fund, stop, reshape, or accelerate the right work.",
-    href: "/problems-we-solve/project-portfolio-roi",
+    href: "/problems-we-solve?condition=portfolio-overload",
   },
   {
     title: "An internal function cannot prove its value",
     description: "HR, IT, Finance, or PMO is trapped in reactive demand and cannot connect activity to business outcomes.",
-    href: "/problems-we-solve/internal-function-performance",
+    href: "/problems-we-solve?condition=reactive-function",
   },
 ];
 
@@ -354,7 +355,7 @@ export const pages: Record<string, SitePage> = {
     sections: [
       { eyebrow: "Choose by condition", title: "Where does the system need to be installed?", cards: solutions },
       {
-        title: "The consultation routes the condition before it recommends an offer.",
+        title: "The consultation identifies the right next step.",
         paragraphs: [
           "We examine the outcome at risk, the leadership authority involved, the team that must participate, the current execution condition, and the practical scope required for change to hold.",
         ],
@@ -369,7 +370,7 @@ export const pages: Record<string, SitePage> = {
   "leadership-system": {
     slug: "leadership-system",
     eyebrow: "The Execution Leadership System",
-    title: "One shared system to prioritize, decide, commit, and execute.",
+    title: "One system for priorities, decisions, and execution.",
     description: "Most leadership teams do not lack intelligence, effort, tools, or ambition. They lack one disciplined system connecting leadership intent to daily execution.",
     intro: "120VC does not ask leaders to remember a model after training. We install the system inside the priorities and initiatives already under pressure.",
     seoTitle: "The 120VC Execution Leadership System",
@@ -383,7 +384,7 @@ export const pages: Record<string, SitePage> = {
     sections: [
       {
         eyebrow: "What it governs",
-        title: "The system connects the decisions that strategy depends on.",
+        title: "The system connects strategy to daily decisions.",
         bullets: [
           "Intent: the condition and outcome leadership is trying to create.",
           "Priorities: which work deserves capacity now—and which does not.",
@@ -600,7 +601,7 @@ export const pages: Record<string, SitePage> = {
   "project-leadership-managed-services": {
     slug: "project-leadership-managed-services",
     eyebrow: "Supporting portfolio capability",
-    title: "Put experienced execution leadership inside the work that cannot afford to drift.",
+    title: "Put execution leadership inside high-stakes work.",
     description: "Embedded project and program leaders establish clarity, align stakeholders, manage dependencies, and move work toward outcomes.",
     intro: "Some initiatives do not need more status reporting. They need leaders who can challenge assumptions, make commitments visible, surface reality early, and operate through the same Execution Leadership System as the broader portfolio.",
     seoTitle: "Project Leadership Managed Services",
@@ -613,7 +614,7 @@ export const pages: Record<string, SitePage> = {
     ],
     sections: [
       {
-        title: "Execution leadership changes the quality of the work around the plan.",
+        title: "Execution leadership strengthens delivery.",
         bullets: [
           "Clarify the business condition and measurable result.",
           "Align decision makers and stakeholders.",
@@ -632,7 +633,7 @@ export const pages: Record<string, SitePage> = {
   "smartsheet-dashboards": {
     slug: "smartsheet-dashboards",
     eyebrow: "Smartsheet Portfolio Visibility",
-    title: "Give leaders the visibility required to make better execution decisions.",
+    title: "Give leaders visibility for better execution decisions.",
     description: "Use Smartsheet to expose what matters now, what changed, what is at risk, and which decisions are required.",
     intro: "A dashboard should not merely show what happened. It should help leadership see the current execution condition early enough to act.",
     seoTitle: "Smartsheet Portfolio Dashboards and Visibility",
@@ -690,7 +691,7 @@ export const pages: Record<string, SitePage> = {
       },
       {
         eyebrow: "What counts as evidence",
-        title: "Method, implementation, operating shifts, and outcomes answer different questions.",
+        title: "Different evidence answers different questions.",
         bullets: [
           "Method proof shows the coherent system being installed.",
           "Implementation proof shows roles, practices, artifacts, milestones, and operating changes.",
@@ -793,7 +794,7 @@ export const pages: Record<string, SitePage> = {
         ],
       },
       {
-        title: "The CFO becomes an internal investment partner—not only the budget gatekeeper.",
+        title: "The CFO becomes an investment partner—not just a gatekeeper.",
         paragraphs: [
           "The system creates discipline around work rationalization, funding logic, commitments, executive visibility, and continued-investment decisions.",
         ],
@@ -807,7 +808,7 @@ export const pages: Record<string, SitePage> = {
   "for-the-chief-technology-and-chief-information-officer": {
     slug: "for-the-chief-technology-and-chief-information-officer",
     eyebrow: "For the CIO and CTO",
-    title: "Turn technology strategy into adoption, execution, and business value.",
+    title: "Turn technology strategy into adoption and business value.",
     description: "Connect technical delivery to cross-functional ownership, business behavior, adoption, and measurable enterprise outcomes.",
     intro: "Technology rarely creates value merely because it is delivered. The organization must make decisions, change behavior, align stakeholders, adopt the capability, and connect the investment to the condition it was funded to create.",
     seoTitle: "Execution Leadership for CIOs and CTOs",
@@ -904,7 +905,7 @@ export const pages: Record<string, SitePage> = {
         ],
       },
       {
-        title: "The business unit should execute through a system—not only personal force.",
+        title: "The business unit needs a system—not more personal force.",
         paragraphs: [
           "The system gives relevant leaders one way to define the result, prioritize the work, make tradeoffs, establish ownership, resolve dependencies, hold commitments, and measure outcomes.",
         ],
@@ -1001,7 +1002,7 @@ export const pages: Record<string, SitePage> = {
   "founder-jason-scott": {
     slug: "founder-jason-scott",
     eyebrow: "Founder of 120VC",
-    title: "J. Scott built 120VC around one conviction: leadership must change the work.",
+    title: "J. Scott built 120VC to change how leadership works.",
     description: "Meet the founder behind 120VC, the Execution Leadership category, and the practical system installed inside enterprise work.",
     intro: "J. Scott’s work focuses on the gap between what organizations intend and what their leadership systems allow them to deliver. His point of view is direct: insight matters only when it changes priorities, decisions, commitments, behavior, and outcomes.",
     seoTitle: "Meet J. Scott, Founder of 120VC",
@@ -1014,7 +1015,7 @@ export const pages: Record<string, SitePage> = {
     },
     sections: [
       {
-        title: "The work began with the execution condition—not a leadership-content category.",
+        title: "The work began with the execution condition.",
         paragraphs: [
           "120VC was created to work alongside leaders in the moments where strategy becomes difficult: competing priorities, constrained capacity, cross-functional dependencies, incomplete information, and outcomes that matter.",
           "That experience became a shared system for helping leaders operate with more intentionality, discipline, trust, transparency, and accountability.",
@@ -1119,6 +1120,7 @@ Object.assign(pages, {
           "The master build requires at least one approved case story, one approved testimonial, and a complete metric record before public launch. Those items remain approval-dependent and are not being reconstructed from marketing claims.",
         ],
         statement: "Proof depth belongs here so the homepage can stay clear, skimmable, and honest.",
+        visibility: "review",
       },
     ],
     related: [
@@ -1255,7 +1257,7 @@ Object.assign(pages, {
   "leadership-system/operating-practices": {
     slug: "leadership-system/operating-practices",
     eyebrow: "Operating practices",
-    title: "Turn leadership intent into repeatable execution behavior.",
+    title: "Turn leadership intent into repeatable execution.",
     description: "The system gives leaders one shared way to define conditions, prioritize work, make recommendations, commit, focus, synchronize, and improve.",
     intro: "The practices are useful because they change the next decision and the next move—not because they create another vocabulary list.",
     seoTitle: "Execution Leadership Operating Practices",
@@ -1275,6 +1277,7 @@ Object.assign(pages, {
       {
         title: "Tools prove the method. Outcomes prove the result.",
         paragraphs: ["Visitors can understand the practices before buying. Public interactive implementations remain subject to the master specification’s intellectual-property, legal, data-retention, and export approvals."],
+        visibility: "review",
       },
     ],
     primaryCta: { label: "Explore All Tools", href: "/resources/tools" },
@@ -1306,7 +1309,7 @@ Object.assign(pages, {
   "leadership-system/execution-leadership": {
     slug: "leadership-system/execution-leadership",
     eyebrow: "Execution Leadership",
-    title: "Leadership is what turns decisions into coordinated execution.",
+    title: "Leadership turns decisions into coordinated execution.",
     description: "Execution Leadership is the discipline of leading through one shared system so people can move critical work under pressure.",
     intro: "It is not a personality type, title, software product, or motivational program. It is how leaders prioritize, decide, commit, expose reality, and improve while the work is live.",
     seoTitle: "What Is Execution Leadership?",
@@ -1338,6 +1341,7 @@ Object.assign(pages, {
       {
         title: "Commercial details follow a qualified diagnosis.",
         paragraphs: ["Exact phases, duration, participation, deliverables, and investment remain scope-dependent and approval-controlled. The consultation clarifies fit before it recommends an offer."],
+        visibility: "review",
       },
     ],
     primaryCta: consultation,
@@ -1347,7 +1351,7 @@ Object.assign(pages, {
   "for-leaders": {
     slug: "for-leaders",
     eyebrow: "For leaders who own the outcome",
-    title: "Built for executives accountable for what the organization actually delivers.",
+    title: "Built for executives accountable for real outcomes.",
     description: "The visible pressure differs by role. The underlying need is one leadership system that turns intent into coordinated execution.",
     intro: "Use the role path that matches your mandate, then move into the problem, solution, evidence, and next step most relevant to your buying group.",
     seoTitle: "Execution Leadership for Enterprise Leaders",
@@ -1428,7 +1432,7 @@ Object.assign(pages, {
     seoDescription: "Explore 120VC diagnostics for execution health, leadership teams, high-stakes initiatives, portfolios, and internal functions.",
     sections: [
       {
-        title: "Choose the diagnostic framework that matches the accountability scope.",
+        title: "Choose the diagnostic that matches your accountability.",
         cards: [
           { title: "Execution Health Diagnostic", description: "Review priority clarity, decisions, dependencies, rhythm, accountability, and rescue dependence.", href: "/resources/assessments/execution-health-diagnostic" },
           { title: "Leadership Team Execution Assessment", description: "See whether senior leaders are operating through one shared system.", href: "/resources/assessments/leadership-team-execution-assessment" },
@@ -1631,7 +1635,7 @@ Object.assign(pages, {
   "resources/tools/1-3-1-decision-builder": {
     slug: "resources/tools/1-3-1-decision-builder",
     eyebrow: "1-3-1 Decision Builder",
-    title: "Define one problem. Evaluate three viable solutions. Make one recommendation.",
+    title: "One problem. Three options. One recommendation.",
     description: "Structure a recommendation so leaders can inspect the problem, choices, tradeoffs, and recommended next move.",
     intro: "The method improves decision quality by requiring a clear problem, relevant facts, multiple viable paths, and one accountable recommendation.",
     seoTitle: "1-3-1 Decision Builder",
@@ -1668,7 +1672,7 @@ Object.assign(pages, {
   "resources/tools/2x2-prioritization-matrix": {
     slug: "resources/tools/2x2-prioritization-matrix",
     eyebrow: "2×2 Prioritization Matrix",
-    title: "Decide what deserves focus—and what should wait, change, or stop.",
+    title: "Decide what deserves focus—and what should stop.",
     description: "Make priorities, tradeoffs, ownership, expected outcomes, and conflicts visible before capacity breaks.",
     intro: "Prioritization is not a longer ranked list. It is a decision about where limited time, talent, attention, and resources will—and will not—go.",
     seoTitle: "2x2 Prioritization Matrix",
@@ -1676,7 +1680,7 @@ Object.assign(pages, {
     sections: [
       {
         eyebrow: "Planned workspace",
-        title: "The approved experience must make movement and tradeoffs explicit.",
+        title: "Make movement and tradeoffs explicit.",
         bullets: [
           "Add a priority or initiative",
           "Drag or assign it to a quadrant",
@@ -1767,7 +1771,7 @@ Object.assign(pages, {
   "resources/tools/weekly-team-doing": {
     slug: "resources/tools/weekly-team-doing",
     eyebrow: "Weekly Team DOING",
-    title: "Replace status updates with live alignment, decisions, and commitments.",
+    title: "Replace status updates with decisions and commitments.",
     description: "Use the team’s weekly execution rhythm to expose reality, resolve decisions, and leave with visible commitments.",
     intro: "The purpose is defined: synchronize the team around current work. The proprietary agenda, prompts, artifacts, and facilitation rules have not yet been supplied.",
     seoTitle: "Weekly Team DOING",
@@ -1880,7 +1884,7 @@ Object.assign(pages, {
   "resources/assessments/execution-health-diagnostic": {
     slug: "resources/assessments/execution-health-diagnostic",
     eyebrow: "Execution Health Diagnostic",
-    title: "Identify the execution condition before choosing the response.",
+    title: "Identify the condition before choosing a response.",
     description: "Assess the overall execution condition across priorities, decisions, ownership, dependencies, risk, rhythm, accountability, and executive rescue.",
     intro: "This is the flagship diagnostic and primary ICP-capture assessment. It must describe the strongest visible condition without presenting an unvalidated benchmark.",
     seoTitle: "Execution Health Diagnostic",
@@ -1931,7 +1935,7 @@ Object.assign(pages, {
   "resources/assessments/leadership-team-execution-assessment": {
     slug: "resources/assessments/leadership-team-execution-assessment",
     eyebrow: "Leadership Team Execution Assessment",
-    title: "Evaluate whether senior leaders are operating through one shared system.",
+    title: "Do senior leaders operate through one shared system?",
     description: "Examine whether the leadership team aligns priorities, makes decisions that hold, owns shared commitments, and executes as one unit.",
     intro: "The assessment purpose is defined. The approved dimensions, questions, scoring logic, and result language have not yet been supplied.",
     seoTitle: "Leadership Team Execution Assessment",
@@ -1959,7 +1963,7 @@ Object.assign(pages, {
   "resources/assessments/high-stakes-initiative-readiness": {
     slug: "resources/assessments/high-stakes-initiative-readiness",
     eyebrow: "High-Stakes Initiative Readiness",
-    title: "Evaluate whether a critical initiative has the conditions required to execute.",
+    title: "Does this initiative have what it needs to execute?",
     description: "Examine readiness before a critical initiative depends on unstable priorities, reopened decisions, hidden dependencies, or executive rescue.",
     intro: "The assessment purpose is defined. The approved readiness dimensions, questions, thresholds, and result language have not yet been supplied.",
     seoTitle: "High-Stakes Initiative Readiness Assessment",
@@ -1987,7 +1991,7 @@ Object.assign(pages, {
   "resources/assessments/portfolio-roi-diagnostic": {
     slug: "resources/assessments/portfolio-roi-diagnostic",
     eyebrow: "Portfolio ROI Diagnostic",
-    title: "Evaluate investment logic, work overload, governance, and portfolio decisions.",
+    title: "Evaluate portfolio investment, overload, and tradeoffs.",
     description: "Examine whether the portfolio helps leaders fund, stop, reshape, consolidate, delay, or accelerate work based on return.",
     intro: "The diagnostic purpose is defined. The approved portfolio dimensions, questions, scoring logic, and result language have not yet been supplied.",
     seoTitle: "Portfolio ROI Diagnostic",
@@ -2015,7 +2019,7 @@ Object.assign(pages, {
   "resources/assessments/cost-center-to-value-engine-assessment": {
     slug: "resources/assessments/cost-center-to-value-engine-assessment",
     eyebrow: "Cost Center to Value Engine Assessment",
-    title: "Evaluate whether an internal function can connect activity to business value.",
+    title: "Can this function connect activity to business value?",
     description: "Examine whether HR, IT, Finance, PMO, or another internal function can challenge demand, recommend better choices, and show customer, team, and financial value.",
     intro: "The assessment purpose is defined. The approved dimensions, questions, scoring logic, and result language have not yet been supplied.",
     seoTitle: "Cost Center to Value Engine Assessment",
@@ -2158,7 +2162,7 @@ Object.assign(pages, {
   "resources/insights/enterprise-transformation": {
     slug: "resources/insights/enterprise-transformation",
     eyebrow: "Enterprise Transformation insights",
-    title: "Make change become normal work and measurable business value.",
+    title: "Make transformation normal work with measurable value.",
     description: "Understand how transformation intent becomes priorities, operating behavior, adoption ownership, and measurable outcomes.",
     intro: "This topic helps transformation and internal-function leaders evaluate whether change is altering the operating condition or remaining a separate program.",
     seoTitle: "Enterprise Transformation Insights",
@@ -2214,7 +2218,7 @@ Object.assign(pages, {
   "resources/insights/practical-leadership-systems": {
     slug: "resources/insights/practical-leadership-systems",
     eyebrow: "Practical Leadership Systems insights",
-    title: "Turn leadership principles into repeatable operating behavior.",
+    title: "Turn leadership principles into operating behavior.",
     description: "Explore practical approaches to prioritization, recommendations, accountability, coaching, focusing, synchronization, and work rationalization.",
     intro: "This topic connects leadership ideas to the shared practices leaders use while real priorities, decisions, dependencies, and outcomes are under pressure.",
     seoTitle: "Practical Leadership Systems Insights",
