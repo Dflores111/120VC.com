@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/native-link";
 import { useRef, useState, type KeyboardEvent } from "react";
 import { ExecutionIcon, type ExecutionIconName } from "./execution-icon";
 

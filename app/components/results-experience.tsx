@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/native-link";
 import { getHomepageCaseProof } from "../data/homepage-case-proof";
 import { FeaturedCaseCarousel } from "./featured-case-carousel";
 import { ReviewModePanel } from "./review-mode-panel";

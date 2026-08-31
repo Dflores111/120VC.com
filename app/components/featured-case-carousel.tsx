@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/native-link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { HomepageCaseProof } from "../data/homepage-case-proof";
 import { track120vcEvent } from "./analytics-bridge";

@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import Link from "next/link";
+import Link from "@/app/components/native-link";
 import { useState, type PointerEvent, type ReactNode } from "react";
 
 type Ripple = {

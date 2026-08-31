@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/native-link";
 import { FeaturedCaseCarousel } from "./components/featured-case-carousel";
 import { HeroMotionMedia } from "./components/hero-motion-media";
 import { InstallationStepper, type InstallationStep } from "./components/installation-stepper";

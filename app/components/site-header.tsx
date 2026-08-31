@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element -- The remote SVG is the canonical 120VC brand asset. */
-import Link from "next/link";
+import Link from "@/app/components/native-link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { primaryNavigation } from "../data/primary-experience";
@@ -119,12 +119,12 @@ export function SiteHeader() {
               <button ref={closeButtonRef} type="button" aria-label="Close navigation" onClick={closeMobile}>Close <span aria-hidden="true">×</span></button>
             </div>
             <nav aria-label="Mobile primary navigation">
-              <Link href="/" aria-current={pathname === "/" ? "page" : undefined} onClick={closeMobile}>Home</Link>
+              <Link href="/" aria-current={pathname === "/" ? "page" : undefined}>Home</Link>
               {publicNavigation.map((item) => (
-                <Link href={item.href} key={item.href} aria-current={pathIsCurrent(pathname, item.href) ? "page" : undefined} onClick={closeMobile}>{item.label}</Link>
+                <Link href={item.href} key={item.href} aria-current={pathIsCurrent(pathname, item.href) ? "page" : undefined}>{item.label}</Link>
               ))}
             </nav>
-            <Link className="button button-primary mobile-drawer-cta" href="/consultation?source=mobile-navigation" onClick={closeMobile} data-analytics-event={pathname === "/" ? "homepage_consultation_clicked" : "consultation_clicked"} data-analytics-section="mobile-navigation">Book a Consultation <span aria-hidden="true">→</span></Link>
+            <Link className="button button-primary mobile-drawer-cta" href="/consultation?source=mobile-navigation" data-analytics-event={pathname === "/" ? "homepage_consultation_clicked" : "consultation_clicked"} data-analytics-section="mobile-navigation">Book a Consultation <span aria-hidden="true">→</span></Link>
           </aside>
         </div>
       )}

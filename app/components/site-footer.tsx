@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element -- The remote SVG is the canonical 120VC brand asset. */
-import Link from "next/link";
+import Link from "@/app/components/native-link";
 import { hasApprovedFeaturedProof } from "../data/proof-governance";
 
 const footerGroups = [

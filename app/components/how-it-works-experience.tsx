@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/native-link";
 import type { CSSProperties } from "react";
 import type { SystemNodeId } from "../data/primary-experience";
 import { ImageMask } from "./image-mask";

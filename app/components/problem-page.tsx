@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/native-link";
 import type { CSSProperties } from "react";
 import type { ProblemConditionId, ProblemMode } from "../data/primary-experience";
 import { ExecutionSpine } from "./execution-spine";

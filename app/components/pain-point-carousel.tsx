@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element -- Local editorial assets are rendered by vinext. */
-import Link from "next/link";
+import Link from "@/app/components/native-link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { problemConditions, type ProblemConditionId } from "../data/primary-experience";
 import { track120vcEvent } from "./analytics-bridge";

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element -- 120VC CMS images are served directly in the vinext deployment. */
-import Link from "next/link";
+import Link from "@/app/components/native-link";
 import { ProgressiveDisclosure } from "./progressive-disclosure";
 import { ReviewModePanel } from "./review-mode-panel";
 import { SiteFooter } from "./site-footer";

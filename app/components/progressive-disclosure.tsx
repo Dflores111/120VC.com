@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/native-link";
 import { useState } from "react";
 import type { PageLink, PageSection } from "../site-data";
 

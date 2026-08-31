@@ -1,8 +1,17 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import test from "node:test";
 
 const readSource = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
+
+function findSourceFiles(path) {
+  const directory = new URL(`../${path}/`, import.meta.url);
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const entryPath = `${path}/${entry.name}`;
+    if (entry.isDirectory()) return findSourceFiles(entryPath);
+    return /\.(?:ts|tsx|mjs)$/.test(entry.name) ? [entryPath] : [];
+  });
+}
 
 let workerPromise;
 const renderedPages = new Map();
@@ -445,6 +454,7 @@ test("gives each homepage section one purposeful motion language and a reduced-m
 
 test("keeps navigation, problem choices, and system exploration keyboard-operable", async () => {
   const headerSource = readSource("app/components/site-header.tsx");
+  const nativeLinkSource = readSource("app/components/native-link.tsx");
   const problemSource = readSource("app/components/problem-explorer.tsx");
   const systemSource = readSource("app/components/system-explorer.tsx");
   const carouselSource = readSource("app/components/pain-point-carousel.tsx");
@@ -458,6 +468,11 @@ test("keeps navigation, problem choices, and system exploration keyboard-operabl
   assert.match(headerSource, /role="dialog" aria-modal="true"/);
   assert.match(headerSource, /element\.inert = true/);
   assert.match(headerSource, /event\.key !== "Tab"/);
+  assert.doesNotMatch(headerSource, /<Link[^>]+onClick=\{closeMobile\}/, "mobile links stay mounted until the browser begins navigation");
+  assert.match(nativeLinkSource, /return <a href=\{href\}/, "hosted navigation uses dependable native anchors");
+  for (const sourcePath of findSourceFiles("app")) {
+    assert.doesNotMatch(readSource(sourcePath), /from ["']next\/link["']/, `${sourcePath}: avoids the broken hosted Next Link prefetch runtime`);
+  }
 
   assert.match(problemSource, /role="region" aria-label="Five execution problems"/i);
   assert.match(problemSource, /aria-pressed=\{selected === item\.id\}/i);
