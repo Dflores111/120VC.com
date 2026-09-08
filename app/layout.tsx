@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AnalyticsBridge } from "./components/analytics-bridge";
+import { ScrollNarrativeMotion } from "./components/scroll-narrative-motion";
 import "./globals.css";
 import "./master.css";
 import "./hierarchy.css";
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   description,
   icons: { icon: "https://www.120vc.com/wp-content/uploads/2026/02/cropped-favicon-2-32x32.webp" },
   openGraph: {
-    title: "Strategy Execution for Enterprise Leadership Teams | 120VC",
+    title: "Strategy Execution & Implementation for Enterprise Teams | 120VC",
     description,
     type: "website",
     siteName: "120VC",
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Strategy Execution for Enterprise Leadership Teams | 120VC",
+    title: "Strategy Execution & Implementation for Enterprise Teams | 120VC",
     description,
     images: [`${SITE_URL}/og.png`],
   },
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body>
         <AnalyticsBridge />
+        <ScrollNarrativeMotion />
         <link rel="preconnect" href="https://www.120vc.com" />
         <script
           type="application/ld+json"

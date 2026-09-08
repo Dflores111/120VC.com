@@ -152,9 +152,9 @@ const canonicalPrimaryCopy = [
   {
     label: "Home",
     path: "/",
-    h1: "We install the system that makes strategy deliver.",
-    opening: "120VC improves strategy execution by giving enterprise leadership teams one shared way to set priorities, make decisions, own commitments, and turn cost centers into measurable growth engines. We install it inside work already underway and stay until the accountable team can run it without us.",
-    action: "Book a Consultation",
+    h1: "We install the system that turns strategy into execution.",
+    opening: "We install a shared execution system inside live enterprise work, operate it alongside your team, and leave your organization able to run it without us. The result is strategy execution and strategy implementation grounded in the same priorities, decisions, ownership, and operating rhythm.",
+    action: "Request a Conversation",
   },
   {
     label: "What We Solve",
@@ -173,8 +173,8 @@ const canonicalPrimaryCopy = [
   {
     label: "How It Works",
     path: "/leadership-system",
-    h1: "One system for priorities, decisions, and ownership.",
-    opening: "120VC installs its Execution Leadership System—a leadership operating system for enterprise teams—inside current priorities and initiatives. We diagnose the break, clarify decision rights, establish the operating rhythm, run it under pressure, and transfer ownership to your team.",
+    h1: "How your strategy becomes work that gets done.",
+    opening: "120VC installs one shared way to connect outcomes, priorities, resource allocation, decision rights, commitments, operating rhythm, and accountability inside live work. We diagnose the break, install the practices, operate them with your team, and transfer ownership.",
     action: "See How It Works",
   },
   {
@@ -207,15 +207,15 @@ const canonicalPrimaryCopy = [
 ];
 
 const canonicalOfferAndToolHeadlines = [
-  ["Leadership Team Transformation", "/transformation-leadership-team-development-coaching-and-program", "Leadership team development for executives."],
-  ["ELPA", "/executive-leadership-coaching-and-development-performance-accelerator", "Executive coaching in live work."],
-  ["Enterprise Transformation", "/enterprise-digital-transformation", "Business transformation that sticks."],
-  ["Project Portfolio Services", "/roi-driven-project-portfolio-services", "Project portfolio decisions made clear."],
-  ["Project Leadership Managed Services", "/project-leadership-managed-services", "Enterprise project management for critical initiatives."],
+  ["Leadership Team Transformation", "/transformation-leadership-team-development-coaching-and-program", "Leadership team development that changes how executives run the business together."],
+  ["ELPA", "/executive-leadership-coaching-and-development-performance-accelerator", "An executive leadership development program built around real work."],
+  ["Enterprise Transformation", "/enterprise-digital-transformation", "Business transformation that becomes how the business actually operates."],
+  ["Project Portfolio Services", "/roi-driven-project-portfolio-services", "Project portfolio management that makes every initiative earn its funding."],
+  ["Project Leadership Managed Services", "/project-leadership-managed-services", "Enterprise project management for initiatives that cannot afford to drift."],
   ["Smartsheet Portfolio Visibility", "/smartsheet-dashboards", "Smartsheet project portfolio management."],
   ["Prioritization Matrix", "/resources/tools/2x2-prioritization-matrix", "A prioritization matrix for making real trade-offs."],
-  ["1-3-1 Decision Builder", "/resources/tools/1-3-1-decision-builder", "Turn one problem into one recommendation."],
-  ["Weekly Team DOING", "/resources/tools/weekly-team-doing", "Weekly meetings for decisions and action."],
+  ["1-3-1 Decision Builder", "/resources/tools/1-3-1-decision-builder", "A decision-making framework for turning problems into accountable recommendations."],
+  ["Weekly Team DOING", "/resources/tools/weekly-team-doing", "A weekly operating rhythm for decisions, commitments, and blockers."],
 ];
 
 const canonicalOfferActions = [
@@ -228,16 +228,16 @@ const canonicalOfferActions = [
 ];
 
 const searchIntentContracts = [
-  ["/", "Strategy Execution for Enterprise Leadership Teams | 120VC", ["strategy execution", "Execution Leadership System"]],
+  ["/", "Strategy Execution & Implementation for Enterprise Teams | 120VC", ["strategy execution", "strategy implementation"]],
   ["/problems-we-solve", "Strategy Execution Problems: Why Good Strategies Fail | 120VC", ["strategy execution problems"]],
   ["/leadership-services", "Strategy Execution, Transformation & PMO Consulting | 120VC", ["strategy execution consulting", "leadership team development", "business transformation consulting", "project portfolio management"]],
-  ["/leadership-system", "Leadership Operating System for Strategy Execution | 120VC", ["leadership operating system", "decision rights", "operating rhythm"]],
+  ["/leadership-system", "Leadership Operating System for Strategy Execution | 120VC", ["strategy execution", "decision rights", "operating rhythm", "accountability framework"]],
   ["/results", "Enterprise Results and Strategy Execution Case Studies | 120VC", ["strategy execution case studies"]],
   ["/resources", "Strategy Execution Tools for Priorities, Decisions & Accountability | 120VC", ["strategy execution tools", "prioritization matrices", "decision-making frameworks"]],
   ["/transformation-leadership-team-development-coaching-and-program", "Leadership Team Development for Executive Teams | 120VC", ["leadership team development", "leadership team coaching"]],
   ["/executive-leadership-coaching-and-development-performance-accelerator", "Executive Leadership Development Inside Live Work | ELPA | 120VC", ["executive leadership development"]],
   ["/enterprise-digital-transformation", "Business Transformation Consulting for Measurable Value | 120VC", ["business transformation consulting"]],
-  ["/roi-driven-project-portfolio-services", "Project Portfolio Management & PMO Consulting | 120VC", ["project portfolio management", "allocate resources"]],
+  ["/roi-driven-project-portfolio-services", "Project Portfolio Management & PMO Consulting | 120VC", ["project portfolio management", "resource allocation"]],
   ["/project-leadership-managed-services", "Enterprise Project Management Consulting for Critical Initiatives | 120VC", ["project management consulting"]],
   ["/smartsheet-dashboards", "Smartsheet Project Portfolio Dashboards & Consulting | 120VC", ["Smartsheet project portfolio management"]],
 ];
@@ -367,8 +367,8 @@ test("uses concise consultation vocabulary without introducing the proprietary s
 
   const { html } = await render("/");
   const header = extractElement(html, "header", "global-header");
-  assert.match(header, /href="\/consultation(?:\?[^"]*)?"[^>]*>Book a Consultation/i, "the persistent commercial action uses the concise label");
-  assert.equal((mainMarkup(html).match(/>Book a Consultation\s*</gi) || []).length, 2, "both homepage consultation moments use the same familiar action");
+  assert.match(header, /href="\/consultation(?:\?[^"]*)?"[^>]*>Request a Conversation/i, "the persistent commercial action describes the real next step");
+  assert.equal((mainMarkup(html).match(/>Request a Conversation\s*</gi) || []).length, 2, "both homepage conversation moments use the same familiar action");
 });
 
 test("renders the homepage as a complete commercial buyer journey", async () => {
@@ -376,18 +376,18 @@ test("renders the homepage as a complete commercial buyer journey", async () => 
   assert.equal(status, 200);
   const main = mainMarkup(html);
 
-  assert.match(main, /We install the system that[\s\S]*headline-keyword headline-keyword-on-dark[\s\S]*makes strategy deliver/i);
-  assert.match(main, /enterprise leadership teams one shared way to set priorities, make decisions, own commitments, and turn cost centers into measurable growth engines/i);
+  assert.match(main, /We install the system that turns[\s\S]*headline-keyword headline-keyword-on-dark[\s\S]*strategy into execution/i);
+  assert.match(main, /strategy execution and strategy implementation grounded in the same priorities, decisions, ownership, and operating rhythm/i);
   assert.doesNotMatch(main, /Inside live work|With the accountable team|Built for ownership|No scripted sales presentation/i, "hero avoids abstract micro-taglines");
   assert.deepEqual(attributeValues(main, "data-journey-stage"), ["position", "recognize", "solution", "difference", "act"]);
   const sections = majorSections(html);
   assert.equal(sections.length, 5);
-  assertOrdered(main, ["Five strategy execution problems we solve.", "We help leaders change how critical work runs.", "A leadership operating system installed in four stages.", "Bring us the problem that keeps returning."], "homepage attention journey");
+  assertOrdered(main, ["What keeps your strategy from turning into work that gets done?", "Get the right work done.", "Not just more work started.", "Where we help you get the work done.", "How your strategy becomes work that gets done.", "What needs to get done?"], "homepage attention journey");
   assert.match(main, /class="hero-motion-media"/i);
   assert.match(main, /class="home-logo-marquee"/i);
   assert.match(main, /120VC has worked with leaders and teams at/i);
   assert.equal((main.match(/class="home-logo-item"/g) || []).length, 34, "17 approved marks render in two visual marquee copies");
-  assertOrdered(main, ["We install the system", "120VC has worked with leaders and teams at", "Five strategy execution problems we solve.", "CLEAR PRIORITIES", "We help leaders change how critical work runs."], "homepage trust, recognition, and memory sequence");
+  assertOrdered(main, ["We install the system", "120VC has worked with leaders and teams at", "What keeps your strategy from turning into work that gets done?", "Get the right work done.", "Where we help you get the work done."], "homepage trust, recognition, and memory sequence");
   assert.match(main, /class="pain-carousel"/i);
   assert.equal((main.match(/class="pain-card"/g) || []).length, 5);
   assert.equal((main.match(/class="home-solution-card"/g) || []).length, 3);
@@ -418,6 +418,7 @@ test("keeps the homepage chapter order and development proof architecture explic
   const homeSource = readSource("app/page.tsx");
   const proofComponent = readSource("app/components/featured-case-carousel.tsx");
   const kineticSource = readSource("app/components/kinetic-statement.tsx");
+  const heroOutcomeSource = readSource("app/components/hero-outcome-rotation.tsx");
   const carouselSource = readSource("app/components/pain-point-carousel.tsx");
   const solutionSource = readSource("app/components/solution-scope-cards.tsx");
   const installationSource = readSource("app/components/installation-stepper.tsx");
@@ -431,10 +432,13 @@ test("keeps the homepage chapter order and development proof architecture explic
   assert.match(carouselSource, /onPointerLeave=/i, "pain cards return after fine-pointer hover");
   assert.match(carouselSource, /onFocusCapture=/i, "pain-card hover behavior is mirrored for keyboard focus");
   assert.match(carouselSource, /onBlurCapture=/i, "pain-card focus preview returns when focus leaves");
-  assert.doesNotMatch(kineticSource, /CLEAR PRIORITIES\.|DECISIONS THAT HOLD\.|TEAMS THAT DELIVER\./i);
-  assert.match(kineticSource, /home-kinetic-separator/i);
-  assert.match(css, /\.home-kinetic-separator\s*\{[^}]*color:\s*var\(--action-orange\)/is);
-  assert.match(css, /\.home-kinetic-group\s*\{[^}]*gap:\s*clamp\(48px,\s*5vw,\s*96px\)/is);
+  assert.match(kineticSource, /Get the right work done\./i);
+  assert.match(kineticSource, /resource allocation, capacity planning, and decision-making/i);
+  assert.doesNotMatch(kineticSource, /setInterval|linear\s+infinite|Pause statement/i, "the value transition reveals once instead of demanding ongoing attention");
+  assert.match(heroOutcomeSource, /strategy into execution\.[\s\S]*priorities into action\.[\s\S]*decisions into ownership\.[\s\S]*work into outcomes\./i);
+  assert.match(heroOutcomeSource, /index >= heroOutcomes\.length - 1/i, "the hero copy rotation reaches a deliberate stopping point");
+  assert.doesNotMatch(heroOutcomeSource, /setInterval/i, "the hero copy does not loop indefinitely");
+  assert.match(css, /\.home-kinetic-copy\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.1fr\)\s+minmax\(320px,\s*\.9fr\)/is, "the value transition has a clear headline-to-explanation reading order");
   assert.match(css, /\.home-stepper-tabs\s*\{[^}]*grid-template-columns:\s*repeat\(4,minmax\(0,1fr\)\)/is, "desktop installation tabs remain equal-width stages");
   assert.match(css, /\.home-stepper-tabs button\s*\{[^}]*width:\s*100%[^}]*min-width:\s*0/is, "stage labels cannot expand one tab beyond its grid track");
   assert.match(css, /\.commercial-home \.home-stepper-panel\s*\{[^}]*height:\s*560px[^}]*overflow:\s*hidden/is, "portrait photography cannot make one homepage stage longer than the others");
@@ -443,10 +447,12 @@ test("keeps the homepage chapter order and development proof architecture explic
   assert.match(proofComponent, /aria-label="Previous case study"/i);
   assert.match(proofComponent, /aria-label="Next case study"/i);
   assert.doesNotMatch(proofComponent, /setInterval|autoPlay|autoplay/i, "featured cases remain manual");
-  assert.match(proofComponent, /const isActive = index === current/i, "one carousel index owns the active state");
-  assert.match(proofComponent, /data-active=\{isActive \? "true" : "false"\}/i);
-  assert.match(proofComponent, /aria-hidden=\{!isActive\}/i, "inactive cases leave the accessibility reading path");
-  assert.match(comparisonSource, /Before[\s\S]*120VC Changed[\s\S]*After/i, "the complete transformation chain remains visible");
+  assert.match(proofComponent, /const \[current, setCurrent\] = useState\(0\)/i, "one carousel index owns the active case");
+  assert.match(proofComponent, /const caseStudy = cases\[current\]/i);
+  assert.match(proofComponent, /data-active="true"[\s\S]*aria-label=\{`Case \$\{current \+ 1\} of \$\{cases\.length\}/i, "only the current case enters the rendered reading path");
+  assert.match(comparisonSource, /Before[\s\S]*120VC Changed[\s\S]*After/i, "the complete transformation chain remains available within the fixed canvas");
+  assert.match(css, /\.case-transformation\s*\{[^}]*--case-story-stage-height:\s*clamp\(520px,60svh,600px\)[^}]*min-height:\s*calc\(var\(--case-story-stage-height\) \+ 100svh\)/is, "proof stories use a shorter bounded canvas plus native scroll runway");
+  assert.match(css, /\.case-transformation-stage\s*\{[^}]*height:\s*var\(--case-story-stage-height\)[^}]*grid-template-rows:\s*58px minmax\(0,1fr\)/is, "proof story height is reserved for navigation and one active chapter");
   assert.match(proofComponent, /AnimatedResultValue[\s\S]*sr-only/i, "animated results retain a static text equivalent");
   assert.equal((proofComponent.match(/<AnimatedResultValue\b/g) || []).length, 1, "each case template renders one primary result");
   assert.doesNotMatch(proofComponent, /supportingResults\.map|featured-case-supporting-results/i, "secondary metrics stay off the homepage");
@@ -466,8 +472,8 @@ test("keeps the homepage chapter order and development proof architecture explic
   assert.match(css, /\.featured-case blockquote footer\s*\{[^}]*font-size:\s*16px/is, "testimonial attribution is not fine print");
   assert.match(css, /\.featured-case-outcome\s*\{[^}]*font-size:\s*16px/is, "case-study CTA is not fine print");
   assert.match(css, /\.featured-case-controls p\s*\{[^}]*font-size:\s*16px/is, "case carousel progress is readable");
-  assertOrdered(comparisonSource, ["case-stage-before", "Before", "case-stage-change", "120VC Changed", "case-stage-after", "After", "<AnimatedResultValue"], "comparison reading order");
-  assertOrdered(proofComponent, ["<header className=\"featured-case-header\">", "featured-case-kicker", "<h3>{caseStudy.title}</h3>", "{caseStudy.context}", "<div className=\"featured-case-core\">", "<ProofComparison", "featured-case-intervention", "<blockquote>", "featured-case-outcome"], "proof reading order");
+  assertOrdered(comparisonSource, ["case-stage-before", "${descriptionId}-before", "case-stage-change", "${descriptionId}-change", "featured-case-intervention", "case-stage-after", "${descriptionId}-after", "<AnimatedResultValue"], "comparison reading order");
+  assertOrdered(proofComponent.slice(proofComponent.indexOf("export function FeaturedCaseCarousel")), ["<header className=\"featured-case-header\">", "featured-case-kicker", "<h3>{caseStudy.title}</h3>", "{caseStudy.context}", "<div className=\"featured-case-core\">", "<ProofComparison", "<blockquote>", "featured-case-outcome"], "proof reading order");
   assert.match(proofComponent, /<blockquote>[\s\S]*caseStudy\.quote[\s\S]*caseStudy\.quoteRole[\s\S]*caseStudy\.quoteOrganization/i, "the client quote closes each proof story with one attribution line");
   for (const redundantLabel of ["What gets in the way", "How we help", "Client results", "How it works", "The next useful step"]) {
     assert.doesNotMatch(homeSource, new RegExp(`>${redundantLabel}<`, "i"), `${redundantLabel}: redundant homepage eyebrow removed`);
@@ -588,7 +594,7 @@ test("uses direct public navigation and withholds Results until proof is approve
   assert.equal((desktopNav.match(/<a\b/gi) || []).length, 4, "four audience-ready destinations render while Results is gated");
   assert.doesNotMatch(desktopNav, />\s*(?:Results|For Leaders|About|J\.Scott|FAQ)\s*</i);
   assert.doesNotMatch(desktopNav, /<button\b|aria-expanded|mega-menu/i, "desktop navigation uses direct links, not disclosure menus");
-  assert.match(header, /href="\/consultation(?:\?[^"]*)?"[^>]*>Book a Consultation/i);
+  assert.match(header, /href="\/consultation(?:\?[^"]*)?"[^>]*>Request a Conversation/i);
   assert.match(header, /aria-expanded="false" aria-controls="mobile-navigation"/i);
 
   assert.match(footer, /Turn strategy into measurable results/i);
@@ -611,9 +617,9 @@ test("makes each primary destination answer its navigation promise without hero 
 
   const homepage = mainMarkup((await render("/")).html);
   assertOrdered(homepage, [
-    "Five strategy execution problems we solve.",
-    "We help leaders change how critical work runs.",
-    "A leadership operating system installed in four stages.",
+    "What keeps your strategy from turning into work that gets done?",
+    "Where we help you get the work done.",
+    "How your strategy becomes work that gets done.",
   ], "homepage navigation-aligned chapters");
   assert.doesNotMatch(homepage, /Which of these looks familiar\?|One system\. Applied where execution is breaking\.|Installed in the work\. Built to hold without us\./i, "homepage chapter headings avoid abstract or redundant taglines");
 
@@ -644,36 +650,64 @@ test("gives each homepage section one purposeful motion language and a reduced-m
   const css = readSource("app/hierarchy.css");
   const homeSource = readSource("app/page.tsx");
   const heroSource = readSource("app/components/hero-motion-media.tsx");
+  const heroOutcomeSource = readSource("app/components/hero-outcome-rotation.tsx");
   const kineticSource = readSource("app/components/kinetic-statement.tsx");
   const logoSource = readSource("app/components/logo-marquee.tsx");
   const carouselSource = readSource("app/components/pain-point-carousel.tsx");
   const installationSource = readSource("app/components/installation-stepper.tsx");
   const problemSource = readSource("app/components/problem-explorer.tsx");
   const systemSource = readSource("app/components/system-explorer.tsx");
+  const scrollSceneSource = readSource("app/components/use-scroll-scene.ts");
   const { html } = await render("/");
 
   assert.doesNotMatch(css, /animation:[^;}]*(?:pulse)/i);
   assert.doesNotMatch(css, /home-thesis-track/i);
   assert.match(css, /@keyframes home-marquee-left/i);
   assert.match(css, /\.home-logo-marquee-track[\s\S]*animation:\s*home-marquee-left\s+46s\s+linear\s+infinite/i);
-  assert.match(css, /\.home-kinetic-track[\s\S]*animation:\s*home-marquee-left\s+19s\s+linear\s+infinite/i);
-  assert.match(kineticSource, /useHydratedReducedMotion\(\)/i);
-  assert.match(kineticSource, /document\.hidden/i);
-  assert.match(kineticSource, /Pause statement/i);
+  assert.doesNotMatch(css, /\.home-kinetic-track|\.home-kinetic-group|\.home-kinetic-separator/i);
+  assert.match(kineticSource, /data-scroll-reveal-section/i);
+  assert.match(heroOutcomeSource, /useHydratedReducedMotion\(\)/i);
+  assert.match(heroOutcomeSource, /document\.hidden/i);
+  assert.match(heroOutcomeSource, /visibleIndex = reduceMotion \? 0 : index/i, "reduced motion keeps the server-rendered first phrase");
   assert.match(logoSource, /useHydratedReducedMotion\(\)/i);
   assert.match(logoSource, /document\.hidden/i);
   assert.match(logoSource, /Pause movement/i);
   assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.execution-spine \*[\s\S]*?animation:\s*none\s*!important/is);
-  for (const [label, source] of [["hero media", heroSource], ["logo marquee", logoSource], ["kinetic statement", kineticSource], ["carousel", carouselSource], ["installation stepper", installationSource], ["problem explorer", problemSource], ["system explorer", systemSource]]) {
+  for (const [label, source] of [["hero media", heroSource], ["hero outcome", heroOutcomeSource], ["logo marquee", logoSource], ["carousel", carouselSource], ["installation stepper", installationSource], ["problem explorer", problemSource], ["scroll scenes", scrollSceneSource]]) {
     assert.match(source, /use(?:Hydrated)?ReducedMotion\(\)/i, `${label}: reduced-motion hook`);
   }
+  assert.match(systemSource, /useScrollScene\(/i, "system explorer receives the shared reduced-motion-aware scroll behavior");
   assert.match(heroSource, /document\.hidden/i);
   assert.match(heroSource, /Pause motion/i);
   assert.doesNotMatch(heroSource, /setInterval|slides\.map|activeSlide/i, "hero uses one finite cinematic treatment rather than an autoplay slideshow");
   assert.doesNotMatch(carouselSource, /setInterval|autoPlay|autoplay/i, "pain carousel remains manual");
-  assert.doesNotMatch(homeSource, /<TextEffect\b/i, "hero copy remains stable while media owns motion");
+  assert.doesNotMatch(homeSource, /<TextEffect\b/i, "the hero avoids word-by-word motion that would fragment the headline");
   assert.doesNotMatch(`${homeSource}\n${problemSource}`, /<Reveal\b|<GlowCard\b/i);
   assert.doesNotMatch(mainMarkup(html), /class="[^"]*\breveal\b|glow-card/i);
+});
+
+test("adds a restrained scroll narrative without hiding meaning or motion preferences", () => {
+  const layoutSource = readSource("app/layout.tsx");
+  const motionSource = readSource("app/components/scroll-narrative-motion.tsx");
+  const sceneSource = readSource("app/components/use-scroll-scene.ts");
+  const css = readSource("app/hierarchy.css");
+
+  assert.match(layoutSource, /<ScrollNarrativeMotion\s*\/>/i);
+  assert.match(motionSource, /main \[data-major-section\]/i);
+  assert.match(motionSource, /scene\.querySelector\("h1"\)/i, "heroes keep their existing motion language");
+  assert.match(motionSource, /journeyStage === "act"/i, "closing actions remain visually calm");
+  assert.match(motionSource, /prefers-reduced-motion:\s*reduce/i);
+  assert.match(motionSource, /process\.env\.NODE_ENV !== "production"[\s\S]*motion[\s\S]*reduce/i, "nonproduction QA can force the static scroll state");
+  assert.match(motionSource, /IntersectionObserver/i);
+  assert.match(motionSource, /main \[data-scroll-step\]/i, "decision-sized story beats reveal independently");
+  assert.match(motionSource, /scrollStepState = "pending"/i);
+  assert.match(css, /idea, line, explanation/i);
+  assert.match(css, /data-scroll-role="headline"/i);
+  assert.match(css, /data-scroll-role="keyword"/i);
+  assert.match(css, /prefers-reduced-motion:\s*reduce[\s\S]*?data-scroll-role[\s\S]*?opacity:\s*1\s*!important/is);
+  assert.match(sceneSource, /addEventListener\("scroll", update, \{ passive: true \}\)/i, "fixed scenes follow native page scroll without intercepting it");
+  assert.doesNotMatch(sceneSource, /wheel|touchmove|preventDefault/i, "fixed scenes never hijack wheel or touch scrolling");
+  assert.match(css, /scroll-swap-scene\[data-scroll-scene-ready="true"\] \.scroll-swap-stage\s*\{[^}]*position:\s*sticky/is, "story canvases stay fixed while their content changes");
 });
 
 test("keeps navigation, problem choices, and system exploration keyboard-operable", async () => {
@@ -710,6 +744,7 @@ test("keeps navigation, problem choices, and system exploration keyboard-operabl
   assert.match(problemSource, /problem-selection-connector/i, "the card selector is visually connected to its result");
   assert.match(problemSource, /problem-selection-status[\s\S]*Your selected problem[\s\S]*condition\.label/i, "selection context sits in the bridge above the diagnostic");
   assert.doesNotMatch(problemSource, /problem-diagnostic-header[\s\S]{0,300}Your selected problem/i, "selection context does not compete with the diagnostic headline");
+  assertOrdered(problemSource, ["problem-diagnostic-header", "problem-diagnostic-scene scroll-swap-scene", "problem-diagnostic-stage scroll-swap-stage", "problem-story-nav", "problem-diagnostic-sequence"], "the problem statement introduces a shorter fixed diagnostic canvas");
   assert.doesNotMatch(problemSource, /problem-condition-flip-control|toggleCondition|aria-expanded=\{isFlipped\}/i, "condition cards do not add a redundant click-to-flip mode");
   assert.match(problemSource, /Hover to see impact/i, "fine-pointer preview is stated without looking like a control");
   assert.match(problemSource, /onPointerEnter=/i, "fine-pointer hover previews the condition impact");
@@ -728,9 +763,9 @@ test("keeps navigation, problem choices, and system exploration keyboard-operabl
     assert.match(source, /event\.key === "Home"/, `${label}: Home key`);
     assert.match(source, /event\.key === "End"/, `${label}: End key`);
   }
-  assert.match(systemSource, /role="tablist"/, "system: tablist");
-  assert.match(systemSource, /role="tab"/, "system: tabs");
-  assert.match(systemSource, /role="tabpanel"/, "system: panel");
+  assert.match(systemSource, /<nav className="system-story-nav"/i, "system: familiar in-page chapter navigation");
+  assert.match(systemSource, /aria-current=\{activeNode === node\.id \? "step"/i, "system: current chapter is exposed");
+  assert.match(systemSource, /goToStep\(index\)/i, "system: each control moves to its named point in the fixed story canvas");
   assert.match(problemSource, /window\.history\.pushState/i, "problem state is recoverable through browser history");
   assert.match(problemSource, /window\.addEventListener\("popstate"/i);
   assert.match(systemSource, /window\.history\.pushState/i);
@@ -742,7 +777,7 @@ test("keeps navigation, problem choices, and system exploration keyboard-operabl
     "mobile-drawer-header button:hover",
     "home-section-link:hover",
     "featured-case-outcome a:hover",
-    "system-node-practice a:hover",
+    "system-story-practice > a:hover",
     "results-methodology-list summary:hover",
     "consultation-direct a:hover",
   ]) assert.match(css, new RegExp(selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `${selector}: explicit hover feedback`);
@@ -755,6 +790,7 @@ test("keeps navigation, problem choices, and system exploration keyboard-operabl
 
 test("renders five parallel conditions and three visible next steps in one What We Solve experience", async () => {
   const { status, html } = await render("/problems-we-solve?condition=strategy-drift&mode=understand");
+  const css = readSource("app/hierarchy.css");
   assert.equal(status, 200);
   const main = mainMarkup(html);
 
@@ -773,11 +809,15 @@ test("renders five parallel conditions and three visible next steps in one What 
   }
   assert.match(main, /aria-label="Next steps for Priorities keep changing"/i);
   assert.match(main, /Your selected problem:<\/span><strong>Priorities keep changing/i);
-  assert.match(main, /Use this diagnostic to confirm the warning signs, understand why the problem matters, and see what leaders must change/i);
+  assert.match(main, /Follow the problem from the signals your team can see to the leadership change that resolves it/i);
   assert.match(main, /What you may be seeing/i);
   assert.match(main, /Why it matters/i);
   assert.match(main, /What leaders must change/i);
   assert.equal((main.match(/class="diagnostic-lens-icon"/g) || []).length, 3);
+  assert.equal((main.match(/class="problem-diagnostic-step /g) || []).length, 3, "the diagnosis is split into three successive reading beats");
+  assert.equal((main.match(/class="problem-diagnostic-step [^"]*scroll-swap-panel"/g) || []).length, 3, "each diagnostic beat swaps into one fixed reading canvas");
+  assert.match(css, /\.problem-diagnostic-scene\s*\{[^}]*--problem-story-stage-height:\s*clamp\(500px,56svh,560px\)[^}]*min-height:\s*calc\(var\(--problem-story-stage-height\) \+ 100svh\)/is, "the desktop diagnosis uses a shorter bounded canvas plus native scroll runway");
+  assert.match(css, /\.problem-diagnostic-stage\s*\{[^}]*height:\s*var\(--problem-story-stage-height\)[^}]*grid-template-rows:\s*58px minmax\(0,1fr\)/is, "the diagnosis canvas reserves height only for its navigation and active chapter");
   assert.match(main, /data-selected-condition="strategy-drift"/i);
   assert.match(main, /Choose the next step that fits your situation/i);
   assert.match(main, /Learn why the problem persists, use a practical tool now, or talk with 120VC about changing the system around the work/i);
@@ -842,35 +882,34 @@ test("renders every legacy problem alias as the shared selected experience with 
   }
 });
 
-test("renders the custom Execution Spine and six-node system explorer", async () => {
+test("renders the six-node system as a fixed scroll-led story canvas", async () => {
   const css = readSource("app/hierarchy.css");
   const { status, html } = await render("/leadership-system?node=decisions");
   assert.equal(status, 200);
   const main = mainMarkup(html);
 
-  assert.match(visibleText(main), /One system for priorities, decisions, and ownership/i);
+  assert.match(visibleText(main), /How your strategy becomes work that gets done/i);
   assert.equal(majorSections(html).length, 5);
-  assert.match(main, /class="execution-spine execution-spine-connected/i);
-  assert.match(main, /role="tablist" aria-label="Execution Leadership System"/i);
-  const nodeTabs = extractElement(main, "div", "system-node-tabs");
-  assert.equal((nodeTabs.match(/role="tab"/g) || []).length, 6);
+  assert.match(main, /<nav class="system-story-nav" aria-label="Jump to a part of the Execution Leadership System"/i);
+  assert.equal((main.match(/aria-label="Go to (?:Intent|Priorities|Decisions|Commitments|Execution|Outcomes)"/g) || []).length, 6);
+  assert.equal((main.match(/class="system-story-chapter scroll-swap-panel"/g) || []).length, 6);
   for (const label of ["Intent", "Priorities", "Decisions", "Commitments", "Execution", "Outcomes"]) {
     assert.match(main, new RegExp(`>${label}<`, "i"), label);
   }
-  assert.match(main, /id="system-node-tab-decisions"[^>]*aria-selected="true"|aria-selected="true"[^>]*id="system-node-tab-decisions"/i);
-  assert.match(main, /role="tabpanel"/i);
+  assert.match(main, /aria-current="step" aria-label="Go to Decisions"/i);
+  assert.match(main, /data-system-node="decisions"/i);
   assert.match(main, /Make a clear decision that will hold/i);
   assert.match(main, /What leaders make visible/i);
-  assert.match(main, /Which changes the work/i);
-  assert.match(main, /What changes/i);
-  assert.match(main, /Use the related practice/i);
+  assert.match(main, /What changes in the work/i);
+  assert.match(main, /Related practice/i);
   assert.match(main, /The problem to resolve[\s\S]*Viable options and tradeoffs[\s\S]*One recommendation and decision owner/i);
   assert.match(main, /Meetings end with a decision that does not need to be reopened/i);
   assert.match(main, /Open[\s\S]*1-3-1 Decision Builder/i);
-  assert.match(main, /class="system-node-connector"/i, "the inputs and outcome need an explicit visual connection");
-  assert.match(css, /\.system-node-panel\s*\{[^}]*min-height:\s*620px[^}]*flex-direction:\s*column/is, "each system tab must open a substantive, stable linear brief");
-  assert.match(css, /\.system-node-focus ul\s*\{[^}]*grid-template-columns:\s*repeat\(3/is, "parallel inputs should read as one grouped component on desktop");
-  assert.doesNotMatch(css, /\.system-node-panel\s*\{[^}]*grid-template-columns:/is, "the panel must not return to a competing two-by-two reading path");
+  assert.match(main, /class="system-story-outcome"/i, "the inputs and outcome retain one explicit visual connection");
+  assert.match(css, /\.system-story-track\s*\{[^}]*min-height:\s*310svh/is, "six system chapters advance within one bounded scroll scene");
+  assert.match(css, /\.system-story-visible ol\s*\{[^}]*list-style:\s*none/is, "parallel inputs read as one quiet numbered list");
+  assert.match(css, /\.scroll-swap-scene\[data-scroll-scene-ready="true"\] \.scroll-swap-stage\s*\{[^}]*position:\s*sticky/is, "the complete system canvas stays fixed while chapters change");
+  assert.match(css, /\.scroll-swap-panel\[data-active="true"\]\s*\{[^}]*opacity:\s*1/is, "only the current system chapter receives visual focus");
   assertOrdered(main, ["Diagnose", "Install", "Operate", "Own"], "installation sequence");
   assertAccessibleLocalImages(main, "How It Works");
   assertHeadlineStructure(main, "How It Works");
@@ -886,6 +925,9 @@ test("uses local human imagery and keeps supporting icons accessible", async () 
     }
     if (path === "/") {
       assert.match(main, /<figure class="hero-motion-media"[^>]*aria-label="[^"]+"/i, "homepage motion media needs a text alternative");
+    } else if (path === "/leadership-system") {
+      assert.match(main, /<nav class="system-story-nav"[^>]*aria-label="Jump to a part of the Execution Leadership System"/i, "the system path provides its own text orientation");
+      assert.equal((main.match(/class="system-story-chapter scroll-swap-panel"/g) || []).length, 6);
     } else {
       assert.match(main, /<figure class="execution-spine[\s\S]*?<svg[^>]*aria-hidden="true"[\s\S]*?<figcaption>[^<]+<\/figcaption>/i, `${path}: the execution graphic needs a text alternative`);
     }
@@ -927,7 +969,13 @@ test("enforces the responsive headline contract structurally", async () => {
   assert.match(css, /\.hierarchy-site h2\s*\{[^}]*max-width:\s*16ch[^}]*font-size:\s*clamp\(40px,\s*4\.1vw,\s*48px\)/is);
   assert.match(css, /@media \(max-width: 680px\)[\s\S]*?\.hierarchy-site h1\s*\{[^}]*max-width:\s*100%[^}]*font-size:\s*clamp\(40px,\s*11\.4vw,\s*44px\)/is);
   assert.match(css, /@media \(max-width: 680px\)[\s\S]*?\.hierarchy-site h2\s*\{[^}]*font-size:\s*clamp\(32px,\s*9vw,\s*36px\)/is);
+  assert.match(css, /@media \(max-width: 420px\)[\s\S]*?\.guided-content-page \.inner-hero h1\.headline-compact-mobile\s*\{[^}]*font-size:\s*30px/is);
   assert.match(css, /text-wrap:\s*balance/i);
+
+  for (const [, path] of canonicalOfferAndToolHeadlines.filter((entry) => entry[2].length > 58)) {
+    const hero = primaryHero((await render(path)).html);
+    assert.match(hero, /<h1 class="headline-compact-mobile">/i, path + ": long phone headline receives the three-line responsive treatment");
+  }
 
   for (const path of ["/", "/problems-we-solve", "/leadership-system", ...problemAliases.map(({ path }) => path)]) {
     assertHeadlineStructure(mainMarkup((await render(path)).html), path);
@@ -961,7 +1009,7 @@ test("server-renders every configured route without governance leakage or sectio
 
 test("keeps the commercial core and declared content-page next steps intact", async () => {
   for (const [path, pattern] of [
-    ["/leadership-system", /One system for priorities, decisions, and ownership/i],
+    ["/leadership-system", /How your strategy becomes work that gets done/i],
     ["/leadership-system/installation", /Install the system inside the work/i],
     ["/leadership-services", /Align leaders\. Make change stick\. Focus the portfolio/i],
     ["/leadership-services/compare-solutions", /Choose the installation scope/i],
@@ -1092,7 +1140,7 @@ test("uses headline emphasis as a scarce attention signal", async () => {
     return (main.match(/class="[^"]*\bheadline-keyword\b[^"]*"/g) || []).length;
   };
 
-  assert.equal(await highlightedHeadlines("/"), 1, "homepage emphasizes its outcome once");
+  assert.equal(await highlightedHeadlines("/"), 2, "homepage emphasizes the hero outcome and the value shift—one signal per distinct idea");
   assert.equal(await highlightedHeadlines("/problems-we-solve"), 1, "What We Solve emphasizes the problem once");
   assert.equal(await highlightedHeadlines("/leadership-system"), 1, "How It Works emphasizes the mechanism once");
   assert.equal(await highlightedHeadlines("/results"), 1, "Results emphasizes the proof outcome once");

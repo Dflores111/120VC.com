@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "@/app/components/native-link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import type { HomepageCaseProof } from "../data/homepage-case-proof";
 import { track120vcEvent } from "./analytics-bridge";
 import { useHydratedReducedMotion } from "./use-hydrated-reduced-motion";
+import { useScrollScene } from "./use-scroll-scene";
 
 type FeaturedCaseCarouselProps = {
   cases: readonly HomepageCaseProof[];
@@ -12,7 +13,6 @@ type FeaturedCaseCarouselProps = {
   sourcePage?: "homepage" | "results";
 };
 
-type ComparisonState = "before" | "transforming" | "after";
 type ProofStage = "before" | "change" | "after";
 
 function ProofStageIcon({ stage }: { stage: ProofStage }) {
@@ -124,71 +124,72 @@ function AnimatedResultValue({ value, active, forceReducedMotion = false }: { va
 
 function ProofComparison({ caseStudy, active, forceReducedMotion = false }: { caseStudy: HomepageCaseProof; active: boolean; forceReducedMotion?: boolean }) {
   const reduceMotion = useHydratedReducedMotion() || forceReducedMotion;
-  const hasPlayed = useRef(false);
-  const [state, setState] = useState<ComparisonState>(reduceMotion ? "after" : "before");
+  const { activeStep, goToStep, sceneRef, stageRef } = useScrollScene({ stepCount: 3, forceReducedMotion });
   const descriptionId = `case-${caseStudy.id}-description`;
-
-  useEffect(() => {
-    if (!active) return;
-    if (reduceMotion || hasPlayed.current) {
-      setState("after");
-      hasPlayed.current = true;
-      return;
-    }
-
-    hasPlayed.current = true;
-    setState("before");
-    const begin = window.setTimeout(() => setState("transforming"), 220);
-    const finish = window.setTimeout(() => setState("after"), 980);
-    return () => {
-      window.clearTimeout(begin);
-      window.clearTimeout(finish);
-    };
-  }, [active, reduceMotion]);
 
   return (
     <div
-      className="case-transformation"
-      data-state={state}
+      className="case-transformation scroll-swap-scene"
+      data-state={activeStep === 2 ? "after" : activeStep === 1 ? "transforming" : "before"}
       data-reduced-motion={reduceMotion ? "true" : "false"}
       aria-describedby={descriptionId}
+      ref={sceneRef}
+      style={{ "--scroll-scene-steps": 3 } as CSSProperties}
     >
-      <section className="case-stage case-stage-before" aria-labelledby={`${descriptionId}-before`}>
-        <div className="case-stage-heading">
-          <ProofStageIcon stage="before" />
-          <h4 id={`${descriptionId}-before`}>Before</h4>
+      <div className="case-transformation-stage scroll-swap-stage" ref={stageRef}>
+        <nav className="case-story-nav" aria-label={`Move through ${caseStudy.title}`}>
+          <p aria-live="polite"><strong>{String(activeStep + 1).padStart(2, "0")}</strong> / 03 <span>{activeStep === 0 ? "Before" : activeStep === 1 ? "120VC Changed" : "After"}</span></p>
+          <div>
+            {["Before", "120VC Changed", "After"].map((label, index) => (
+              <button disabled={!active} key={label} type="button" aria-label={`Go to ${label}`} aria-current={activeStep === index ? "step" : undefined} onClick={() => goToStep(index)}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+              </button>
+            ))}
+          </div>
+        </nav>
+
+        <div className="case-story-viewport">
+          <section className="case-stage case-stage-before scroll-swap-panel" aria-hidden={activeStep !== 0} data-active={activeStep === 0 ? "true" : "false"} inert={activeStep !== 0} aria-labelledby={`${descriptionId}-before`}>
+            <div className="case-stage-heading">
+              <span className="case-stage-number">01</span>
+              <ProofStageIcon stage="before" />
+              <h4 id={`${descriptionId}-before`}>Before</h4>
+            </div>
+            <div className="case-stage-body"><ul>
+                {caseStudy.beforePoints.map((point) => <li key={point}><ProofPointIcon stage="before" /><span>{point}</span></li>)}
+            </ul></div>
+          </section>
+          <section className="case-stage case-stage-change scroll-swap-panel" aria-hidden={activeStep !== 1} data-active={activeStep === 1 ? "true" : "false"} inert={activeStep !== 1} aria-labelledby={`${descriptionId}-change`}>
+            <div className="case-stage-heading">
+              <span className="case-stage-number">02</span>
+              <ProofStageIcon stage="change" />
+              <h4 id={`${descriptionId}-change`}>120VC Changed</h4>
+            </div>
+            <div className="case-stage-body">
+              <div className="case-change-path" aria-hidden="true"><span /></div>
+              <ul>{caseStudy.changePoints.map((point) => <li key={point}><ProofPointIcon stage="change" /><span>{point}</span></li>)}</ul>
+              <p className="featured-case-intervention">{caseStudy.intervention}</p>
+            </div>
+          </section>
+          <section className="case-stage case-stage-after scroll-swap-panel" aria-hidden={activeStep !== 2} data-active={activeStep === 2 ? "true" : "false"} inert={activeStep !== 2} aria-labelledby={`${descriptionId}-after`}>
+            <div className="case-stage-heading">
+              <span className="case-stage-number">03</span>
+              <ProofStageIcon stage="after" />
+              <h4 id={`${descriptionId}-after`}>After</h4>
+            </div>
+            <div className="case-stage-body case-stage-after-body">
+              <ul>{caseStudy.afterPoints.map((point) => <li key={point}><ProofPointIcon stage="after" /><span>{point}</span></li>)}</ul>
+              <div className="featured-case-result">
+                <AnimatedResultValue value={caseStudy.resultValue} active={active && activeStep === 2} forceReducedMotion={forceReducedMotion} />
+                <p>{caseStudy.resultLabel}</p>
+                <span>{caseStudy.timeframe}</span>
+              </div>
+            </div>
+          </section>
         </div>
-        <ul>
-          {caseStudy.beforePoints.map((point) => <li key={point}><ProofPointIcon stage="before" /><span>{point}</span></li>)}
-        </ul>
-      </section>
-      <section className="case-stage case-stage-change" aria-labelledby={`${descriptionId}-change`}>
-        <div className="case-stage-heading">
-          <ProofStageIcon stage="change" />
-          <h4 id={`${descriptionId}-change`}>120VC Changed</h4>
-        </div>
-        <div className="case-change-path" aria-hidden="true"><span /></div>
-        <ul>
-          {caseStudy.changePoints.map((point) => <li key={point}><ProofPointIcon stage="change" /><span>{point}</span></li>)}
-        </ul>
-      </section>
-      <section className="case-stage case-stage-after" aria-labelledby={`${descriptionId}-after`}>
-        <div className="case-stage-heading">
-          <ProofStageIcon stage="after" />
-          <h4 id={`${descriptionId}-after`}>After</h4>
-        </div>
-        <ul>
-          {caseStudy.afterPoints.map((point) => <li key={point}><ProofPointIcon stage="after" /><span>{point}</span></li>)}
-        </ul>
-        <div className="featured-case-result">
-          <AnimatedResultValue value={caseStudy.resultValue} active={active && state === "after"} forceReducedMotion={forceReducedMotion} />
-          <p>{caseStudy.resultLabel}</p>
-          <span>{caseStudy.timeframe}</span>
-        </div>
-      </section>
-      <div className="case-mobile-direction case-mobile-direction-first" aria-hidden="true">↓</div>
-      <div className="case-mobile-direction case-mobile-direction-second" aria-hidden="true">↓</div>
-      <p className="sr-only" id={descriptionId}>{caseStudy.evidenceDescription}</p>
+        <p className="scroll-swap-cue" aria-hidden="true">{activeStep === 2 ? "Continue" : "Scroll to advance"}<span data-direction="down">↓</span></p>
+        <p className="sr-only" id={descriptionId}>{caseStudy.evidenceDescription}</p>
+      </div>
     </div>
   );
 }
@@ -205,47 +206,28 @@ function analyticsProperties(caseStudy: HomepageCaseProof, index: number, source
 
 export function FeaturedCaseCarousel({ cases, forceReducedMotion = false, sourcePage = "homepage" }: FeaturedCaseCarouselProps) {
   const reduceMotion = useHydratedReducedMotion() || forceReducedMotion;
-  const railRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<Array<HTMLElement | null>>([]);
-  const currentRef = useRef(0);
-  const programmaticTargetRef = useRef<number | null>(null);
-  const programmaticTargetTimeoutRef = useRef<number | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const lastViewedCaseRef = useRef<string | null>(null);
   const [current, setCurrent] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
-  const updateCurrent = useCallback((next: number, method: "control" | "scroll" | "keyboard") => {
-    const previous = currentRef.current;
-    if (next === previous) return;
-    currentRef.current = next;
-    setCurrent(next);
+  const goTo = useCallback((index: number, method: "control" | "keyboard" = "control") => {
+    const next = Math.max(0, Math.min(cases.length - 1, index));
+    if (next === current) return;
     track120vcEvent({
-      event: next > previous ? "case_story_next" : "case_story_previous",
+      event: next > current ? "case_story_next" : "case_story_previous",
       section: "client-results",
       selection: method,
       ...analyticsProperties(cases[next], next, sourcePage),
     });
-  }, [cases, sourcePage]);
-
-  const goTo = useCallback((index: number, method: "control" | "keyboard" = "control") => {
-    const next = Math.max(0, Math.min(cases.length - 1, index));
-    const target = cardRefs.current[next];
-    if (!target || next === currentRef.current) return;
-    programmaticTargetRef.current = next;
-    if (programmaticTargetTimeoutRef.current !== null) window.clearTimeout(programmaticTargetTimeoutRef.current);
-    programmaticTargetTimeoutRef.current = window.setTimeout(() => {
-      programmaticTargetRef.current = null;
-      programmaticTargetTimeoutRef.current = null;
-    }, reduceMotion ? 80 : 1000);
-    target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest", inline: "start" });
-    updateCurrent(next, method);
-  }, [cases.length, reduceMotion, updateCurrent]);
+    setCurrent(next);
+  }, [cases, current, sourcePage]);
 
   useEffect(() => {
-    const rail = railRef.current;
-    if (!rail) return;
+    const carousel = carouselRef.current;
+    if (!carousel) return;
     const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), { threshold: 0.2 });
-    observer.observe(rail);
+    observer.observe(carousel);
     return () => observer.disconnect();
   }, []);
 
@@ -263,102 +245,45 @@ export function FeaturedCaseCarousel({ cases, forceReducedMotion = false, source
     });
   }, [cases, current, isVisible, sourcePage]);
 
-  useEffect(() => {
-    const rail = railRef.current;
-    if (!rail) return;
-    let frame = 0;
-    const handleScroll = () => {
-      window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(() => {
-        const railLeft = rail.getBoundingClientRect().left;
-        const programmaticTarget = programmaticTargetRef.current;
-        if (programmaticTarget !== null) {
-          const target = cardRefs.current[programmaticTarget];
-          if (!target || Math.abs(target.getBoundingClientRect().left - railLeft) <= 2) {
-            programmaticTargetRef.current = null;
-            if (programmaticTargetTimeoutRef.current !== null) window.clearTimeout(programmaticTargetTimeoutRef.current);
-            programmaticTargetTimeoutRef.current = null;
-          }
-          return;
-        }
-        let next = 0;
-        let closest = Number.POSITIVE_INFINITY;
-        cardRefs.current.forEach((card, index) => {
-          if (!card) return;
-          const distance = Math.abs(card.getBoundingClientRect().left - railLeft);
-          if (distance < closest) {
-            closest = distance;
-            next = index;
-          }
-        });
-        updateCurrent(next, "scroll");
-      });
-    };
-    rail.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.cancelAnimationFrame(frame);
-      rail.removeEventListener("scroll", handleScroll);
-      if (programmaticTargetTimeoutRef.current !== null) window.clearTimeout(programmaticTargetTimeoutRef.current);
-    };
-  }, [updateCurrent]);
+  const caseStudy = cases[current];
+  const ctaHref = caseStudy.fullStoryUrl ?? `/consultation?source=${sourcePage}-case-${caseStudy.id}`;
+  const ctaLabel = caseStudy.fullStoryUrl ? "Read the client story" : "Discuss a similar challenge";
 
   return (
-    <div className="featured-case-carousel" data-reduced-motion={reduceMotion ? "true" : "false"}>
-      <div
-        className="featured-case-rail"
-        ref={railRef}
-        role="region"
-        aria-roledescription="carousel"
-        aria-label="Featured case studies"
+    <div className="featured-case-carousel" data-reduced-motion={reduceMotion ? "true" : "false"} ref={carouselRef} role="region" aria-roledescription="carousel" aria-label="Featured case studies">
+      <article
+        className="featured-case"
+        data-active="true"
+        key={caseStudy.id}
+        aria-roledescription="slide"
+        aria-label={`Case ${current + 1} of ${cases.length}: ${caseStudy.title}`}
       >
-        {cases.map((caseStudy, index) => {
-          const isActive = index === current;
-          const ctaHref = caseStudy.fullStoryUrl ?? `/consultation?source=${sourcePage}-case-${caseStudy.id}`;
-          const ctaLabel = caseStudy.fullStoryUrl ? "Read the client story" : "Discuss a similar challenge";
-          return (
-            <article
-              className="featured-case"
-              data-active={isActive ? "true" : "false"}
-              key={caseStudy.id}
-              ref={(element) => { cardRefs.current[index] = element; }}
-              aria-hidden={!isActive}
-              aria-roledescription="slide"
-              aria-label={`Case ${index + 1} of ${cases.length}: ${caseStudy.title}`}
-            >
-              <header className="featured-case-header">
-                <p className="featured-case-kicker">{caseStudy.proofStatus === "approved" ? "Case Study" : "Illustrative Case Study"}</p>
-                <h3>{caseStudy.title}</h3>
-                <p className="featured-case-type">{caseStudy.context}</p>
-              </header>
+        <header className="featured-case-header">
+          <p className="featured-case-kicker">{caseStudy.proofStatus === "approved" ? "Case Study" : "Illustrative Case Study"}</p>
+          <h3>{caseStudy.title}</h3>
+          <p className="featured-case-type">{caseStudy.context}</p>
+        </header>
 
-              <div className="featured-case-core">
-                <ProofComparison caseStudy={caseStudy} active={isActive} forceReducedMotion={forceReducedMotion} />
-              </div>
+        <div className="featured-case-core">
+          <ProofComparison caseStudy={caseStudy} active forceReducedMotion={forceReducedMotion} />
+        </div>
 
-              <p className="featured-case-intervention">{caseStudy.intervention}</p>
+        <blockquote>
+          <p>“{caseStudy.quote}”</p>
+          <footer><cite>{caseStudy.quotePerson ?? caseStudy.quoteRole} · {caseStudy.quoteOrganization}</cite></footer>
+        </blockquote>
 
-              <blockquote>
-                <p>“{caseStudy.quote}”</p>
-                <footer>
-                  <cite>{caseStudy.quotePerson ?? caseStudy.quoteRole} · {caseStudy.quoteOrganization}</cite>
-                </footer>
-              </blockquote>
-
-              <div className="featured-case-outcome">
-                <Link
-                  href={ctaHref}
-                  tabIndex={isActive ? 0 : -1}
-                  onClick={() => track120vcEvent({
-                    event: "case_story_cta_clicked",
-                    section: "client-results",
-                    ...analyticsProperties(caseStudy, index, sourcePage),
-                  })}
-                >{ctaLabel} <span aria-hidden="true">→</span></Link>
-              </div>
-            </article>
-          );
-        })}
-      </div>
+        <div className="featured-case-outcome">
+          <Link
+            href={ctaHref}
+            onClick={() => track120vcEvent({
+              event: "case_story_cta_clicked",
+              section: "client-results",
+              ...analyticsProperties(caseStudy, current, sourcePage),
+            })}
+          >{ctaLabel} <span aria-hidden="true">→</span></Link>
+        </div>
+      </article>
 
       <div className="featured-case-controls">
         <button

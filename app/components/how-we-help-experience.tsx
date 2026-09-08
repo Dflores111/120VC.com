@@ -9,7 +9,7 @@ const solutionScopes: readonly SolutionScope[] = [
   {
     label: "Executive Teams",
     title: "Executive Teams",
-    description: "Leadership team development that helps executives set priorities, make decisions, and own cross-functional commitments as one team.",
+    description: "Leadership team development that changes how executives run the business together—strengthening team effectiveness, decision rights, and cross-functional ownership.",
     bestWhen: "A leader or leadership team owns a high-stakes outcome, but alignment does not survive contact with the work.",
     change: "One shared way to make tradeoffs, hold decisions, and turn leadership intent into visible commitments.",
     outcome: "Tradeoffs are explicit, decisions remain closed, and commitments have visible owners.",
@@ -27,7 +27,7 @@ const solutionScopes: readonly SolutionScope[] = [
   {
     label: "Business Transformation",
     title: "Business Transformation",
-    description: "Business transformation consulting that turns sponsored change into new operating behavior and measurable value.",
+    description: "Business transformation consulting that makes the transformation how the business actually operates—and keeps value realization visible.",
     bestWhen: "A transformation has sponsorship and activity, but priorities, operating behavior, or business value are not changing.",
     change: "Leaders challenge demand, make real tradeoffs, and own operating change together—not as a separate program.",
     outcome: "Demand becomes a choice, adoption becomes operating behavior, and progress is discussed in business terms.",
@@ -42,7 +42,7 @@ const solutionScopes: readonly SolutionScope[] = [
   {
     label: "Project Portfolios & Critical Initiatives",
     title: "Project Portfolios & Critical Initiatives",
-    description: "Project portfolio management and embedded project leadership that help leaders fund the right work, stop weak work, and move critical initiatives.",
+    description: "Project portfolio management strengthens portfolio governance, project prioritization, and resource allocation; enterprise project management keeps critical initiatives from drifting.",
     bestWhen: "Too many initiatives compete for the same capacity or a critical project needs accountable execution leadership now.",
     change: "Work is continued, accelerated, reshaped, or stopped—and the remaining commitments have clear owners and outcomes.",
     outcome: "Investment choices become visible, dependencies surface sooner, and delivery conversations produce decisions instead of status.",

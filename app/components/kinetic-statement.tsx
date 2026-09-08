@@ -1,62 +1,15 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useHydratedReducedMotion } from "./use-hydrated-reduced-motion";
-
-const phrases = ["CLEAR PRIORITIES", "DECISIONS THAT HOLD", "TEAMS THAT DELIVER"] as const;
-const statement = phrases.join(" • ");
-
-function StatementGroup() {
-  return (
-    <span className="home-kinetic-group">
-      {phrases.map((phrase) => (
-        <span className="home-kinetic-pair" key={phrase}>
-          <span className="home-kinetic-phrase">{phrase}</span>
-          <span className="home-kinetic-separator" aria-hidden="true">•</span>
-        </span>
-      ))}
-    </span>
-  );
-}
-
 export function KineticStatement() {
-  const reduceMotion = useHydratedReducedMotion();
-  const [paused, setPaused] = useState(false);
-  const [pageHidden, setPageHidden] = useState(false);
-
-  useEffect(() => {
-    const updateVisibility = () => setPageHidden(document.hidden);
-    updateVisibility();
-    document.addEventListener("visibilitychange", updateVisibility);
-    return () => document.removeEventListener("visibilitychange", updateVisibility);
-  }, []);
-
-  const motionPaused = reduceMotion || paused || pageHidden;
-
   return (
-    <div
+    <section
       className="home-kinetic-statement"
-      data-paused={motionPaused ? "true" : "false"}
-      data-reduced-motion={reduceMotion ? "true" : "false"}
+      data-scroll-reveal-section
+      aria-labelledby="home-value-title"
     >
-      <p className="sr-only">{statement}</p>
-      <div className="home-kinetic-window" aria-hidden="true">
-        <div className="home-kinetic-track">
-          <StatementGroup />
-          <StatementGroup />
-        </div>
+      <div className="home-kinetic-copy">
+        <p className="orientation-label">Why the system matters</p>
+        <h2 className="heading-wide" id="home-value-title">Get the right work done. <span className="headline-keyword">Not just more work started.</span></h2>
+        <p>Better resource allocation, capacity planning, and decision-making help teams improve operational efficiency by protecting people and attention for the work that matters most.</p>
       </div>
-      {!reduceMotion && (
-        <button
-          className="home-marquee-control"
-          type="button"
-          aria-pressed={paused}
-          onClick={() => setPaused((current) => !current)}
-        >
-          <span aria-hidden="true">{paused ? "▶" : "Ⅱ"}</span>
-          {paused ? "Play statement" : "Pause statement"}
-        </button>
-      )}
-    </div>
+    </section>
   );
 }

@@ -34,7 +34,7 @@ export type SitePage = {
   detailsDescription?: string;
 };
 
-const consultation = { label: "Book a Consultation", href: "/consultation" };
+const consultation = { label: "Request a Conversation", href: "/consultation" };
 
 const problems: PageLink[] = [
   {
@@ -373,8 +373,8 @@ export const pages: Record<string, SitePage> = {
   "leadership-system": {
     slug: "leadership-system",
     eyebrow: "The Execution Leadership System",
-    title: "One system for priorities, decisions, and ownership.",
-    description: "120VC installs its Execution Leadership System—a leadership operating system for enterprise teams—inside current priorities and initiatives. We diagnose the break, clarify decision rights, establish the operating rhythm, run it under pressure, and transfer ownership to your team.",
+    title: "How your strategy becomes work that gets done.",
+    description: "120VC installs one shared way to connect outcomes, priorities, resource allocation, decision rights, commitments, operating rhythm, and accountability inside live work.",
     intro: "The system connects priorities, decisions, ownership, operating rhythm, and measurable outcomes without creating a separate training environment.",
     seoTitle: "Leadership Operating System for Strategy Execution",
     seoDescription: "See how 120VC installs a shared execution system for priorities, decision rights, ownership, operating rhythm, accountability, and measurable outcomes.",
@@ -437,8 +437,8 @@ export const pages: Record<string, SitePage> = {
   "executive-leadership-coaching-and-development-performance-accelerator": {
     slug: "executive-leadership-coaching-and-development-performance-accelerator",
     eyebrow: "Executive Leadership Performance Accelerator",
-    title: "Executive coaching in live work.",
-    description: "ELPA combines executive leadership development with a high-stakes initiative already in motion. The accountable executive and relevant team build capability while changing the priorities, decisions, and commitments that determine the result.",
+    title: "An executive leadership development program built around real work.",
+    description: "ELPA is an executive leadership development program built around a high-stakes initiative already in motion. The accountable executive and relevant team build capability while changing the priorities, decisions, and commitments that determine the result.",
     intro: "The initiative moves while the team installs a repeatable way to prioritize, decide, own, and deliver together.",
     heroImage: { src: "/images/story/team-working-together.jpg", alt: "An executive team applying new leadership practices to work already underway.", width: 1800, height: 1008 },
     seoTitle: "Executive Leadership Development Inside Live Work | ELPA",
@@ -490,8 +490,8 @@ export const pages: Record<string, SitePage> = {
   "transformation-leadership-team-development-coaching-and-program": {
     slug: "transformation-leadership-team-development-coaching-and-program",
     eyebrow: "Leadership Team Transformation",
-    title: "Leadership team development for executives.",
-    description: "120VC uses leadership team coaching inside live work to change how executives make trade-offs, hold decisions, own commitments, and execute together.",
+    title: "Leadership team development that changes how executives run the business together.",
+    description: "120VC uses leadership team coaching inside live work to improve team effectiveness and change how executives set decision rights, make trade-offs, hold decisions, own commitments, and execute together.",
     intro: "The goal is not agreement in the meeting. It is one set of enterprise priorities and commitments that still hold when the team returns to the work.",
     heroImage: { src: "/images/story/aligned-leadership-team.jpg", alt: "Senior leaders working as one team around shared priorities and commitments.", width: 1600, height: 1066 },
     seoTitle: "Leadership Team Development for Executive Teams",
@@ -532,8 +532,8 @@ export const pages: Record<string, SitePage> = {
   "enterprise-digital-transformation": {
     slug: "enterprise-digital-transformation",
     eyebrow: "Enterprise Transformation",
-    title: "Business transformation that sticks.",
-    description: "Through business transformation consulting, 120VC works with internal functions to install the priorities, ownership, decisions, and recurring practices the transformation requires. Progress is measured through changes in the work and the business outcomes it is meant to produce.",
+    title: "Business transformation that becomes how the business actually operates.",
+    description: "Through business transformation consulting, 120VC turns operational transformation into the priorities, ownership, decisions, and recurring practices the business actually uses. Progress and value realization stay visible through changes in the work and the outcomes it is meant to produce.",
     intro: "A transformation becomes real when leaders make different trade-offs, teams work differently, and the intended value becomes visible in normal operations.",
     heroImage: { src: "/images/problems/function-outcome.jpg", alt: "A cross-functional team turning a transformation plan into normal operating work.", width: 1800, height: 1200 },
     seoTitle: "Business Transformation Consulting for Measurable Value",
@@ -581,8 +581,8 @@ export const pages: Record<string, SitePage> = {
   "roi-driven-project-portfolio-services": {
     slug: "roi-driven-project-portfolio-services",
     eyebrow: "ROI-Driven Project Portfolio Services",
-    title: "Project portfolio decisions made clear.",
-    description: "120VC installs portfolio governance and a shared decision rhythm so leaders can allocate resources deliberately, put people and capital behind the right work, and decide which initiatives should continue, accelerate, change, or stop.",
+    title: "Project portfolio management that makes every initiative earn its funding.",
+    description: "120VC installs portfolio governance and a shared project prioritization rhythm so resource allocation becomes deliberate: leaders put people and capital behind the right work and decide which initiatives should continue, accelerate, change, or stop.",
     intro: "Project portfolio management should help leaders decide where scarce capacity belongs, not simply report the work already in motion.",
     heroImage: { src: "/images/problems/portfolio-review.jpg", alt: "Portfolio leaders reviewing investment choices and capacity together.", width: 1201, height: 1800 },
     seoTitle: "Project Portfolio Management & PMO Consulting",
@@ -638,8 +638,8 @@ export const pages: Record<string, SitePage> = {
   "project-leadership-managed-services": {
     slug: "project-leadership-managed-services",
     eyebrow: "Supporting portfolio capability",
-    title: "Enterprise project management for critical initiatives.",
-    description: "120VC's project management consulting embeds an experienced project leader in cross-functional work to make decisions, dependencies, risks, and ownership visible while there is still time to act. The work includes practices the client team can continue using.",
+    title: "Enterprise project management for initiatives that cannot afford to drift.",
+    description: "120VC's project management consulting embeds experienced project leadership in cross-functional work to strengthen project execution and make decisions, dependencies, risks, and ownership visible while there is still time to act. The work includes practices the client team can continue using.",
     intro: "This is leadership inside the initiative—not another layer of status reporting or commodity project staffing.",
     heroImage: { src: "/images/problems/portfolio-review.jpg", alt: "An experienced project leader working with executives on a critical initiative.", width: 1201, height: 1800 },
     seoTitle: "Enterprise Project Management Consulting for Critical Initiatives",
@@ -1502,7 +1502,7 @@ Object.assign(pages, {
         paragraphs: ["[APPROVAL REQUIRED] Questions, scoring logic, personalized reports, data storage, consent, and HubSpot routing must be validated before assessments are activated."],
       },
     ],
-    primaryCta: { label: "Book a Consultation", href: "/consultation" },
+    primaryCta: { label: "Request a Conversation", href: "/consultation" },
     secondaryCta: { label: "Explore Tool Frameworks", href: "/resources/tools" },
   },
 
@@ -1609,7 +1609,7 @@ Object.assign(pages, {
         statement: "[APPROVAL REQUIRED] No open role is implied by this page.",
       },
     ],
-    primaryCta: { label: "Book a Consultation", href: "/consultation" },
+    primaryCta: { label: "Request a Conversation", href: "/consultation" },
     secondaryCta: { label: "Read The 120 Standard", href: "/about/the-120-standard" },
   },
 
@@ -1622,7 +1622,7 @@ Object.assign(pages, {
     seoTitle: "120VC Privacy",
     seoDescription: "120VC website privacy information.",
     sections: [{ eyebrow: "Legal publishing hold", title: "The production privacy policy requires legal approval.", paragraphs: ["[APPROVAL REQUIRED] Confirm data collection, processors, retention, cookies, contact rights, form routing, and interactive-tool storage before public launch."] }],
-    primaryCta: { label: "Book a Consultation", href: "/consultation" },
+    primaryCta: { label: "Request a Conversation", href: "/consultation" },
   },
 
   terms: {
@@ -1634,7 +1634,7 @@ Object.assign(pages, {
     seoTitle: "120VC Website Terms",
     seoDescription: "120VC website terms information.",
     sections: [{ eyebrow: "Legal publishing hold", title: "Production terms require approved legal copy.", paragraphs: ["[APPROVAL REQUIRED] Confirm website use, intellectual property, disclaimers, interactive-tool terms, jurisdiction, and contact information before public launch."] }],
-    primaryCta: { label: "Book a Consultation", href: "/consultation" },
+    primaryCta: { label: "Request a Conversation", href: "/consultation" },
   },
 
   "cookie-policy": {
@@ -1646,7 +1646,7 @@ Object.assign(pages, {
     seoTitle: "120VC Cookie Policy",
     seoDescription: "120VC website cookie information.",
     sections: [{ eyebrow: "Legal publishing hold", title: "Cookie disclosure follows the verified integration inventory.", paragraphs: ["[APPROVAL REQUIRED] Identify necessary, analytics, functional, and marketing cookies; define consent behavior; and approve retention before public launch."] }],
-    primaryCta: { label: "Book a Consultation", href: "/consultation" },
+    primaryCta: { label: "Request a Conversation", href: "/consultation" },
   },
 } satisfies Record<string, SitePage>);
 
@@ -1690,8 +1690,8 @@ Object.assign(pages, {
   "resources/tools/1-3-1-decision-builder": {
     slug: "resources/tools/1-3-1-decision-builder",
     eyebrow: "1-3-1 Decision Builder",
-    title: "Turn one problem into one recommendation.",
-    description: "Define the problem, compare three viable options, and bring forward one recommendation that is ready for a decision.",
+    title: "A decision-making framework for turning problems into accountable recommendations.",
+    description: "Use this business decision-making framework to define the problem, compare three viable options, and bring forward one accountable recommendation. The decision framework makes the reasoning ready for review.",
     intro: "The 1-3-1 framework makes the thinking behind a recommendation visible, so leaders can inspect the facts, options, tradeoffs, and owner before deciding.",
     seoTitle: "Decision-Making Framework: 1-3-1 Decision Builder",
     seoDescription: "Explore the 120VC 1-3-1 decision-making framework for defining one problem, comparing three viable options, and making one accountable recommendation.",
@@ -1825,9 +1825,9 @@ Object.assign(pages, {
   "resources/tools/weekly-team-doing": {
     slug: "resources/tools/weekly-team-doing",
     eyebrow: "Weekly Team DOING",
-    title: "Weekly meetings for decisions and action.",
-    description: "Move routine status out of the meeting. Make commitments visible, resolve blockers, surface decisions, and keep important work moving.",
-    intro: "Weekly Team DOING is a leadership meeting rhythm for inspecting current reality and leaving with clear ownership. The proprietary agenda and facilitation rules are not yet published.",
+    title: "A weekly operating rhythm for decisions, commitments, and blockers.",
+    description: "Use a clear operating cadence to move routine status out of the meeting, make commitments visible, resolve blockers, surface decisions, and keep important work moving.",
+    intro: "Weekly Team DOING is a leadership meeting agenda and operating rhythm for inspecting current reality and leaving with clear ownership. The proprietary agenda and facilitation rules are not yet published.",
     seoTitle: "Weekly Leadership Meeting Agenda for Decisions and Action",
     seoDescription: "Explore the purpose of a weekly leadership meeting agenda designed to surface decisions, resolve blockers, make commitments visible, and keep important work moving.",
     sections: [

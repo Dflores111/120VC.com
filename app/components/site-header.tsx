@@ -96,7 +96,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <Link className="header-cta" href="/consultation?source=global-header" data-analytics-event={pathname === "/" ? "homepage_consultation_clicked" : "consultation_clicked"} data-analytics-section="header">Book a Consultation <span aria-hidden="true">→</span></Link>
+        <Link className="header-cta" href="/consultation?source=global-header" data-analytics-event={pathname === "/" ? "homepage_consultation_clicked" : "consultation_clicked"} data-analytics-section="header">Request a Conversation <span aria-hidden="true">→</span></Link>
         <button
           ref={mobileButtonRef}
           className="mobile-nav-toggle"
@@ -124,7 +124,7 @@ export function SiteHeader() {
                 <Link href={item.href} key={item.href} aria-current={pathIsCurrent(pathname, item.href) ? "page" : undefined}>{item.label}</Link>
               ))}
             </nav>
-            <Link className="button button-primary mobile-drawer-cta" href="/consultation?source=mobile-navigation" data-analytics-event={pathname === "/" ? "homepage_consultation_clicked" : "consultation_clicked"} data-analytics-section="mobile-navigation">Book a Consultation <span aria-hidden="true">→</span></Link>
+            <Link className="button button-primary mobile-drawer-cta" href="/consultation?source=mobile-navigation" data-analytics-event={pathname === "/" ? "homepage_consultation_clicked" : "consultation_clicked"} data-analytics-section="mobile-navigation">Request a Conversation <span aria-hidden="true">→</span></Link>
           </aside>
         </div>
       )}

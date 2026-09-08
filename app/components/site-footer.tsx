@@ -11,7 +11,7 @@ const footerGroups = [
       ["How It Works", "/leadership-system"],
       ...(hasApprovedFeaturedProof ? [["Results", "/results"]] : []),
       ["Resources", "/resources"],
-      ["Book a Consultation", "/consultation"],
+      ["Request a Conversation", "/consultation"],
     ],
   },
   {

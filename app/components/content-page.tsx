@@ -51,7 +51,7 @@ function audienceSection(section: PageSection): PageSection | null {
 }
 
 export function ContentPage({ page, reviewMode = false }: { page: SitePage; reviewMode?: boolean }) {
-  const finalCta = page.primaryCta || { label: "Book a Consultation", href: "/consultation" };
+  const finalCta = page.primaryCta || { label: "Request a Conversation", href: "/consultation" };
   const consultationOutcome = finalCta.href.startsWith("/consultation") || finalCta.href.startsWith("/contact");
   const held = pageHasApprovalHold(page);
   const description = isGovernanceCopy(page.description) ? page.seoDescription : page.description;
@@ -95,10 +95,10 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
       <main id="main-content" tabIndex={-1}>
         <section className={`inner-hero ${hasHeroAside ? "" : "content-hero-single"}`} data-major-section data-journey-stage="recognize" data-surface="neutral">
           <div className="inner-hero-copy">
-            <h1>{page.title}</h1>
+            <h1 className={page.title.length > 58 ? "headline-compact-mobile" : undefined}>{page.title}</h1>
             <p className="inner-description">{description}</p>
             <div className="primary-and-quiet">
-              <CtaLink action="primary" className="button button-primary" href={page.primaryCta?.href || "/consultation"}>{page.primaryCta?.label || "Book a Consultation"}<span aria-hidden="true" data-direction={(page.primaryCta?.href || "/consultation").startsWith("/") ? undefined : "out"}>{(page.primaryCta?.href || "/consultation").startsWith("/") ? "→" : "↗"}</span></CtaLink>
+              <CtaLink action="primary" className="button button-primary" href={page.primaryCta?.href || "/consultation"}>{page.primaryCta?.label || "Request a Conversation"}<span aria-hidden="true" data-direction={(page.primaryCta?.href || "/consultation").startsWith("/") ? undefined : "out"}>{(page.primaryCta?.href || "/consultation").startsWith("/") ? "→" : "↗"}</span></CtaLink>
               {page.secondaryCta && <CtaLink action="secondary" className="quiet-link" href={page.secondaryCta.href}>{page.secondaryCta.label}<span aria-hidden="true" data-direction={page.secondaryCta.href.startsWith("/") ? undefined : "out"}>{page.secondaryCta.href.startsWith("/") ? "→" : "↗"}</span></CtaLink>}
             </div>
           </div>

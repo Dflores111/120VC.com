@@ -7,12 +7,14 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties, type Keyboard
 import {
   isProblemConditionId,
   problemConditions,
+  type ProblemCondition,
   type ProblemConditionId,
   type ProblemMode,
 } from "../data/primary-experience";
 import { ConditionIcon } from "./condition-icon";
 import { DiagnosticLensIcon } from "./diagnostic-lens-icon";
 import { useHydratedReducedMotion } from "./use-hydrated-reduced-motion";
+import { useScrollScene } from "./use-scroll-scene";
 
 type ProblemExplorerProps = {
   initialCondition?: ProblemConditionId;
@@ -28,6 +30,53 @@ function pushSelection(condition: ProblemConditionId) {
   url.searchParams.set("condition", condition);
   url.searchParams.delete("mode");
   window.history.pushState({ condition }, "", `${url.pathname}${url.search}${url.hash}`);
+}
+
+function ProblemDiagnosticScene({ condition }: { condition: ProblemCondition }) {
+  const { activeStep, goToStep, sceneRef, stageRef } = useScrollScene({ stepCount: 3 });
+  const labels = ["What you may be seeing", "Why it matters", "What leaders must change"];
+
+  return (
+    <>
+      <header className="problem-diagnostic-header">
+        <div>
+          <h3 id={`selected-condition-title-${condition.id}`}>{condition.headline}</h3>
+          <p className="problem-diagnostic-explainer">Follow the problem from the signals your team can see to the leadership change that resolves it.</p>
+        </div>
+      </header>
+
+      <div className="problem-diagnostic-scene scroll-swap-scene" ref={sceneRef} style={{ "--scroll-scene-steps": 3 } as CSSProperties}>
+        <div className="problem-diagnostic-stage scroll-swap-stage" ref={stageRef}>
+          <nav className="problem-story-nav" aria-label={`Move through the diagnosis for ${condition.label}`}>
+            <p aria-live="polite"><strong>{String(activeStep + 1).padStart(2, "0")}</strong> / 03 <span>{labels[activeStep]}</span></p>
+            <div>
+              {labels.map((label, index) => (
+                <button key={label} type="button" aria-label={`Go to ${label}`} aria-current={activeStep === index ? "step" : undefined} onClick={() => goToStep(index)}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                </button>
+              ))}
+            </div>
+          </nav>
+
+          <ol className="problem-diagnostic-sequence" aria-label={`Three-part diagnosis for ${condition.label}`}>
+            <li className="problem-diagnostic-step problem-diagnostic-step-signals scroll-swap-panel" aria-hidden={activeStep !== 0} data-active={activeStep === 0 ? "true" : "false"} inert={activeStep !== 0}>
+              <header><span>01</span><div className="problem-detail-heading"><DiagnosticLensIcon lens="signals" /><h4>What you may be seeing</h4></div></header>
+              <ul>{condition.signals.map((signal) => <li key={signal}>{signal}</li>)}</ul>
+            </li>
+            <li className="problem-diagnostic-step problem-diagnostic-step-impact scroll-swap-panel" aria-hidden={activeStep !== 1} data-active={activeStep === 1 ? "true" : "false"} inert={activeStep !== 1}>
+              <header><span>02</span><div className="problem-detail-heading"><DiagnosticLensIcon lens="impact" /><h4>Why it matters</h4></div></header>
+              <p>{condition.cost}</p>
+            </li>
+            <li className="problem-diagnostic-step problem-diagnostic-step-change scroll-swap-panel" aria-hidden={activeStep !== 2} data-active={activeStep === 2 ? "true" : "false"} inert={activeStep !== 2}>
+              <header><span>03</span><div className="problem-detail-heading"><DiagnosticLensIcon lens="change" /><h4>What leaders must change</h4></div></header>
+              <p>{condition.change}</p>
+            </li>
+          </ol>
+          <p className="scroll-swap-cue" aria-hidden="true">{activeStep === 2 ? "Continue" : "Scroll to advance"}<span data-direction="down">↓</span></p>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export function ProblemExplorer({ initialCondition = "strategy-drift", compact = false, syncUrl = true }: ProblemExplorerProps) {
@@ -246,27 +295,11 @@ export function ProblemExplorer({ initialCondition = "strategy-drift", compact =
           </div>
 
           <article className="problem-condition-detail" aria-labelledby={`selected-condition-title-${condition.id}`}>
-            <header className="problem-diagnostic-header">
-              <div>
-              <h3 id={`selected-condition-title-${condition.id}`}>{condition.headline}</h3>
-              <p className="problem-diagnostic-explainer">
-                Use this diagnostic to confirm the warning signs, understand why the problem matters, and see what leaders must change.
-              </p>
-            </div>
-            </header>
-
             {compact ? (
               <Link className="button button-primary" href={`/problems-we-solve?condition=${condition.id}`}>Explore this breakdown <span aria-hidden="true">→</span></Link>
             ) : (
               <>
-                <div className="problem-detail-core">
-                  <div className="problem-detail-signals">
-                    <div className="problem-detail-heading"><DiagnosticLensIcon lens="signals" /><h4>What you may be seeing</h4></div>
-                    <ul>{condition.signals.map((signal) => <li key={signal}>{signal}</li>)}</ul>
-                  </div>
-                  <div className="problem-detail-cost"><div className="problem-detail-heading"><DiagnosticLensIcon lens="impact" /><h4>Why it matters</h4></div><p>{condition.cost}</p></div>
-                  <div className="problem-detail-change"><div className="problem-detail-heading"><DiagnosticLensIcon lens="change" /><h4>What leaders must change</h4></div><p>{condition.change}</p></div>
-                </div>
+                <ProblemDiagnosticScene condition={condition} key={condition.id} />
 
                 <section className="problem-next-steps" aria-labelledby={`problem-next-steps-${condition.id}`}>
                   <header>

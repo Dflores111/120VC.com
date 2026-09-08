@@ -87,8 +87,8 @@ export function HowItWorksExperience({ initialNode, reviewMode = false }: HowItW
       <main id="main-content" tabIndex={-1}>
         <section className="system-experience-hero supporting-hero" data-major-section data-journey-stage="understand" aria-labelledby="system-experience-title">
           <div className="system-hero-copy supporting-hero-copy">
-            <h1 id="system-experience-title"><span className="headline-keyword headline-keyword-motion">One system</span> for priorities, decisions, and ownership.</h1>
-            <p>120VC installs its Execution Leadership System—a leadership operating system for enterprise teams—inside current priorities and initiatives. We diagnose the break, clarify decision rights, establish the operating rhythm, run it under pressure, and transfer ownership to your team.</p>
+            <h1 id="system-experience-title">How your strategy becomes <span className="headline-keyword headline-keyword-motion">work that gets done.</span></h1>
+            <p>120VC installs one shared way to connect outcomes, priorities, resource allocation, decision rights, commitments, operating rhythm, and accountability inside live work. We diagnose the break, install the practices, operate them with your team, and transfer ownership.</p>
             <Link className="button button-primary" href="#explore-system">See how it works <span aria-hidden="true" data-direction="down">↓</span></Link>
           </div>
           <ImageMask
@@ -106,7 +106,7 @@ export function HowItWorksExperience({ initialNode, reviewMode = false }: HowItW
         <section className="system-experience-model" id="explore-system" data-major-section data-journey-stage="understand" aria-labelledby="system-model-title">
           <div className="system-section-heading">
             <h2 id="system-model-title">Six parts have to work together.</h2>
-            <p>Select one part to see what leaders make visible and what changes in the work. The full chain remains visible while you explore.</p>
+            <p>120VC calls this the Execution Leadership System. Scroll through the strategy execution chain one part at a time to see the accountability framework, what leaders make visible, and the change it produces in the work.</p>
           </div>
           <SystemExplorer initialNode={initialNode} />
         </section>
