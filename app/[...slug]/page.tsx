@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: page.seoDescription,
       url: isLegacyProblemAlias ? "/problems-we-solve" : `/${page.slug}`,
       type: "website",
-      images: [{ url: "https://www.120vc.com/og.png", width: 1200, height: 630, alt: "120VC closes the gap between strategy and execution" }],
+      images: [{ url: "https://www.120vc.com/og.png", width: 1200, height: 630, alt: "120VC strategy execution for enterprise leadership teams" }],
     },
     twitter: {
       card: "summary_large_image",

@@ -94,23 +94,23 @@ export function SystemExplorer({ initialNode = "intent", compact = false, syncUr
             <p>{active.explanation}</p>
           </div>
           <div className="system-node-focus">
-            <h4>Leaders make three things visible</h4>
+            <h4>What leaders make visible</h4>
             <ul>
               {active.makesVisible.map((item) => <li key={item}>{item}</li>)}
             </ul>
           </div>
           <div className="system-node-connector">
-            <span>This creates</span>
+            <span>Which changes the work</span>
             <b aria-hidden="true">↓</b>
           </div>
           <div className="system-node-shift">
-            <h4>The change in the work</h4>
+            <h4>What changes</h4>
             <p>{active.shift}</p>
           </div>
           {!compact && (
             <div className="system-node-practice">
               <div>
-                <h4>Put it into practice</h4>
+                <h4>Use the related practice</h4>
                 <p>{active.practice}</p>
               </div>
               <Link href={active.practiceHref}>Open {active.practiceLabel} <span aria-hidden="true">→</span></Link>

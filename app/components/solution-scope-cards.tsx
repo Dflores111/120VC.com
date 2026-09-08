@@ -10,6 +10,7 @@ export type SolutionScope = {
   description: string;
   bestWhen: string;
   includes?: string;
+  links?: ReadonlyArray<{ label: string; href: string }>;
   change: string;
   outcome: string;
   href: string;
@@ -48,6 +49,12 @@ export function SolutionScopeCards({ scopes }: { scopes: readonly SolutionScope[
             onBlurCapture={(event) => {
               if (!event.currentTarget.contains(event.relatedTarget as Node | null) && !expanded) setPreview(null);
             }}
+            onKeyDownCapture={(event) => {
+              if (event.key !== "Escape" || !isRevealed) return;
+              event.preventDefault();
+              setExpanded(null);
+              setPreview(null);
+            }}
           >
             <span className="home-solution-image">
               <img src={scope.image} alt={scope.imageAlt} width={scope.imageWidth} height={scope.imageHeight} loading="lazy" />
@@ -84,15 +91,20 @@ export function SolutionScopeCards({ scopes }: { scopes: readonly SolutionScope[
                   </div>
                 </dl>
               </div>
-              <Link
-                className="home-solution-link"
-                href={scope.href}
-                data-analytics-event="solution_card_selected"
-                data-analytics-section="how-we-help"
-                data-analytics-selection={scope.label}
-              >
-                Explore {scope.title} <span aria-hidden="true">→</span>
-              </Link>
+              <div className="home-solution-links" aria-label={`Explore ${scope.title}`}>
+                {(scope.links ?? [{ label: scope.title, href: scope.href }]).map((link) => (
+                  <Link
+                    className="home-solution-link"
+                    href={link.href}
+                    data-analytics-event="solution_card_selected"
+                    data-analytics-section="how-we-help"
+                    data-analytics-selection={link.label}
+                    key={link.href}
+                  >
+                    Explore {link.label} <span aria-hidden="true">→</span>
+                  </Link>
+                ))}
+              </div>
             </div>
           </article>
         );

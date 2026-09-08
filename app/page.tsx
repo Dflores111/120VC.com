@@ -13,8 +13,8 @@ import { SolutionScopeCards, type SolutionScope } from "./components/solution-sc
 import { getHomepageCaseProof, homepageProductionProofRequirement } from "./data/homepage-case-proof";
 
 export const metadata: Metadata = {
-  title: "Turn Strategy Into Results Your Organization Can Deliver",
-  description: "120VC installs one shared Execution Leadership System inside live enterprise work so leadership teams align priorities, make decisions that hold, and deliver without constant executive rescue.",
+  title: "Strategy Execution for Enterprise Leadership Teams",
+  description: "120VC installs an Execution Leadership System inside live work so enterprise teams can align priorities, decision rights, ownership, capacity, and strategy execution.",
   alternates: { canonical: "/" },
 };
 
@@ -22,14 +22,17 @@ type HomeProps = { searchParams?: Promise<Record<string, string | string[] | und
 
 const solutionScopes = [
   {
-    label: "Leadership performance",
-    title: "Leadership Performance",
-    description: "Help executive teams and accountable leaders prioritize, decide, and execute together.",
-    includes: "Leadership Team Transformation · ELPA",
+    label: "Executive teams",
+    title: "Executive Teams",
+    description: "Leadership team development that helps executives set priorities, make decisions, and own cross-functional commitments as one team.",
     bestWhen: "A senior team agrees on the goal, but priorities, decisions, or ownership keep changing once work begins.",
     change: "The team makes tradeoffs in one shared rhythm and turns each decision into a visible commitment.",
     outcome: "Priorities remain stable, decisions stop reopening, and owners act without constant executive rescue.",
     href: "/transformation-leadership-team-development-coaching-and-program",
+    links: [
+      { label: "Leadership Team Transformation", href: "/transformation-leadership-team-development-coaching-and-program" },
+      { label: "Executive Leadership Performance Accelerator", href: "/executive-leadership-coaching-and-development-performance-accelerator" },
+    ],
     image: "/images/story/aligned-leadership-team.jpg",
     imageAlt: "Senior leaders work together around a shared set of decisions.",
     imageWidth: 1600,
@@ -37,13 +40,14 @@ const solutionScopes = [
     tone: "clay",
   },
   {
-    label: "Enterprise transformation",
-    title: "Enterprise Transformation",
-    description: "Help HR, IT, Finance, PMO, and transformation teams move from reactive activity to measurable business value.",
+    label: "Business transformation",
+    title: "Business Transformation",
+    description: "Business transformation consulting that turns sponsored change into new operating behavior and measurable value.",
     bestWhen: "A function or transformation has sponsorship and activity, but leaders cannot connect the work to operating or business value.",
     change: "The team moves from accepting demand to challenging it, shaping choices, and recommending better business decisions.",
     outcome: "Leaders see clearer tradeoffs, less disconnected activity, and work tied to an accountable business outcome.",
     href: "/enterprise-digital-transformation",
+    links: [{ label: "Business Transformation", href: "/enterprise-digital-transformation" }],
     image: "/images/problems/transformation-outcome.jpg",
     imageAlt: "A business team collaborates with visible energy after aligning on a change.",
     imageWidth: 1800,
@@ -51,14 +55,17 @@ const solutionScopes = [
     tone: "sage",
   },
   {
-    label: "Portfolio and project execution",
-    title: "Portfolio & Project Execution",
-    description: "Decide which work deserves investment—and lead critical work through execution.",
-    includes: "Portfolio Services · Project Leadership",
+    label: "Project portfolios and critical initiatives",
+    title: "Project Portfolios & Critical Initiatives",
+    description: "Project portfolio management and embedded project leadership that help leaders fund the right work, stop weak work, and move critical initiatives.",
     bestWhen: "Too many initiatives compete for the same capacity, or a critical project needs stronger execution leadership.",
     change: "Leadership makes an explicit decision about what to continue, accelerate, reshape, or stop.",
     outcome: "Capacity follows priority, weak work exits the portfolio, and remaining commitments have visible owners and outcomes.",
     href: "/roi-driven-project-portfolio-services",
+    links: [
+      { label: "Project Portfolio Services", href: "/roi-driven-project-portfolio-services" },
+      { label: "Project Leadership", href: "/project-leadership-managed-services" },
+    ],
     image: "/images/problems/portfolio-outcome.jpg",
     imageAlt: "Leaders review a focused portfolio decision together.",
     imageWidth: 1800,
@@ -71,7 +78,7 @@ const installationSteps = [
   {
     number: "01",
     title: "Diagnose",
-    description: "Find where execution keeps breaking, what it is costing, and who must participate.",
+    description: "Find where priorities, decisions, ownership, or operating rhythm are breaking.",
     insideWork: "We examine live priorities, decision loops, dependencies, and ownership—not a generic maturity score.",
     value: "Leaders leave with one shared diagnosis and a clear first installation target.",
     image: "/images/problems/strategy-conversation.jpg",
@@ -83,7 +90,7 @@ const installationSteps = [
   {
     number: "02",
     title: "Install",
-    description: "Apply the system to real priorities, decisions, and commitments already in motion.",
+    description: "Put new rules, practices, roles, and artifacts into the live work.",
     insideWork: "Shared decision rules, visible ownership, and an execution rhythm are applied to current commitments.",
     value: "The team gains one practical way to prioritize, decide, and coordinate.",
     image: "/images/story/team-working-together.jpg",
@@ -95,7 +102,7 @@ const installationSteps = [
   {
     number: "03",
     title: "Operate",
-    description: "Use the system inside weekly work and real business pressure.",
+    description: "Use the system in weekly work, real decisions, and real business pressure.",
     insideWork: "120VC works beside the accountable team as tradeoffs, risks, escalations, and commitments surface.",
     value: "Decisions hold longer, owners act sooner, and execution becomes easier to inspect.",
     image: "/images/problems/portfolio-review.jpg",
@@ -107,7 +114,7 @@ const installationSteps = [
   {
     number: "04",
     title: "Own",
-    description: "Build the team’s ability to sustain it without depending on 120VC.",
+    description: "Transfer the capability so the team can keep running it without 120VC.",
     insideWork: "Leaders run the rhythm, reinforce the standard, and coach the behaviors in live work.",
     value: "The organization keeps the discipline and capability without depending on 120VC.",
     image: "/images/story/aligned-leadership-team.jpg",
@@ -152,11 +159,10 @@ export default async function Home({ searchParams }: HomeProps) {
         <section className="home-commercial-hero" data-major-section data-journey-stage="position" aria-labelledby="home-title">
           <HeroMotionMedia />
           <div className="home-commercial-hero-copy">
-            <p className="orientation-label orientation-label-light">Execution Leadership for complex enterprises</p>
-            <h1 className="heading-wide" id="home-title">Turn strategy into <span className="headline-keyword headline-keyword-on-dark">results</span> your teams can deliver.</h1>
-            <p>120VC works inside your highest-priority initiatives to help leadership teams align the work, make decisions that hold, and deliver without constant executive rescue.</p>
+            <h1 className="heading-wide" id="home-title">We install the system that <span className="headline-keyword headline-keyword-on-dark">makes strategy deliver.</span></h1>
+            <p>120VC improves strategy execution by giving enterprise leadership teams one shared way to set priorities, make decisions, own commitments, and turn cost centers into measurable growth engines. We install it inside work already underway and stay until the accountable team can run it without us.</p>
             <div className="primary-and-quiet home-hero-actions">
-              <Link className="button button-primary" href="/consultation?source=homepage-hero" data-primary-action data-analytics-event="homepage_consultation_clicked" data-analytics-section="hero">Book a Leadership System Consultation <span aria-hidden="true">→</span></Link>
+              <Link className="button button-primary" href="/consultation?source=homepage-hero" data-primary-action data-analytics-event="homepage_consultation_clicked" data-analytics-section="hero">Book a Consultation <span aria-hidden="true">→</span></Link>
               <Link className="quiet-link" href="#how-we-help" data-secondary-action data-analytics-event="homepage_secondary_cta_clicked" data-analytics-section="hero">See how we help <span aria-hidden="true" data-direction="down">↓</span></Link>
             </div>
           </div>
@@ -166,7 +172,7 @@ export default async function Home({ searchParams }: HomeProps) {
 
         <section className="home-pains" data-major-section data-journey-stage="recognize" aria-labelledby="home-pains-title">
           <div className="home-section-heading home-section-heading-stacked">
-            <h2 className="heading-wide" id="home-pains-title">Five execution problems we solve.</h2>
+            <h2 className="heading-wide" id="home-pains-title">Five strategy execution problems we solve.</h2>
             <p>Start with the problem closest to what your team is experiencing.</p>
           </div>
           <PainPointCarousel />
@@ -177,7 +183,7 @@ export default async function Home({ searchParams }: HomeProps) {
 
         <section className="home-solutions" id="how-we-help" data-major-section data-journey-stage="solution" aria-labelledby="home-solutions-title">
           <div className="home-section-heading">
-            <h2 className="heading-medium" id="home-solutions-title">We help leadership teams fix execution across three core areas.</h2>
+            <h2 className="heading-medium" id="home-solutions-title">We help leaders change how critical work runs.</h2>
           </div>
           <SolutionScopeCards scopes={solutionScopes} />
         </section>
@@ -185,8 +191,8 @@ export default async function Home({ searchParams }: HomeProps) {
         {featuredCases.length > 0 && (
           <section className="home-client-results" data-major-section data-journey-stage="proof" aria-labelledby="home-client-results-title">
             <div className="home-section-heading">
-              <h2 className="heading-wide" id="home-client-results-title">See the results of changing how teams execute.</h2>
-              <p>One execution problem. What 120VC changed. What happened next.</p>
+              <h2 className="heading-wide" id="home-client-results-title">See what changed.</h2>
+              <p>One execution problem. What changed in the work. The result it produced.</p>
             </div>
             {reviewMode && featuredCases.some((caseStudy) => caseStudy.proofStatus === "demo") && (
               <p className="proof-review-badge">Demo proof</p>
@@ -197,8 +203,8 @@ export default async function Home({ searchParams }: HomeProps) {
 
         <section className="home-installation" data-major-section data-journey-stage="difference" aria-labelledby="home-installation-title">
           <div className="home-installation-copy">
-            <h2 className="heading-medium" id="home-installation-title">We install the system in four stages.</h2>
-            <p>120VC works inside the priorities, decisions, and initiatives your team is already accountable to deliver.</p>
+            <h2 className="heading-medium" id="home-installation-title">A leadership operating system installed in four stages.</h2>
+            <p>120VC changes decision rights, ownership, accountability, and operating rhythm inside the priorities and initiatives your team already owns.</p>
           </div>
           <InstallationStepper steps={installationSteps} />
           <div className="home-installation-closing">
@@ -209,12 +215,11 @@ export default async function Home({ searchParams }: HomeProps) {
 
         <section className="experience-close home-commercial-close" data-major-section data-journey-stage="act" aria-labelledby="home-close-title">
           <h2 className="heading-wide" id="home-close-title">Bring us the problem that keeps returning.</h2>
-          <p>We&apos;ll help you understand what is underneath it, whether 120VC is the right fit, and what should happen next.</p>
+          <p>You do not need to know which service fits. Start with what needs to move and what keeps getting in the way.</p>
           <div className="primary-and-quiet primary-and-quiet-centered">
-            <Link className="button button-primary" href="/consultation?source=homepage-final" data-primary-action data-analytics-event="homepage_consultation_clicked" data-analytics-section="final-cta">Book a Leadership System Consultation <span aria-hidden="true">→</span></Link>
+            <Link className="button button-primary" href="/consultation?source=homepage-final" data-primary-action data-analytics-event="homepage_consultation_clicked" data-analytics-section="final-cta">Book a Consultation <span aria-hidden="true">→</span></Link>
             <a className="quiet-link" href="https://www.120vc.com/book-download-the-strategy-execution-gap/" data-secondary-action data-analytics-event="book_link_clicked" data-analytics-section="final-cta">Read <em>The Strategy Execution Gap</em> <span aria-hidden="true" data-direction="out">↗</span></a>
           </div>
-          <small>Confidential. Diagnostic. No generic deck. No predetermined offer.</small>
         </section>
       </main>
       <SiteFooter />

@@ -34,9 +34,9 @@ export function WhatWeSolveExperience({ initialCondition, reviewMode = false }: 
       <main id="main-content" tabIndex={-1}>
         <section className="problem-experience-hero supporting-hero" data-major-section data-journey-stage="recognize" aria-labelledby="problem-experience-title">
           <div className="supporting-hero-copy">
-            <h1 id="problem-experience-title">We solve <span className="headline-keyword">execution problems</span> blocking critical priorities.</h1>
-            <p>That includes shifting priorities, divided leadership, stalled transformation, overloaded portfolios, and internal teams stuck reacting.</p>
-            <Link className="button button-primary" href="#explore-breakdowns">Compare the five problems <span aria-hidden="true" data-direction="down">↓</span></Link>
+            <h1 id="problem-experience-title">Priorities compete. Decisions reopen. <span className="headline-keyword headline-keyword-motion">Execution stalls.</span></h1>
+            <p>These strategy execution problems appear when leaders set different priorities, decisions lack owners, and portfolios exceed capacity. 120VC installs one shared way to prioritize, decide, and run the work.</p>
+            <Link className="button button-primary" href="#explore-breakdowns">See the five problems <span aria-hidden="true" data-direction="down">↓</span></Link>
           </div>
           <ImageMask
             src="/images/story/execution-friction.jpg"
@@ -51,15 +51,15 @@ export function WhatWeSolveExperience({ initialCondition, reviewMode = false }: 
 
         <section className="problem-experience-workspace" id="explore-breakdowns" data-major-section data-journey-stage="understand" aria-labelledby="problem-workspace-title">
           <div className="problem-workspace-heading supporting-section-heading">
-            <h2 id="problem-workspace-title">Which execution problem is slowing your organization down?</h2>
-            <p>Review the five problems, then choose “Show diagnostic” to see the warning signs, business cost, and next steps below.</p>
+            <h2 id="problem-workspace-title">Which problem keeps coming back?</h2>
+            <p>Hover to see the impact. Choose “View details” to connect the problem to its warning signs, business cost, and next steps.</p>
           </div>
           <ProblemExplorer initialCondition={initialCondition} />
         </section>
 
         <section className="problem-experience-repair" data-major-section data-journey-stage="solution" aria-labelledby="problem-repair-title">
           <div className="problem-repair-copy">
-            <h2 id="problem-repair-title">The answer reconnects the full execution chain.</h2>
+            <h2 id="problem-repair-title">Different symptoms. The same broken execution chain.</h2>
             <p>120VC reconnects intent, priorities, decisions, commitments, execution, and outcomes inside the work that must move.</p>
             <div className="primary-and-quiet">
               <Link className="button button-primary" href="/leadership-system">See how the system works <span aria-hidden="true">→</span></Link>

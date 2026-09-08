@@ -17,6 +17,8 @@ export function PainPointCarousel() {
   const [current, setCurrent] = useState(0);
   const [locked, setLocked] = useState<ProblemConditionId | null>(null);
   const [preview, setPreview] = useState<ProblemConditionId | null>(null);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
 
   const activeFlip = locked ?? preview;
 
@@ -40,7 +42,7 @@ export function PainPointCarousel() {
       inline: "start",
     });
     updateCurrent(next, method);
-    if (focusCard) requestAnimationFrame(() => card?.querySelector<HTMLButtonElement>(".pain-card-front")?.focus());
+    if (focusCard) requestAnimationFrame(() => card?.querySelector<HTMLButtonElement>(".pain-card-disclosure")?.focus());
   }, [reduceMotion, updateCurrent]);
 
   useEffect(() => {
@@ -50,6 +52,10 @@ export function PainPointCarousel() {
     const handleScroll = () => {
       window.cancelAnimationFrame(frame);
       frame = window.requestAnimationFrame(() => {
+        const maxScroll = Math.max(0, rail.scrollWidth - rail.clientWidth);
+        setAtStart(rail.scrollLeft <= 4);
+        setAtEnd(maxScroll - rail.scrollLeft <= 4);
+
         const railLeft = rail.getBoundingClientRect().left;
         let closest = 0;
         let distance = Number.POSITIVE_INFINITY;
@@ -64,10 +70,14 @@ export function PainPointCarousel() {
         updateCurrent(closest, "scroll");
       });
     };
+    handleScroll();
     rail.addEventListener("scroll", handleScroll, { passive: true });
+    const observer = new ResizeObserver(handleScroll);
+    observer.observe(rail);
     return () => {
       window.cancelAnimationFrame(frame);
       rail.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
     };
   }, [updateCurrent]);
 
@@ -84,7 +94,7 @@ export function PainPointCarousel() {
     setPreview(null);
     suppressFocusPreviewRef.current = true;
     track120vcEvent({ event: "pain_card_flipped", section: "pain", selection: `${id}:closed` });
-    requestAnimationFrame(() => cardRefs.current[index]?.querySelector<HTMLButtonElement>(".pain-card-front")?.focus());
+    requestAnimationFrame(() => cardRefs.current[index]?.querySelector<HTMLButtonElement>(".pain-card-disclosure")?.focus());
   }
 
   function previewFromPointer(id: ProblemConditionId, pointerType: string) {
@@ -106,14 +116,15 @@ export function PainPointCarousel() {
       </div>
       <p className="sr-only" aria-live="polite">{activeFlip ? `Details open for ${problemConditions.find((condition) => condition.id === activeFlip)?.label}.` : "Condition details closed."}</p>
 
-      <div
-        className="pain-carousel-rail"
-        ref={railRef}
-        role="region"
-        aria-roledescription="carousel"
-        aria-label="Five common execution conditions"
-      >
-        {problemConditions.map((condition, index) => {
+      <div className="pain-carousel-rail-window horizontal-card-rail-window" data-at-start={atStart ? "true" : "false"} data-at-end={atEnd ? "true" : "false"}>
+        <div
+          className="pain-carousel-rail"
+          ref={railRef}
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Five common execution conditions"
+        >
+          {problemConditions.map((condition, index) => {
           const isFlipped = activeFlip === condition.id;
           const isLocked = locked === condition.id;
           const detailId = `home-pain-detail-${condition.id}`;
@@ -129,7 +140,7 @@ export function PainPointCarousel() {
                 if (event.pointerType === "mouse" && !locked) setPreview(null);
               }}
               onFocusCapture={(event) => {
-                if (!(event.target instanceof HTMLElement) || !event.target.classList.contains("pain-card-front") || !event.target.matches(":focus-visible") || locked) return;
+                if (!(event.target instanceof HTMLElement) || !event.target.classList.contains("pain-card-disclosure") || !event.target.matches(":focus-visible") || locked) return;
                 if (suppressFocusPreviewRef.current) {
                   suppressFocusPreviewRef.current = false;
                   return;
@@ -139,34 +150,17 @@ export function PainPointCarousel() {
               onBlurCapture={(event) => {
                 if (!event.currentTarget.contains(event.relatedTarget as Node | null) && !locked) setPreview(null);
               }}
+              onKeyDownCapture={(event) => {
+                if (event.key !== "Escape" || !isFlipped) return;
+                event.preventDefault();
+                closeCard(index);
+              }}
             >
               <div className="pain-card-inner">
-                <button
+                <div
                   className="pain-card-face pain-card-front"
-                  type="button"
-                  aria-controls={detailId}
-                  aria-expanded={isFlipped}
                   aria-hidden={isLocked || undefined}
-                  tabIndex={isLocked ? -1 : 0}
-                  onClick={() => isLocked ? closeCard(index) : openCard(condition.id, index)}
-                  onKeyDown={(event) => {
-                    if (event.key === "ArrowLeft") {
-                      event.preventDefault();
-                      goTo(index - 1, true, "keyboard");
-                    } else if (event.key === "ArrowRight") {
-                      event.preventDefault();
-                      goTo(index + 1, true, "keyboard");
-                    } else if (event.key === "Home") {
-                      event.preventDefault();
-                      goTo(0, true, "keyboard");
-                    } else if (event.key === "End") {
-                      event.preventDefault();
-                      goTo(problemConditions.length - 1, true, "keyboard");
-                    } else if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      openCard(condition.id, index);
-                    }
-                  }}
+                  style={{ cursor: "default" }}
                 >
                   <span className="pain-card-image">
                     <img
@@ -181,9 +175,33 @@ export function PainPointCarousel() {
                   <span className="pain-card-copy">
                     <small>{condition.label}</small>
                     <strong>{condition.headline}</strong>
-                    <i>See what this is costing <span aria-hidden="true">↻</span></i>
+                    <button
+                      className="pain-card-disclosure home-solution-disclosure"
+                      type="button"
+                      aria-controls={detailId}
+                      aria-expanded={isFlipped}
+                      tabIndex={isLocked ? -1 : 0}
+                      onClick={() => openCard(condition.id, index)}
+                      onKeyDown={(event) => {
+                        if (event.key === "ArrowLeft") {
+                          event.preventDefault();
+                          goTo(index - 1, true, "keyboard");
+                        } else if (event.key === "ArrowRight") {
+                          event.preventDefault();
+                          goTo(index + 1, true, "keyboard");
+                        } else if (event.key === "Home") {
+                          event.preventDefault();
+                          goTo(0, true, "keyboard");
+                        } else if (event.key === "End") {
+                          event.preventDefault();
+                          goTo(problemConditions.length - 1, true, "keyboard");
+                        }
+                      }}
+                    >
+                      See what this is costing <span aria-hidden="true">↻</span>
+                    </button>
                   </span>
-                </button>
+                </div>
 
                 <div
                   className="pain-card-face pain-card-back"
@@ -200,7 +218,10 @@ export function PainPointCarousel() {
               </div>
             </article>
           );
-        })}
+          })}
+        </div>
+        <span className="horizontal-card-edge-fade horizontal-card-edge-fade-left" aria-hidden="true" />
+        <span className="horizontal-card-edge-fade horizontal-card-edge-fade-right" aria-hidden="true" />
       </div>
     </div>
   );

@@ -56,7 +56,7 @@ export function ConsultationForm({ context, source }: { context?: string; source
       `What they are trying to get done: ${form.get("goal") || "Not provided"}`,
       `When it needs to improve: ${form.get("timing") || "Not provided"}`,
     ];
-    const subject = encodeURIComponent(`${context || "Leadership System Consultation"} — ${company}`);
+    const subject = encodeURIComponent(`${context || "120VC consultation"} — ${company}`);
     const body = encodeURIComponent(lines.join("\n"));
     const nextDraft = Object.fromEntries([...form.entries()].map(([key, value]) => [key, String(value)]));
     setDraft(nextDraft);
@@ -124,7 +124,7 @@ export function ConsultationForm({ context, source }: { context?: string; source
           setStep(1);
           requestAnimationFrame(() => document.querySelector<HTMLElement>("#first-name")?.focus());
         }}>Back <span aria-hidden="true" data-direction="left">←</span></button>}
-        <button className="button button-primary form-submit" data-primary-action type="submit">{step === 1 ? "Continue" : "Request a conversation"} <span aria-hidden="true">→</span></button>
+        <button className="button button-primary form-submit" data-primary-action type="submit">{step === 1 ? "Continue" : "Prepare email request"} <span aria-hidden="true">→</span></button>
       </div>
       <p className="form-privacy">Confidential · Diagnostic · No generic presentation · No predetermined offer · Human follow-up</p>
     </form>

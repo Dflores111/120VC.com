@@ -35,8 +35,8 @@ export function SiteFooter() {
           <img src="https://www.120vc.com/wp-content/uploads/2026/02/Asset-2.svg" alt="120VC" />
         </Link>
         <div>
-          <p className="footer-statement">Turn strategy into work that actually gets done.</p>
-          <p>120VC installs one shared Execution Leadership System inside live enterprise work.</p>
+          <p className="footer-statement">Turn strategy into measurable results.</p>
+          <p>We install a shared way to prioritize, decide, and own the work—then help your team run it without us.</p>
         </div>
       </div>
 
@@ -50,7 +50,6 @@ export function SiteFooter() {
       </div>
 
       <div className="footer-bottom">
-        <p>Install the leadership system in the work—not outside of it.</p>
         <nav aria-label="Legal and utility navigation">
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>

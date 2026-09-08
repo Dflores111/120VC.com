@@ -6,8 +6,8 @@ import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 
 export const metadata: Metadata = {
-  title: "Contact 120VC",
-  description: "Bring the problem that keeps returning and identify the most useful next step.",
+  title: "Talk With 120VC About Work That Is Not Moving",
+  description: "Bring the outcome that is not moving. 120VC will help clarify the execution problem, determine fit, and identify the most useful next step.",
   alternates: { canonical: "/consultation" },
   robots: { index: false, follow: true },
 };
@@ -40,9 +40,9 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
       <main id="main-content" tabIndex={-1}>
         <section className="consultation-hero supporting-hero" data-major-section data-journey-stage="recognize" aria-labelledby="consultation-title">
           <div className="supporting-hero-copy">
-            <h1 id="consultation-title">Bring us the problem that keeps returning.</h1>
-            <p>This is a focused conversation for the enterprise leader accountable for an outcome that is not moving as it should.</p>
-            <a className="button button-primary" href="#consultation-request">Request a conversation <span aria-hidden="true" data-direction="down">↓</span></a>
+            <h1 id="consultation-title">Where is execution breaking down?</h1>
+            <p>Bring the outcome at risk, the decision that will not hold, or the work that keeps slipping. We will help clarify the condition, determine whether 120VC is relevant, and identify the most useful next step.</p>
+            <a className="button button-primary" href="#consultation-request">Start the request <span aria-hidden="true" data-direction="down">↓</span></a>
           </div>
           <ImageMask
             src="/images/problems/strategy-conversation.jpg"
@@ -57,7 +57,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
 
         <section className="consultation-form-stage" id="consultation-request" data-major-section data-journey-stage="act" aria-labelledby="consultation-form-stage-title">
           <div className="consultation-form-intro">
-            <h2 id="consultation-form-stage-title">Start with what you know.</h2>
+            <h2 id="consultation-form-stage-title">Share enough context for a useful conversation.</h2>
             <p>You do not need a diagnosis or polished brief. Two short steps give us enough context to prepare a useful conversation.</p>
           </div>
           <ConsultationForm context={context} source={source} />

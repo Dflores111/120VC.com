@@ -13,6 +13,7 @@ export type PageSection = {
   cards?: PageLink[];
   statement?: string;
   visibility?: "audience" | "review";
+  presentation?: "primary" | "detail";
 };
 
 export type SitePage = {
@@ -29,9 +30,11 @@ export type SitePage = {
   related?: PageLink[];
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
+  detailsTitle?: string;
+  detailsDescription?: string;
 };
 
-const consultation = { label: "Book a Leadership System Consultation", href: "/consultation" };
+const consultation = { label: "Book a Consultation", href: "/consultation" };
 
 const problems: PageLink[] = [
   {
@@ -117,11 +120,11 @@ export const pages: Record<string, SitePage> = {
   "problems-we-solve": {
     slug: "problems-we-solve",
     eyebrow: "Problems we solve",
-    title: "Start with what is breaking.",
-    description: "Execution failure can appear as a stalled transformation, an overloaded portfolio, unstable priorities, slow decisions, or a leadership team that cannot execute as one.",
-    intro: "Most buyers do not begin by searching for Execution Leadership. They begin with a strategy that is stalling, a team that is fragmenting, a transformation that is not sticking, a portfolio that is underperforming, or a function that cannot prove value.",
-    seoTitle: "Enterprise Strategy Execution Problems",
-    seoDescription: "Diagnose strategy execution gaps, leadership team misalignment, transformation fatigue, portfolio underperformance, and internal-function value problems.",
+    title: "Priorities compete. Decisions reopen. Execution stalls.",
+    description: "These strategy execution problems appear when leaders set different priorities, decisions lack owners, and portfolios exceed capacity. 120VC installs one shared way to prioritize, decide, and run the work.",
+    intro: "Start with the problem you recognize. You do not need to understand 120VC terminology or choose a service first.",
+    seoTitle: "Strategy Execution Problems: Why Good Strategies Fail",
+    seoDescription: "See why competing priorities, unclear decisions, overloaded teams, stalled transformations, and crowded project portfolios keep slowing enterprise execution.",
     sections: [
       {
         eyebrow: "Choose the condition",
@@ -155,7 +158,7 @@ export const pages: Record<string, SitePage> = {
       { label: "Visible symptom", value: "Strategy is approved but not changing daily work" },
       { label: "Business consequence", value: "Delay, rework, escalation, and diluted return" },
       { label: "First useful signal", value: "Priorities and tradeoffs become explicit" },
-      { label: "Best next step", value: "Leadership System Consultation" },
+      { label: "Best next step", value: "Consultation with 120VC" },
     ],
     sections: [
       {
@@ -282,7 +285,7 @@ export const pages: Record<string, SitePage> = {
       { label: "Visible symptom", value: "Too many initiatives and weak return logic" },
       { label: "Business consequence", value: "Capacity fragmentation and continued funding of weak work" },
       { label: "First useful signal", value: "A project is challenged, reshaped, or stopped" },
-      { label: "Front door", value: "Portfolio ROI Audit" },
+      { label: "Starting point", value: "Portfolio ROI Audit" },
     ],
     sections: [
       {
@@ -347,11 +350,11 @@ export const pages: Record<string, SitePage> = {
   "leadership-services": {
     slug: "leadership-services",
     eyebrow: "Solutions",
-    title: "One system. Installed where execution is breaking.",
-    description: "120VC begins with the business condition, the leaders accountable for it, and the work that must change.",
-    intro: "Every 120VC solution uses the same core Execution Leadership System. The scope changes based on who must lead differently, which work carries the risk, and what operating condition must change.",
-    seoTitle: "Execution Leadership Solutions",
-    seoDescription: "Compare ELPA, Leadership Team Transformation, Enterprise Transformation, and ROI-Driven Project Portfolio Services.",
+    title: "Align leaders. Make change stick. Focus the portfolio.",
+    description: "Our strategy execution consulting changes the decisions and operating rhythms inside executive teams, business transformations, and project portfolios—so people know what matters, who owns it, and what moves next.",
+    intro: "The right starting point depends on where the work keeps breaking—not on which service name a buyer already knows.",
+    seoTitle: "Strategy Execution, Transformation & PMO Consulting",
+    seoDescription: "Compare strategy execution consulting, leadership team development, business transformation consulting, PMO consulting, and project leadership services.",
     sections: [
       { eyebrow: "Choose by condition", title: "Where does the system need to be installed?", cards: solutions },
       {
@@ -370,11 +373,11 @@ export const pages: Record<string, SitePage> = {
   "leadership-system": {
     slug: "leadership-system",
     eyebrow: "The Execution Leadership System",
-    title: "One system for priorities, decisions, and execution.",
-    description: "Most leadership teams do not lack intelligence, effort, tools, or ambition. They lack one disciplined system connecting leadership intent to daily execution.",
-    intro: "120VC does not ask leaders to remember a model after training. We install the system inside the priorities and initiatives already under pressure.",
-    seoTitle: "The 120VC Execution Leadership System",
-    seoDescription: "See how 120VC installs a leadership operating system for priorities, decisions, accountability, execution rhythm, and measurable outcomes.",
+    title: "One system for priorities, decisions, and ownership.",
+    description: "120VC installs its Execution Leadership System—a leadership operating system for enterprise teams—inside current priorities and initiatives. We diagnose the break, clarify decision rights, establish the operating rhythm, run it under pressure, and transfer ownership to your team.",
+    intro: "The system connects priorities, decisions, ownership, operating rhythm, and measurable outcomes without creating a separate training environment.",
+    seoTitle: "Leadership Operating System for Strategy Execution",
+    seoDescription: "See how 120VC installs a shared execution system for priorities, decision rights, ownership, operating rhythm, accountability, and measurable outcomes.",
     facts: [
       { label: "Installed in", value: "Current priorities, initiatives, meetings, and decisions" },
       { label: "Requires", value: "An accountable executive sponsor and relevant team" },
@@ -434,20 +437,22 @@ export const pages: Record<string, SitePage> = {
   "executive-leadership-coaching-and-development-performance-accelerator": {
     slug: "executive-leadership-coaching-and-development-performance-accelerator",
     eyebrow: "Executive Leadership Performance Accelerator",
-    title: "Install the execution system into your highest-stakes work.",
-    description: "ELPA installs that system into work your leadership team already owns, with an accountable executive and the relevant direct-report team.",
-    intro: "It changes how the team prioritizes, decides, commits, coaches, rationalizes work, and executes.",
-    seoTitle: "Executive Leadership Performance Accelerator",
-    seoDescription: "Install an enterprise execution leadership system with an accountable executive and team through live-work leadership development.",
+    title: "Executive coaching in live work.",
+    description: "ELPA combines executive leadership development with a high-stakes initiative already in motion. The accountable executive and relevant team build capability while changing the priorities, decisions, and commitments that determine the result.",
+    intro: "The initiative moves while the team installs a repeatable way to prioritize, decide, own, and deliver together.",
+    heroImage: { src: "/images/story/team-working-together.jpg", alt: "An executive team applying new leadership practices to work already underway.", width: 1800, height: 1008 },
+    seoTitle: "Executive Leadership Development Inside Live Work | ELPA",
+    seoDescription: "ELPA is an executive leadership development program that changes priorities, decisions, commitments, ownership, and execution inside live enterprise work.",
     facts: [
       { label: "Designed for", value: "An accountable executive and relevant direct-report team" },
       { label: "Applied to", value: "Live priorities, initiatives, decisions, and outcomes" },
       { label: "Delivery", value: "System installation, team application, coaching, and operating rhythm" },
-      { label: "Timing", value: "Confirmed after diagnosis; no fixed public duration assumed" },
+      { label: "Timing", value: "Confirmed when the work is scoped" },
     ],
     sections: [
       {
-        title: "This is not a course leaders complete beside the work.",
+        title: "Use the live initiative—not a simulation.",
+        presentation: "primary",
         paragraphs: [
           "The team applies shared practices to the business condition already demanding executive attention. That makes progress visible in decisions and work—not only in individual reflection.",
         ],
@@ -461,31 +466,36 @@ export const pages: Record<string, SitePage> = {
         ],
       },
       {
-        title: "Active sponsorship is a requirement—not a ceremonial role.",
+        title: "The accountable executive has to lead the change.",
+        presentation: "detail",
         paragraphs: [
           "The accountable executive cannot delegate their own leadership responsibility and expect the system to become executive-owned. Participation, access, real work, and willingness to change current operating behavior determine fit.",
         ],
       },
       {
-        title: "Choose ELPA when the organization needs the full system around a leadership unit and its work.",
+        title: "Leave the team with a capability it can keep using.",
+        presentation: "primary",
         paragraphs: [
-          "Choose Leadership Team Transformation when the primary need is how the senior team operates together. Choose Enterprise Transformation when an internal function must change its business role. Choose Portfolio Services when portfolio investment and execution are the main condition.",
+          "ELPA should improve the initiative in front of the team and leave behind a repeatable way to prioritize, decide, own, and deliver the next one.",
         ],
       },
     ],
     related: [{ title: "Leadership Team Transformation", description: "Focus the system on the senior team’s shared operation.", href: solutions[1].href }, { title: "How the system works", description: "See the practices and installation path behind ELPA.", href: "/leadership-system" }],
-    primaryCta: { label: "Assess ELPA Readiness and Fit", href: "/consultation" },
+    primaryCta: { label: "Discuss ELPA", href: "/consultation" },
     secondaryCta: { label: "See the system", href: "/leadership-system" },
+    detailsTitle: "What participation does ELPA require?",
+    detailsDescription: "Open this question to see the executive commitment required and related ways to continue.",
   },
 
   "transformation-leadership-team-development-coaching-and-program": {
     slug: "transformation-leadership-team-development-coaching-and-program",
     eyebrow: "Leadership Team Transformation",
-    title: "Turn strong executives into one leadership team.",
-    description: "120VC installs a shared Execution Leadership System into the team’s current priorities and decisions so senior leaders can operate as one leadership unit.",
-    intro: "A leadership team is not aligned because its members respect one another or agree in the meeting. It is aligned when the decision holds, enterprise priorities outrank functional convenience, and shared commitments survive pressure.",
-    seoTitle: "Leadership Team Transformation",
-    seoDescription: "Transform senior executive team alignment, decision quality, accountability, and cross-functional execution through live work.",
+    title: "Leadership team development for executives.",
+    description: "120VC uses leadership team coaching inside live work to change how executives make trade-offs, hold decisions, own commitments, and execute together.",
+    intro: "The goal is not agreement in the meeting. It is one set of enterprise priorities and commitments that still hold when the team returns to the work.",
+    heroImage: { src: "/images/story/aligned-leadership-team.jpg", alt: "Senior leaders working as one team around shared priorities and commitments.", width: 1600, height: 1066 },
+    seoTitle: "Leadership Team Development for Executive Teams",
+    seoDescription: "Leadership team development and executive team coaching that help senior leaders align priorities, hold decisions, own commitments, and execute as one.",
     facts: [
       { label: "Designed for", value: "Executive and senior leadership teams" },
       { label: "Best used when", value: "Functional strength is not producing enterprise coordination" },
@@ -494,7 +504,8 @@ export const pages: Record<string, SitePage> = {
     ],
     sections: [
       {
-        title: "The team changes how it works—not only how it relates.",
+        title: "Help the team prioritize, decide, and commit as one.",
+        presentation: "primary",
         bullets: [
           "Enterprise priorities become explicit.",
           "Decision authority and recommendations become clearer.",
@@ -505,72 +516,87 @@ export const pages: Record<string, SitePage> = {
         ],
       },
       {
-        title: "The current business becomes the case study.",
+        title: "Leave the team with a way of working it can keep using.",
+        presentation: "primary",
         paragraphs: [
-          "Rather than using hypothetical scenarios, 120VC helps the team apply the system to the priorities, tradeoffs, decisions, and cross-functional work already defining performance.",
+          "The team applies the system to the priorities, trade-offs, decisions, and cross-functional work already defining performance, then keeps using that operating rhythm after 120VC leaves.",
         ],
         statement: "The goal is not a better offsite. It is a team that operates differently after the offsite is over.",
       },
     ],
     related: [solutions[0], { title: "COO execution leadership", description: "See how the condition appears from the COO seat.", href: roles[0].href }],
-    primaryCta: { label: "Discuss Leadership Team Transformation", href: "/consultation" },
+    primaryCta: { label: "Discuss Your Leadership Team", href: "/consultation" },
     secondaryCta: { label: "Explore the Leadership Team Assessment Framework", href: "/resources/assessments/leadership-team-execution-assessment" },
   },
 
   "enterprise-digital-transformation": {
     slug: "enterprise-digital-transformation",
     eyebrow: "Enterprise Transformation",
-    title: "Turn internal functions into measurable business value.",
-    description: "120VC changes how HR, IT, Finance, and PMO prioritize, advise, allocate resources, execute, and measure their contribution to the business.",
-    intro: "Kill the Cost Center™. An internal function becomes strategic when it helps the enterprise make better investments and produce better outcomes—not when it changes its language, tools, or reporting alone.",
-    seoTitle: "Enterprise and Internal Function Transformation",
-    seoDescription: "Transform HR, IT, Finance, PMO, or shared services into accountable business-performance partners with measurable outcomes.",
+    title: "Business transformation that sticks.",
+    description: "Through business transformation consulting, 120VC works with internal functions to install the priorities, ownership, decisions, and recurring practices the transformation requires. Progress is measured through changes in the work and the business outcomes it is meant to produce.",
+    intro: "A transformation becomes real when leaders make different trade-offs, teams work differently, and the intended value becomes visible in normal operations.",
+    heroImage: { src: "/images/problems/function-outcome.jpg", alt: "A cross-functional team turning a transformation plan into normal operating work.", width: 1800, height: 1200 },
+    seoTitle: "Business Transformation Consulting for Measurable Value",
+    seoDescription: "Move enterprise transformation beyond plans and program activity by changing priorities, decisions, ownership, operating rhythm, adoption, and measurable value.",
     facts: [
-      { label: "Designed for", value: "HR, IT, Finance, PMO, and shared-service leaders" },
-      { label: "Best used when", value: "The function is reactive or cannot demonstrate value" },
-      { label: "Primary change", value: "From order taker to internal investment partner" },
+      { label: "Designed for", value: "Executives, transformation leaders, and internal-function owners" },
+      { label: "Best used when", value: "The program is active but the work is not changing" },
+      { label: "Primary change", value: "Transformation becomes normal operating work" },
       { label: "Measurement", value: "Customer, team, and financial outcomes" },
     ],
     sections: [
       {
-        title: "The work begins by making the current value condition visible.",
+        title: "The roadmap is not the transformation.",
+        presentation: "primary",
         bullets: [
-          "What demand enters the function and how is it evaluated?",
-          "Which work is necessary, duplicative, low-value, or politically protected?",
-          "Where are resources committed without clear outcomes?",
-          "How are recommendations, tradeoffs, and expectations communicated?",
-          "What would improved customer, team, and financial performance look like?",
+          "Existing priorities continue to displace the transformation.",
+          "Sponsors support the change without changing real resource decisions.",
+          "Functions adopt at different speeds without shared consequences.",
+          "Program activity grows while normal operating behavior stays the same.",
+          "Expected value remains separate from weekly execution decisions.",
         ],
       },
       {
-        title: "This is operating transformation—not software.",
+        title: "Make the new way of working the normal way of working.",
+        presentation: "primary",
         paragraphs: [
-          "Tools may support visibility. Process changes may remove friction. Coaching may build capability. The core work changes the leadership system that decides what the function should do, how it should operate, and how it will prove value.",
+          "120VC puts transformation expectations into operating decisions, visible commitments, ownership, and recurring team rhythms so the change no longer depends on the transformation office pushing it forward.",
+        ],
+      },
+      {
+        title: "Keep the expected value visible.",
+        presentation: "detail",
+        paragraphs: [
+          "Track whether the work is changing customer, team, and business outcomes—not only whether transformation activities were completed.",
         ],
       },
     ],
     related: [{ title: "Internal Function Performance", description: "Diagnose the recognizable buyer condition first.", href: "/problems-we-solve/internal-function-performance" }, solutions[3]],
-    primaryCta: { label: "Discuss Enterprise Transformation", href: "/consultation" },
+    primaryCta: { label: "Discuss Your Transformation", href: "/consultation" },
     secondaryCta: { label: "Explore the Cost Center Assessment Framework", href: "/resources/assessments/cost-center-to-value-engine-assessment" },
+    detailsTitle: "How should transformation value be measured?",
+    detailsDescription: "Open this question to see how operating change connects to customer, team, and business outcomes.",
   },
 
   "roi-driven-project-portfolio-services": {
     slug: "roi-driven-project-portfolio-services",
     eyebrow: "ROI-Driven Project Portfolio Services",
-    title: "Stop funding activity. Run the portfolio for return.",
-    description: "Combine portfolio rationalization, investment discipline, embedded leadership, governance, and decision-ready visibility.",
-    intro: "Traditional PMOs manage projects. Enterprise leaders must manage investment—deciding which initiatives deserve time, talent, attention, and capital, and which should stop, change, consolidate, wait, or accelerate.",
-    seoTitle: "Project Portfolio Management and PMO Transformation",
-    seoDescription: "Improve portfolio ROI through project rationalization, investment discipline, embedded execution leadership, governance, and executive visibility.",
+    title: "Project portfolio decisions made clear.",
+    description: "120VC installs portfolio governance and a shared decision rhythm so leaders can allocate resources deliberately, put people and capital behind the right work, and decide which initiatives should continue, accelerate, change, or stop.",
+    intro: "Project portfolio management should help leaders decide where scarce capacity belongs, not simply report the work already in motion.",
+    heroImage: { src: "/images/problems/portfolio-review.jpg", alt: "Portfolio leaders reviewing investment choices and capacity together.", width: 1201, height: 1800 },
+    seoTitle: "Project Portfolio Management & PMO Consulting",
+    seoDescription: "Improve project portfolio management, resource allocation, portfolio governance, and PMO investment decisions with an execution system built around value.",
     facts: [
       { label: "Designed for", value: "Leaders accountable for capital, transformation, and portfolio outcomes" },
-      { label: "Front door", value: "Portfolio ROI Audit" },
+      { label: "Starting point", value: "Portfolio ROI Audit" },
       { label: "Primary change", value: "Projects become investments that must earn support" },
       { label: "Technology", value: "Smartsheet may support visibility; it is not the strategy" },
     ],
     sections: [
       {
-        title: "Start with clearer investment reality.",
+        title: "Put people and capital behind the work that matters most.",
+        presentation: "primary",
         bullets: [
           "Which initiatives lack a credible business condition or return logic?",
           "Where is work duplicative or competing for the same capability?",
@@ -580,73 +606,103 @@ export const pages: Record<string, SitePage> = {
         ],
       },
       {
-        title: "Smartsheet supports the system. Leadership makes it work.",
+        title: "Decide what continues—and what stops.",
+        presentation: "primary",
         paragraphs: [
-          "A dashboard can expose status, capacity, risk, and dependencies. It cannot decide what deserves funding, whether a business case is credible, who owns the outcome, or which tradeoff is right.",
+          "Keep the investment decision current as assumptions, resources, risks, and expected value change. Governance should force the trade-off instead of preserving every initiative.",
         ],
-        statement: "Technology makes the operating system visible. Leadership determines what the organization does about reality.",
+        statement: "Projects remain investments only while the expected value justifies the people and capital behind them.",
       },
       {
-        title: "The delivery model follows the diagnostic.",
+        title: "A green project can still be a bad investment.",
+        presentation: "detail",
         paragraphs: [
-          "120VC may strengthen an existing PMO, co-lead portfolio execution, or provide broader portfolio leadership. The commercial model and operating scope are confirmed after the portfolio condition is understood.",
+          "Schedule, budget, and milestone status do not show whether the business outcome still justifies the investment. Measure value and delivery health together.",
+        ],
+      },
+      {
+        title: "Turn portfolio reporting into portfolio decisions.",
+        presentation: "detail",
+        paragraphs: [
+          "Give executives the information and operating rhythm needed to make real investment choices while there is still time to change the outcome.",
         ],
       },
     ],
     related: [{ title: "Project Leadership Managed Services", description: "Embed execution leadership inside critical initiatives.", href: "/project-leadership-managed-services" }, { title: "Smartsheet Portfolio Visibility", description: "Give leaders decision-ready portfolio information.", href: "/smartsheet-dashboards" }],
-    primaryCta: { label: "Request a Portfolio ROI Audit", href: "/consultation?condition=portfolio" },
+    primaryCta: { label: "Discuss Your Portfolio", href: "/consultation?condition=portfolio" },
     secondaryCta: { label: "Explore the Portfolio ROI Framework", href: "/resources/assessments/portfolio-roi-diagnostic" },
+    detailsTitle: "What status reporting can miss.",
+    detailsDescription: "Open this question when delivery health looks good but the investment case is uncertain.",
   },
 
   "project-leadership-managed-services": {
     slug: "project-leadership-managed-services",
     eyebrow: "Supporting portfolio capability",
-    title: "Put execution leadership inside high-stakes work.",
-    description: "Embedded project and program leaders establish clarity, align stakeholders, manage dependencies, and move work toward outcomes.",
-    intro: "Some initiatives do not need more status reporting. They need leaders who can challenge assumptions, make commitments visible, surface reality early, and operate through the same Execution Leadership System as the broader portfolio.",
-    seoTitle: "Project Leadership Managed Services",
-    seoDescription: "Embed experienced project and program execution leaders inside critical enterprise initiatives and portfolios.",
+    title: "Enterprise project management for critical initiatives.",
+    description: "120VC's project management consulting embeds an experienced project leader in cross-functional work to make decisions, dependencies, risks, and ownership visible while there is still time to act. The work includes practices the client team can continue using.",
+    intro: "This is leadership inside the initiative—not another layer of status reporting or commodity project staffing.",
+    heroImage: { src: "/images/problems/portfolio-review.jpg", alt: "An experienced project leader working with executives on a critical initiative.", width: 1201, height: 1800 },
+    seoTitle: "Enterprise Project Management Consulting for Critical Initiatives",
+    seoDescription: "Enterprise project management consulting services that place experienced execution leaders inside critical initiatives—not commodity staffing or status reporting.",
     facts: [
-      { label: "Position", value: "Supporting capability under Project Portfolio Services" },
+      { label: "Role in the portfolio", value: "Supporting capability under Project Portfolio Services" },
       { label: "Applied to", value: "Critical projects, programs, and cross-functional initiatives" },
       { label: "Primary change", value: "From reporting activity to leading execution" },
       { label: "Scope", value: "Confirmed after portfolio or initiative diagnosis" },
     ],
     sections: [
       {
-        title: "Execution leadership strengthens delivery.",
+        title: "Lead the work—not another layer of administration.",
+        presentation: "primary",
         bullets: [
           "Clarify the business condition and measurable result.",
           "Align decision makers and stakeholders.",
-          "Expose dependencies, constraints, and risk early.",
           "Make commitments and ownership visible.",
           "Challenge requests and recommend better paths.",
           "Create an operating rhythm that moves the initiative.",
         ],
       },
+      {
+        title: "Surface decisions and risks early.",
+        presentation: "detail",
+        paragraphs: [
+          "The project leader brings options, trade-offs, dependencies, and decision owners into the open before a risk becomes an executive escalation or a late explanation. Client leaders remain accountable for the decisions only they can make.",
+        ],
+      },
+      {
+        title: "Make ownership clear across functions.",
+        presentation: "primary",
+        paragraphs: [
+          "The work makes the owner, commitment, dependency, and expected outcome explicit across organizational boundaries. The team leaves with an operating rhythm it can continue after the immediate initiative is complete.",
+        ],
+      },
     ],
     related: [solutions[3], { title: "Smartsheet Portfolio Visibility", description: "Support decision-making with visible portfolio reality.", href: "/smartsheet-dashboards" }],
-    primaryCta: { label: "Discuss a Project Leadership Scope", href: "/consultation?condition=project" },
+    primaryCta: { label: "Discuss the Initiative", href: "/consultation?condition=project" },
     secondaryCta: { label: "Explore Portfolio Services", href: solutions[3].href },
+    detailsTitle: "How does the project leader handle risk?",
+    detailsDescription: "Open this question to see how decisions, trade-offs, and escalation risks become visible earlier.",
   },
 
   "smartsheet-dashboards": {
     slug: "smartsheet-dashboards",
     eyebrow: "Smartsheet Portfolio Visibility",
-    title: "Give leaders visibility for better execution decisions.",
-    description: "Use Smartsheet to expose what matters now, what changed, what is at risk, and which decisions are required.",
-    intro: "A dashboard should not merely show what happened. It should help leadership see the current execution condition early enough to act.",
-    seoTitle: "Smartsheet Portfolio Dashboards and Visibility",
-    seoDescription: "Create decision-ready Smartsheet portfolio visibility for commitments, risk, capacity, dependencies, and executive action.",
+    title: "Smartsheet project portfolio management.",
+    description: "120VC configures Smartsheet portfolio dashboards around priorities, resource capacity, ownership, risks, dependencies, and outcomes leaders need to see.",
+    intro: "The tool makes the execution system visible. It does not replace the leadership decisions and operating discipline behind it.",
+    heroImage: { src: "/images/problems/portfolio-outcome.jpg", alt: "Portfolio leaders using a shared view to make an investment decision.", width: 1800, height: 1200 },
+    seoTitle: "Smartsheet Project Portfolio Dashboards & Consulting",
+    seoDescription: "Configure Smartsheet project portfolio management around priorities, capacity, ownership, decisions, risk, dependencies, and measurable outcomes.",
     facts: [
-      { label: "Position", value: "Supporting capability under Project Portfolio Services" },
+      { label: "Role in the portfolio", value: "Supporting capability under Project Portfolio Services" },
       { label: "Designed for", value: "Executives, PMOs, transformation, and portfolio leaders" },
       { label: "Primary change", value: "From status display to decision-ready visibility" },
-      { label: "Guardrail", value: "The dashboard is not the leadership system" },
+      { label: "What it does not replace", value: "Leadership decisions and operating discipline" },
     ],
     sections: [
       {
-        title: "The most useful view answers the next leadership question.",
+        title: "Make the work visible at the level decisions are made.",
+        presentation: "primary",
         bullets: [
           "What matters now?",
           "What has changed?",
@@ -657,7 +713,8 @@ export const pages: Record<string, SitePage> = {
         ],
       },
       {
-        title: "Visibility creates the opportunity for a better decision.",
+        title: "The dashboard makes the system visible. It is not the system.",
+        presentation: "primary",
         paragraphs: [
           "It does not make the decision, establish ownership, resolve a tradeoff, or create accountability. The technology makes reality visible. The leadership system determines what happens next.",
         ],
@@ -954,15 +1011,14 @@ export const pages: Record<string, SitePage> = {
   about: {
     slug: "about",
     eyebrow: "About 120VC",
-    title: "Capable leaders should not have to accept execution failure as normal.",
-    description: "Learn why 120VC created the Execution Leadership category, how the system works, and what it means to operate by The 120 standard.",
-    intro: "Organizations invest heavily in strategy, technology, training, talent, and transformation. They still struggle to turn leadership intent into coordinated execution. 120VC was built to change the system underneath that work.",
-    seoTitle: "About 120VC — The Execution Leadership Firm",
-    seoDescription: "Learn why 120VC created Execution Leadership, how the system is installed inside live work, and what The 120 standard means.",
+    title: "120VC makes strategy deliver.",
+    description: "120VC installs a leadership operating system inside live enterprise work so teams can align priorities, decision rights, ownership, accountability, and execution.",
+    intro: "Organizations invest heavily in strategy, technology, training, talent, and transformation. 120VC changes the shared system underneath that work so progress does not depend on heroics.",
+    seoTitle: "About 120VC — Execution Leadership for Enterprise Teams",
+    seoDescription: "120VC is an Execution Leadership firm that installs a leadership operating system for strategy execution inside live enterprise work.",
     sections: [
       {
-        eyebrow: "The hierarchy",
-        title: "Company. Category. System. Standard.",
+        title: "We call the discipline Execution Leadership.",
         cards: [
           { title: "120VC is the company", description: "An Execution Leadership firm working with senior enterprise leaders accountable for major outcomes.", href: "/consultation" },
           { title: "Execution Leadership is the category", description: "The discipline of leading through a shared system so decisions become coordinated action.", href: "/leadership-system" },
@@ -971,15 +1027,14 @@ export const pages: Record<string, SitePage> = {
         ],
       },
       {
-        title: "Why we work inside live execution.",
+        title: "Important work should not depend on heroics.",
         paragraphs: [
           "Leadership does not reveal itself when the room is calm and the scenario is hypothetical. It reveals itself when the deadline matters, priorities compete, information is incomplete, resources are constrained, functions disagree, and the work is at risk.",
           "That is where the system must operate. So that is where we install it.",
         ],
       },
       {
-        eyebrow: "The 120 standard",
-        title: "A way of operating when pressure rises.",
+        title: "The standard has to hold when pressure rises.",
         bullets: [
           "Intentionality: know what matters, why it matters, and what outcome defines success.",
           "Discipline: honor priorities, decisions, commitments, and rhythm under pressure.",
@@ -989,13 +1044,13 @@ export const pages: Record<string, SitePage> = {
         ],
       },
       {
-        title: "Irreplaceable leaders create capability everywhere they operate.",
+        title: "Better execution has to work for the customer, the team, and the business.",
         paragraphs: [
-          "The goal is not dependency on one heroic person. It is leaders whose way of operating makes the people and systems around them stronger. Unstoppable teams are not invincible; they can see reality, adapt, decide, and execute together.",
+          "The goal is not dependency on one heroic person. It is a way of working that makes the people and systems around them stronger while improving customer satisfaction, team member satisfaction, and profitability.",
         ],
       },
     ],
-    primaryCta: { label: "Explore the Execution Leadership System", href: "/leadership-system" },
+    primaryCta: { label: "See How It Works", href: "/leadership-system" },
     secondaryCta: { label: "Meet J. Scott", href: "/founder-jason-scott" },
   },
 
@@ -1095,11 +1150,11 @@ Object.assign(pages, {
   results: {
     slug: "results",
     eyebrow: "Results",
-    title: "Evidence should make the decision easier.",
-    description: "Review operating shifts, case-study governance, measurement methodology, and the client-reference process without asking a logo or percentage to carry more meaning than it can support.",
-    intro: "Enterprise proof must answer what changed, where it changed, how it was measured, over what period, and what can reasonably be attributed to the work.",
-    seoTitle: "Execution Leadership Results",
-    seoDescription: "Evaluate 120VC results through operating shifts, measurement methodology, case-study context, and client-reference governance.",
+    title: "Clear priorities. Decisions that hold. Measurable results.",
+    description: "Our strategy execution case studies show the starting condition, what 120VC changed in the work, the measurable result, the timeframe, and the evidence behind it.",
+    intro: "Enterprise proof should make the result easier to inspect, not ask a logo or percentage to carry more meaning than the evidence supports.",
+    seoTitle: "Enterprise Results and Strategy Execution Case Studies",
+    seoDescription: "See the problem before 120VC, what changed in the work, the measurable result, the timeframe, and the evidence behind each case study.",
     sections: [
       {
         eyebrow: "What proof must answer",
@@ -1365,11 +1420,11 @@ Object.assign(pages, {
   resources: {
     slug: "resources",
     eyebrow: "120VC resources",
-    title: "Understand the condition. See the system in practice.",
-    description: "Explore practical tool frameworks, diagnostics, guides, briefings, and insights for leaders accountable for execution.",
-    intro: "Resources are organized by the buyer problem they help solve, then by format. Start with the condition you are carrying—not a content library taxonomy.",
-    seoTitle: "120VC Execution Leadership Resources",
-    seoDescription: "Explore practical tools, diagnostics, books, briefings, insights, and podcasts for enterprise execution leaders.",
+    title: "Prioritize the work. Make the decision. Protect capacity.",
+    description: "Use practical prioritization matrices and decision-making frameworks to clarify resource allocation, strengthen accountability, and keep enterprise work moving.",
+    intro: "The library is organized around the work a leader needs to understand or move—not around a content-management taxonomy.",
+    seoTitle: "Strategy Execution Tools for Priorities, Decisions & Accountability",
+    seoDescription: "Explore prioritization matrices, decision-making frameworks, resource allocation tools, operating rhythms, and leadership accountability practices.",
     sections: [
       {
         eyebrow: "Choose by need",
@@ -1384,7 +1439,7 @@ Object.assign(pages, {
         ],
       },
     ],
-    primaryCta: { label: "Explore Execution Leadership Tools", href: "/resources/tools" },
+    primaryCta: { label: "Explore the Library", href: "/resources/tools" },
     secondaryCta: { label: "Diagnose the Execution Condition", href: "/resources/assessments" },
   },
 
@@ -1447,7 +1502,7 @@ Object.assign(pages, {
         paragraphs: ["[APPROVAL REQUIRED] Questions, scoring logic, personalized reports, data storage, consent, and HubSpot routing must be validated before assessments are activated."],
       },
     ],
-    primaryCta: { label: "Book a Leadership System Consultation", href: "/consultation" },
+    primaryCta: { label: "Book a Consultation", href: "/consultation" },
     secondaryCta: { label: "Explore Tool Frameworks", href: "/resources/tools" },
   },
 
@@ -1635,15 +1690,15 @@ Object.assign(pages, {
   "resources/tools/1-3-1-decision-builder": {
     slug: "resources/tools/1-3-1-decision-builder",
     eyebrow: "1-3-1 Decision Builder",
-    title: "One problem. Three options. One recommendation.",
-    description: "Structure a recommendation so leaders can inspect the problem, choices, tradeoffs, and recommended next move.",
-    intro: "The method improves decision quality by requiring a clear problem, relevant facts, multiple viable paths, and one accountable recommendation.",
-    seoTitle: "1-3-1 Decision Builder",
-    seoDescription: "Learn the 120VC 1-3-1 method for defining one problem, evaluating three solutions, and making one recommendation.",
+    title: "Turn one problem into one recommendation.",
+    description: "Define the problem, compare three viable options, and bring forward one recommendation that is ready for a decision.",
+    intro: "The 1-3-1 framework makes the thinking behind a recommendation visible, so leaders can inspect the facts, options, tradeoffs, and owner before deciding.",
+    seoTitle: "Decision-Making Framework: 1-3-1 Decision Builder",
+    seoDescription: "Explore the 120VC 1-3-1 decision-making framework for defining one problem, comparing three viable options, and making one accountable recommendation.",
     sections: [
       {
         eyebrow: "Decision sequence",
-        title: "Move from the problem to one inspectable recommendation.",
+        title: "Define one problem. Compare three options. Recommend one path.",
         bullets: [
           "Define the problem",
           "Add relevant facts and constraints",
@@ -1672,15 +1727,15 @@ Object.assign(pages, {
   "resources/tools/2x2-prioritization-matrix": {
     slug: "resources/tools/2x2-prioritization-matrix",
     eyebrow: "2×2 Prioritization Matrix",
-    title: "Decide what deserves focus—and what should stop.",
-    description: "Make priorities, tradeoffs, ownership, expected outcomes, and conflicts visible before capacity breaks.",
-    intro: "Prioritization is not a longer ranked list. It is a decision about where limited time, talent, attention, and resources will—and will not—go.",
-    seoTitle: "2x2 Prioritization Matrix",
-    seoDescription: "Learn how the 120VC 2x2 Prioritization Matrix makes focus, tradeoffs, ownership, and conflicts visible.",
+    title: "A prioritization matrix for making real trade-offs.",
+    description: "Compare urgency and strategic value, then decide what moves now, later, or not at all.",
+    intro: "Prioritization is not a longer ranked list. This framework makes the trade-off visible so limited time, talent, attention, and resources can go where they matter most.",
+    seoTitle: "Prioritization Matrix for Making Real Trade-Offs",
+    seoDescription: "Explore a 2x2 prioritization matrix for comparing urgency and strategic value, making trade-offs visible, and deciding what moves now, later, or not at all.",
     sections: [
       {
-        eyebrow: "Planned workspace",
-        title: "Make movement and tradeoffs explicit.",
+        eyebrow: "Prioritization sequence",
+        title: "Compare urgency and strategic value before committing capacity.",
         bullets: [
           "Add a priority or initiative",
           "Drag or assign it to a quadrant",
@@ -1691,7 +1746,6 @@ Object.assign(pages, {
           "Reorder within each quadrant",
           "Review the completed matrix before export or sharing",
         ],
-        statement: "Keyboard controls and dropdown assignment must be available as alternatives to drag and drop.",
       },
       {
         eyebrow: "Activation status",
@@ -1771,16 +1825,16 @@ Object.assign(pages, {
   "resources/tools/weekly-team-doing": {
     slug: "resources/tools/weekly-team-doing",
     eyebrow: "Weekly Team DOING",
-    title: "Replace status updates with decisions and commitments.",
-    description: "Use the team’s weekly execution rhythm to expose reality, resolve decisions, and leave with visible commitments.",
-    intro: "The purpose is defined: synchronize the team around current work. The proprietary agenda, prompts, artifacts, and facilitation rules have not yet been supplied.",
-    seoTitle: "Weekly Team DOING",
-    seoDescription: "Understand the purpose of 120VC Weekly Team DOING for team alignment, decisions, and commitments.",
+    title: "Weekly meetings for decisions and action.",
+    description: "Move routine status out of the meeting. Make commitments visible, resolve blockers, surface decisions, and keep important work moving.",
+    intro: "Weekly Team DOING is a leadership meeting rhythm for inspecting current reality and leaving with clear ownership. The proprietary agenda and facilitation rules are not yet published.",
+    seoTitle: "Weekly Leadership Meeting Agenda for Decisions and Action",
+    seoDescription: "Explore the purpose of a weekly leadership meeting agenda designed to surface decisions, resolve blockers, make commitments visible, and keep important work moving.",
     sections: [
       {
-        eyebrow: "Purpose",
-        title: "Make the weekly rhythm produce movement—not reporting theater.",
-        paragraphs: ["The practice should help the team inspect current reality, make required decisions, surface dependencies, and leave with clear ownership and next moves."],
+        eyebrow: "Meeting rhythm",
+        title: "Stop using the meeting to narrate status.",
+        paragraphs: ["Inspect the work that needs leadership attention, make required decisions, resolve blockers and dependencies, and leave with visible owners and next moves."],
       },
       {
         eyebrow: "Activation status",
@@ -1886,7 +1940,7 @@ Object.assign(pages, {
     eyebrow: "Execution Health Diagnostic",
     title: "Identify the condition before choosing a response.",
     description: "Assess the overall execution condition across priorities, decisions, ownership, dependencies, risk, rhythm, accountability, and executive rescue.",
-    intro: "This is the flagship diagnostic and primary ICP-capture assessment. It must describe the strongest visible condition without presenting an unvalidated benchmark.",
+    intro: "Review the dimensions that help leaders recognize where priorities, decisions, ownership, risk, and operating rhythm are breaking down.",
     seoTitle: "Execution Health Diagnostic",
     seoDescription: "Understand the dimensions and intended experience of the 120VC Execution Health Diagnostic.",
     sections: [

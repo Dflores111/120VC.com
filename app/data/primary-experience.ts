@@ -61,7 +61,7 @@ export const problemConditions: readonly ProblemCondition[] = [
       },
       work: {
         label: "Work on it",
-        title: "Use the 2×2 Prioritization Matrix",
+        title: "Explore the 2×2 Prioritization Matrix",
         description: "Make the tradeoff visible: what deserves focus, what should wait, and what should stop.",
         href: "/resources/tools/2x2-prioritization-matrix",
       },
@@ -98,7 +98,7 @@ export const problemConditions: readonly ProblemCondition[] = [
       },
       work: {
         label: "Work on it",
-        title: "Use the 1-3-1 Decision Builder",
+        title: "Explore the 1-3-1 Decision Builder",
         description: "Clarify one problem, three viable options, and one accountable recommendation.",
         href: "/resources/tools/1-3-1-decision-builder",
       },
@@ -136,7 +136,7 @@ export const problemConditions: readonly ProblemCondition[] = [
       },
       work: {
         label: "Work on it",
-        title: "Use the Challenge · Opportunity Builder",
+        title: "Explore the Challenge · Opportunity Builder",
         description: "Turn a vague change complaint into a condition leaders can decide and act on.",
         href: "/resources/tools/challenge-opportunity-builder",
       },
@@ -173,7 +173,7 @@ export const problemConditions: readonly ProblemCondition[] = [
       },
       work: {
         label: "Work on it",
-        title: "Use the Work Rationalization Tool",
+        title: "Explore the Work Rationalization Tool",
         description: "Decide what to continue, reshape, consolidate, delay, or stop.",
         href: "/resources/tools/work-rationalization-tool",
       },
@@ -210,7 +210,7 @@ export const problemConditions: readonly ProblemCondition[] = [
       },
       work: {
         label: "Work on it",
-        title: "Use the Three Pillars Decision Filter",
+        title: "Explore the Three Pillars Decision Filter",
         description: "Test a recommendation across customer, team, and profitability outcomes.",
         href: "/resources/tools/three-pillars-decision-filter",
       },
@@ -241,7 +241,7 @@ export const systemNodes = [
   {
     id: "priorities",
     label: "Priorities",
-    description: "Decide what deserves time, talent, attention, and capital.",
+    description: "Decide what deserves capacity.",
     explanation: "Leadership makes tradeoffs explicit so limited capacity follows the work with the strongest business case.",
     makesVisible: ["What wins now", "What waits", "What stops"],
     shift: "Important work receives enough time, talent, attention, and capital to move.",
@@ -263,7 +263,7 @@ export const systemNodes = [
   {
     id: "commitments",
     label: "Commitments",
-    description: "Make ownership, timing, dependencies, and risk visible.",
+    description: "Make ownership visible.",
     explanation: "Every decision becomes a visible promise with an owner, timing, dependencies, and known risk.",
     makesVisible: ["The accountable owner", "The date and dependencies", "Risk and escalation path"],
     shift: "Teams know who owes what to whom—and by when.",
@@ -274,7 +274,7 @@ export const systemNodes = [
   {
     id: "execution",
     label: "Execution",
-    description: "Surface reality early enough to act.",
+    description: "Run the work under real pressure.",
     explanation: "A weekly operating rhythm compares commitments with reality while there is still time to intervene.",
     makesVisible: ["Movement since the last review", "Risks and dependencies", "The next decision or action"],
     shift: "Issues surface early enough for leaders to act instead of explain later.",
@@ -285,7 +285,7 @@ export const systemNodes = [
   {
     id: "outcomes",
     label: "Outcomes",
-    description: "Measure the effect on customers, team members, and profitability.",
+    description: "Measure whether the work created value.",
     explanation: "Leaders test whether execution created measurable value for customers, team members, and profitability.",
     makesVisible: ["Customer impact", "Team-member impact", "Profitability impact"],
     shift: "Activity is judged by business impact, not completion alone.",

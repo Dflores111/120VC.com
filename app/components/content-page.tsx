@@ -6,12 +6,6 @@ import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import { pageHasApprovalHold, type PageLink, type PageSection, type SitePage } from "../site-data";
 
-function headlineLengthClass(text: string) {
-  if (text.length > 68) return "headline-long";
-  if (text.length > 44) return "headline-medium";
-  return "";
-}
-
 function CtaLink({ href, className, children, action }: { href: string; className: string; children: React.ReactNode; action?: "primary" | "secondary" | "choice" }) {
   const actionProps = action === "primary"
     ? { "data-primary-action": true }
@@ -65,11 +59,20 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
   const sections = page.sections.map(audienceSection).filter((section): section is PageSection => Boolean(section));
   const related = page.related?.filter((item) => !isGovernanceCopy(item.title) && !isGovernanceCopy(item.description) && !isGovernanceCopy(item.label));
   const faqMode = page.slug === "faq";
-  const primarySections = faqMode ? [] : sections.slice(0, 2);
-  const supportingSections = faqMode ? sections : sections.slice(2);
+  const hasIntentionalPresentation = sections.some((section) => section.presentation);
+  const primarySections = faqMode
+    ? []
+    : hasIntentionalPresentation
+      ? sections.filter((section) => section.presentation !== "detail")
+      : sections.slice(0, 2);
+  const supportingSections = faqMode
+    ? sections
+    : hasIntentionalPresentation
+      ? sections.filter((section) => section.presentation === "detail")
+      : sections.slice(2);
   const relatedLivesWithSupportingDetail = supportingSections.length > 0;
   const disclosureSections: PageSection[] = relatedLivesWithSupportingDetail && related && related.length > 0
-    ? [...supportingSections, { eyebrow: "Continue evaluating", title: "See related paths.", cards: related }]
+    ? [...supportingSections, { title: "Related ways to continue.", cards: related }]
     : supportingSections;
   const hasHeroAside = Boolean(page.heroImage || intro);
 
@@ -92,7 +95,7 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
       <main id="main-content" tabIndex={-1}>
         <section className={`inner-hero ${hasHeroAside ? "" : "content-hero-single"}`} data-major-section data-journey-stage="recognize" data-surface="neutral">
           <div className="inner-hero-copy">
-            <h1 className={headlineLengthClass(page.title)}>{page.title}</h1>
+            <h1>{page.title}</h1>
             <p className="inner-description">{description}</p>
             <div className="primary-and-quiet">
               <CtaLink action="primary" className="button button-primary" href={page.primaryCta?.href || "/consultation"}>{page.primaryCta?.label || "Book a Consultation"}<span aria-hidden="true" data-direction={(page.primaryCta?.href || "/consultation").startsWith("/") ? undefined : "out"}>{(page.primaryCta?.href || "/consultation").startsWith("/") ? "→" : "↗"}</span></CtaLink>
@@ -137,7 +140,7 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
                 )}
               </div>
               <div className="content-section-body">
-                <h2 className={headlineLengthClass(section.title)}>{section.title}</h2>
+                <h2>{section.title}</h2>
                 {section.paragraphs?.map((paragraph) => <p className="content-paragraph" key={paragraph}>{paragraph}</p>)}
                 {section.bullets && (
                   <ul className="content-list">
@@ -158,13 +161,13 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
             <section className="content-section content-progressive-section" data-major-section data-journey-stage="understanding" data-surface="neutral">
               <div className="content-section-index">
                 <span>{String(primarySections.length + 1).padStart(2, "0")}</span>
-                <p>{faqMode ? "Frequently asked" : "Go deeper when useful"}</p>
+                {faqMode && <p>Frequently asked</p>}
               </div>
               <div className="content-section-body">
-                <h2>{faqMode ? "Questions, answered in order." : "Explore the supporting detail."}</h2>
+                <h2>{faqMode ? "Questions, answered in order." : page.detailsTitle || "What to consider next."}</h2>
                 <p className="content-paragraph">{faqMode
                   ? "Open only the question that matters to the decision you are making now."
-                  : "The primary argument is above. Open a topic below when you need more context for evaluation or implementation."}</p>
+                  : page.detailsDescription || "Open the question that matters to the decision you are making."}</p>
                 <ProgressiveDisclosure sections={disclosureSections} faqMode={faqMode} />
               </div>
             </section>
@@ -174,8 +177,7 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
         {!relatedLivesWithSupportingDetail && related && related.length > 0 && (
           <section className="related-section" data-major-section data-journey-stage="solution" data-surface="neutral">
             <div className="related-heading">
-              <p className="section-index">Continue evaluating</p>
-              <h2>Take the next useful path.</h2>
+              <h2>Related ways to continue.</h2>
             </div>
             <div className="related-grid">
               {related.map((link) => <ArrowLink link={link} key={`${link.href}-${link.title}`} />)}
@@ -185,13 +187,10 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
 
         <section className="final-cta" data-major-section data-journey-stage="act" data-surface="outcome">
           <div>
-            <p className="section-index">The next decision</p>
-            <h2>{consultationOutcome ? "Find where execution is breaking." : finalCta.label}</h2>
+            <h2>{consultationOutcome ? "Talk through your execution problem." : "Continue from here."}</h2>
           </div>
           <div>
-            <p>{consultationOutcome
-              ? "The consultation clarifies the outcome at risk, the leadership condition, and the most useful next step. It is a readiness and fit conversation, not a scripted product demo."
-              : "Continue with the primary next step for this page, or use the related paths above to keep evaluating the condition and approach."}</p>
+            {consultationOutcome && <p>Bring the outcome that is not moving. We will help clarify the problem, whether 120VC is relevant, and what should happen next.</p>}
             <CtaLink action="primary" className="button button-light" href={finalCta.href}>{finalCta.label}<span aria-hidden="true" data-direction={finalCta.href.startsWith("/") ? undefined : "out"}>{finalCta.href.startsWith("/") ? "→" : "↗"}</span></CtaLink>
           </div>
         </section>

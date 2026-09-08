@@ -4,7 +4,7 @@ import { allPages, pageHasApprovalHold } from "./site-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.120vc.com";
-  const lastModified = new Date("2026-08-26");
+  const lastModified = new Date("2026-09-06");
   return [
     { url: base, lastModified, changeFrequency: "monthly", priority: 1 },
     { url: `${base}/consultation`, lastModified, changeFrequency: "monthly", priority: 0.9 },

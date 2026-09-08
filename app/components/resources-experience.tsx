@@ -15,9 +15,9 @@ export function ResourcesExperience() {
       <main id="main-content" tabIndex={-1}>
         <section className="resources-experience-hero supporting-hero" data-major-section data-journey-stage="orient" aria-labelledby="resources-experience-title">
           <div className="resources-hero-copy supporting-hero-copy">
-            <h1 id="resources-experience-title">Tools and insights to turn strategy into execution.</h1>
-            <p>Use a practical tool to move a decision now, or share an insight when your team needs a common understanding before acting.</p>
-            <Link className="button button-primary" href="#resource-library">Explore the resource library <span aria-hidden="true" data-direction="down">↓</span></Link>
+            <h1 id="resources-experience-title">Prioritize the work. Make the decision. <span className="headline-keyword headline-keyword-motion">Protect capacity.</span></h1>
+            <p>Explore practical strategy execution tools, including prioritization matrices and decision-making frameworks for clarifying resource allocation, strengthening accountability, and keeping enterprise work moving.</p>
+            <Link className="button button-primary" href="#resource-library">Explore the library <span aria-hidden="true" data-direction="down">↓</span></Link>
           </div>
           <div className="resources-hero-composition" aria-label="A preview of practical tools and educational resources">
             <div className="resources-tool-preview" aria-hidden="true">
@@ -36,8 +36,8 @@ export function ResourcesExperience() {
 
         <section className="resource-library-section" id="resource-library" data-major-section data-journey-stage="explore" aria-labelledby="resource-library-title">
           <header className="supporting-section-heading supporting-section-heading-centered">
-            <h2 id="resource-library-title">Choose a tool or an insight.</h2>
-            <p>Tools help you act now. Insights help a group build shared understanding before acting.</p>
+            <h2 id="resource-library-title">Choose what would help right now.</h2>
+            <p>Explore a framework for the work in front of you, or understand why the problem keeps returning.</p>
           </header>
           <ResourceExplorer />
         </section>

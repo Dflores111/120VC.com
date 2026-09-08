@@ -146,7 +146,7 @@ export function ProblemExplorer({ initialCondition = "strategy-drift", compact =
             <button type="button" aria-label="Next execution problem" disabled={atEnd} onClick={() => scrollToCondition(visibleIndex + 1)}>→</button>
           </div>
         </div>
-        <div className="problem-condition-rail-window">
+        <div className="problem-condition-rail-window horizontal-card-rail-window" data-at-start={atStart ? "true" : "false"} data-at-end={atEnd ? "true" : "false"}>
           <div className="problem-condition-rail" role="region" aria-label="Five execution problems" ref={rail}>
             {problemConditions.map((item, index) => {
           const isFlipped = preview === item.id;
@@ -168,6 +168,11 @@ export function ProblemExplorer({ initialCondition = "strategy-drift", compact =
             }}
             onBlurCapture={(event) => {
               if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setPreview(null);
+            }}
+            onKeyDownCapture={(event) => {
+              if (event.key !== "Escape" || !isFlipped) return;
+              event.preventDefault();
+              setPreview(null);
             }}
           >
             <div className="problem-condition-flip-frame">
@@ -199,17 +204,17 @@ export function ProblemExplorer({ initialCondition = "strategy-drift", compact =
                 onClick={() => selectCondition(item.id)}
                 onKeyDown={(event) => moveFocus(event, index)}
                 ref={(node) => { controls.current[index] = node; }}
-                aria-label={`${selected === item.id ? "Diagnostic shown below for" : "Show diagnostic below for"} ${item.label}`}
+                aria-label={`${selected === item.id ? "Details shown below for" : "View details below for"} ${item.label}`}
               >
-                {selected === item.id ? "Diagnostic shown" : "Show diagnostic"} <span aria-hidden="true" data-direction="down">↓</span>
+                {selected === item.id ? "Details shown" : "View details"} <span aria-hidden="true" data-direction="down">↓</span>
               </button>
             </div>
           </article>
           );
             })}
           </div>
-          <span className="problem-condition-edge-fade problem-condition-edge-fade-left" aria-hidden="true" />
-          <span className="problem-condition-edge-fade problem-condition-edge-fade-right" aria-hidden="true" />
+          <span className="problem-condition-edge-fade horizontal-card-edge-fade horizontal-card-edge-fade-left" aria-hidden="true" />
+          <span className="problem-condition-edge-fade horizontal-card-edge-fade horizontal-card-edge-fade-right" aria-hidden="true" />
         </div>
       </div>
 

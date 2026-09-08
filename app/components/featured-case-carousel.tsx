@@ -9,6 +9,7 @@ import { useHydratedReducedMotion } from "./use-hydrated-reduced-motion";
 type FeaturedCaseCarouselProps = {
   cases: readonly HomepageCaseProof[];
   forceReducedMotion?: boolean;
+  sourcePage?: "homepage" | "results";
 };
 
 type ComparisonState = "before" | "transforming" | "after";
@@ -192,24 +193,26 @@ function ProofComparison({ caseStudy, active, forceReducedMotion = false }: { ca
   );
 }
 
-function analyticsProperties(caseStudy: HomepageCaseProof, index: number) {
+function analyticsProperties(caseStudy: HomepageCaseProof, index: number, sourcePage: "homepage" | "results") {
   return {
     case_id: caseStudy.id,
     case_context: caseStudy.context,
     case_index: index + 1,
     proof_status: caseStudy.proofStatus,
-    source_page: "homepage",
+    source_page: sourcePage,
   } as const;
 }
 
-export function FeaturedCaseCarousel({ cases, forceReducedMotion = false }: FeaturedCaseCarouselProps) {
+export function FeaturedCaseCarousel({ cases, forceReducedMotion = false, sourcePage = "homepage" }: FeaturedCaseCarouselProps) {
   const reduceMotion = useHydratedReducedMotion() || forceReducedMotion;
   const railRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<Array<HTMLElement | null>>([]);
   const currentRef = useRef(0);
   const programmaticTargetRef = useRef<number | null>(null);
   const programmaticTargetTimeoutRef = useRef<number | null>(null);
+  const lastViewedCaseRef = useRef<string | null>(null);
   const [current, setCurrent] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   const updateCurrent = useCallback((next: number, method: "control" | "scroll" | "keyboard") => {
     const previous = currentRef.current;
@@ -220,9 +223,9 @@ export function FeaturedCaseCarousel({ cases, forceReducedMotion = false }: Feat
       event: next > previous ? "case_story_next" : "case_story_previous",
       section: "client-results",
       selection: method,
-      ...analyticsProperties(cases[next], next),
+      ...analyticsProperties(cases[next], next, sourcePage),
     });
-  }, [cases]);
+  }, [cases, sourcePage]);
 
   const goTo = useCallback((index: number, method: "control" | "keyboard" = "control") => {
     const next = Math.max(0, Math.min(cases.length - 1, index));
@@ -239,14 +242,26 @@ export function FeaturedCaseCarousel({ cases, forceReducedMotion = false }: Feat
   }, [cases.length, reduceMotion, updateCurrent]);
 
   useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), { threshold: 0.2 });
+    observer.observe(rail);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
     const caseStudy = cases[current];
     if (!caseStudy) return;
+    const viewKey = `${sourcePage}:${caseStudy.id}`;
+    if (lastViewedCaseRef.current === viewKey) return;
+    lastViewedCaseRef.current = viewKey;
     track120vcEvent({
       event: "case_story_viewed",
       section: "client-results",
-      ...analyticsProperties(caseStudy, current),
+      ...analyticsProperties(caseStudy, current, sourcePage),
     });
-  }, [cases, current]);
+  }, [cases, current, isVisible, sourcePage]);
 
   useEffect(() => {
     const rail = railRef.current;
@@ -298,7 +313,7 @@ export function FeaturedCaseCarousel({ cases, forceReducedMotion = false }: Feat
       >
         {cases.map((caseStudy, index) => {
           const isActive = index === current;
-          const ctaHref = caseStudy.fullStoryUrl ?? `/consultation?source=homepage-case-${caseStudy.id}`;
+          const ctaHref = caseStudy.fullStoryUrl ?? `/consultation?source=${sourcePage}-case-${caseStudy.id}`;
           const ctaLabel = caseStudy.fullStoryUrl ? "Read the client story" : "Discuss a similar challenge";
           return (
             <article
@@ -336,7 +351,7 @@ export function FeaturedCaseCarousel({ cases, forceReducedMotion = false }: Feat
                   onClick={() => track120vcEvent({
                     event: "case_story_cta_clicked",
                     section: "client-results",
-                    ...analyticsProperties(caseStudy, index),
+                    ...analyticsProperties(caseStudy, index, sourcePage),
                   })}
                 >{ctaLabel} <span aria-hidden="true">→</span></Link>
               </div>
