@@ -1,17 +1,16 @@
 /* eslint-disable @next/next/no-img-element -- The remote SVG is the canonical 120VC brand asset. */
 import Link from "@/app/components/native-link";
-import { hasApprovedFeaturedProof } from "../data/proof-governance";
 
 const footerGroups = [
   {
     title: "Explore",
     links: [
       ["What We Solve", "/problems-we-solve"],
-      ["How We Help", "/leadership-services"],
+      ["What We Do", "/leadership-services"],
       ["How It Works", "/leadership-system"],
-      ...(hasApprovedFeaturedProof ? [["Results", "/results"]] : []),
+      ["Results", "/results"],
       ["Resources", "/resources"],
-      ["Request a Conversation", "/consultation"],
+      ["Let's Talk", "/contact"],
     ],
   },
   {
@@ -36,7 +35,7 @@ export function SiteFooter() {
         </Link>
         <div>
           <p className="footer-statement">Turn strategy into measurable results.</p>
-          <p>We install a shared way to prioritize, decide, and own the work—then help your team run it without us.</p>
+          <p>We coach enterprise leaders, install a shared way to execute, and lead critical work alongside your team.</p>
         </div>
       </div>
 

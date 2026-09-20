@@ -98,7 +98,7 @@ export function ConsultationForm({ context, source }: { context?: string; source
       <fieldset className="form-step" hidden={step !== 1}>
         <legend className="sr-only">About you</legend>
         <div className="form-grid">
-          <div className="form-field"><label htmlFor="first-name">First name</label><input id="first-name" name="firstName" autoComplete="given-name" defaultValue={draft.firstName} required /></div>
+          <div className="form-field"><label htmlFor="first-name">Name</label><input id="first-name" name="firstName" autoComplete="name" defaultValue={draft.firstName} required /></div>
           <div className="form-field"><label htmlFor="work-email">Work email</label><input id="work-email" name="email" type="email" autoComplete="email" defaultValue={draft.email} required /></div>
           <div className="form-field"><label htmlFor="company">Company</label><input id="company" name="company" autoComplete="organization" defaultValue={draft.company} required /></div>
           <div className="form-wide form-field"><label htmlFor="role">Role or title</label><input id="role" name="role" autoComplete="organization-title" defaultValue={draft.role} required /></div>
@@ -114,7 +114,7 @@ export function ConsultationForm({ context, source }: { context?: string; source
               {conditions.map((condition) => <option value={condition} key={condition}>{condition}</option>)}
             </select>
           </div>
-          <div className="form-wide form-field"><label htmlFor="goal">What are you trying to get done? <span>(optional)</span></label><textarea id="goal" name="goal" rows={4} defaultValue={draft.goal} /></div>
+          <div className="form-wide form-field"><label htmlFor="goal">What are you trying to deliver? <span>(optional)</span></label><textarea id="goal" name="goal" rows={4} defaultValue={draft.goal} /></div>
           <div className="form-wide form-field"><label htmlFor="timing">When does this need to improve? <span>(optional)</span></label><input id="timing" name="timing" defaultValue={draft.timing} /></div>
         </div>
       </fieldset>

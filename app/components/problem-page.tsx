@@ -1,12 +1,15 @@
 import Link from "@/app/components/native-link";
 import type { CSSProperties } from "react";
 import type { ProblemConditionId, ProblemMode } from "../data/primary-experience";
+import { primaryPageCopy } from "../data/sitemap-content";
 import { ExecutionSpine } from "./execution-spine";
+import { IndustryStatistics } from "./evidence-statistics";
 import { ImageMask } from "./image-mask";
 import { ProblemExplorer } from "./problem-explorer";
 import { ReviewModePanel } from "./review-mode-panel";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
+import { ScrollWords } from "./scroll-words";
 
 type WhatWeSolveExperienceProps = {
   initialCondition?: ProblemConditionId;
@@ -34,8 +37,8 @@ export function WhatWeSolveExperience({ initialCondition, reviewMode = false }: 
       <main id="main-content" tabIndex={-1}>
         <section className="problem-experience-hero supporting-hero" data-major-section data-journey-stage="recognize" aria-labelledby="problem-experience-title">
           <div className="supporting-hero-copy">
-            <h1 id="problem-experience-title">Priorities compete. Decisions reopen. <span className="headline-keyword headline-keyword-motion">Execution stalls.</span></h1>
-            <p>These strategy execution problems appear when leaders set different priorities, decisions lack owners, and portfolios exceed capacity. 120VC installs one shared way to prioritize, decide, and run the work.</p>
+            <h1 id="problem-experience-title">{primaryPageCopy["problems-we-solve"].title}</h1>
+            <p>{primaryPageCopy["problems-we-solve"].description}</p>
             <Link className="button button-primary" href="#explore-breakdowns">See the five problems <span aria-hidden="true" data-direction="down">↓</span></Link>
           </div>
           <ImageMask
@@ -51,19 +54,20 @@ export function WhatWeSolveExperience({ initialCondition, reviewMode = false }: 
 
         <section className="problem-experience-workspace" id="explore-breakdowns" data-major-section data-journey-stage="understand" aria-labelledby="problem-workspace-title">
           <div className="problem-workspace-heading supporting-section-heading">
-            <h2 id="problem-workspace-title">Which problem keeps coming back?</h2>
-            <p>Hover to see the impact. Choose “View details” to connect the problem to its warning signs, business cost, and next steps.</p>
+            <h2 id="problem-workspace-title"><ScrollWords>Which problem keeps coming back?</ScrollWords></h2>
+            <p>Open the problem that sounds familiar. See what it costs and what needs to change.</p>
           </div>
           <ProblemExplorer initialCondition={initialCondition} />
+          <IndustryStatistics />
         </section>
 
         <section className="problem-experience-repair" data-major-section data-journey-stage="solution" aria-labelledby="problem-repair-title">
           <div className="problem-repair-copy">
-            <h2 id="problem-repair-title">Different symptoms. The same broken execution chain.</h2>
-            <p>120VC reconnects intent, priorities, decisions, commitments, execution, and outcomes inside the work that must move.</p>
+            <h2 id="problem-repair-title">Find what&apos;s keeping execution from moving.</h2>
+            <p>We identify the execution breakdown and connect it to the right level of Execution Leadership.</p>
             <div className="primary-and-quiet">
-              <Link className="button button-primary" href="/leadership-system">See how the system works <span aria-hidden="true">→</span></Link>
-              <Link className="quiet-link quiet-link-strong" href="/consultation?source=problems">Talk through your problem <span aria-hidden="true">→</span></Link>
+              <Link className="button button-primary" href="/leadership-services">Explore What We Do <span aria-hidden="true">→</span></Link>
+              <Link className="quiet-link quiet-link-strong" href="/contact?source=problems">Let&apos;s Talk <span aria-hidden="true">→</span></Link>
             </div>
           </div>
           <ExecutionSpine state="repair" />

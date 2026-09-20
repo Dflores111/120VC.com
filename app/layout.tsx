@@ -4,9 +4,14 @@ import { ScrollNarrativeMotion } from "./components/scroll-narrative-motion";
 import "./globals.css";
 import "./master.css";
 import "./hierarchy.css";
+import "./sitemap-refresh.css";
+import "./reading-paths.css";
+import "./evidence-statistics.css";
+import "./problem-reader.css";
+import "./purposeful-motion.css";
 
 const SITE_URL = "https://www.120vc.com";
-const description = "120VC installs an Execution Leadership System inside live work so enterprise teams can align priorities, decision rights, ownership, capacity, and strategy execution.";
+const description = "120VC turns strategy into results through Execution Leadership Coaching, the Execution Leadership System, and Embedded Execution Leadership.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,7 +39,7 @@ const organizationJsonLd = {
   name: "120VC",
   url: SITE_URL,
   logo: "https://www.120vc.com/wp-content/uploads/2026/02/cropped-favicon-2-270x270.webp",
-  description: "120VC is an Execution Leadership firm that installs a leadership operating system for strategy execution inside live enterprise work.",
+  description,
   founder: { "@type": "Person", name: "J. Scott", jobTitle: "Founder and CEO" },
   contactPoint: { "@type": "ContactPoint", email: "info@120vc.com", telephone: "+1-818-842-8041", contactType: "sales" },
 };

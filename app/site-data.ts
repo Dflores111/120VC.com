@@ -1,3 +1,6 @@
+import { primaryPageCopy, sitemapPages } from "./data/sitemap-content";
+import { resourcePages } from "./data/resource-library";
+
 export type PageLink = {
   title: string;
   description: string;
@@ -32,6 +35,9 @@ export type SitePage = {
   secondaryCta?: { label: string; href: string };
   detailsTitle?: string;
   detailsDescription?: string;
+  closingTitle?: string;
+  closingDescription?: string;
+  closingCta?: { label: string; href: string };
 };
 
 const consultation = { label: "Request a Conversation", href: "/consultation" };
@@ -64,27 +70,29 @@ const problems: PageLink[] = [
   },
 ];
 
+// Preserve the meaning of existing detail-page references while the offer index changes.
+const legacySolutions: PageLink[] = [
+  { title: "Execution Leadership System", description: "Establish shared execution practices and install them through ELPA.", href: "/leadership-system" },
+  { title: "Execution Leadership Coaching", description: "Coach executive leaders through current priorities and commitments.", href: "/execution-leadership-coaching" },
+  { title: "Enterprise Transformation", description: "Lead transformation across functions with Embedded Execution Leadership.", href: "/enterprise-digital-transformation" },
+  { title: "Project Portfolio Services", description: "Lead execution across the portfolio with Embedded Execution Leadership.", href: "/roi-driven-project-portfolio-services" },
+];
+
 const solutions: PageLink[] = [
   {
-    title: "Executive Leadership Performance Accelerator",
-    description: "Install the full system with an accountable executive and the direct-report team around live work.",
-    href: "/executive-leadership-coaching-and-development-performance-accelerator",
-    label: "ELPA",
+    title: "Execution Leadership Coaching",
+    description: "Coach executive leaders through real priorities, decisions, and commitments.",
+    href: "/execution-leadership-coaching",
   },
   {
-    title: "Leadership Team Transformation",
-    description: "Help a senior team prioritize, decide, commit, challenge, and execute as one enterprise leadership unit.",
-    href: "/transformation-leadership-team-development-coaching-and-program",
+    title: "Execution Leadership System",
+    description: "Establish a shared operating model and install it through ELPA.",
+    href: "/leadership-system",
   },
   {
-    title: "Enterprise Transformation",
-    description: "Turn HR, IT, Finance, PMO, or another internal function into a measurable business-performance partner.",
-    href: "/enterprise-digital-transformation",
-  },
-  {
-    title: "Project Portfolio Services",
-    description: "Treat projects as investments through portfolio rationalization, governance, embedded leadership, and visibility.",
-    href: "/roi-driven-project-portfolio-services",
+    title: "Embedded Execution Leadership",
+    description: "Lead execution alongside your team across initiatives, portfolios, or enterprise transformation.",
+    href: "/embedded-execution-leadership",
   },
 ];
 
@@ -193,7 +201,7 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [solutions[0], solutions[1], { title: "The Execution Leadership System", description: "See the shared operating system installed inside live work.", href: "/leadership-system" }],
+    related: [legacySolutions[0], legacySolutions[1], { title: "The Execution Leadership System", description: "See the shared operating system installed inside live work.", href: "/leadership-system" }],
     primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
     secondaryCta: { label: "Explore the Execution Health Framework", href: "/resources/assessments/execution-health-diagnostic" },
   },
@@ -231,7 +239,7 @@ export const pages: Record<string, SitePage> = {
         statement: "The leadership team becomes the operating system—not a collection of senior functions.",
       },
     ],
-    related: [solutions[1], solutions[0]],
+    related: [legacySolutions[1], legacySolutions[0]],
     primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
     secondaryCta: { label: "Explore the Execution Health Framework", href: "/resources/assessments/execution-health-diagnostic" },
   },
@@ -268,7 +276,7 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [solutions[2], solutions[1]],
+    related: [legacySolutions[2], legacySolutions[1]],
     primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
     secondaryCta: { label: "Explore the Execution Health Framework", href: "/resources/assessments/execution-health-diagnostic" },
   },
@@ -305,7 +313,7 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [solutions[3], { title: "Project Leadership Managed Services", description: "Place experienced execution leaders inside critical work.", href: "/project-leadership-managed-services" }],
+    related: [legacySolutions[3], { title: "Project Leadership Managed Services", description: "Place experienced execution leaders inside critical work.", href: "/project-leadership-managed-services" }],
     primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
     secondaryCta: { label: "Explore the Execution Health Framework", href: "/resources/assessments/execution-health-diagnostic" },
   },
@@ -342,7 +350,7 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [solutions[2], solutions[3]],
+    related: [legacySolutions[2], legacySolutions[3]],
     primaryCta: { label: "See How the Execution Leadership System Works", href: "/leadership-system" },
     secondaryCta: { label: "Explore the Execution Health Framework", href: "/resources/assessments/execution-health-diagnostic" },
   },
@@ -480,7 +488,7 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [{ title: "Leadership Team Transformation", description: "Focus the system on the senior team’s shared operation.", href: solutions[1].href }, { title: "How the system works", description: "See the practices and installation path behind ELPA.", href: "/leadership-system" }],
+    related: [{ title: "Leadership Team Transformation", description: "Focus the system on the senior team’s shared operation.", href: legacySolutions[1].href }, { title: "How the system works", description: "See the practices and installation path behind ELPA.", href: "/leadership-system" }],
     primaryCta: { label: "Discuss ELPA", href: "/consultation" },
     secondaryCta: { label: "See the system", href: "/leadership-system" },
     detailsTitle: "What participation does ELPA require?",
@@ -524,7 +532,7 @@ export const pages: Record<string, SitePage> = {
         statement: "The goal is not a better offsite. It is a team that operates differently after the offsite is over.",
       },
     ],
-    related: [solutions[0], { title: "COO execution leadership", description: "See how the condition appears from the COO seat.", href: roles[0].href }],
+    related: [legacySolutions[0], { title: "COO execution leadership", description: "See how the condition appears from the COO seat.", href: roles[0].href }],
     primaryCta: { label: "Discuss Your Leadership Team", href: "/consultation" },
     secondaryCta: { label: "Explore the Leadership Team Assessment Framework", href: "/resources/assessments/leadership-team-execution-assessment" },
   },
@@ -571,7 +579,7 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [{ title: "Internal Function Performance", description: "Diagnose the recognizable buyer condition first.", href: "/problems-we-solve/internal-function-performance" }, solutions[3]],
+    related: [{ title: "Internal Function Performance", description: "Diagnose the recognizable buyer condition first.", href: "/problems-we-solve/internal-function-performance" }, legacySolutions[3]],
     primaryCta: { label: "Discuss Your Transformation", href: "/consultation" },
     secondaryCta: { label: "Explore the Cost Center Assessment Framework", href: "/resources/assessments/cost-center-to-value-engine-assessment" },
     detailsTitle: "How should transformation value be measured?",
@@ -677,9 +685,9 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [solutions[3], { title: "Smartsheet Portfolio Visibility", description: "Support decision-making with visible portfolio reality.", href: "/smartsheet-dashboards" }],
+    related: [legacySolutions[3], { title: "Smartsheet Portfolio Visibility", description: "Support decision-making with visible portfolio reality.", href: "/smartsheet-dashboards" }],
     primaryCta: { label: "Discuss the Initiative", href: "/consultation?condition=project" },
-    secondaryCta: { label: "Explore Portfolio Services", href: solutions[3].href },
+    secondaryCta: { label: "Explore Portfolio Services", href: legacySolutions[3].href },
     detailsTitle: "How does the project leader handle risk?",
     detailsDescription: "Open this question to see how decisions, trade-offs, and escalation risks become visible earlier.",
   },
@@ -720,9 +728,9 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [solutions[3], { title: "Project Leadership Managed Services", description: "Add experienced leadership inside work at risk.", href: "/project-leadership-managed-services" }],
+    related: [legacySolutions[3], { title: "Project Leadership Managed Services", description: "Add experienced leadership inside work at risk.", href: "/project-leadership-managed-services" }],
     primaryCta: { label: "Discuss Portfolio Visibility", href: "/consultation?condition=visibility" },
-    secondaryCta: { label: "Explore Portfolio Services", href: solutions[3].href },
+    secondaryCta: { label: "Explore Portfolio Services", href: legacySolutions[3].href },
   },
 
   "case-studies": {
@@ -820,7 +828,7 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [solutions[1], solutions[0]],
+    related: [legacySolutions[1], legacySolutions[0]],
     primaryCta: consultation,
     secondaryCta: { label: "See how the system works", href: "/leadership-system" },
   },
@@ -857,9 +865,9 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [solutions[3], solutions[2]],
+    related: [legacySolutions[3], legacySolutions[2]],
     primaryCta: consultation,
-    secondaryCta: { label: "Explore Portfolio Services", href: solutions[3].href },
+    secondaryCta: { label: "Explore Portfolio Services", href: legacySolutions[3].href },
   },
 
   "for-the-chief-technology-and-chief-information-officer": {
@@ -894,9 +902,9 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [solutions[2], solutions[3]],
+    related: [legacySolutions[2], legacySolutions[3]],
     primaryCta: consultation,
-    secondaryCta: { label: "Explore Enterprise Transformation", href: solutions[2].href },
+    secondaryCta: { label: "Explore Enterprise Transformation", href: legacySolutions[2].href },
   },
 
   "for-the-chief-transformation-officer": {
@@ -931,9 +939,9 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [solutions[2], solutions[1]],
+    related: [legacySolutions[2], legacySolutions[1]],
     primaryCta: consultation,
-    secondaryCta: { label: "Explore Enterprise Transformation", href: solutions[2].href },
+    secondaryCta: { label: "Explore Enterprise Transformation", href: legacySolutions[2].href },
   },
 
   "for-the-vp-and-division-presidents": {
@@ -968,9 +976,9 @@ export const pages: Record<string, SitePage> = {
         ],
       },
     ],
-    related: [solutions[1], solutions[0]],
+    related: [legacySolutions[1], legacySolutions[0]],
     primaryCta: consultation,
-    secondaryCta: { label: "Explore Leadership Team Transformation", href: solutions[1].href },
+    secondaryCta: { label: "Explore Leadership Team Transformation", href: legacySolutions[1].href },
   },
 
   insights: {
@@ -1106,7 +1114,7 @@ export const pages: Record<string, SitePage> = {
     sections: [
       {
         title: "What does 120VC do?",
-        paragraphs: ["120VC installs a shared Execution Leadership System inside live enterprise work. The system changes how leaders establish priorities, make decisions, allocate resources, own commitments, expose risk, rationalize work, develop capability, and measure outcomes."],
+        paragraphs: ["120VC coaches enterprise leaders, installs the Execution Leadership System, and leads critical work alongside client teams through Embedded Execution Leadership. Choose the level of involvement your team needs; system installation is delivered through ELPA."],
       },
       {
         title: "What is Execution Leadership?",
@@ -1114,7 +1122,7 @@ export const pages: Record<string, SitePage> = {
       },
       {
         title: "Is this coaching, consulting, or software?",
-        paragraphs: ["Coaching and consulting may be part of the installation, but 120VC is not an advice-only consultancy, generic coaching company, or software product. We work alongside leaders while the system is applied to real priorities, decisions, commitments, and outcomes. Technology may support visibility; it is not the leadership system."],
+        paragraphs: ["120VC offers Execution Leadership Coaching, a shared Execution Leadership System installed through ELPA, and Embedded Execution Leadership. You can enter at the level your situation requires. These are leadership services applied to current priorities, decisions, and commitments, not a software product."],
       },
       {
         title: "What does “installed inside live work” mean?",
@@ -1386,13 +1394,13 @@ Object.assign(pages, {
   "leadership-services/compare-solutions": {
     slug: "leadership-services/compare-solutions",
     eyebrow: "Compare solutions",
-    title: "Choose the installation scope by condition, team, and work.",
-    description: "Compare four ways to install the same Execution Leadership System without relying on unresolved duration, pricing, or phase claims.",
+    title: "Choose the level of Execution Leadership your team needs.",
+    description: "Compare coaching, system installation, and embedded leadership around the work your team needs to deliver.",
     intro: "The right scope follows the outcome at risk, the leadership authority involved, the team that must operate differently, and the live work where the system must hold.",
     seoTitle: "Compare 120VC Execution Leadership Solutions",
-    seoDescription: "Compare ELPA, Leadership Team Transformation, Enterprise Transformation, and Project Portfolio Services.",
+    seoDescription: "Compare Execution Leadership Coaching, the Execution Leadership System installed through ELPA, and Embedded Execution Leadership.",
     sections: [
-      { eyebrow: "Four starting points", title: "Where must the system be installed?", cards: solutions },
+      { eyebrow: "Three ways to engage", title: "Where does your team need support?", cards: solutions },
       {
         title: "Commercial details follow a qualified diagnosis.",
         paragraphs: ["Exact phases, duration, participation, deliverables, and investment remain scope-dependent and approval-controlled. The consultation clarifies fit before it recommends an offer."],
@@ -2297,6 +2305,23 @@ Object.assign(pages, {
     secondaryCta: { label: "View All Insights", href: "/resources/insights" },
   },
 } satisfies Record<string, SitePage>);
+
+Object.assign(pages, sitemapPages, resourcePages);
+pages["leadership-system/installation"].primaryCta = { label: "Explore ELPA installation", href: "/executive-leadership-coaching-and-development-performance-accelerator" };
+Object.assign(pages.about, {
+  intro: "We help enterprise teams turn commitments into delivered outcomes through coaching, system installation, and embedded execution leadership.",
+  sections: [
+    { title: "Experience leading the work you're responsible for.", paragraphs: ["We work alongside leaders responsible for critical initiatives, portfolios, and enterprise transformation. The same execution practices support our coaching, system installation, and embedded leadership."], presentation: "primary" },
+    { title: "Meet J. Scott and the team.", paragraphs: ["Meet the founder behind 120VC and the Execution Leadership practices we apply with enterprise teams."], cards: [{ title: "Meet J. Scott", description: "Learn about the founder of 120VC and his approach to Execution Leadership.", href: "/founder-jason-scott" }], presentation: "primary" },
+  ],
+  primaryCta: { label: "Meet J. Scott", href: "/founder-jason-scott" },
+  secondaryCta: { label: "Explore What We Do", href: "/leadership-services" },
+  closingTitle: "Let's talk about the work ahead.", closingDescription: "Tell us what your team needs to deliver.",
+  closingCta: { label: "Let's Talk", href: "/contact?source=about" },
+} satisfies Partial<SitePage>);
+for (const [slug, copy] of Object.entries(primaryPageCopy)) {
+  Object.assign(pages[slug], copy, { seoDescription: copy.description });
+}
 
 export const allPages = Object.values(pages);
 const firstWaveProblemPreviewHolds = new Set([

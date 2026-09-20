@@ -4,7 +4,8 @@ import ContactPage from "../contact/page";
 export const metadata: Metadata = {
   title: "Talk With 120VC About Work That Is Not Moving",
   description: "Bring the outcome that is not moving. 120VC will help clarify the execution problem, determine fit, and identify the most useful next step.",
-  alternates: { canonical: "/consultation" },
+  alternates: { canonical: "/contact" },
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Talk With 120VC About Work That Is Not Moving | 120VC",
     description: "Bring the outcome that is not moving. We will help clarify the problem, determine whether 120VC is relevant, and identify the next useful step.",

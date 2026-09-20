@@ -51,7 +51,9 @@ function audienceSection(section: PageSection): PageSection | null {
 }
 
 export function ContentPage({ page, reviewMode = false }: { page: SitePage; reviewMode?: boolean }) {
-  const finalCta = page.primaryCta || { label: "Request a Conversation", href: "/consultation" };
+  const finalCta = page.closingCta || page.primaryCta || { label: "Request a Conversation", href: "/consultation" };
+  const embeddedDetail = ["enterprise-digital-transformation", "roi-driven-project-portfolio-services", "project-leadership-managed-services", "pmo-managed-services"].includes(page.slug);
+  const coachingDetail = page.slug === "transformation-leadership-team-development-coaching-and-program";
   const consultationOutcome = finalCta.href.startsWith("/consultation") || finalCta.href.startsWith("/contact");
   const held = pageHasApprovalHold(page);
   const description = isGovernanceCopy(page.description) ? page.seoDescription : page.description;
@@ -93,6 +95,7 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
       )}
 
       <main id="main-content" tabIndex={-1}>
+        {(embeddedDetail || coachingDetail) && <nav className="offer-parent-link" aria-label="Offer navigation"><Link href={embeddedDetail ? "/embedded-execution-leadership" : "/execution-leadership-coaching"}>← Explore {embeddedDetail ? "Embedded Execution Leadership" : "Execution Leadership Coaching"}</Link></nav>}
         <section className={`inner-hero ${hasHeroAside ? "" : "content-hero-single"}`} data-major-section data-journey-stage="recognize" data-surface="neutral">
           <div className="inner-hero-copy">
             <h1 className={page.title.length > 58 ? "headline-compact-mobile" : undefined}>{page.title}</h1>
@@ -187,10 +190,10 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
 
         <section className="final-cta" data-major-section data-journey-stage="act" data-surface="outcome">
           <div>
-            <h2>{consultationOutcome ? "Talk through your execution problem." : "Continue from here."}</h2>
+            <h2>{page.closingTitle || (consultationOutcome ? "Talk through your execution problem." : "Continue from here.")}</h2>
           </div>
           <div>
-            {consultationOutcome && <p>Bring the outcome that is not moving. We will help clarify the problem, whether 120VC is relevant, and what should happen next.</p>}
+            {page.closingDescription ? <p>{page.closingDescription}</p> : consultationOutcome && <p>Bring the outcome that is not moving. We will help clarify the problem, whether 120VC is relevant, and what should happen next.</p>}
             <CtaLink action="primary" className="button button-light" href={finalCta.href}>{finalCta.label}<span aria-hidden="true" data-direction={finalCta.href.startsWith("/") ? undefined : "out"}>{finalCta.href.startsWith("/") ? "→" : "↗"}</span></CtaLink>
           </div>
         </section>

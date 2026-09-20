@@ -1,9 +1,12 @@
 import Link from "@/app/components/native-link";
 import { getHomepageCaseProof } from "../data/homepage-case-proof";
 import { FeaturedCaseCarousel } from "./featured-case-carousel";
+import { CompanyTrackRecord } from "./evidence-statistics";
+import { ScrollWords } from "./scroll-words";
 import { ReviewModePanel } from "./review-mode-panel";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
+import { primaryPageCopy } from "../data/sitemap-content";
 
 const methodology = [
   ["What changed?", "The case names the priority, decision, ownership, risk, or operating rhythm that moved first."],
@@ -14,7 +17,6 @@ const methodology = [
 
 export function ResultsExperience({ reviewMode = false }: { reviewMode?: boolean }) {
   const cases = getHomepageCaseProof(process.env.NODE_ENV, reviewMode);
-  const hasIllustrativeCases = cases.some((caseStudy) => caseStudy.proofStatus === "demo");
 
   return (
     <div className="site-shell hierarchy-site results-experience-site supporting-v2">
@@ -35,35 +37,31 @@ export function ResultsExperience({ reviewMode = false }: { reviewMode?: boolean
       <main id="main-content" tabIndex={-1}>
         <section className="results-experience-hero" data-major-section data-journey-stage="believe" aria-labelledby="results-experience-title">
           <div>
-            <h1 id="results-experience-title">Clear priorities. Decisions that hold. <span className="headline-keyword headline-keyword-on-dark headline-keyword-motion">Measurable results.</span></h1>
-            <p>Our strategy execution case studies show the starting condition, what 120VC changed in the work, the measurable result, the timeframe, and the evidence behind it.</p>
+            <h1 id="results-experience-title">{primaryPageCopy.results.title}</h1>
+            <p>{cases.length > 0 ? primaryPageCopy.results.description : "Looking for experience relevant to your priorities? Talk with us about your situation and the client evidence available to review."}</p>
           </div>
         </section>
 
         {cases.length > 0 ? (
           <section className="results-case-section" data-major-section data-journey-stage="validate" aria-labelledby="results-case-title">
             <header className="supporting-section-heading supporting-section-heading-light">
-              <h2 id="results-case-title">Before. What changed. After.</h2>
+              <h2 id="results-case-title"><ScrollWords>Before. What changed. After.</ScrollWords></h2>
               <p>Each story connects a problem in the work to the change 120VC helped install and the result that followed.</p>
             </header>
-            {hasIllustrativeCases && (
-              <div className="results-placeholder-notice" role="note">
-                <strong>Illustrative case studies</strong>
-                <span>Placeholder evidence—not approved for public publication.</span>
-              </div>
-            )}
+            <CompanyTrackRecord />
             <FeaturedCaseCarousel cases={cases} sourcePage="results" />
           </section>
         ) : (
           <section className="results-proof-gate" data-major-section data-journey-stage="validate" aria-labelledby="results-proof-gate-title">
-            <h2 id="results-proof-gate-title">What a credible case study should show.</h2>
-            <p>We publish client stories only with an inspectable result, clear context, responsible attribution, and explicit client permission. Illustrative evidence is never presented as customer proof.</p>
+            <h2 id="results-proof-gate-title"><ScrollWords>Find experience relevant to your work.</ScrollWords></h2>
+            <p>Client case studies are not yet available on this site. Tell us whether you are exploring coaching, system installation, or embedded leadership, and what results matter to your team.</p>
+            <Link className="quiet-link quiet-link-strong" href="/contact?request=evidence&source=results">Ask about relevant client experience <span aria-hidden="true">→</span></Link>
           </section>
         )}
 
-        <section className="results-methodology" data-major-section data-journey-stage="understand" aria-labelledby="results-methodology-title">
+        {cases.length > 0 && <section className="results-methodology" data-major-section data-journey-stage="understand" aria-labelledby="results-methodology-title">
           <header className="supporting-section-heading">
-            <h2 id="results-methodology-title">See what sits behind the number.</h2>
+            <h2 id="results-methodology-title"><ScrollWords>See what sits behind the number.</ScrollWords></h2>
             <p>Review how the result was measured, what contributed to it, and what the evidence can support.</p>
           </header>
           <div className="results-methodology-list">
@@ -71,14 +69,14 @@ export function ResultsExperience({ reviewMode = false }: { reviewMode?: boolean
               <details key={title}><summary>{title}<span aria-hidden="true">+</span></summary><p>{description}</p></details>
             ))}
           </div>
-        </section>
+        </section>}
 
         <section className="results-reassurance" data-major-section data-journey-stage="act" aria-labelledby="results-close-title">
           <div>
-            <h2 id="results-close-title">Need evidence your buying group can inspect?</h2>
-            <p>Bring the execution condition and the proof questions that matter. We will clarify what evidence is relevant without overstating what is available.</p>
+            <h2 id="results-close-title">What would meaningful progress look like for your team?</h2>
+            <p>Start with the outcome you need to achieve and what is getting in the way.</p>
           </div>
-          <Link className="button button-primary" href="/consultation?source=results">Talk through the evidence <span aria-hidden="true">→</span></Link>
+          <Link className="button button-primary" href="/contact?source=results">Let&apos;s Talk <span aria-hidden="true">→</span></Link>
         </section>
       </main>
 

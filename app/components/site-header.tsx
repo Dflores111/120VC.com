@@ -15,7 +15,8 @@ function pathIsCurrent(pathname: string, href: string) {
   if (href === "/leadership-services") {
     return [
       "/leadership-services",
-      "/executive-leadership-coaching-and-development-performance-accelerator",
+      "/execution-leadership-coaching",
+      "/embedded-execution-leadership",
       "/transformation-leadership-team-development-coaching-and-program",
       "/enterprise-digital-transformation",
       "/roi-driven-project-portfolio-services",
@@ -23,6 +24,7 @@ function pathIsCurrent(pathname: string, href: string) {
       "/smartsheet-dashboards",
     ].some((route) => pathname === route || pathname.startsWith(`${route}/`));
   }
+  if (href === "/leadership-system") return pathname === href || pathname.startsWith(`${href}/`) || pathname === "/executive-leadership-coaching-and-development-performance-accelerator";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
@@ -96,7 +98,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <Link className="header-cta" href="/consultation?source=global-header" data-analytics-event={pathname === "/" ? "homepage_consultation_clicked" : "consultation_clicked"} data-analytics-section="header">Request a Conversation <span aria-hidden="true">→</span></Link>
+        <Link className="header-cta" href="/contact?source=global-header" data-analytics-event={pathname === "/" ? "homepage_consultation_clicked" : "consultation_clicked"} data-analytics-section="header">Let&apos;s Talk <span aria-hidden="true">→</span></Link>
         <button
           ref={mobileButtonRef}
           className="mobile-nav-toggle"
@@ -124,7 +126,7 @@ export function SiteHeader() {
                 <Link href={item.href} key={item.href} aria-current={pathIsCurrent(pathname, item.href) ? "page" : undefined}>{item.label}</Link>
               ))}
             </nav>
-            <Link className="button button-primary mobile-drawer-cta" href="/consultation?source=mobile-navigation" data-analytics-event={pathname === "/" ? "homepage_consultation_clicked" : "consultation_clicked"} data-analytics-section="mobile-navigation">Request a Conversation <span aria-hidden="true">→</span></Link>
+            <Link className="button button-primary mobile-drawer-cta" href="/contact?source=mobile-navigation" data-analytics-event={pathname === "/" ? "homepage_consultation_clicked" : "consultation_clicked"} data-analytics-section="mobile-navigation">Let&apos;s Talk <span aria-hidden="true">→</span></Link>
           </aside>
         </div>
       )}

@@ -1,4 +1,11 @@
+import { sitemapProblems } from "./sitemap-problems";
+
 export type ProblemConditionId =
+  | "alignment"
+  | "ownership"
+  | "decision-bottlenecks"
+  | "priority-overload"
+  | "key-person-dependency"
   | "strategy-drift"
   | "leadership-fragmentation"
   | "transformation-stall"
@@ -31,10 +38,12 @@ export type ProblemCondition = {
   signals: [string, string, string];
   cost: string;
   change: string;
+  response?: { action: string; outcome: string };
   paths: Record<ProblemMode, ExperienceLink>;
 };
 
-export const problemConditions: readonly ProblemCondition[] = [
+export const problemConditions = sitemapProblems;
+export const legacyProblemConditions: readonly ProblemCondition[] = [
   {
     id: "strategy-drift",
     label: "Priorities keep changing",
@@ -307,9 +316,9 @@ export const systemNodes = [
 
 export const primaryNavigation = [
   { label: "What We Solve", href: "/problems-we-solve", requiresProof: false },
-  { label: "How We Help", href: "/leadership-services", requiresProof: false },
+  { label: "What We Do", href: "/leadership-services", requiresProof: false },
   { label: "How It Works", href: "/leadership-system", requiresProof: false },
-  { label: "Results", href: "/results", requiresProof: true },
+  { label: "Results", href: "/results", requiresProof: false },
   { label: "Resources", href: "/resources", requiresProof: false },
 ] as const;
 
@@ -322,7 +331,7 @@ export const problemRouteConditions: Record<string, ProblemConditionId> = {
 };
 
 export function isProblemConditionId(value: string | undefined): value is ProblemConditionId {
-  return problemConditions.some((condition) => condition.id === value);
+  return [...problemConditions, ...legacyProblemConditions].some((condition) => condition.id === value);
 }
 
 export function isProblemMode(value: string | undefined): value is ProblemMode {

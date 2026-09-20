@@ -173,7 +173,6 @@ export function PainPointCarousel() {
                     />
                   </span>
                   <span className="pain-card-copy">
-                    <small>{condition.label}</small>
                     <strong>{condition.headline}</strong>
                     <button
                       className="pain-card-disclosure home-solution-disclosure"
@@ -208,7 +207,6 @@ export function PainPointCarousel() {
                   id={detailId}
                   aria-hidden={!isFlipped}
                 >
-                  <small>{condition.label}</small>
                   <strong>{condition.headline}</strong>
                   <p className="pain-card-cost">{condition.cost}</p>
                   <p className="pain-card-change">{condition.change}</p>

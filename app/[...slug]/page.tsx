@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ContentPage } from "../components/content-page";
+import { OfferExperience } from "../components/offer-experience";
+import { sitemapPages } from "../data/sitemap-content";
 import { HowWeHelpExperience } from "../components/how-we-help-experience";
 import { HowItWorksExperience } from "../components/how-it-works-experience";
 import { ResourcesExperience } from "../components/resources-experience";
@@ -83,6 +85,7 @@ export default async function DynamicPage({ params, searchParams }: Props) {
   if (key === "leadership-system") return <HowItWorksExperience initialNode={initialNode} reviewMode={reviewMode} />;
   if (key === "results") return <ResultsExperience reviewMode={reviewMode} />;
   if (key === "resources") return <ResourcesExperience />;
+  if (sitemapPages[key]) return <OfferExperience page={page} />;
   return (
     <>
       {key === "faq" && <FaqJsonLd />}

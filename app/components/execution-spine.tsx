@@ -16,6 +16,11 @@ const stateLabels: Record<ExecutionSpineState, string> = {
   connected: "Strategy moves through priorities, decisions, commitments, and execution into measurable outcomes.",
   "home-break": "Strategy moves through priorities, decisions, commitments, and execution, but the connection to outcomes is breaking.",
   repair: "The leadership system reconnects intent, priorities, decisions, commitments, execution, and outcomes.",
+  alignment: "Leaders need a shared priority set before teams can coordinate delivery.",
+  ownership: "A shared outcome needs a clear owner and decision authority.",
+  "decision-bottlenecks": "Waiting decisions hold up commitments and delivery.",
+  "priority-overload": "Competing priorities exceed the team's capacity to deliver.",
+  "key-person-dependency": "Delivery depends on a few people instead of shared practices.",
   "strategy-drift": "Strategy branches into competing priorities before coordinated work begins.",
   "leadership-fragmentation": "Decisions split into competing commitments across the leadership team.",
   "transformation-stall": "Commitments loop back into the previous operating state instead of changing execution.",
@@ -26,6 +31,11 @@ const stateLabels: Record<ExecutionSpineState, string> = {
 function segmentState(state: ExecutionSpineState, index: number) {
   if (state === "connected" || state === "repair") return "connected";
   if (state === "home-break" && index === 4) return "broken";
+  if (state === "alignment" && index === 0) return "broken";
+  if (state === "ownership" && index === 2) return "broken";
+  if (state === "decision-bottlenecks" && index === 1) return "broken";
+  if (state === "priority-overload" && index === 1) return "constrained";
+  if (state === "key-person-dependency" && index === 3) return "broken";
   if (state === "strategy-drift" && index === 0) return "broken";
   if (state === "leadership-fragmentation" && index === 2) return "broken";
   if (state === "transformation-stall" && index === 3) return "broken";

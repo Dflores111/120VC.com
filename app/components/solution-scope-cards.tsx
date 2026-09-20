@@ -3,6 +3,8 @@
 /* eslint-disable @next/next/no-img-element -- Local editorial assets are rendered by vinext. */
 import Link from "@/app/components/native-link";
 import { useState } from "react";
+import { DisclosureCue } from "./disclosure-cue";
+import { useHydratedReducedMotion } from "./use-hydrated-reduced-motion";
 
 export type SolutionScope = {
   label: string;
@@ -24,9 +26,10 @@ export type SolutionScope = {
 export function SolutionScopeCards({ scopes }: { scopes: readonly SolutionScope[] }) {
   const [expanded, setExpanded] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const reduceMotion = useHydratedReducedMotion();
 
   return (
-    <div className="home-solution-grid">
+    <div className="home-solution-grid" data-reduced-motion={reduceMotion ? "true" : "false"}>
       {scopes.map((scope) => {
         const isExpanded = expanded === scope.label;
         const isRevealed = isExpanded || (!expanded && preview === scope.label);
@@ -63,6 +66,10 @@ export function SolutionScopeCards({ scopes }: { scopes: readonly SolutionScope[
               <h3>{scope.title}</h3>
               <p>{scope.description}</p>
               {scope.includes && <i>{scope.includes}</i>}
+              <dl className="home-solution-fit">
+                <dt>Best when</dt>
+                <dd>{scope.bestWhen}</dd>
+              </dl>
               <button
                 className="home-solution-disclosure"
                 type="button"
@@ -73,14 +80,10 @@ export function SolutionScopeCards({ scopes }: { scopes: readonly SolutionScope[
                   setPreview(null);
                 }}
               >
-                Is this the right fit? <span aria-hidden="true">{isRevealed ? "−" : "+"}</span>
+                See what changes <DisclosureCue expanded={isRevealed} activated={isExpanded} reduceMotion={reduceMotion} />
               </button>
               <div className="home-solution-change" id={panelId} aria-hidden={!isRevealed} data-revealed={isRevealed ? "true" : "false"}>
                 <dl className="home-solution-change-list">
-                  <div>
-                    <dt>Best when</dt>
-                    <dd>{scope.bestWhen}</dd>
-                  </div>
                   <div>
                     <dt>First shift</dt>
                     <dd>{scope.change}</dd>

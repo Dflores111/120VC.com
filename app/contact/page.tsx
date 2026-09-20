@@ -6,10 +6,9 @@ import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 
 export const metadata: Metadata = {
-  title: "Talk With 120VC About Work That Is Not Moving",
-  description: "Bring the outcome that is not moving. 120VC will help clarify the execution problem, determine fit, and identify the most useful next step.",
-  alternates: { canonical: "/consultation" },
-  robots: { index: false, follow: true },
+  title: "Let's Talk — Contact 120VC",
+  description: "Tell us what your team needs to deliver, what's at stake, and where execution is getting stuck.",
+  alternates: { canonical: "/contact" },
 };
 
 const contextLabels: Record<string, string> = {
@@ -17,6 +16,7 @@ const contextLabels: Record<string, string> = {
   "condition:project": "Project leadership scope",
   "condition:visibility": "Portfolio visibility",
   "request:reference": "Client reference request",
+  "request:evidence": "Relevant client experience",
   "request:speaking": "Speaking or media request",
 };
 
@@ -31,7 +31,8 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
   const condition = typeof params.condition === "string" ? params.condition : undefined;
   const request = typeof params.request === "string" ? params.request : undefined;
   const source = typeof params.source === "string" ? params.source : undefined;
-  const context = (condition && contextLabels[`condition:${condition}`]) || (request && contextLabels[`request:${request}`]) || undefined;
+  const inquiry = typeof params.inquiry === "string" ? params.inquiry : undefined;
+  const context = inquiry === "elpa" ? "ELPA installation" : (condition && contextLabels[`condition:${condition}`]) || (request && contextLabels[`request:${request}`]) || undefined;
 
   return (
     <div className="site-shell hierarchy-site consultation-page consultation-v2">
@@ -40,8 +41,8 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
       <main id="main-content" tabIndex={-1}>
         <section className="consultation-hero supporting-hero" data-major-section data-journey-stage="recognize" aria-labelledby="consultation-title">
           <div className="supporting-hero-copy">
-            <h1 id="consultation-title">Where is execution breaking down?</h1>
-            <p>Bring the outcome at risk, the decision that will not hold, or the work that keeps slipping. We will help clarify the condition, determine whether 120VC is relevant, and identify the most useful next step.</p>
+            <h1 id="consultation-title">What does your team need to deliver?</h1>
+            <p>Tell us what&apos;s at stake, what&apos;s getting stuck, and where you need support.</p>
             <a className="button button-primary" href="#consultation-request">Start the request <span aria-hidden="true" data-direction="down">↓</span></a>
           </div>
           <ImageMask
@@ -57,15 +58,16 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
 
         <section className="consultation-form-stage" id="consultation-request" data-major-section data-journey-stage="act" aria-labelledby="consultation-form-stage-title">
           <div className="consultation-form-intro">
-            <h2 id="consultation-form-stage-title">Share enough context for a useful conversation.</h2>
-            <p>You do not need a diagnosis or polished brief. Two short steps give us enough context to prepare a useful conversation.</p>
+            <h2 id="consultation-form-stage-title">Tell us what&apos;s happening and where you need help.</h2>
+            <p>Share your context, then prepare an email to our team. You can review it before sending.</p>
           </div>
           <ConsultationForm context={context} source={source} />
         </section>
 
         <section className="consultation-sequence" data-major-section data-journey-stage="understand" aria-labelledby="consultation-sequence-title">
           <header className="supporting-section-heading supporting-section-heading-centered">
-            <h2 id="consultation-sequence-title">What happens after you reach out.</h2>
+            <h2 id="consultation-sequence-title">Start with a conversation about your priorities.</h2>
+            <p>We&apos;ll review your message and discuss whether 120VC is the right fit.</p>
           </header>
           <ol>
             {conversationSteps.map(([title, description], index) => (
