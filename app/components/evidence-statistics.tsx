@@ -30,7 +30,7 @@ export function IndustryStatistics() {
   );
 }
 
-export function CompanyTrackRecord() {
+export function CompanyTrackRecord({ proposedHeadline }: { proposedHeadline?: string } = {}) {
   const statistics = getCompanyStatisticsForReview(process.env.NODE_ENV);
   if (statistics.length === 0) return null;
 
@@ -40,6 +40,7 @@ export function CompanyTrackRecord() {
         <p className="evidence-stats-eyebrow">120VC, by the numbers</p>
         <span className="evidence-review-status">Review only · Not approved for publication</span>
       </div>
+      {proposedHeadline && <h3 className="evidence-proposed-headline">{proposedHeadline}</h3>}
       <dl className="evidence-stats-grid">
         {statistics.map((stat) => (
           <div className="evidence-stat" key={stat.value}>

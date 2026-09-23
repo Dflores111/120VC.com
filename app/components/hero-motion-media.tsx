@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useHydratedReducedMotion } from "./use-hydrated-reduced-motion";
 
 const heroImage = {
-  src: "/images/story/team-working-together.jpg",
+  src: "/images/homepage/execution-in-the-work.webp",
   position: "50% 50%",
 } as const;
 
@@ -38,7 +38,7 @@ export function HeroMotionMedia() {
   return (
     <figure
       className="hero-motion-media"
-      aria-label="Leaders working through priorities and decisions together. Illustrative photography."
+      aria-label="Leaders working through a delivery commitment together. AI-generated illustration, not client photography."
       data-paused={motionPaused ? "true" : "false"}
       data-complete={completed ? "true" : "false"}
     >
@@ -47,11 +47,12 @@ export function HeroMotionMedia() {
           key={run}
           alt=""
           className="is-active"
-          height={1008}
+          height={941}
           loading="eager"
           src={heroImage.src}
           style={{ objectPosition: heroImage.position }}
-          width={1800}
+          width={1672}
+          fetchPriority="high"
           onAnimationEnd={() => setCompleted(true)}
         />
       </div>
@@ -66,7 +67,7 @@ export function HeroMotionMedia() {
           {completed ? "Replay motion" : paused ? "Play motion" : "Pause motion"}
         </button>
       )}
-      <figcaption>Illustrative photography</figcaption>
+      <figcaption>AI-generated illustration</figcaption>
     </figure>
   );
 }

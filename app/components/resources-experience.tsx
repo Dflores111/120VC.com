@@ -7,8 +7,9 @@ import { ScrollWords } from "./scroll-words";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import { primaryPageCopy } from "../data/sitemap-content";
+import type { ResourceCategory } from "../data/resource-library";
 
-export function ResourcesExperience() {
+export function ResourcesExperience({ initialCategory }: { initialCategory?: ResourceCategory }) {
   return (
     <div className="site-shell hierarchy-site resources-experience-site supporting-v2">
       <a className="skip-link" href="#main-content">Skip to content</a>
@@ -41,7 +42,7 @@ export function ResourcesExperience() {
             <h2 id="resource-library-title"><ScrollWords>Choose what would help right now.</ScrollWords></h2>
             <p>Explore a framework for the work in front of you, or understand why the problem keeps returning.</p>
           </header>
-          <ResourceExplorer />
+          <ResourceExplorer initialCategory={initialCategory} />
         </section>
 
         <section className="resource-book-section" data-major-section data-journey-stage="understand" aria-labelledby="resource-book-title">

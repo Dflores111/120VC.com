@@ -84,7 +84,11 @@ export default async function DynamicPage({ params, searchParams }: Props) {
   if (key === "leadership-services") return <HowWeHelpExperience />;
   if (key === "leadership-system") return <HowItWorksExperience initialNode={initialNode} reviewMode={reviewMode} />;
   if (key === "results") return <ResultsExperience reviewMode={reviewMode} />;
-  if (key === "resources") return <ResourcesExperience />;
+  if (key === "resources") {
+    const requestedCategory = Array.isArray(query.category) ? query.category[0] : query.category;
+    const initialCategory = requestedCategory === "frameworks" || requestedCategory === "guides" || requestedCategory === "insights" ? requestedCategory : undefined;
+    return <ResourcesExperience initialCategory={initialCategory} />;
+  }
   if (sitemapPages[key]) return <OfferExperience page={page} />;
   return (
     <>

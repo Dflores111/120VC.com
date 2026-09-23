@@ -1,0 +1,32 @@
+{
+  "created": "2026-09-22",
+  "mode": "built-in image_gen, generate",
+  "purpose": "Fictional editorial illustrations of execution pressure, collaborative leadership and commitments. Not client evidence.",
+  "disclosure": "AI-generated illustration",
+  "assets": [
+    {
+      "name": "execution-under-pressure",
+      "source": "/Users/diegoflores/.codex/generated_images/01a01d97-5342-76b1-b68e-5130514c90da/exec-d359fc24-4264-4281-8cf8-16dfc8aa60cc.png",
+      "original": "assets/generated-homepage/execution-under-pressure.png",
+      "web": "public/images/homepage/execution-under-pressure.webp",
+      "prompt": "Generate one photorealistic landscape editorial photograph, 3:2 aspect ratio, for a B2B strategy-execution website. Candid observational photograph of three enterprise leaders in a real, modest working meeting, not a staged boardroom. A woman in her late forties with tired but focused eyes sits nearest camera looking down at a printed project plan, pen paused over a crossed-out line; a male colleague in his fifties leans back listening with concern, third colleague partly visible in soft focus. Subtle expression of too many priorities and a difficult delivery decision, composed and intelligent, not theatrical despair. Papers slightly askew, one closed laptop, water glass, a worn notebook; no excessive props. Off-center documentary framing from a seated colleague's viewpoint; faces and hands anatomically natural. Real mixed afternoon window light and muted practical office lighting, warm neutral colors, understated dark and clay-toned clothing. Full-frame camera aesthetic, 50mm lens, f/2.8, 1/160 sec, ISO 800, believable depth of field, natural skin pores and age lines, fabric wrinkles, fine luminance grain, imperfect real-office background. No one looks at camera. No smiles for camera, no handshake, no pointing at fake charts, no glamour retouching, no glass skyscraper cliché, no logos, no readable text, no watermark. This is a fictional illustrative scene, not a photograph of actual clients. Return only the image.",
+      "cameraNote": "Camera settings describe the intended aesthetic; no physical camera was used."
+    },
+    {
+      "name": "leaders-working-alongside",
+      "source": "/Users/diegoflores/.codex/generated_images/01a01d97-5342-76b1-b68e-5130514c90da/exec-1c97b0f8-cfb7-4fd4-85c1-18d694192db9.png",
+      "original": "assets/generated-homepage/leaders-working-alongside.png",
+      "web": "public/images/homepage/leaders-working-alongside.webp",
+      "prompt": "Generate one photorealistic landscape editorial photograph, 3:2 aspect ratio, for an enterprise leadership website. An intimate candid moment midway through a real working session: a Black woman executive in her early fifties in an understated textured jacket listens closely to a male colleague in his forties who is explaining one practical next step on a paper plan; an older woman colleague on the far side is taking a note. Shared concentration just easing into the small, genuine half-smile of understanding. Not celebration or smiling at camera. Everyone seated beside one another at the same ordinary meeting table, equal partners rather than presenter and audience. A few working papers, notebook with unreadable notes, capped marker, imperfect coffee cup ring; no more props. Medium environmental frame at eye level from the near end of the table, one soft foreground shoulder for a candid documentary feel. Natural overcast window light, restrained warm neutrals, muted sage shirt, subtle terracotta notebook. Full-frame 35mm lens, f/3.2, 1/125 second, ISO 640, modest depth of field with credible room context. Natural skin texture, age lines, uneven fabric, small real-life imperfections. Avoid glossy stock photo lighting, posed grins, handshake, high-five, dramatic gesture, plastic faces, luxury showroom office, prominent screens. No logos or readable lettering or watermark. Fictional illustrative people, not actual 120VC staff or clients. Return only the image.",
+      "cameraNote": "Camera settings describe the intended aesthetic; no physical camera was used."
+    },
+    {
+      "name": "execution-in-the-work",
+      "source": "/Users/diegoflores/.codex/generated_images/01a01d97-5342-76b1-b68e-5130514c90da/exec-6eafd3ff-e662-4599-931e-f59b556d840a.png",
+      "original": "assets/generated-homepage/execution-in-the-work.png",
+      "web": "public/images/homepage/execution-in-the-work.webp",
+      "prompt": "Create a single photorealistic wide 16:9 editorial photograph for an enterprise strategy execution homepage hero. A quietly decisive moment at work: two senior operations leaders in their forties and fifties standing next to a working desk in a real enterprise operations office, reviewing a printed delivery plan before returning to their teams. One woman in a charcoal jacket makes a small precise note on the page while her Latino male colleague in an open-collar pale shirt listens with attentive, grounded confidence. Natural human focus, a slight expression of agreement, no smiles for a camera. Place the two people in the RIGHTMOST THIRD of the wide frame, keep the left half largely a softly out-of-focus dark warm-grey office wall with no people, for a website text overlay (do not render any text). Side-lit through a real window at the far right, practical office not showroom: cables and a notebook on the desk, soft reflection in a glass partition, occupied workstations distant and blurred. Full-frame documentary camera aesthetic, 35mm lens, f/4, 1/160 sec, ISO 1000, subtle sensor grain, natural skin texture and clothing wrinkles, neutral color, no exaggerated cinematic grading or glossy stock-photo finish. Waist-up or three-quarter framing with believable hands. No handshake, high-five, dramatic pointing, fake holograms, readable text, logos or watermark. Fictional illustrative people, not actual 120VC clients or employees. Return only the image.",
+      "cameraNote": "Camera settings describe the intended aesthetic; no physical camera was used."
+    }
+  ]
+}

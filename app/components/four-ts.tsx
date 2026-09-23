@@ -1,25 +1,24 @@
 import Link from "./native-link";
 import { ExecutionIcon } from "./execution-icon";
-import { fourTs } from "../data/sitemap-content";
+import { homepage } from "../data/homepage-content";
 import { ScrollWords } from "./scroll-words";
 
 export function FourTs() {
   return (
-    <section className="four-ts-section" data-major-section data-journey-stage="recognize" aria-labelledby="four-ts-title">
-      <div className="home-section-heading home-section-heading-stacked">
-        <h2 id="four-ts-title"><ScrollWords>What are you looking to change?</ScrollWords></h2>
-        <p>Explore the execution challenges behind investments in technology, talent, training, and transformation.</p>
+    <section className="four-ts-section homepage-section" id="four-ts" data-major-section data-journey-stage="recognize" aria-labelledby="four-ts-title">
+      <div className="homepage-heading">
+        <h2 id="four-ts-title"><ScrollWords>{homepage.fourTs.title}</ScrollWords></h2>
+        <p>{homepage.fourTs.description}</p>
       </div>
       <div className="four-ts-grid">
-        {fourTs.map((item) => (
-          <article className="four-ts-card" key={item.name}>
-            <div className="four-ts-label"><ExecutionIcon name={item.icon} /><span>{item.name}</span></div>
-            <h3>{item.title}</h3>
+        {homepage.fourTs.cards.map((item) => (
+          <article className="four-ts-card" key={item.title} data-scroll-enter>
+            <div className="four-ts-label"><ExecutionIcon name={item.icon} /><h3>{item.title}</h3></div>
             <p>{item.description}</p>
-            <Link className="quiet-link quiet-link-strong" href={item.href}>{item.action}<span aria-hidden="true">→</span></Link>
           </article>
         ))}
       </div>
+      <Link className="home-section-link" href="/problems-we-solve">Understand the execution gap <span aria-hidden="true">→</span></Link>
     </section>
   );
 }

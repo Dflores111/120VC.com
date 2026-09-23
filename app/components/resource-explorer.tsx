@@ -13,9 +13,9 @@ const groups = [
   { id: "insights", label: "Insights", description: "Understand where execution breaks down and what leaders can change." },
 ] as const;
 
-export function ResourceExplorer() {
+export function ResourceExplorer({ initialCategory = "all" }: { initialCategory?: ResourceCategory | "all" }) {
   const reduceMotion = useHydratedReducedMotion();
-  const [activeId, setActiveId] = useState<ResourceCategory | "all">("all");
+  const [activeId, setActiveId] = useState<ResourceCategory | "all">(initialCategory);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -50,6 +50,10 @@ export function ResourceExplorer() {
     const next = groups[index];
     if (!next) return;
     setActiveId(next.id);
+    const url = new URL(window.location.href);
+    if (next.id === "all") url.searchParams.delete("category");
+    else url.searchParams.set("category", next.id);
+    window.history.replaceState(window.history.state, "", url);
     rail.current?.scrollTo({ left: 0, behavior: "instant" });
     tabs.current[index]?.focus();
   }

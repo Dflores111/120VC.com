@@ -1,90 +1,146 @@
 import type { Metadata } from "next";
-import Link from "@/app/components/native-link";
-import { FeaturedCaseCarousel } from "./components/featured-case-carousel";
+import Link from "./components/native-link";
+import { ExecutionIcon } from "./components/execution-icon";
 import { CompanyTrackRecord, IndustryStatistics } from "./components/evidence-statistics";
+import { HomepageEditorialImage, LeadSentence } from "./components/homepage-editorial";
+import { FeaturedCaseCarousel } from "./components/featured-case-carousel";
 import { FourTs } from "./components/four-ts";
 import { HeroMotionMedia } from "./components/hero-motion-media";
-import { KineticStatement } from "./components/kinetic-statement";
 import { LogoMarquee } from "./components/logo-marquee";
-import { PainPointCarousel } from "./components/pain-point-carousel";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
-import { SolutionScopeCards } from "./components/solution-scope-cards";
 import { ScrollWords } from "./components/scroll-words";
-import { getHomepageCaseProof } from "./data/homepage-case-proof";
+import { ProblemSpotlightLink } from "./components/problem-spotlight-link";
+import { approvedHomepageCaseProof, caseMayRenderForProductionAudience } from "./data/homepage-case-proof";
+import { homepage as copy } from "./data/homepage-content";
 import { offerScopes } from "./data/sitemap-content";
 
-const description = "We coach enterprise leaders, install a shared way to execute, and lead critical work alongside your team.";
 export const metadata: Metadata = {
-  title: "Execution Leadership That Turns Strategy Into Results",
-  description,
+  title: copy.seoTitle,
+  description: copy.seoDescription,
   alternates: { canonical: "/" },
-  openGraph: { title: "Execution Leadership That Turns Strategy Into Results | 120VC", description, images: [{ url: "/og.png", width: 1200, height: 630, alt: "120VC Execution Leadership" }] },
-  twitter: { card: "summary_large_image", title: "Execution Leadership | 120VC", description, images: ["/og.png"] },
+  openGraph: { title: `${copy.seoTitle} | 120VC`, description: copy.seoDescription, images: [{ url: "/og.png", width: 1200, height: 630, alt: "120VC strategy execution for enterprise teams" }] },
+  twitter: { card: "summary_large_image", title: `${copy.seoTitle} | 120VC`, description: copy.seoDescription, images: ["/og.png"] },
 };
 
-type HomeProps = { searchParams?: Promise<Record<string, string | string[] | undefined>> };
-
-export default async function Home({ searchParams }: HomeProps) {
-  const query = searchParams ? await searchParams : {};
-  const reviewMode = query.review === "1" && process.env.NODE_ENV !== "production";
-  const forceReducedMotion = query.motion === "reduce" && process.env.NODE_ENV !== "production";
-  const featuredCases = getHomepageCaseProof(process.env.NODE_ENV, reviewMode);
+export default function Home() {
+  // Case results require approval. Company-reported claims are a clearly marked
+  // development-only design preview; the evidence component enforces that boundary.
+  const featuredCases = approvedHomepageCaseProof.filter(caseMayRenderForProductionAudience);
   return (
-    <div className="site-shell hierarchy-site experience-home commercial-home sitemap-home">
+    <div className="site-shell hierarchy-site experience-home commercial-home sitemap-home homepage-refresh">
       <a className="skip-link" href="#main-content">Skip to content</a>
       <SiteHeader />
       <main id="main-content" tabIndex={-1}>
         <section className="home-commercial-hero" data-major-section data-journey-stage="position" aria-labelledby="home-title">
           <HeroMotionMedia />
           <div className="home-commercial-hero-copy">
-            <p className="home-hero-eyebrow">Execution Leadership for enterprise teams</p>
-            <h1 className="heading-wide" id="home-title">Execution Leadership that <span className="headline-keyword headline-keyword-on-dark">turns strategy into results.</span></h1>
-            <p>{description}</p>
+            <p className="home-hero-eyebrow">{copy.hero.eyebrow}</p>
+            <h1 className="heading-wide" id="home-title">Strategy execution that <span className="headline-keyword headline-keyword-on-dark">delivers on your commitments.</span></h1>
+            {copy.hero.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
             <div className="primary-and-quiet home-hero-actions">
-              <Link className="button button-primary" href="/contact?source=homepage-hero" data-primary-action data-analytics-event="homepage_consultation_clicked" data-analytics-section="hero">Let&apos;s Talk <span aria-hidden="true">→</span></Link>
-              <Link className="quiet-link" href="#how-we-help" data-secondary-action data-analytics-event="homepage_secondary_cta_clicked" data-analytics-section="hero">Explore What We Do <span aria-hidden="true" data-direction="down">↓</span></Link>
+              <Link className="button button-primary" href="/contact?source=homepage-hero" data-primary-action data-analytics-event="homepage_consultation_clicked" data-analytics-section="hero">Let’s Talk <span aria-hidden="true">→</span></Link>
+              <Link className="quiet-link" href="#execution-gap" data-secondary-action data-analytics-event="homepage_secondary_cta_clicked" data-analytics-section="hero">Find what’s blocking delivery <span aria-hidden="true" data-direction="down">↓</span></Link>
             </div>
           </div>
         </section>
-        <LogoMarquee />
-        <section className="home-pains" data-major-section data-journey-stage="recognize" aria-labelledby="home-pains-title">
-          <div className="home-section-heading home-section-heading-stacked">
-            <h2 className="heading-wide" id="home-pains-title"><ScrollWords>{"Your teams are busy. Why aren't critical initiatives moving?"}</ScrollWords></h2>
-            <p>Priorities compete. Ownership is unclear. Decisions take too long. Your team keeps working harder while deadlines slip.</p>
+        <div className="homepage-industry-context"><IndustryStatistics /></div>
+        <section className="homepage-section homepage-problems" id="execution-gap" data-major-section data-journey-stage="recognize" aria-labelledby="home-pains-title">
+          <header className="homepage-heading">
+            <h2 id="home-pains-title"><ScrollWords emphasis="strategy execution gap">{copy.problem.title}</ScrollWords></h2>
+          </header>
+          <div className="homepage-editorial-row">
+            <p className="homepage-editorial-copy"><LeadSentence>{copy.problem.description}</LeadSentence></p>
+            <HomepageEditorialImage scene="pressure" />
           </div>
-          <IndustryStatistics />
-          <PainPointCarousel />
-          <Link className="home-section-link" href="/problems-we-solve">Explore the execution gap <span aria-hidden="true">→</span></Link>
+          <div className="homepage-problem-grid">
+            {copy.problem.cards.map(card => (
+              <article className="homepage-problem-card" key={card.href} data-scroll-enter>
+                <ProblemSpotlightLink href={card.href}>
+                <ExecutionIcon name={card.icon} />
+                <h3><span className="homepage-problem-keyword">{card.title.split(/(?<=[:?]) /)[0]}</span>{" "}{card.title.split(/(?<=[:?]) /).slice(1).join(" ")}</h3>
+                <p><LeadSentence>{card.description}</LeadSentence></p>
+                <span className="quiet-link quiet-link-strong">{card.action} <span aria-hidden="true">→</span></span>
+                </ProblemSpotlightLink>
+              </article>
+            ))}
+          </div>
+          <Link className="home-section-link" href="/problems-we-solve">Explore the strategy execution gap <span aria-hidden="true">→</span></Link>
         </section>
         <FourTs />
-        <KineticStatement />
-        <section className="home-solutions" id="how-we-help" data-major-section data-journey-stage="solution" aria-labelledby="home-solutions-title">
-          <div className="home-section-heading">
-            <h2 className="heading-medium" id="home-solutions-title"><ScrollWords>Execution Leadership at the level your team needs.</ScrollWords></h2>
-            <p>Coach your leaders. Install the Execution Leadership System. Bring execution leaders into the work that needs to move.</p>
+        <section className="homepage-section homepage-why" id="why-120vc" data-major-section data-journey-stage="proof" aria-labelledby="home-why-title">
+          <header className="homepage-heading">
+            <h2 id="home-why-title"><ScrollWords emphasis="work alongside you.">{copy.why.title}</ScrollWords></h2>
+          </header>
+          <div className="homepage-editorial-row">
+            <div className="homepage-editorial-copy">
+              {copy.why.paragraphs.map(paragraph => <p key={paragraph}><LeadSentence>{paragraph}</LeadSentence></p>)}
+              <Link className="home-section-link" href="/about">Meet 120VC <span aria-hidden="true">→</span></Link>
+            </div>
+            <HomepageEditorialImage scene="alongside" />
           </div>
-          <SolutionScopeCards scopes={offerScopes} />
+          <LogoMarquee />
+          {featuredCases.length > 0 && <div className="homepage-approved-proof"><FeaturedCaseCarousel cases={featuredCases} /></div>}
+        </section>
+        <section className="homepage-section homepage-system" id="execution-leadership-system" data-major-section data-journey-stage="understand" aria-labelledby="home-system-title">
+          <header className="homepage-heading">
+            <h2 id="home-system-title"><ScrollWords emphasis="disciplined execution." onDark>{copy.system.title}</ScrollWords></h2>
+            {copy.system.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+          </header>
+          <ul className="homepage-system-outcomes" aria-label="What the Execution Leadership System makes possible" data-scroll-enter>
+            {copy.system.outcomes.map(outcome => <li key={outcome.title}><ExecutionIcon name={outcome.icon} /><strong>{outcome.title}</strong></li>)}
+          </ul>
+          <CompanyTrackRecord proposedHeadline="This Isn’t Theory. It’s Proven." />
+          <Link className="button button-light" href="/leadership-system" data-primary-action>See how the system works <span aria-hidden="true">→</span></Link>
+        </section>
+        <section className="homepage-section homepage-offers" id="what-we-do" data-major-section data-journey-stage="solution" aria-labelledby="home-solutions-title">
+          <header className="homepage-heading">
+            <h2 id="home-solutions-title"><ScrollWords>{copy.offers.title}</ScrollWords></h2>
+            <p>{copy.offers.description}</p>
+          </header>
+          <div className="homepage-offer-grid">
+            {copy.offers.cards.map(card => (
+              <article className="homepage-offer-card" key={card.href} data-scroll-enter>
+                <h3>{card.title}</h3>
+                <p><LeadSentence emphasis={card.href === "/execution-leadership-coaching" ? "Executive team coaching" : undefined}>{card.description}</LeadSentence></p>
+                <div className="homepage-offer-fit"><span>Best when</span><p>{offerScopes.find(scope => scope.href === card.href)?.bestWhen}</p></div>
+                <div className="homepage-offer-links">
+                  <Link className="quiet-link quiet-link-strong" href={card.href}>{card.action} <span aria-hidden="true">→</span></Link>
+                  {"secondary" in card && <Link className="homepage-context-link" href={card.secondary.href}>{card.secondary.action} <span aria-hidden="true">→</span></Link>}
+                </div>
+              </article>
+            ))}
+          </div>
           <Link className="home-section-link" href="/leadership-services">Explore What We Do <span aria-hidden="true">→</span></Link>
         </section>
-        {featuredCases.length > 0 && <section className="home-client-results" data-major-section data-journey-stage="proof" aria-labelledby="home-client-results-title">
-          <div className="home-section-heading"><h2 id="home-client-results-title"><ScrollWords>See what changed for our clients.</ScrollWords></h2><p>The challenge, the work we led together, and the business result.</p></div>
-          <CompanyTrackRecord />
-          <FeaturedCaseCarousel cases={featuredCases} forceReducedMotion={forceReducedMotion} />
-          <Link className="home-section-link" href="/results">See client results <span aria-hidden="true">→</span></Link>
-        </section>}
-        <section className="home-resource-intro" data-major-section data-journey-stage="understand" aria-labelledby="home-resources-title">
-          <div><h2 id="home-resources-title"><ScrollWords>Practical guidance for the work in front of you.</ScrollWords></h2><p>Explore frameworks, guides, and insights to clarify priorities, make decisions, and keep commitments moving.</p><Link className="button button-light" href="/resources" data-primary-action>Explore resources <span aria-hidden="true">→</span></Link></div>
-          <nav aria-label="Featured resources">
-            <Link href="/resources/tools/2x2-prioritization-matrix"><span>Framework</span><strong>Decide what deserves attention.</strong><i aria-hidden="true">→</i></Link>
-            <Link href="/resources/guides/weekly-operating-rhythm"><span>Guide</span><strong>Build a weekly operating rhythm.</strong><i aria-hidden="true">→</i></Link>
-            <Link href="/resources/insights/why-digital-transformations-stall"><span>Insight</span><strong>Understand why transformation stalls.</strong><i aria-hidden="true">→</i></Link>
+        <section className="homepage-section homepage-roles" id="who-we-help" data-major-section data-journey-stage="identify" aria-labelledby="home-roles-title">
+          <header className="homepage-heading">
+            <h2 id="home-roles-title"><ScrollWords emphasis="outcomes you own.">{copy.roles.title}</ScrollWords></h2>
+            <p>{copy.roles.description}</p>
+          </header>
+          <nav className="homepage-role-links" aria-label="Explore execution challenges by role">
+            {copy.roles.items.map(role => <Link href={role.href} key={role.href}><strong>{role.title}</strong><span>{role.description}</span><i aria-hidden="true">→</i></Link>)}
           </nav>
+          <Link className="home-section-link" href="/for-leaders">See who we work with <span aria-hidden="true">→</span></Link>
         </section>
-        <section className="experience-close home-commercial-close" data-major-section data-journey-stage="act" aria-labelledby="home-close-title">
-          <h2 className="heading-wide" id="home-close-title">What does your team need to deliver?</h2>
-          <p>Tell us what&apos;s at stake and where execution is getting stuck.</p>
-          <Link className="button button-primary" href="/contact?source=homepage-final" data-primary-action data-analytics-event="homepage_consultation_clicked" data-analytics-section="final-cta">Let&apos;s Talk <span aria-hidden="true">→</span></Link>
+        <section className="homepage-section homepage-resources" id="resources" data-major-section data-journey-stage="explore" aria-labelledby="home-resources-title">
+          <header className="homepage-heading">
+            <h2 id="home-resources-title"><ScrollWords>{copy.resources.title}</ScrollWords></h2>
+          </header>
+          <div className="homepage-resource-layout">
+            <div className="homepage-resource-intro">
+              <p>{copy.resources.description}</p>
+              <Link className="button button-light" href="/resources" data-primary-action>Browse all resources <span aria-hidden="true">→</span></Link>
+            </div>
+            <nav className="homepage-resource-links" aria-label="Explore resource categories">
+              {copy.resources.items.map(resource => <Link href={resource.href} key={resource.href}><h3>{resource.title}</h3><p>{resource.description}</p><span className="homepage-resource-action">{resource.action} <i aria-hidden="true">→</i></span></Link>)}
+            </nav>
+          </div>
+        </section>
+        <section className="experience-close home-commercial-close" id="lets-talk" data-major-section data-journey-stage="act" aria-labelledby="home-close-title">
+          <h2 className="heading-wide" id="home-close-title">{copy.close.title}</h2>
+          <p>{copy.close.description}</p>
+          <Link className="button button-primary" href="/contact?source=homepage-final" data-primary-action data-analytics-event="homepage_consultation_clicked" data-analytics-section="final-cta">Let’s Talk <span aria-hidden="true">→</span></Link>
         </section>
       </main>
       <SiteFooter />

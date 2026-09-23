@@ -7,7 +7,7 @@ export const industryStatistics = [
     sourceLabel: "Harvard Business Review",
     sourceTitle: "Executives Fail to Execute Strategy Because They’re Too Internally Focused",
     sourceHref: "https://hbr.org/2017/11/executives-fail-to-execute-strategy-because-theyre-too-internally-focused",
-    checkedOn: "2026-09-19",
+    checkedOn: "2026-09-22",
   },
   {
     id: "corporate-transformation",
@@ -17,7 +17,7 @@ export const industryStatistics = [
     sourceLabel: "McKinsey & Company",
     sourceTitle: "Why do most transformations fail? A conversation with Harry Robinson",
     sourceHref: "https://www.mckinsey.com/capabilities/transformation/our-insights/why-do-most-transformations-fail-a-conversation-with-harry-robinson",
-    checkedOn: "2026-09-19",
+    checkedOn: "2026-09-22",
   },
 ] as const;
 

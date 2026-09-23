@@ -161,9 +161,9 @@ const canonicalPrimaryCopy = [
   {
     "label": "Home",
     "path": "/",
-    "h1": "Execution Leadership that turns strategy into results.",
-    "opening": "We coach enterprise leaders, install a shared way to execute, and lead critical work alongside your team.",
-    "action": "Let's Talk"
+    "h1": "Strategy execution that delivers on your commitments.",
+    "opening": "120VC works alongside enterprise leaders to deliver the initiatives they’ve committed to.",
+    "action": "Let’s Talk"
   },
   {
     "label": "What We Solve",
@@ -239,11 +239,23 @@ const canonicalOfferActions = [
 const searchIntentContracts = [
   [
     "/",
-    "Execution Leadership That Turns Strategy Into Results | 120VC",
+    "Strategy Execution for Enterprise Teams | 120VC",
     [
       "Execution Leadership",
-      "strategy",
-      "enterprise leaders"
+      "strategy execution",
+      "enterprise leaders",
+      "organizational alignment",
+      "leadership accountability",
+      "decision rights",
+      "too many priorities",
+      "strategy implementation",
+      "disciplined execution",
+      "operating model",
+      "operating rhythm",
+      "executive team coaching",
+      "project portfolio management",
+      "enterprise transformation",
+      "strategy execution framework"
     ]
   ],
   [
@@ -446,7 +458,7 @@ test("uses concise consultation vocabulary without introducing the proprietary s
   const { html } = await render("/");
   const header = extractElement(html, "header", "global-header");
   assert.match(header, /href="\/contact(?:\?[^"]*)?"[^>]*>Let(?:&#x27;|&#39;|&apos;|')s Talk/i, "the persistent action opens contact");
-  assert.equal((visibleText(mainMarkup(html)).match(/Let's Talk/g) || []).length, 2, "both homepage contact moments use the same action");
+  assert.equal((visibleText(mainMarkup(html)).match(/Let[’']s Talk/g) || []).length, 2, "both homepage contact moments use the same action");
 });
 
 test("renders the new sitemap as a complete commercial buyer journey", async () => {
@@ -454,17 +466,19 @@ test("renders the new sitemap as a complete commercial buyer journey", async () 
   assert.equal(status, 200);
   const main = mainMarkup(html);
   assertExactH1(primaryHero(html), canonicalPrimaryCopy[0].h1, "home");
-  assertOrdered(visibleText(main), ["Your teams are busy.", "What are you looking to change?", "Get the right work done.", "Execution Leadership at the level your team needs.", "Practical guidance for the work in front of you.", "What does your team need to deliver?"], "homepage chapters");
+  const { homepage } = await import(new URL("../app/data/homepage-content.ts", import.meta.url));
+  assertOrdered(visibleText(main), [homepage.hero, homepage.problem, homepage.fourTs, homepage.why, homepage.system, homepage.offers, homepage.roles, homepage.resources, homepage.close].map(section => section.title), "homepage chapters");
+  assert.equal(majorSections(html).length, 9, "nine clear chapters without extra transition sections");
   assert.equal((main.match(/class="home-logo-item"/g) || []).length, 34);
-  assert.equal((main.match(/class="pain-card"/g) || []).length, 5);
+  assert.equal((main.match(/class="homepage-problem-card"/g) || []).length, 4);
   assert.equal((main.match(/class="four-ts-card"/g) || []).length, 4);
-  assert.equal((main.match(/class="home-solution-card"/g) || []).length, 3);
-  assert.equal((main.match(/class="home-solution-link"/g) || []).length, 3);
-  assert.equal((main.match(/<dt>Best when<\/dt>/g) || []).length, 3);
+  assert.equal((main.match(/class="homepage-offer-card"/g) || []).length, 3);
+  assert.equal((main.match(/class="homepage-offer-links"/g) || []).length, 3);
   for (const title of ["Technology", "Talent", "Training", "Transformation"]) assert.match(main, new RegExp(title));
   for (const href of ["/execution-leadership-coaching", "/leadership-system", "/embedded-execution-leadership"]) assert.match(main, new RegExp('href="' + href + '"'));
-  assert.match(main, /href="\/embedded-execution-leadership#enterprise"/);
-  assert.doesNotMatch(main, /href="\/executive-leadership-coaching-and-development-performance-accelerator"/, "installation is reached through the System, not a fourth offer");
+  const offers = majorSections(html).find(section => section.includes('id="what-we-do"'));
+  assert.match(offers, /Executive Leadership Performance Accelerator \(ELPA\) installs the system/, "ELPA is explained within the System offer, not a fourth service");
+  assert.match(offers, /href="\/executive-leadership-coaching-and-development-performance-accelerator"/, "the System card links to its installation method");
   assertOnePrimaryActionPerSection(html, "homepage");
   assertSignalsMapToControls(main, "homepage");
   assertHeadlineStructure(main, "homepage");
@@ -473,23 +487,39 @@ test("renders the new sitemap as a complete commercial buyer journey", async () 
   assert.doesNotMatch(main, /Illustrative Case Study|42%|data-review-panel/);
 });
 
-test("gives each pain-card face one headline without a repeated category label", async () => {
+test("makes homepage problem choices visible and links directly to each populated explanation", async () => {
   const main = mainMarkup((await render("/")).html);
-  const cards = [...main.matchAll(/<article\b[^>]*class="pain-card"[^>]*>[\s\S]*?<\/article>/g)].map(match => match[0]);
-  assert.equal(cards.length, 5);
-  for (const card of cards) {
-    const copy = extractElement(card, "span", "pain-card-copy");
-    const back = extractElement(card, "div", "pain-card-back");
-    for (const face of [copy, back]) {
-      assert.equal((face.match(/<strong>/g) || []).length, 1);
-      assert.doesNotMatch(face, /<small>/, "the category does not repeat the headline");
-    }
-    assert.match(copy, /See what this is costing/);
-    assert.match(back, /Explore this problem/);
+  const { homepage } = await import(new URL("../app/data/homepage-content.ts", import.meta.url));
+  const cards = [...main.matchAll(/<article\b[^>]*class="homepage-problem-card"[^>]*>[\s\S]*?<\/article>/g)].map(match => match[0]);
+  assert.equal(cards.length, 4);
+  for (const [index, card] of cards.entries()) {
+    const expected = homepage.problem.cards[index];
+    assert.equal((card.match(/<h3>/g) || []).length, 1);
+    assert.ok(visibleText(card).includes(expected.title));
+    assert.ok(visibleText(card).includes(expected.description));
+    assert.ok(card.includes(`href="${expected.href}"`));
+    assert.equal((card.match(/<a\b/g) || []).length, 1, "one whole-card native destination, no nested links");
+    assert.doesNotMatch(card, /aria-label=/, "do not replace the full readable card content with a short link name");
+    assert.ok(card.includes(`class="homepage-problem-keyword">${expected.title.split(/(?<=[:?]) /)[0]}</span>`));
+    assert.doesNotMatch(card, /<button|<details|aria-expanded|\shidden=/, "essential meaning does not need interaction");
+    const [path, id] = expected.href.split("#");
+    const destination = (await render(path)).html;
+    assert.match(destination, new RegExp(`<details[^>]*id="${id}"[^>]*open=""`), "the linked problem is already expanded");
   }
 });
 
-test("keeps the homepage chapter order and development proof architecture explicit", async () => {
+test("scopes the homepage spotlight to actionable cards and respects reduced motion", () => {
+  const source = readSource("app/components/problem-spotlight-link.tsx");
+  const css = readSource("app/homepage-refresh.css");
+  assert.match(source, /onPointerMove=\{trackPointer\}/);
+  assert.match(source, /reduceMotion \|\| event.pointerType !== "mouse"/);
+  assert.doesNotMatch(source, /addEventListener|preventDefault|canvas|shaders-react/);
+  assert.match(css, /homepage-problem-spotlight:focus-visible/);
+  assert.match(css, /homepage-problem-spotlight\[data-reduced-motion\]::before[^}]*display: none/);
+  assert.match(css, /homepage-problem-spotlight::after[^}]*pointer-events: none/);
+});
+
+test("keeps the homepage chapter order and approved-only proof architecture explicit", async () => {
   const homeSource = readSource("app/page.tsx");
   const proofComponent = readSource("app/components/featured-case-carousel.tsx");
   const kineticSource = readSource("app/components/kinetic-statement.tsx");
@@ -500,9 +530,12 @@ test("keeps the homepage chapter order and development proof architecture explic
   const css = readSource("app/hierarchy.css");
   const readerCss = readSource("app/reading-paths.css");
 
-  assertOrdered(homeSource, ["<LogoMarquee", "className=\"home-pains\"", "<KineticStatement", "className=\"home-solutions\"", "className=\"home-client-results\"", "className=\"home-resource-intro\"", "className=\"experience-close home-commercial-close\""], "homepage source chapters");
+  assertOrdered(homeSource, ['id="execution-gap"', '<FourTs', 'id="why-120vc"', '<LogoMarquee', 'id="execution-leadership-system"', 'id="what-we-do"', 'id="who-we-help"', 'id="resources"', 'id="lets-talk"'], "homepage source chapters");
   assert.doesNotMatch(homeSource, /Not sure which scope fits\?|Bring the condition, not a predetermined offer\.|home-solution-routing/i, "the orphan service-routing line and wrapper are removed");
-  assert.match(homeSource, /<SolutionScopeCards scopes=\{offerScopes\}/, "homepage and offer hub use the same three offers");
+  assert.match(homeSource, /approvedHomepageCaseProof\.filter\(caseMayRenderForProductionAudience\)/, "local homepage and production both require approved results");
+  assert.doesNotMatch(homeSource, /getHomepageCaseProof|KineticStatement|PainPointCarousel|SolutionScopeCards/, "homepage keeps visible direct choices rather than nested interactive readers");
+  assertOrdered(homeSource, ["<IndustryStatistics", 'id="execution-gap"'], "industry context precedes problem recognition");
+  assert.match(homeSource, /<CompanyTrackRecord/, "company-reported figures are restored through the development-only evidence gate");
   assert.match(carouselSource, /onPointerEnter=/i, "pain cards preview on fine-pointer hover");
   assert.match(carouselSource, /onPointerLeave=/i, "pain cards return after fine-pointer hover");
   assert.match(carouselSource, /onFocusCapture=/i, "pain-card hover behavior is mirrored for keyboard focus");
@@ -551,7 +584,7 @@ test("keeps the homepage chapter order and development proof architecture explic
   assert.doesNotMatch(solutionSource, /<small>\{scope\.label\}<\/small>/i, "service names do not repeat as eyebrows");
   assert.doesNotMatch(installationSource, /Step \{current\.number\}/i, "the active step does not add a redundant Step label");
   assert.match(carouselSource, /pain-card-cost[\s\S]*pain-card-change/i, "pain-card backs use natural editorial statements");
-  assert.match(homeSource, /query\.motion === "reduce" && process\.env\.NODE_ENV !== "production"/i, "nonproduction QA can expose the exact reduced-motion proof state");
+  assert.match(readSource("app/components/scroll-narrative-motion.tsx"), /motion.*reduce/, "scroll entrances retain their reduced-motion QA state");
   assert.match(proofComponent, /useHydratedReducedMotion\(\) \|\| forceReducedMotion/i);
   assert.match(proofComponent, /case_story_viewed[\s\S]*case_story_next[\s\S]*case_story_previous|case_story_next[\s\S]*case_story_previous[\s\S]*case_story_viewed/i);
   assert.match(proofComponent, /case_story_cta_clicked/i);
@@ -643,7 +676,7 @@ test("never renders demo or unapproved case proof to the production audience", a
 test("keeps industry statistics sourced, dated, and scoped to the research", async () => {
   const { industryStatistics } = await import(new URL("../app/data/evidence-statistics.ts", import.meta.url));
   assert.deepEqual(industryStatistics.map((stat) => stat.value), ["67%", "~70%"]);
-  assert.ok(industryStatistics.every((stat) => stat.sourceHref.startsWith("https://") && stat.checkedOn === "2026-09-19"));
+  assert.ok(industryStatistics.every((stat) => stat.sourceHref.startsWith("https://") && stat.checkedOn === "2026-09-22"));
 
   for (const path of ["/", "/problems-we-solve"]) {
     const { status, html } = await render(path);
@@ -758,9 +791,9 @@ test("makes each primary destination answer its navigation promise without hero 
 
   const homepage = mainMarkup((await render("/")).html);
   assertOrdered(visibleText(homepage), [
-    "Your teams are busy.",
-    "What are you looking to change?",
-    "Execution Leadership at the level your team needs.",
+    "Close the strategy execution gap between plans and results.",
+    "New tools, skills, or people still need clear direction.",
+    "Choose the level of Execution Leadership your team needs.",
   ], "homepage navigation-aligned chapters");
   assert.doesNotMatch(homepage, /Which of these looks familiar\?|One system\. Applied where execution is breaking\.|Installed in the work\. Built to hold without us\./i, "homepage chapter headings avoid abstract or redundant taglines");
 
@@ -857,7 +890,7 @@ test("adds finite text entrances and truthful disclosure feedback without changi
   const controller = readSource("app/components/scroll-narrative-motion.tsx");
   const css = readSource("app/purposeful-motion.css");
 
-  for (const [path, expectedCount] of [["/", 4], ["/problems-we-solve", 1], ["/leadership-system", 3], ["/leadership-services", 2], ["/resources", 1], ["/results", 1]]) {
+  for (const [path, expectedCount] of [["/", 7], ["/problems-we-solve", 1], ["/leadership-system", 3], ["/leadership-services", 2], ["/resources", 1], ["/results", 1]]) {
     const main = mainMarkup((await render(path)).html);
     assert.equal((main.match(/class="scroll-words"/g) || []).length, expectedCount, `${path}: a bounded set of motion headlines`);
     const hero = main.match(/<h1\b[^>]*>[\s\S]*?<\/h1>/i)?.[0] || "";
@@ -1032,7 +1065,7 @@ test("keeps five problem summaries and inline detail in one natural reading path
 });
 
 test("shows service fit before interaction while retaining hover, click, and keyboard disclosure", async () => {
-  for (const path of ["/", "/leadership-services"]) {
+  for (const path of ["/leadership-services"]) {
     const main = mainMarkup((await render(path)).html);
     const cards = [...main.matchAll(/<article\b[^>]*class="home-solution-card"[^>]*>[\s\S]*?<\/article>/g)].map(match => match[0]);
     assert.equal(cards.length, 3, path);
@@ -1064,10 +1097,10 @@ test("fades horizontal card rails only where more content remains", async () => 
 
   const resources = mainMarkup((await render("/resources")).html);
 
-  assert.match(home, /class="pain-carousel-rail-window horizontal-card-rail-window"[^>]*data-at-start="true"[^>]*data-at-end="false"/i);
+  assert.doesNotMatch(home, /pain-carousel-rail-window|horizontal-card-edge-fade/, "homepage choices do not hide in horizontal rails");
 
   assert.match(resources, /class="resource-card-rail-window horizontal-card-rail-window"[^>]*data-at-start="true"[^>]*data-at-end="false"/i);
-  for (const markup of [home, resources]) {
+  for (const markup of [resources]) {
     assert.match(markup, /horizontal-card-edge-fade-left/i);
     assert.match(markup, /horizontal-card-edge-fade-right/i);
   }
@@ -1174,7 +1207,8 @@ test("keeps audience mode clean and review mode outside the audience composition
   const contentSource = readSource("app/components/content-page.tsx");
   const panelSource = readSource("app/components/review-mode-panel.tsx");
 
-  for (const [label, source] of [["home", homeSource], ["dynamic route", routeSource]]) {
+  assert.doesNotMatch(homeSource, /query\.review|getHomepageCaseProof/, "homepage never injects local review placeholders");
+  for (const [label, source] of [["dynamic route", routeSource]]) {
     assert.match(source, /query\.review === "1" && process\.env\.NODE_ENV !== "production"/, `${label}: explicit nonproduction review query`);
   }
   for (const [label, source] of [["home", homeSource], ["problem", problemSource], ["content", contentSource]]) {
@@ -1360,7 +1394,7 @@ test("uses headline emphasis as a scarce attention signal", async () => {
     return (main.match(/class="[^"]*\bheadline-keyword\b[^"]*"/g) || []).length;
   };
 
-  assert.equal(await highlightedHeadlines("/"), 2, "homepage emphasizes the hero outcome and the value shift—one signal per distinct idea");
+  assert.equal(await highlightedHeadlines("/"), 5, "homepage restores selective emphasis across buyer recognition, mechanism, and outcomes");
   assert.ok(await highlightedHeadlines("/problems-we-solve") <= 1, "/problems-we-solve: emphasis is optional and restrained");
   assert.ok(await highlightedHeadlines("/leadership-system") <= 1, "/leadership-system: emphasis is optional and restrained");
   assert.ok(await highlightedHeadlines("/results") <= 1, "/results: emphasis is optional and restrained");
@@ -1471,17 +1505,93 @@ test("connects the three offers, ELPA installation, and the unified resource lib
 });
 
 test("explains installation before introducing the ELPA acronym", async () => {
-  for (const path of ["/", "/leadership-services"]) {
+  for (const path of ["/leadership-services"]) {
     const main = mainMarkup((await render(path)).html);
     const cards = [...main.matchAll(/<article\b[^>]*class="home-solution-card"[^>]*>[\s\S]*?<\/article>/g)].map(match => match[0]);
     assert.equal(cards.length, 3);
     assert.doesNotMatch(cards.join(""), /\bELPA\b/, "offer comparison explains the service without an unexplained program name");
     assert.match(visibleText(cards.join("")), /We install shared practices for priorities, ownership, decisions, and follow-through/);
   }
-  for (const path of ["/leadership-system", "/executive-leadership-coaching-and-development-performance-accelerator"]) {
+  for (const path of ["/", "/leadership-system", "/executive-leadership-coaching-and-development-performance-accelerator"]) {
     const main = mainMarkup((await render(path)).html);
     assert.match(visibleText(main), /Executive Leadership Performance Accelerator \(ELPA\)/);
   }
+});
+
+test("renders the supplied homepage copy, meaningful next steps, and metadata without interaction", async () => {
+  const { homepage } = await import(new URL("../app/data/homepage-content.ts", import.meta.url));
+  const { html } = await render("/");
+  const main = mainMarkup(html);
+  const text = visibleText(main);
+  for (const section of Object.values(homepage).filter(value => typeof value === "object")) {
+    assert.ok(text.includes(section.title), section.title);
+    if (section.description) assert.ok(text.includes(section.description), section.description);
+    for (const paragraph of section.paragraphs || []) assert.ok(text.includes(paragraph), paragraph);
+    for (const item of section.cards || section.items || section.outcomes || []) {
+      assert.ok(text.includes(item.title), item.title);
+      if (item.description) assert.ok(text.includes(item.description), item.description);
+      if (item.action) assert.ok(text.includes(item.action), item.action);
+      if (item.href) assert.ok(main.includes(`href="${item.href}"`), item.href);
+    }
+  }
+  assert.ok(html.includes(`name="description" content="${homepage.seoDescription}"`));
+  assert.match(primaryHero(html), /href="#execution-gap"/);
+  assert.doesNotMatch(main, /data-scroll-enter-state="pending"|data-scroll-state="pending"|<details|home-solution-disclosure/, "server/no-JS homepage is fully readable");
+  const roles = extractElement(main, "nav", "homepage-role-links");
+  assert.equal((roles.match(/<a /g) || []).length, 5);
+  assert.doesNotMatch(roles, /<h3/);
+  const offers = majorSections(html).find(section => section.includes('id="what-we-do"'));
+  assert.doesNotMatch(offers, /role="tab|<ol|Step [123]|<button/, "engagement levels are choices, not required steps");
+  const css = readSource("app/homepage-refresh.css");
+  assert.match(css, /@media \(max-width: 760px\)[\s\S]*homepage-problem-grid[^}]*grid-template-columns: 1fr/);
+  assert.match(css, /\.homepage-refresh \.hero-motion-control\s*\{[^}]*top: auto;[^}]*bottom: 38px;/, "mobile top and bottom offsets cannot stretch the motion control over the copy");
+  assert.match(css, /\.homepage-refresh \.hero-motion-media\s*\{[^}]*z-index: auto;/, "motion controls remain above the image overlay");
+});
+
+test("opens homepage resource links in the matching populated category before hydration", async () => {
+  const { homepage } = await import(new URL("../app/data/homepage-content.ts", import.meta.url));
+  const { resourceItems } = await import(new URL("../app/data/resource-library.ts", import.meta.url));
+  for (const item of homepage.resources.items) {
+    const url = new URL(item.href, "http://localhost");
+    const category = url.searchParams.get("category");
+    const { html, status } = await render(url.pathname + url.search);
+    assert.equal(status, 200);
+    const main = mainMarkup(html);
+    assert.match(main, new RegExp(`id="resource-tab-${category}"[^>]*aria-selected="true"`));
+    const panel = extractElement(main, "section", "resource-panel");
+    const expected = resourceItems.filter(resource => resource.category === category);
+    assert.ok(expected.length > 0, category + " is populated");
+    assert.equal((panel.match(/class="resource-category"/g) || []).length, expected.length);
+    for (const resource of expected) assert.ok(visibleText(panel).includes(resource.title));
+  }
+  const fallback = mainMarkup((await render("/resources?category=unknown")).html);
+  assert.match(fallback, /id="resource-tab-all"[^>]*aria-selected="true"/);
+});
+
+test("restores the homepage visual hierarchy with original generated assets and truthful evidence", async () => {
+  const main = mainMarkup((await render("/")).html);
+  assertOrdered(main, ['class="hero-motion-media"', 'class="homepage-industry-context"', 'id="execution-gap"'], "research context immediately follows the hero");
+  assert.equal((main.match(/AI-generated illustration/g) || []).length, 4, "hero alternative, hero caption and two editorial captions disclose generated imagery");
+  const manifest = JSON.parse(readSource("assets/generated-homepage/prompts.json"));
+  assert.equal(manifest.mode, "built-in image_gen, generate");
+  assert.equal(manifest.assets.length, 3);
+  for (const asset of manifest.assets) {
+    const data = readFileSync(new URL(`../${asset.web}`, import.meta.url));
+    assert.equal(data.toString("ascii", 8, 12), "WEBP");
+    assert.ok(data.length < 150_000, `${asset.name}: optimized delivery size`);
+    assert.ok(main.includes(asset.web.replace("public", "")), `${asset.name}: used in the page`);
+    assert.ok(asset.prompt.includes("photorealistic"));
+  }
+  const offers = [...main.matchAll(/<article class="homepage-offer-card"[\s\S]*?<\/article>/g)].map(match => match[0]);
+  assert.equal(offers.length, 3);
+  assert.ok(offers.every(card => card.includes("Best when") && card.includes("<strong>")));
+  const css = readSource("app/homepage-refresh.css");
+  assert.match(css, /homepage-offer-card:nth-child\(1\)[^}]*var\(--clay\)/);
+  assert.match(css, /homepage-offer-card:nth-child\(2\)[^}]*var\(--sage\)/);
+  assert.match(css, /homepage-offer-card:nth-child\(3\)[^}]*var\(--ink-deep\)/);
+  assert.match(css, /homepage-heading h2[^}]*max-width: 40ch/);
+  assert.match(css, /@media \(prefers-reduced-motion: no-preference\)[\s\S]*homepage-system-outcomes/);
+  assert.doesNotMatch(main, /This Isn’t Theory|227%|98%|25\+/, "the requested proof block remains a qualified local design preview, not public evidence");
 });
 
 test("resolves internal fragment links on every new sitemap page", async () => {
