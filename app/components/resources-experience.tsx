@@ -6,6 +6,7 @@ import { ResourceExplorer } from "./resource-explorer";
 import { ScrollWords } from "./scroll-words";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
+import { DecisionBriefPreview } from "./decision-brief-preview";
 import { primaryPageCopy } from "../data/sitemap-content";
 import type { ResourceCategory } from "../data/resource-library";
 
@@ -37,6 +38,9 @@ export function ResourcesExperience({ initialCategory }: { initialCategory?: Res
           </div>
         </section>
 
+        <section className="executive-resource-feature" data-major-section aria-labelledby="brief-feature-title">
+          <DecisionBriefPreview headingLevel="h2" />
+        </section>
         <section className="resource-library-section" id="resource-library" data-major-section data-journey-stage="explore" aria-labelledby="resource-library-title">
           <header className="supporting-section-heading supporting-section-heading-centered">
             <h2 id="resource-library-title"><ScrollWords>Choose what would help right now.</ScrollWords></h2>

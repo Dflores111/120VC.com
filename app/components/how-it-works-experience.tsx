@@ -9,6 +9,7 @@ import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import { SystemExplorer } from "./system-explorer";
 import { ScrollWords } from "./scroll-words";
+import { ExecutionWorkingRecord } from "./execution-working-record";
 
 const installationSteps: readonly InstallationStep[] = [
   {
@@ -60,12 +61,6 @@ const installationSteps: readonly InstallationStep[] = [
     position: "50% 42%",
   },
 ];
-
-const firstValue = [
-  ["Agree on the priorities and the outcomes that matter.", "Make clear what deserves attention, what can wait, and how success will be measured across teams."],
-  ["Make ownership and decision-making clear.", "Define who owns each commitment, who can make the decision, and how the team will resolve blockers."],
-  ["Build an operating rhythm that keeps work moving.", "Review commitments regularly, surface risks early, and decide what needs to change before delays grow."],
-] as const;
 
 type HowItWorksExperienceProps = { initialNode?: SystemNodeId; reviewMode?: boolean };
 
@@ -122,23 +117,9 @@ export function HowItWorksExperience({ initialNode, reviewMode = false }: HowItW
           <InstallationStepper steps={installationSteps} />
         </section>
 
-        <section className="system-first-value" data-major-section data-journey-stage="believe" aria-labelledby="first-value-title">
-          <ImageMask
-            src="/images/story/aligned-leadership-team.jpg"
-            alt="An aligned leadership team working from one shared view."
-            width={1800}
-            height={1200}
-            variant="panel"
-            style={{ "--image-position": "50% 42%" } as CSSProperties}
-          />
-          <div>
-            <h2 id="first-value-title"><ScrollWords>A shared operating model in everyday work.</ScrollWords></h2>
-            <div className="system-first-value-list">
-              {firstValue.map(([title, description]) => (
-                <article key={title}><h3>{title}</h3><p>{description}</p></article>
-              ))}
-            </div>
-          </div>
+        <section className="system-first-value executive-method-section" data-major-section data-journey-stage="believe" aria-labelledby="first-value-title">
+          <header><h2 id="first-value-title"><ScrollWords>A shared operating model in everyday work.</ScrollWords></h2><p>Shared priorities and decision rights need a record the whole team can inspect—not another presentation everyone interprets differently.</p></header>
+          <ExecutionWorkingRecord />
         </section>
 
         <section className="system-experience-close" data-major-section data-journey-stage="act" aria-labelledby="system-close-title">

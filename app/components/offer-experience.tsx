@@ -5,6 +5,7 @@ import { SiteHeader } from "./site-header";
 import { SiteFooter } from "./site-footer";
 import { embeddedScopes, siteRoutes } from "../data/sitemap-content";
 import type { SitePage } from "../site-data";
+import { EngagementEvaluation } from "./engagement-evaluation";
 
 export function OfferExperience({ page }: { page: SitePage }) {
   const isEmbedded = `/${page.slug}` === siteRoutes.embedded;
@@ -40,8 +41,9 @@ export function OfferExperience({ page }: { page: SitePage }) {
           <h3>{scope.title}</h3><p>{scope.description}</p>
           <Link className="quiet-link quiet-link-strong" href={scope.href}>Explore {scope.detail}<span aria-hidden="true">→</span></Link>
         </article>)}</div>
-        <Link className="home-section-link" href="/results">See client results <span aria-hidden="true">→</span></Link>
+        <Link className="home-section-link" href="/results">Review experience and evidence <span aria-hidden="true">→</span></Link>
       </section>}
+      <EngagementEvaluation />
       <section className="solution-reassurance" data-major-section data-journey-stage="act" aria-labelledby="offer-close-title">
         <div><h2 id="offer-close-title">{page.closingTitle}</h2><p>{page.closingDescription}</p></div>
         <Link className="button button-primary" href={cta.href} data-primary-action>{cta.label}<span aria-hidden="true">→</span></Link>

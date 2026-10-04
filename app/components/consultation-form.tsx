@@ -126,7 +126,7 @@ export function ConsultationForm({ context, source }: { context?: string; source
         }}>Back <span aria-hidden="true" data-direction="left">←</span></button>}
         <button className="button button-primary form-submit" data-primary-action type="submit">{step === 1 ? "Continue" : "Prepare email request"} <span aria-hidden="true">→</span></button>
       </div>
-      <p className="form-privacy">Confidential · Diagnostic · No generic presentation · No predetermined offer · Human follow-up</p>
+      <p className="form-privacy">This prepares an email draft; nothing is submitted here. Share enough context to start a conversation, not confidential company information.</p>
     </form>
   );
 }

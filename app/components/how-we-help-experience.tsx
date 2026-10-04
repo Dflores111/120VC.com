@@ -6,6 +6,7 @@ import { SiteHeader } from "./site-header";
 import { SolutionScopeCards } from "./solution-scope-cards";
 import { ScrollWords } from "./scroll-words";
 import { offerScopes, primaryPageCopy } from "../data/sitemap-content";
+import { EngagementEvaluation } from "./engagement-evaluation";
 
 export function HowWeHelpExperience() {
   const copy = primaryPageCopy["leadership-services"];
@@ -33,6 +34,7 @@ export function HowWeHelpExperience() {
         <p>Coaching develops the leaders. Installation embeds the practices. Embedded leadership applies them directly to the work.</p>
         <div className="shared-model-line" aria-label="Shared execution practices"><span>Priorities</span><span>Ownership</span><span>Decisions</span><span>Follow-through</span></div>
       </section>
+      <EngagementEvaluation />
       <section className="solution-reassurance" data-major-section data-journey-stage="act" aria-labelledby="solutions-close-title">
         <div><h2 id="solutions-close-title">Let&apos;s find your starting point.</h2><p>Tell us what you&apos;ve committed to and the level of leadership your team needs.</p></div>
         <Link className="button button-primary" href="/contact?source=what-we-do">Let&apos;s Talk <span aria-hidden="true">→</span></Link>

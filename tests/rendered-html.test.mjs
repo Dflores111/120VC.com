@@ -189,7 +189,7 @@ const canonicalPrimaryCopy = [
   {
     "label": "Results",
     "path": "/results",
-    "h1": "See what our clients achieved.",
+    "h1": "Know what evidence to ask for.",
     "opening": "Looking for experience relevant to your priorities? Talk with us about your situation and the client evidence available to review."
   },
   {
@@ -890,7 +890,7 @@ test("adds finite text entrances and truthful disclosure feedback without changi
   const controller = readSource("app/components/scroll-narrative-motion.tsx");
   const css = readSource("app/purposeful-motion.css");
 
-  for (const [path, expectedCount] of [["/", 7], ["/problems-we-solve", 1], ["/leadership-system", 3], ["/leadership-services", 2], ["/resources", 1], ["/results", 1]]) {
+  for (const [path, expectedCount] of [["/", 7], ["/problems-we-solve", 1], ["/leadership-system", 3], ["/leadership-services", 2], ["/resources", 1], ["/results", 3]]) {
     const main = mainMarkup((await render(path)).html);
     assert.equal((main.match(/class="scroll-words"/g) || []).length, expectedCount, `${path}: a bounded set of motion headlines`);
     const hero = main.match(/<h1\b[^>]*>[\s\S]*?<\/h1>/i)?.[0] || "";
@@ -1270,7 +1270,7 @@ test("keeps the commercial core and declared content-page next steps intact", as
     ["/leadership-system/installation", /Install the system inside the work/i],
     ["/leadership-services", /Execution Leadership, from coaching to leading the work/i],
     ["/leadership-services/compare-solutions", /Choose the level of Execution Leadership/i],
-    ["/results", /See what our clients achieved/i],
+    ["/results", /Know what evidence to ask for/i],
     ["/results/methodology", /Every claim needs a definition/i],
     ["/resources", /Practical tools and ideas for better strategy execution/i],
     ["/resources/tools", /See the system in practice/i],
@@ -1350,7 +1350,7 @@ test("gives the priority supporting pages distinct jobs and familiar interaction
   assert.doesNotMatch(help, /What determines fit|solution-fit-grid/i);
 
   const results = mainMarkup((await render("/results")).html);
-  assert.match(visibleText(results), /See what our clients achieved/i);
+  assert.match(visibleText(results), /Know what evidence to ask for/i);
   assert.match(results, /Client case studies are not yet available/i);
   assert.match(results, /Ask about relevant client experience/i);
   assert.doesNotMatch(results, /\b\d+%\b|Illustrative Case Study|Client logo/i);
@@ -1529,8 +1529,10 @@ test("renders the supplied homepage copy, meaningful next steps, and metadata wi
     for (const paragraph of section.paragraphs || []) assert.ok(text.includes(paragraph), paragraph);
     for (const item of section.cards || section.items || section.outcomes || []) {
       assert.ok(text.includes(item.title), item.title);
-      if (item.description) assert.ok(text.includes(item.description), item.description);
-      if (item.action) assert.ok(text.includes(item.action), item.action);
+      // Resource categories now orient beneath a usable brief instead of
+      // competing with it as three equally prominent offers.
+      if (section !== homepage.resources && item.description) assert.ok(text.includes(item.description), item.description);
+      if (section !== homepage.resources && item.action) assert.ok(text.includes(item.action), item.action);
       if (item.href) assert.ok(main.includes(`href="${item.href}"`), item.href);
     }
   }
@@ -1546,6 +1548,27 @@ test("renders the supplied homepage copy, meaningful next steps, and metadata wi
   assert.match(css, /@media \(max-width: 760px\)[\s\S]*homepage-problem-grid[^}]*grid-template-columns: 1fr/);
   assert.match(css, /\.homepage-refresh \.hero-motion-control\s*\{[^}]*top: auto;[^}]*bottom: 38px;/, "mobile top and bottom offsets cannot stretch the motion control over the copy");
   assert.match(css, /\.homepage-refresh \.hero-motion-media\s*\{[^}]*z-index: auto;/, "motion controls remain above the image overlay");
+});
+
+test("offers executive value before contact details and keeps method examples distinct from client evidence", async () => {
+  const path = "/resources/execution-decision-brief";
+  const { status, html } = await render(path);
+  const main = mainMarkup(html);
+  assert.equal(status, 200);
+  assert.equal((main.match(/<h1\b/g) || []).length, 1);
+  assert.match(visibleText(main), /No email required/);
+  assert.match(visibleText(main), /A 20-minute meeting agenda/);
+  assert.match(visibleText(main), /Refreshing clears them/);
+  assert.doesNotMatch(main, /type="email"/, "contact details are not required to start");
+  assert.match(main, /<noscript>[\s\S]*ownership-across-teams/);
+  for (const route of ["/", "/resources"]) {
+    const markup = mainMarkup((await render(route)).html);
+    assert.ok(markup.includes(`href="${path}"`), route);
+    assert.match(visibleText(markup), /Example output · Not client evidence/);
+  }
+  for (const route of ["/leadership-system", "/results"]) {
+    assert.match(visibleText(mainMarkup((await render(route)).html)), /Illustrative working record · Not client evidence/);
+  }
 });
 
 test("opens homepage resource links in the matching populated category before hydration", async () => {

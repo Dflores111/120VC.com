@@ -7,12 +7,13 @@ import { ReviewModePanel } from "./review-mode-panel";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import { primaryPageCopy } from "../data/sitemap-content";
+import { ExecutionWorkingRecord } from "./execution-working-record";
 
 const methodology = [
-  ["What changed?", "The case names the priority, decision, ownership, risk, or operating rhythm that moved first."],
-  ["How was it measured?", "A decision-grade claim includes the definition, baseline, population, period, calculation, and evidence source."],
-  ["What can be attributed?", "The story distinguishes 120VC's contribution from other factors and does not claim more than the evidence supports."],
-  ["Can a buyer inspect it?", "A credible published case includes context, permission, attribution, and an appropriate reference path."],
+  ["What changed?", "Ask which priority, decision, ownership agreement, or operating practice changed—and what changed in delivery as a result."],
+  ["How was it measured?", "Ask for the baseline, population, period, calculation, and evidence source behind a result."],
+  ["What can be attributed?", "Separate 120VC’s contribution from other factors. A credible claim should not exceed the evidence."],
+  ["Can I inspect relevant evidence?", "Ask for comparable context, an approved working artifact, and an appropriate reference path. Check any confidentiality or permission limits."],
 ] as const;
 
 export function ResultsExperience({ reviewMode = false }: { reviewMode?: boolean }) {
@@ -59,17 +60,18 @@ export function ResultsExperience({ reviewMode = false }: { reviewMode?: boolean
           </section>
         )}
 
-        {cases.length > 0 && <section className="results-methodology" data-major-section data-journey-stage="understand" aria-labelledby="results-methodology-title">
+        {cases.length === 0 && <section className="executive-method-section" data-major-section aria-labelledby="results-record-title"><header><h2 id="results-record-title"><ScrollWords>Inspect the method before the claim.</ScrollWords></h2><p>This example shows the kind of agreement that makes execution inspectable. It is not a client artifact or evidence of a measured result.</p></header><ExecutionWorkingRecord /></section>}
+        <section className="results-methodology" data-major-section data-journey-stage="understand" aria-labelledby="results-methodology-title">
           <header className="supporting-section-heading">
-            <h2 id="results-methodology-title"><ScrollWords>See what sits behind the number.</ScrollWords></h2>
-            <p>Review how the result was measured, what contributed to it, and what the evidence can support.</p>
+            <h2 id="results-methodology-title"><ScrollWords>Four questions for your due diligence.</ScrollWords></h2>
+            <p>Use these questions when evaluating execution support, including 120VC.</p>
           </header>
           <div className="results-methodology-list">
             {methodology.map(([title, description]) => (
               <details key={title}><summary>{title}<span aria-hidden="true">+</span></summary><p>{description}</p></details>
             ))}
           </div>
-        </section>}
+        </section>
 
         <section className="results-reassurance" data-major-section data-journey-stage="act" aria-labelledby="results-close-title">
           <div>

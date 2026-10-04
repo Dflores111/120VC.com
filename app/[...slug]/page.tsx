@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ContentPage } from "../components/content-page";
+import { ExecutionDecisionBrief } from "../components/execution-decision-brief";
 import { OfferExperience } from "../components/offer-experience";
 import { sitemapPages } from "../data/sitemap-content";
 import { HowWeHelpExperience } from "../components/how-we-help-experience";
@@ -72,6 +73,7 @@ export default async function DynamicPage({ params, searchParams }: Props) {
   const key = slug.join("/");
   const page = pages[key];
   if (!page) notFound();
+  if (key === "resources/execution-decision-brief") return <ExecutionDecisionBrief />;
   const requestedCondition = Array.isArray(query.condition) ? query.condition[0] : query.condition;
   const requestedMode = Array.isArray(query.mode) ? query.mode[0] : query.mode;
   const requestedNode = Array.isArray(query.node) ? query.node[0] : query.node;

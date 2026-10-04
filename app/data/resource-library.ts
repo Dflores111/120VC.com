@@ -5,6 +5,7 @@ export type ResourceCategory = "frameworks" | "guides" | "insights";
 export type ResourceItem = { category: ResourceCategory; icon: ExecutionIconName; title: string; description: string; href: string; action: string; external?: boolean };
 
 export const resourceItems: readonly ResourceItem[] = [
+  { category: "guides", icon: "decisions", title: "Execution Decision Brief", description: "Six questions. One practical next step and a brief for your leadership meeting. No email required.", href: "/resources/execution-decision-brief", action: "Build your brief" },
   { category: "frameworks", icon: "two-by-two", title: "2×2 Prioritization Matrix", description: "Make urgency and strategic value visible before capacity is committed.", href: "/resources/tools/2x2-prioritization-matrix", action: "Explore framework" },
   { category: "frameworks", icon: "one-three-one", title: "1-3-1 Decision Builder", description: "Move from one problem through three options to one recommendation.", href: "/resources/tools/1-3-1-decision-builder", action: "Explore framework" },
   { category: "frameworks", icon: "challenge", title: "Challenge · Opportunity Builder", description: "Frame the condition to change before prescribing the work.", href: "/resources/tools/challenge-opportunity-builder", action: "Explore framework" },
@@ -31,6 +32,7 @@ const article = (slug: string, title: string, description: string, sections: Sit
 // New editorial copy for the four resource topics requested in the sitemap.
 // These are readable articles, not downloadable or state-saving tools.
 export const resourcePages: Record<string, SitePage> = {
+  "resources/execution-decision-brief": article("resources/execution-decision-brief", "Find the decision holding delivery back.", "Build an Execution Decision Brief for one cross-functional priority: six questions, a practical next step, a leadership-meeting agenda, and a shareable working record. No email required.", [], { title: "Execution Leadership System", href: "/leadership-system" }),
   "resources/guides/weekly-operating-rhythm": article("resources/guides/weekly-operating-rhythm", "How to establish a weekly operating rhythm", "Use a shared weekly review to connect priorities, commitments, and decisions to the outcomes your team owns.", [
     { title: "Start with the commitments, not a round of updates.", paragraphs: ["Bring the same short list of priorities to each review. For each commitment, name the outcome owner, the next deliverable, its due date, and the evidence that will show it is complete. Keep the list visible between meetings so the team can prepare." ] },
     { title: "Use the meeting to change what happens next.", bullets: ["Review what was delivered against the commitment. Separate evidence from confidence or activity.", "Surface blocked dependencies and decisions early. Name the person who can resolve each one.", "When new work arrives, decide what stops, waits, or changes. Do not silently add it to an already full plan.", "End with agreed commitments, owners, and dates. Record the decisions where everyone can find them."] },

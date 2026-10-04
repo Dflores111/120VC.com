@@ -1085,7 +1085,7 @@ export const pages: Record<string, SitePage> = {
         ],
       },
       {
-        title: "Founder voice belongs where conviction helps the buyer go deeper.",
+        title: "Leadership that makes the work move.",
         paragraphs: [
           "J. Scott’s books, briefings, podcasts, and essays challenge leadership theater, cost-center thinking, weak accountability, and the assumption that training alone changes execution.",
         ],

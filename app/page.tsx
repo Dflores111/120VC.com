@@ -11,6 +11,7 @@ import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import { ScrollWords } from "./components/scroll-words";
 import { ProblemSpotlightLink } from "./components/problem-spotlight-link";
+import { DecisionBriefPreview } from "./components/decision-brief-preview";
 import { approvedHomepageCaseProof, caseMayRenderForProductionAudience } from "./data/homepage-case-proof";
 import { homepage as copy } from "./data/homepage-content";
 import { offerScopes } from "./data/sitemap-content";
@@ -76,6 +77,10 @@ export default function Home() {
             <div className="homepage-editorial-copy">
               {copy.why.paragraphs.map(paragraph => <p key={paragraph}><LeadSentence>{paragraph}</LeadSentence></p>)}
               <Link className="home-section-link" href="/about">Meet 120VC <span aria-hidden="true">→</span></Link>
+              <Link className="executive-founder-link" href="/founder-jason-scott">
+                <img src="https://www.120vc.com/wp-content/uploads/2026/02/Jason-Scott-120VC-CEO-Founder-img.webp" alt="J. Scott, founder and CEO of 120VC" width={532} height={530} loading="lazy" />
+                <span><strong>J. Scott</strong><span>Founder & CEO · Meet the person behind the system</span></span>
+              </Link>
             </div>
             <HomepageEditorialImage scene="alongside" />
           </div>
@@ -126,16 +131,11 @@ export default function Home() {
         <section className="homepage-section homepage-resources" id="resources" data-major-section data-journey-stage="explore" aria-labelledby="home-resources-title">
           <header className="homepage-heading">
             <h2 id="home-resources-title"><ScrollWords>{copy.resources.title}</ScrollWords></h2>
+            <p>{copy.resources.description}</p>
           </header>
-          <div className="homepage-resource-layout">
-            <div className="homepage-resource-intro">
-              <p>{copy.resources.description}</p>
-              <Link className="button button-light" href="/resources" data-primary-action>Browse all resources <span aria-hidden="true">→</span></Link>
-            </div>
-            <nav className="homepage-resource-links" aria-label="Explore resource categories">
-              {copy.resources.items.map(resource => <Link href={resource.href} key={resource.href}><h3>{resource.title}</h3><p>{resource.description}</p><span className="homepage-resource-action">{resource.action} <i aria-hidden="true">→</i></span></Link>)}
-            </nav>
-          </div>
+          <DecisionBriefPreview />
+          <Link className="home-section-link" href="/resources">Browse frameworks, guides, and insights <span aria-hidden="true">→</span></Link>
+          <nav className="homepage-resource-categories" aria-label="Browse resource categories">{copy.resources.items.map(resource => <Link href={resource.href} key={resource.href}>{resource.title}</Link>)}</nav>
         </section>
         <section className="experience-close home-commercial-close" id="lets-talk" data-major-section data-journey-stage="act" aria-labelledby="home-close-title">
           <h2 className="heading-wide" id="home-close-title">{copy.close.title}</h2>
