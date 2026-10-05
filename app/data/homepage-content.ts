@@ -10,40 +10,39 @@ export const homepage = {
   },
   problem: {
     title: "Close the strategy execution gap between plans and results.",
-    description: "Your teams are busy, but critical initiatives are not moving. Priorities compete and decisions wait. That distance between what leaders commit to and what teams deliver is the strategy execution gap.",
+    description: "Your teams are busy, but critical initiatives are not moving. Start with the priority, decision, or ownership agreement that is missing.",
     cards: [
-      { title: "Organizational alignment: get leaders working toward the same goals.", description: "When leaders pull in different directions, teams lose time. Agree on which goals come first and what each team will deliver.", action: "Align competing priorities", href: "/problems-we-solve?condition=alignment#problem-alignment", icon: "intent" },
+      { title: "Organizational alignment: get leaders working toward the same goals.", description: "Leaders pull in different directions. Agree which goals come first and what each team will deliver.", action: "Align competing priorities", href: "/problems-we-solve?condition=alignment#problem-alignment", icon: "intent" },
       { title: "Leadership accountability: know who owns each result.", description: "Important work has no clear owner. Give every critical outcome a named owner and a clear next step.", action: "Clarify ownership", href: "/problems-we-solve?condition=ownership#problem-ownership", icon: "commitments" },
-      { title: "Decision rights: make it clear who can decide.", description: "Decisions wait and deadlines slip. Agree on who decides and when to escalate so teams can act without sending every issue to the top.", action: "Move decisions forward", href: "/problems-we-solve?condition=decision-bottlenecks#problem-decision-bottlenecks", icon: "decisions" },
-      { title: "Too many priorities? Choose what moves forward.", description: "Your team is spread thin. Decide what to move forward, pause, or stop so capacity goes to the work that matters.", action: "Focus the work", href: "/problems-we-solve?condition=priority-overload#problem-priority-overload", icon: "priorities" },
+      { title: "Decision rights: make it clear who can decide.", description: "Decisions wait and deadlines slip. Agree who decides and when to escalate so teams can act.", action: "Move decisions forward", href: "/problems-we-solve?condition=decision-bottlenecks#problem-decision-bottlenecks", icon: "decisions" },
+      { title: "Too many priorities? Choose what moves forward.", description: "Your team is spread thin. Choose what moves forward, pauses, or stops—and put capacity behind it.", action: "Focus the work", href: "/problems-we-solve?condition=priority-overload#problem-priority-overload", icon: "priorities" },
     ],
   },
   fourTs: {
     title: "New tools, skills, or people still need clear direction.",
-    description: "Technology, talent, training, and transformation can each address a real need. Results also depend on leaders agreeing on priorities, who owns the work, and how decisions get made.",
+    description: "Technology, talent, training, and transformation can address real needs. Leadership practices turn those investments into changes in how work gets done.",
     cards: [
-      { title: "Technology", description: "Turn new tools into useful change by agreeing on the outcome, how work changes, and who owns adoption.", icon: "execution" },
-      { title: "Training", description: "Turn new skills into better decisions and follow-through by applying them to the work your team owns.", icon: "decisions" },
-      { title: "Talent", description: "Put added capacity toward the right outcomes, with clear priorities, decision rights, and ownership.", icon: "commitments" },
-      { title: "Transformation", description: "Turn a new direction into business results through coordinated decisions and delivery across teams.", icon: "outcomes" },
+      { title: "Technology", description: "Agree how work will change and who owns adoption—not just which tool to buy.", icon: "execution" },
+      { title: "Training", description: "Apply new skills to the decisions and commitments your team owns.", icon: "decisions" },
+      { title: "Talent", description: "Give added capacity clear priorities and the authority to act.", icon: "commitments" },
+      { title: "Transformation", description: "Make the new direction part of everyday decisions and delivery.", icon: "outcomes" },
     ],
   },
   why: {
     title: "Strategy implementation with leaders who work alongside you.",
-    paragraphs: ["120VC is an Execution Leadership firm. We work alongside your leaders to agree on priorities, resolve decisions that block progress, and deliver critical initiatives.", "We also strengthen your execution systems: how teams assign work, review progress, and follow through."],
+    paragraphs: ["120VC is an Execution Leadership firm. We work on your team's current initiatives—not a separate theory exercise. Coach your leaders, install the system with them, or bring experienced execution leaders into the work."],
   },
   system: {
     title: "A leadership system for disciplined execution.",
-    paragraphs: ["The Execution Leadership System is an operating model that makes clear who owns each result, what happens next, and when progress gets reviewed.", "Teams establish a shared operating rhythm: regular conversations to resolve roadblocks and keep commitments on track."],
-    outcomes: [{ title: "Clear owners", icon: "commitments" }, { title: "Timely decisions", icon: "decisions" }, { title: "Risks caught early", icon: "outcomes" }],
+    paragraphs: ["One shared operating model: clear owners, timely decisions, and an operating rhythm that catches risks early."],
   },
   offers: {
     title: "Choose the level of Execution Leadership your team needs.",
     description: "Coach your leaders, put the system into practice, or bring leaders into the work to deliver a critical initiative.",
     cards: [
-      { title: "Execution Leadership Coaching", description: "Executive team coaching helps your leaders agree on priorities, make decisions, and follow through. We coach your team; your leaders own delivery.", action: "Explore Execution Leadership Coaching", href: "/execution-leadership-coaching" },
-      { title: "Execution Leadership System", description: "Make delivery more consistent across teams. The Executive Leadership Performance Accelerator (ELPA) installs the system through your actual work, with shared priorities, clear owners, and regular progress reviews.", action: "Explore the Execution Leadership System", href: "/leadership-system", secondary: { action: "See how ELPA installs the system", href: "/executive-leadership-coaching-and-development-performance-accelerator" } },
-      { title: "Embedded Execution Leadership", description: "Bring leaders into your team to deliver critical work. We lead project portfolio management and enterprise transformation engagements, resolve roadblocks, and coordinate the teams needed to deliver.", action: "Explore Embedded Execution Leadership", href: "/embedded-execution-leadership" },
+      { title: "Execution Leadership Coaching", description: "Executive team coaching in your current work. Your leaders own delivery; we coach how they decide and follow through.", action: "Explore Execution Leadership Coaching", href: "/execution-leadership-coaching" },
+      { title: "Execution Leadership System", description: "Make delivery more consistent across teams. The Executive Leadership Performance Accelerator (ELPA) installs the system through your actual work.", action: "Explore the Execution Leadership System", href: "/leadership-system", secondary: { action: "See how ELPA installs the system", href: "/executive-leadership-coaching-and-development-performance-accelerator" } },
+      { title: "Embedded Execution Leadership", description: "Bring leaders into your team to deliver critical work. We lead project portfolio management and enterprise transformation alongside your team.", action: "Explore Embedded Execution Leadership", href: "/embedded-execution-leadership" },
     ],
   },
   roles: {
@@ -58,8 +57,8 @@ export const homepage = {
     ],
   },
   resources: {
-    title: "A strategy execution framework you can put to work.",
-    description: "Find practical frameworks, guides, and insights to improve how your team sets priorities, makes decisions, and follows through.",
+    title: "Find the decision holding delivery back.",
+    description: "Answer six questions about one priority. Get a working brief for your next leadership meeting.",
     items: [
       { title: "Frameworks", description: "Tools for setting priorities, making decisions, and clarifying ownership.", action: "Explore frameworks", href: "/resources?category=frameworks#resource-library" },
       { title: "Guides", description: "Practical steps for applying execution practices with your team.", action: "Explore guides", href: "/resources?category=guides#resource-library" },

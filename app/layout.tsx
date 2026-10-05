@@ -11,6 +11,11 @@ import "./problem-reader.css";
 import "./purposeful-motion.css";
 import "./homepage-refresh.css";
 import "./executive-journey.css";
+import "./world-class-refinement.css";
+import "./decision-record.css";
+import "./engagement-expectations.css";
+import "./page-availability.css";
+import "./toolkit.css";
 
 const SITE_URL = "https://www.120vc.com";
 const description = "120VC turns strategy into results through Execution Leadership Coaching, the Execution Leadership System, and Embedded Execution Leadership.";

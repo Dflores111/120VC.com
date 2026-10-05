@@ -8,7 +8,7 @@ import { useHydratedReducedMotion } from "./use-hydrated-reduced-motion";
 
 const groups = [
   { id: "all", label: "All", description: "Explore the full library, or choose a resource type." },
-  { id: "frameworks", label: "Frameworks", description: "Use a practical method to frame a problem, prioritize, or make a decision. Framework pages explain the method; they do not save or submit your work." },
+  { id: "frameworks", label: "Frameworks", description: "Use connected tools to prioritize, plan, and make decisions. Save your working records in this browser, then copy or export what you choose to share." },
   { id: "guides", label: "Guides", description: "Follow practical steps to strengthen how your team works." },
   { id: "insights", label: "Insights", description: "Understand where execution breaks down and what leaders can change." },
 ] as const;

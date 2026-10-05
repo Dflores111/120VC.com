@@ -39,3 +39,8 @@ yarn-error.log*
 /outputs/
 /work/
 *.tsbuildinfo
+
+# Local editor settings and duplicate review exports are not website source.
+/.claude/
+/review-packages/
+/120vc-website-experience-skill.zip

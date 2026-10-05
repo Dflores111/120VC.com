@@ -6,10 +6,20 @@ import { SiteFooter } from "./site-footer";
 import { embeddedScopes, siteRoutes } from "../data/sitemap-content";
 import type { SitePage } from "../site-data";
 import { EngagementEvaluation } from "./engagement-evaluation";
+import { engagementOfferForRoute } from "../data/engagement-expectations";
 
 export function OfferExperience({ page }: { page: SitePage }) {
   const isEmbedded = `/${page.slug}` === siteRoutes.embedded;
   const isElpa = `/${page.slug}` === siteRoutes.elpa;
+  const engagementOffer = engagementOfferForRoute(page.slug);
+  // Replace a repeated method / participation chapter with concrete expectations,
+  // retaining its contextual links rather than extending the page by a chapter.
+  const isIntegratedSection = (section: SitePage["sections"][number]) =>
+    (isElpa && section.title === "What installation involves.") ||
+    (engagementOffer === "coaching" && section.title === "Make the practices part of how your team operates.") ||
+    (isEmbedded && section.title === "Apply the Execution Leadership System in delivery.");
+  const sections = page.sections.filter(section => !isIntegratedSection(section));
+  const expectationLinks = page.sections.filter(isIntegratedSection).flatMap(section => section.cards || []);
   const cta = page.primaryCta || { label: "Let's Talk", href: siteRoutes.contact };
   return <div className="site-shell hierarchy-site supporting-v2 offer-experience">
     <a className="skip-link" href="#main-content">Skip to content</a>
@@ -25,7 +35,7 @@ export function OfferExperience({ page }: { page: SitePage }) {
       </section>
       {isElpa && <nav className="offer-parent-link" aria-label="System navigation"><Link href={siteRoutes.system}>← Explore the Execution Leadership System</Link></nav>}
       <div className="offer-sections">
-        {page.sections.map((section, index) => <section className="offer-section" data-major-section key={section.title}>
+        {sections.map((section, index) => <section className="offer-section" data-major-section key={section.title}>
           <span className="offer-section-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
           <h2><ScrollWords>{section.title}</ScrollWords></h2>
           <div>
@@ -43,7 +53,7 @@ export function OfferExperience({ page }: { page: SitePage }) {
         </article>)}</div>
         <Link className="home-section-link" href="/results">Review experience and evidence <span aria-hidden="true">→</span></Link>
       </section>}
-      <EngagementEvaluation />
+      <EngagementEvaluation offer={engagementOffer} relatedLinks={expectationLinks} />
       <section className="solution-reassurance" data-major-section data-journey-stage="act" aria-labelledby="offer-close-title">
         <div><h2 id="offer-close-title">{page.closingTitle}</h2><p>{page.closingDescription}</p></div>
         <Link className="button button-primary" href={cta.href} data-primary-action>{cta.label}<span aria-hidden="true">→</span></Link>

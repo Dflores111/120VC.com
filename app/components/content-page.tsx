@@ -4,6 +4,7 @@ import { ProgressiveDisclosure } from "./progressive-disclosure";
 import { ReviewModePanel } from "./review-mode-panel";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
+import { getPageAvailability, type PageAvailability } from "../data/page-availability";
 import { pageHasApprovalHold, type PageLink, type PageSection, type SitePage } from "../site-data";
 
 function CtaLink({ href, className, children, action }: { href: string; className: string; children: React.ReactNode; action?: "primary" | "secondary" | "choice" }) {
@@ -31,6 +32,39 @@ function ArrowLink({ link, className = "" }: { link: PageLink; className?: strin
   );
 }
 
+function AvailabilityNotice({ availability, slug }: { availability: PageAvailability; slug: string }) {
+  const headingId = `availability-${slug.replaceAll("/", "-")}`;
+  const primaryIsLocal = availability.primaryAction.href.startsWith("/");
+
+  return (
+    <section
+      className={`page-availability page-availability-${availability.kind}`}
+      data-major-section
+      data-journey-stage="orient"
+      data-page-availability={availability.state}
+      data-surface="neutral"
+      aria-labelledby={headingId}
+    >
+      <div className="page-availability-marker" aria-hidden="true"><span /></div>
+      <div className="page-availability-copy">
+        <p className="page-availability-label">{availability.notice.label}</p>
+        <h2 id={headingId}>{availability.notice.title}</h2>
+        <p>{availability.notice.description}</p>
+        <div className="page-availability-actions">
+          <CtaLink action="primary" className="button button-primary" href={availability.primaryAction.href}>
+            {availability.primaryAction.label}<span aria-hidden="true" data-direction={primaryIsLocal ? undefined : "out"}>{primaryIsLocal ? "→" : "↗"}</span>
+          </CtaLink>
+          {availability.secondaryAction && (
+            <CtaLink action="secondary" className="quiet-link" href={availability.secondaryAction.href}>
+              {availability.secondaryAction.label}<span aria-hidden="true">→</span>
+            </CtaLink>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const governanceCopy = /\[APPROVAL REQUIRED\]|PLACEHOLDER TESTIMONIAL|OWNER PREVIEW|NOT CONNECTED|publication hold|publishing gate|content governance|activation status|legal publishing hold|owner-only prototype|remain(?:s)? held|remain(?:s)? disabled|approval-dependent|requires (?:legal )?approval|before (?:public )?(?:launch|publication|activation)|must (?:come from|be supplied and approved)/i;
 
 function isGovernanceCopy(value?: string) {
@@ -51,15 +85,35 @@ function audienceSection(section: PageSection): PageSection | null {
 }
 
 export function ContentPage({ page, reviewMode = false }: { page: SitePage; reviewMode?: boolean }) {
+  const availability = getPageAvailability(page.slug);
   const finalCta = page.closingCta || page.primaryCta || { label: "Request a Conversation", href: "/consultation" };
   const embeddedDetail = ["enterprise-digital-transformation", "roi-driven-project-portfolio-services", "project-leadership-managed-services", "pmo-managed-services"].includes(page.slug);
   const coachingDetail = page.slug === "transformation-leadership-team-development-coaching-and-program";
   const consultationOutcome = finalCta.href.startsWith("/consultation") || finalCta.href.startsWith("/contact");
   const held = pageHasApprovalHold(page);
-  const description = isGovernanceCopy(page.description) ? page.seoDescription : page.description;
-  const intro = isGovernanceCopy(page.intro) ? undefined : page.intro;
-  const sections = page.sections.map(audienceSection).filter((section): section is PageSection => Boolean(section));
-  const related = page.related?.filter((item) => !isGovernanceCopy(item.title) && !isGovernanceCopy(item.description) && !isGovernanceCopy(item.label));
+  const title = availability?.kind === "legal-policy" ? availability.heroTitle : page.title;
+  const description = availability?.kind === "legal-policy"
+    ? availability.heroDescription
+    : isGovernanceCopy(page.description) ? page.seoDescription : page.description;
+  const intro = availability ? availability.heroIntro || undefined : isGovernanceCopy(page.intro) ? undefined : page.intro;
+  const availabilitySections: PageSection[] = availability
+    ? [
+        ...availability.publicSectionIndexes.map((index) => page.sections[index]).filter((section): section is PageSection => Boolean(section)),
+        ...(availability.publicSectionOverride
+          ? [{
+              ...availability.publicSectionOverride,
+              paragraphs: availability.publicSectionOverride.paragraphs ? [...availability.publicSectionOverride.paragraphs] : undefined,
+              bullets: availability.publicSectionOverride.bullets ? [...availability.publicSectionOverride.bullets] : undefined,
+            }]
+          : []),
+      ]
+    : [];
+  const sections = availability
+    ? availabilitySections
+    : page.sections.map(audienceSection).filter((section): section is PageSection => Boolean(section));
+  const related = availability
+    ? undefined
+    : page.related?.filter((item) => !isGovernanceCopy(item.title) && !isGovernanceCopy(item.description) && !isGovernanceCopy(item.label));
   const faqMode = page.slug === "faq";
   const hasIntentionalPresentation = sections.some((section) => section.presentation);
   const primarySections = faqMode
@@ -98,12 +152,14 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
         {(embeddedDetail || coachingDetail) && <nav className="offer-parent-link" aria-label="Offer navigation"><Link href={embeddedDetail ? "/embedded-execution-leadership" : "/execution-leadership-coaching"}>← Explore {embeddedDetail ? "Embedded Execution Leadership" : "Execution Leadership Coaching"}</Link></nav>}
         <section className={`inner-hero ${hasHeroAside ? "" : "content-hero-single"}`} data-major-section data-journey-stage="recognize" data-surface="neutral">
           <div className="inner-hero-copy">
-            <h1 className={page.title.length > 58 ? "headline-compact-mobile" : undefined}>{page.title}</h1>
+            <h1 className={title.length > 58 ? "headline-compact-mobile" : undefined}>{title}</h1>
             <p className="inner-description">{description}</p>
-            <div className="primary-and-quiet">
-              <CtaLink action="primary" className="button button-primary" href={page.primaryCta?.href || "/consultation"}>{page.primaryCta?.label || "Request a Conversation"}<span aria-hidden="true" data-direction={(page.primaryCta?.href || "/consultation").startsWith("/") ? undefined : "out"}>{(page.primaryCta?.href || "/consultation").startsWith("/") ? "→" : "↗"}</span></CtaLink>
-              {page.secondaryCta && <CtaLink action="secondary" className="quiet-link" href={page.secondaryCta.href}>{page.secondaryCta.label}<span aria-hidden="true" data-direction={page.secondaryCta.href.startsWith("/") ? undefined : "out"}>{page.secondaryCta.href.startsWith("/") ? "→" : "↗"}</span></CtaLink>}
-            </div>
+            {!availability && (
+              <div className="primary-and-quiet">
+                <CtaLink action="primary" className="button button-primary" href={page.primaryCta?.href || "/consultation"}>{page.primaryCta?.label || "Request a Conversation"}<span aria-hidden="true" data-direction={(page.primaryCta?.href || "/consultation").startsWith("/") ? undefined : "out"}>{(page.primaryCta?.href || "/consultation").startsWith("/") ? "→" : "↗"}</span></CtaLink>
+                {page.secondaryCta && <CtaLink action="secondary" className="quiet-link" href={page.secondaryCta.href}>{page.secondaryCta.label}<span aria-hidden="true" data-direction={page.secondaryCta.href.startsWith("/") ? undefined : "out"}>{page.secondaryCta.href.startsWith("/") ? "→" : "↗"}</span></CtaLink>}
+              </div>
+            )}
           </div>
           {hasHeroAside && (
             <div className={`inner-hero-aside ${page.heroImage ? "inner-hero-aside-person" : ""}`}>
@@ -121,7 +177,9 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
           )}
         </section>
 
-        {page.facts && (
+        {availability && <AvailabilityNotice availability={availability} slug={page.slug} />}
+
+        {!availability && page.facts && (
           <section className="facts-strip" aria-label="At a glance">
             {page.facts.map((fact, index) => (
               <div key={fact.label}>
@@ -133,8 +191,9 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
           </section>
         )}
 
-        <div className="content-sections">
-          {primarySections.map((section, index) => (
+        {(primarySections.length > 0 || disclosureSections.length > 0) && (
+          <div className="content-sections">
+            {primarySections.map((section, index) => (
             <section className="content-section" data-major-section data-journey-stage="understanding" data-surface="neutral" key={`${section.title}-${index}`}>
               <div className="content-section-index">
                 <span>{String(index + 1).padStart(2, "0")}</span>
@@ -158,24 +217,25 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
                 )}
               </div>
             </section>
-          ))}
+            ))}
 
-          {disclosureSections.length > 0 && (
-            <section className="content-section content-progressive-section" data-major-section data-journey-stage="understanding" data-surface="neutral">
-              <div className="content-section-index">
-                <span>{String(primarySections.length + 1).padStart(2, "0")}</span>
-                {faqMode && <p>Frequently asked</p>}
-              </div>
-              <div className="content-section-body">
-                <h2>{faqMode ? "Questions, answered in order." : page.detailsTitle || "What to consider next."}</h2>
-                <p className="content-paragraph">{faqMode
-                  ? "Open only the question that matters to the decision you are making now."
-                  : page.detailsDescription || "Open the question that matters to the decision you are making."}</p>
-                <ProgressiveDisclosure sections={disclosureSections} faqMode={faqMode} />
-              </div>
-            </section>
-          )}
-        </div>
+            {disclosureSections.length > 0 && (
+              <section className="content-section content-progressive-section" data-major-section data-journey-stage="understanding" data-surface="neutral">
+                <div className="content-section-index">
+                  <span>{String(primarySections.length + 1).padStart(2, "0")}</span>
+                  {faqMode && <p>Frequently asked</p>}
+                </div>
+                <div className="content-section-body">
+                  <h2>{faqMode ? "Questions, answered in order." : page.detailsTitle || "What to consider next."}</h2>
+                  <p className="content-paragraph">{faqMode
+                    ? "Open only the question that matters to the decision you are making now."
+                    : page.detailsDescription || "Open the question that matters to the decision you are making."}</p>
+                  <ProgressiveDisclosure sections={disclosureSections} faqMode={faqMode} />
+                </div>
+              </section>
+            )}
+          </div>
+        )}
 
         {!relatedLivesWithSupportingDetail && related && related.length > 0 && (
           <section className="related-section" data-major-section data-journey-stage="solution" data-surface="neutral">
@@ -188,15 +248,17 @@ export function ContentPage({ page, reviewMode = false }: { page: SitePage; revi
           </section>
         )}
 
-        <section className="final-cta" data-major-section data-journey-stage="act" data-surface="outcome">
-          <div>
-            <h2>{page.closingTitle || (consultationOutcome ? "Talk through your execution problem." : "Continue from here.")}</h2>
-          </div>
-          <div>
-            {page.closingDescription ? <p>{page.closingDescription}</p> : consultationOutcome && <p>Bring the outcome that is not moving. We will help clarify the problem, whether 120VC is relevant, and what should happen next.</p>}
-            <CtaLink action="primary" className="button button-light" href={finalCta.href}>{finalCta.label}<span aria-hidden="true" data-direction={finalCta.href.startsWith("/") ? undefined : "out"}>{finalCta.href.startsWith("/") ? "→" : "↗"}</span></CtaLink>
-          </div>
-        </section>
+        {!availability && (
+          <section className="final-cta" data-major-section data-journey-stage="act" data-surface="outcome">
+            <div>
+              <h2>{page.closingTitle || (consultationOutcome ? "Talk through your execution problem." : "Continue from here.")}</h2>
+            </div>
+            <div>
+              {page.closingDescription ? <p>{page.closingDescription}</p> : consultationOutcome && <p>Bring the outcome that is not moving. We will help clarify the problem, whether 120VC is relevant, and what should happen next.</p>}
+              <CtaLink action="primary" className="button button-light" href={finalCta.href}>{finalCta.label}<span aria-hidden="true" data-direction={finalCta.href.startsWith("/") ? undefined : "out"}>{finalCta.href.startsWith("/") ? "→" : "↗"}</span></CtaLink>
+            </div>
+          </section>
+        )}
       </main>
 
       <SiteFooter />

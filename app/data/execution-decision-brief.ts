@@ -1,6 +1,59 @@
 /** A discussion aid, not the proprietary Execution Health Diagnostic or a benchmark. */
 export const decisionBriefHref = "/resources/execution-decision-brief";
 export const deliveryContexts = ["A critical initiative", "A business transformation", "Better portfolio return", "A stronger internal function"] as const;
+export type DeliveryContext = typeof deliveryContexts[number];
+
+const contextGuidance: Record<DeliveryContext, { bring: string; agenda: string; check: string; outcomeExample: string; decisionExample: string }> = {
+  "A critical initiative": {
+    bring: "Keep the initiative’s next committed milestone and its cross-team dependencies in view.",
+    agenda: "Confirm the next committed milestone and the teams it depends on.",
+    check: "Look for evidence that the next milestone is moving with its dependencies resolved.",
+    outcomeExample: "Deliver the next agreed milestone with the teams involved.",
+    decisionExample: "Which dependency or approval needs a decision before the milestone can move?",
+  },
+  "A business transformation": {
+    bring: "Bring the business change people need to adopt, alongside launch milestones.",
+    agenda: "Confirm the operating change and the evidence of adoption you need.",
+    check: "Inspect adoption and changed ways of working alongside implementation progress.",
+    outcomeExample: "Put the new cross-team way of working into use.",
+    decisionExample: "Who owns the operating change and the decision needed for adoption?",
+  },
+  "Better portfolio return": {
+    bring: "Bring the intended business outcomes, investment decisions, and available capacity together.",
+    agenda: "Confirm which business outcome the portfolio should protect and what capacity is available.",
+    check: "Inspect whether active work and capacity still support the agreed business outcomes.",
+    outcomeExample: "Protect capacity for the portfolio’s agreed business outcomes.",
+    decisionExample: "Which work continues, waits, stops, or receives capacity?",
+  },
+  "A stronger internal function": {
+    bring: "Choose a service or internal customer outcome and one recurring request that affects it.",
+    agenda: "Confirm the service outcome and the demand the function needs to respond to.",
+    check: "Inspect one service commitment and how the function handled competing demand.",
+    outcomeExample: "Deliver the agreed service outcome for internal customers.",
+    decisionExample: "Which recurring request or decision needs a clear owner and response?",
+  },
+};
+
+export const meetingRecordFields = [
+  { key: "outcome", label: "Outcome to deliver", maxLength: 160 },
+  { key: "blockedDecision", label: "Decision to make or confirm", maxLength: 160 },
+  { key: "accountableOwner", label: "Accountable owner", maxLength: 80 },
+  { key: "nextCommitment", label: "Next commitment", maxLength: 160 },
+  { key: "reviewDate", label: "Review date", maxLength: 10 },
+] as const;
+export type MeetingRecordKey = typeof meetingRecordFields[number]["key"];
+export type BriefMeetingRecord = Record<MeetingRecordKey, string>;
+
+function normalizeMeetingRecord(record: Partial<BriefMeetingRecord>): BriefMeetingRecord {
+  return Object.fromEntries(meetingRecordFields.map(field => {
+    let value = String(record[field.key] || "").trim().slice(0, field.maxLength);
+    if (field.key === "reviewDate") {
+      const date = /^\d{4}-\d{2}-\d{2}$/.test(value) ? new Date(`${value}T00:00:00Z`) : null;
+      if (!date || Number.isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== value) value = "";
+    }
+    return [field.key, value];
+  })) as BriefMeetingRecord;
+}
 export const answerOptions = [
   { value: "clear", label: "Clearly", description: "Agreed and used in the work." },
   { value: "partly", label: "Partly", description: "In place, but not consistent." },
@@ -25,7 +78,7 @@ export const briefQuestionHeadings: Record<BriefCondition, string> = {
   "key-person-dependency": "Can the team move without rescue?",
 };
 
-export function buildDecisionBrief(context: string, answers: BriefAnswers) {
+export function buildDecisionBrief(context: string, answers: BriefAnswers, enteredRecord: Partial<BriefMeetingRecord> = {}) {
   if (!deliveryContexts.includes(context as typeof deliveryContexts[number]) || briefQuestions.some(q => !answerOptions.some(o => o.value === answers[q.id]))) {
     throw new Error("Complete all six questions before creating a brief.");
   }
@@ -35,6 +88,9 @@ export function buildDecisionBrief(context: string, answers: BriefAnswers) {
   const unknowns = briefQuestions.filter(q => answers[q.id] === "unknown");
   const focus = gaps[0] || unknowns[0];
   const mode = gaps.length ? "agreement" : unknowns.length ? "confirm" : "clear";
+  const contextPlan = contextGuidance[context as DeliveryContext];
+  const meetingRecord = normalizeMeetingRecord(enteredRecord);
+  const hasMeetingRecord = meetingRecordFields.some(field => Boolean(meetingRecord[field.key]));
   const title = mode === "confirm" ? "Confirm the agreement before assuming it holds." : focus?.headline || "Test the agreements in the real work.";
   const reason = mode === "agreement" ? `Your answer on ${focus!.label.toLowerCase()} points to ${answers[focus!.id] === "missing" ? "a missing agreement" : "an inconsistent practice"}. Start here; this is not a ranking of business risk.`
     : mode === "confirm" ? `You were unsure about ${focus!.label.toLowerCase()}. Unknown is a question to confirm—not a failure.`
@@ -42,14 +98,15 @@ export function buildDecisionBrief(context: string, answers: BriefAnswers) {
   const action = mode === "confirm"
     ? `Ask the people sharing the outcome to confirm ${focus!.label.toLowerCase()}. Compare their answers before choosing a fix.`
     : focus?.action || "This check did not surface a missing agreement. Compare your answers with the people who share the outcome, then inspect one recent decision and commitment together.";
-  const bring = mode === "confirm" ? "The existing agreement or decision record and the people who use it." : focus?.bring || "One recent decision, the commitment it created, and evidence of progress.";
+  const bring = `${mode === "confirm" ? "The existing agreement or decision record and the people who use it." : focus?.bring || "One recent decision, the commitment it created, and evidence of progress."} ${contextPlan.bring}`;
   const artifact = mode === "confirm" ? "Agreement to confirm / people consulted / evidence inspected / difference in answers / next step" : focus?.artifact || "Outcome / owner / decision / commitment / evidence / next review";
-  const signal = mode === "confirm" ? "Can the people involved point to the same agreement and evidence? If not, what needs to be clarified?" : focus?.signal || "Do the agreed decisions and commitments still match what the team is doing?";
-  const agenda = mode === "agreement" ? ["Confirm the outcome and compare evidence.", "Surface the blocked decision and the trade-offs.", "Make the decision and name the owner.", "Agree the commitment, date, and next review."]
-    : mode === "confirm" ? ["Compare answers with the people involved.", "Inspect the existing agreement and evidence.", "Identify what is agreed and what is still unknown.", "Decide whether a change is needed; name the next check."]
-    : ["Confirm the outcome and compare answers.", "Inspect one recent decision and its commitment.", "Check whether the agreement held in delivery.", "Agree what to preserve and when to review again."];
+  const signal = `${mode === "confirm" ? "Can the people involved point to the same agreement and evidence? If not, what needs to be clarified?" : focus?.signal || "Do the agreed decisions and commitments still match what the team is doing?"} ${contextPlan.check}`;
+  const agenda = mode === "agreement" ? [contextPlan.agenda, "Surface the blocked decision and the trade-offs.", "Make the decision and name the owner.", "Agree the commitment, date, and next review."]
+    : mode === "confirm" ? [`${contextPlan.agenda} Compare answers with the people involved.`, "Inspect the existing agreement and evidence.", "Identify what is agreed and what is still unknown.", "Decide whether a change is needed; name the next check."]
+    : [contextPlan.agenda, "Inspect one recent decision and its commitment.", "Check whether the agreement held in delivery.", "Agree what to preserve and when to review again."];
   const text = [
     "120VC | Execution Decision Brief", `Delivery context: ${context}`, "", title, reason, action,
+    ...(hasMeetingRecord ? ["", "Your meeting record", ...meetingRecordFields.map(field => `${field.label}: ${meetingRecord[field.key] || "To agree in the meeting"}`)] : []),
     "", "Bring to the next meeting", bring,
     "", "20-minute leadership agenda", ...agenda.map((item, i) => `${i * 5}–${(i + 1) * 5} min: ${item}`),
     "", "Working record to complete", artifact,
@@ -58,5 +115,5 @@ export function buildDecisionBrief(context: string, answers: BriefAnswers) {
     "", "Method: Missing agreements are shown before partly established agreements, in question order. Unknown answers are questions to confirm, not failures. This brief reflects your answers; it is a discussion aid, not an organizational benchmark or prediction.",
     "Do not include confidential client or company information when sharing this brief.",
   ].join("\n");
-  return { context, answers, focus, mode, title, reason, action, bring, artifact, signal, agenda, gaps, unknowns, text };
+  return { context, answers, focus, mode, title, reason, action, bring, artifact, signal, agenda, gaps, unknowns, meetingRecord, hasMeetingRecord, contextPlan, text };
 }

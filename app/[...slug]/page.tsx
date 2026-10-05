@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ContentPage } from "../components/content-page";
 import { ExecutionDecisionBrief } from "../components/execution-decision-brief";
+import { ToolkitPage } from "../components/toolkit-page";
+import { toolForRoute, toolkitTools } from "../data/toolkit-manifest";
 import { OfferExperience } from "../components/offer-experience";
 import { sitemapPages } from "../data/sitemap-content";
 import { HowWeHelpExperience } from "../components/how-we-help-experience";
@@ -27,6 +29,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const key = slug.join("/");
   const page = pages[key];
   if (!page) return {};
+  const toolId = toolForRoute(key);
+  if (toolId) {
+    const tool = toolkitTools.find(item => item.id === toolId);
+    return { title: tool?.title || "Execution Toolkit", description: tool?.description || "Connected tools for priorities, decisions, and follow-through.", robots: { index: false, follow: true }, alternates: { canonical: `/${key}` } };
+  }
   const isLegacyProblemAlias = Boolean(problemRouteConditions[key]);
   const isProofGateClosed = isProofGatedRoute(key);
   return {
@@ -73,6 +80,8 @@ export default async function DynamicPage({ params, searchParams }: Props) {
   const key = slug.join("/");
   const page = pages[key];
   if (!page) notFound();
+  const tool = toolForRoute(key);
+  if (tool) return <ToolkitPage tool={tool} />;
   if (key === "resources/execution-decision-brief") return <ExecutionDecisionBrief />;
   const requestedCondition = Array.isArray(query.condition) ? query.condition[0] : query.condition;
   const requestedMode = Array.isArray(query.mode) ? query.mode[0] : query.mode;

@@ -12,6 +12,7 @@ import { SiteHeader } from "./components/site-header";
 import { ScrollWords } from "./components/scroll-words";
 import { ProblemSpotlightLink } from "./components/problem-spotlight-link";
 import { DecisionBriefPreview } from "./components/decision-brief-preview";
+import { ExecutionSignature } from "./components/execution-signature";
 import { approvedHomepageCaseProof, caseMayRenderForProductionAudience } from "./data/homepage-case-proof";
 import { homepage as copy } from "./data/homepage-content";
 import { offerScopes } from "./data/sitemap-content";
@@ -24,14 +25,15 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: `${copy.seoTitle} | 120VC`, description: copy.seoDescription, images: ["/og.png"] },
 };
 
-export default function Home() {
-  // Case results require approval. Company-reported claims are a clearly marked
-  // development-only design preview; the evidence component enforces that boundary.
+export default async function Home({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
+  const query = searchParams ? await searchParams : {};
+  const reviewMode = process.env.NODE_ENV === "development" && query.review === "1";
   const featuredCases = approvedHomepageCaseProof.filter(caseMayRenderForProductionAudience);
   return (
     <div className="site-shell hierarchy-site experience-home commercial-home sitemap-home homepage-refresh">
       <a className="skip-link" href="#main-content">Skip to content</a>
       <SiteHeader />
+      {reviewMode && <div className="homepage-review-material"><CompanyTrackRecord reviewMode={reviewMode} proposedHeadline="This Isn’t Theory. It’s Proven." /></div>}
       <main id="main-content" tabIndex={-1}>
         <section className="home-commercial-hero" data-major-section data-journey-stage="position" aria-labelledby="home-title">
           <HeroMotionMedia />
@@ -92,10 +94,8 @@ export default function Home() {
             <h2 id="home-system-title"><ScrollWords emphasis="disciplined execution." onDark>{copy.system.title}</ScrollWords></h2>
             {copy.system.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
           </header>
-          <ul className="homepage-system-outcomes" aria-label="What the Execution Leadership System makes possible" data-scroll-enter>
-            {copy.system.outcomes.map(outcome => <li key={outcome.title}><ExecutionIcon name={outcome.icon} /><strong>{outcome.title}</strong></li>)}
-          </ul>
-          <CompanyTrackRecord proposedHeadline="This Isn’t Theory. It’s Proven." />
+          <ExecutionSignature />
+          <CompanyTrackRecord reviewMode compact />
           <Link className="button button-light" href="/leadership-system" data-primary-action>See how the system works <span aria-hidden="true">→</span></Link>
         </section>
         <section className="homepage-section homepage-offers" id="what-we-do" data-major-section data-journey-stage="solution" aria-labelledby="home-solutions-title">
@@ -129,13 +129,11 @@ export default function Home() {
           <Link className="home-section-link" href="/for-leaders">See who we work with <span aria-hidden="true">→</span></Link>
         </section>
         <section className="homepage-section homepage-resources" id="resources" data-major-section data-journey-stage="explore" aria-labelledby="home-resources-title">
-          <header className="homepage-heading">
-            <h2 id="home-resources-title"><ScrollWords>{copy.resources.title}</ScrollWords></h2>
-            <p>{copy.resources.description}</p>
-          </header>
-          <DecisionBriefPreview />
-          <Link className="home-section-link" href="/resources">Browse frameworks, guides, and insights <span aria-hidden="true">→</span></Link>
-          <nav className="homepage-resource-categories" aria-label="Browse resource categories">{copy.resources.items.map(resource => <Link href={resource.href} key={resource.href}>{resource.title}</Link>)}</nav>
+          <DecisionBriefPreview headingLevel="h2" headingId="home-resources-title" title={copy.resources.title} description={copy.resources.description} />
+          <div className="homepage-resource-footer">
+            <Link className="home-section-link" href="/resources">Browse all resources <span aria-hidden="true">→</span></Link>
+            <nav className="homepage-resource-categories" aria-label="Browse resource categories">{copy.resources.items.map(resource => <Link href={resource.href} key={resource.href}>{resource.title}</Link>)}</nav>
+          </div>
         </section>
         <section className="experience-close home-commercial-close" id="lets-talk" data-major-section data-journey-stage="act" aria-labelledby="home-close-title">
           <h2 className="heading-wide" id="home-close-title">{copy.close.title}</h2>

@@ -31,7 +31,7 @@ const companyStatisticsForReview = [
 
 export const companyStatisticsSource = "https://www.120vc.com/leadership-system/";
 
-export function getCompanyStatisticsForReview(environment: string | undefined) {
+export function getCompanyStatisticsForReview(environment: string | undefined, reviewMode = false) {
   // No query parameter can enable these claims in a public production build.
-  return environment === "development" ? companyStatisticsForReview : [];
+  return environment === "development" && reviewMode ? companyStatisticsForReview : [];
 }

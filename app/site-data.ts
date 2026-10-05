@@ -1461,7 +1461,7 @@ Object.assign(pages, {
     seoDescription: "Explore 120VC tools for prioritization, decision making, focusing, team synchronization, and work rationalization.",
     sections: [
       {
-        eyebrow: "Phase-one tool frameworks",
+        eyebrow: "Practical methods",
         title: "Start with the next useful decision.",
         cards: [
           { title: "2×2 Prioritization Matrix", description: "Decide what deserves focus—and what should wait, change, or stop.", href: "/resources/tools/2x2-prioritization-matrix" },
@@ -1736,14 +1736,14 @@ Object.assign(pages, {
     slug: "resources/tools/2x2-prioritization-matrix",
     eyebrow: "2×2 Prioritization Matrix",
     title: "A prioritization matrix for making real trade-offs.",
-    description: "Compare urgency and strategic value, then decide what moves now, later, or not at all.",
+    description: "Compare value and effort, then decide which outcomes deserve your capacity.",
     intro: "Prioritization is not a longer ranked list. This framework makes the trade-off visible so limited time, talent, attention, and resources can go where they matter most.",
     seoTitle: "Prioritization Matrix for Making Real Trade-Offs",
-    seoDescription: "Explore a 2x2 prioritization matrix for comparing urgency and strategic value, making trade-offs visible, and deciding what moves now, later, or not at all.",
+    seoDescription: "Use a value-by-effort Focus Board to rank objectives, make tradeoffs visible, and connect priorities to weekly commitments.",
     sections: [
       {
         eyebrow: "Prioritization sequence",
-        title: "Compare urgency and strategic value before committing capacity.",
+        title: "Compare value and effort before committing capacity.",
         bullets: [
           "Add a priority or initiative",
           "Drag or assign it to a quadrant",
@@ -1899,7 +1899,7 @@ Object.assign(pages, {
         eyebrow: "Decision standard",
         title: "Consider three connected outcomes before committing.",
         bullets: ["Customer Satisfaction", "Team Member Satisfaction", "Profitability"],
-        statement: "The tool is method proof. A completed filter is not outcome proof.",
+        statement: "Compare the customer, team, and financial consequences together.",
       },
       {
         eyebrow: "Activation status",

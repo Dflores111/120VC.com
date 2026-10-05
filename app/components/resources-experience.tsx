@@ -28,7 +28,7 @@ export function ResourcesExperience({ initialCategory }: { initialCategory?: Res
               <span>DECISION TOOL</span>
               <ExecutionIcon name="two-by-two" />
               <strong>What deserves focus?</strong>
-              <i><b>Strategic value</b><b>Urgency</b></i>
+              <i><b>Value</b><b>Effort</b></i>
             </div>
             <div className="resources-reading-preview" aria-hidden="true">
               <span>EXECUTIVE INSIGHT</span>
@@ -47,6 +47,7 @@ export function ResourcesExperience({ initialCategory }: { initialCategory?: Res
             <p>Explore a framework for the work in front of you, or understand why the problem keeps returning.</p>
           </header>
           <ResourceExplorer initialCategory={initialCategory} />
+          <p className="tk-library-link"><Link className="button button-secondary" href="/resources/tools">Open the connected Execution Toolkit <span aria-hidden="true">→</span></Link></p>
         </section>
 
         <section className="resource-book-section" data-major-section data-journey-stage="understand" aria-labelledby="resource-book-title">

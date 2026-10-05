@@ -12,53 +12,6 @@ type FeaturedCaseCarouselProps = {
   sourcePage?: "homepage" | "results";
 };
 
-function resultParts(value: string) {
-  const match = value.match(/^([\d.]+)(.*)$/);
-  return match ? { number: Number(match[1]), suffix: match[2], decimals: match[1].includes(".") ? 1 : 0 } : null;
-}
-
-function AnimatedResultValue({ value, active, forceReducedMotion = false }: { value: string; active: boolean; forceReducedMotion?: boolean }) {
-  const reduceMotion = useHydratedReducedMotion() || forceReducedMotion;
-  const hasPlayed = useRef(false);
-  const [displayValue, setDisplayValue] = useState(value);
-
-  useEffect(() => {
-    if (!active) return;
-    const parsed = resultParts(value);
-    if (!parsed || reduceMotion || hasPlayed.current) {
-      setDisplayValue(value);
-      hasPlayed.current = true;
-      return;
-    }
-
-    hasPlayed.current = true;
-    let frame = 0;
-    let startedAt = 0;
-    const duration = 820;
-    setDisplayValue(`${parsed.decimals ? "0.0" : "0"}${parsed.suffix}`);
-
-    const tick = (timestamp: number) => {
-      if (!startedAt) startedAt = timestamp;
-      const progress = Math.min(1, (timestamp - startedAt) / duration);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = parsed.number * eased;
-      setDisplayValue(`${current.toFixed(parsed.decimals)}${parsed.suffix}`);
-      if (progress < 1) frame = window.requestAnimationFrame(tick);
-      else setDisplayValue(value);
-    };
-
-    frame = window.requestAnimationFrame(tick);
-    return () => window.cancelAnimationFrame(frame);
-  }, [active, reduceMotion, value]);
-
-  return (
-    <strong className="case-reader-value">
-      <span className="sr-only">{value}</span>
-      <span aria-hidden="true">{displayValue}</span>
-    </strong>
-  );
-}
-
 function analyticsProperties(caseStudy: HomepageCaseProof, index: number, sourcePage: "homepage" | "results") {
   return {
     case_id: caseStudy.id,
@@ -124,11 +77,6 @@ export function FeaturedCaseCarousel({ cases, forceReducedMotion = false, source
 
   return (
     <div className="featured-case-carousel case-reader" data-reduced-motion={reduceMotion ? "true" : "false"} ref={carouselRef} role="region" aria-roledescription="carousel" aria-label="Featured case studies">
-      {cases.length > 1 && <div className="case-reader-controls" role="group" aria-label="Browse case studies">
-        <button type="button" onClick={() => goTo(current - 1)} onKeyDown={handleKeys} disabled={current === 0} aria-label="Previous case study"><span aria-hidden="true">←</span> Previous</button>
-        <p aria-live="polite" aria-atomic="true"><span className="sr-only">{caseStudy.title} Case </span><strong>{current + 1}</strong> of {cases.length}</p>
-        <button type="button" onClick={() => goTo(current + 1)} onKeyDown={handleKeys} disabled={current === cases.length - 1} aria-label="Next case study">Next <span aria-hidden="true">→</span></button>
-      </div>}
       <article
         className="case-reader-story"
         data-active="true"
@@ -137,31 +85,43 @@ export function FeaturedCaseCarousel({ cases, forceReducedMotion = false, source
         aria-label={`Case ${current + 1} of ${cases.length}: ${caseStudy.title}`}
       >
         <header>
-          <p className="case-reader-context"><span>{caseStudy.proofStatus === "approved" ? "Case study" : "Illustrative case study"}</span> · {caseStudy.context}</p>
-          {caseStudy.proofStatus === "demo" && <p className="case-reader-notice">Placeholder — not approved for publication.</p>}
+          <p className="case-reader-context">{caseStudy.proofStatus === "approved" && <><span>Client story</span> · </>}{caseStudy.context}</p>
+          {caseStudy.proofStatus === "demo" && <p className="case-reader-notice">Illustrative placeholder — not client proof and not approved for publication.</p>}
           <h3>{caseStudy.title}</h3>
         </header>
-        <dl className="case-reader-narrative">
-          <div><dt>Before</dt><dd>{caseStudy.conditionSummary}</dd></div>
-          <div className="case-reader-change"><dt>What 120VC changed</dt><dd>{caseStudy.intervention}</dd></div>
-          <div className="case-reader-after"><dt>After</dt><dd><strong>{caseStudy.afterSummary}</strong></dd></div>
-        </dl>
         <p className="case-reader-result">
-          <AnimatedResultValue value={caseStudy.resultValue} active={isVisible} forceReducedMotion={forceReducedMotion} />
+          <strong className="case-reader-value">{caseStudy.resultValue}</strong>
           <span>{caseStudy.resultLabel} <span>{caseStudy.timeframe}</span></span>
         </p>
-        {caseStudy.proofStatus === "approved" && caseStudy.quote && (
-          <details className="case-reader-quote">
-            <summary>Hear the client’s perspective <span aria-hidden="true">+</span></summary>
-            <blockquote><p>“{caseStudy.quote}”</p><footer><cite>{caseStudy.quotePerson ?? caseStudy.quoteRole} · {caseStudy.quoteOrganization}</cite></footer></blockquote>
-          </details>
-        )}
+        <div className="case-reader-intervention">
+          <p>What 120VC changed</p>
+          <p>{caseStudy.interventionSummary}</p>
+        </div>
+        <details className="case-reader-detail">
+          <summary>What changed — before and after <span aria-hidden="true">+</span></summary>
+          <div className="case-reader-detail-body">
+            <dl className="case-reader-narrative">
+              <div><dt>Before</dt><dd>{caseStudy.condition}</dd></div>
+              <div className="case-reader-change"><dt>Intervention</dt><dd>{caseStudy.intervention}</dd></div>
+              <div className="case-reader-after"><dt>After</dt><dd><strong>{caseStudy.afterState}</strong></dd></div>
+            </dl>
+            <p className="case-reader-evidence"><strong>Evidence note</strong>{caseStudy.evidenceDescription}</p>
+            {caseStudy.proofStatus === "approved" && caseStudy.quote && (
+              <blockquote className="case-reader-quote"><p>“{caseStudy.quote}”</p><footer><cite>{caseStudy.quotePerson ?? caseStudy.quoteRole} · {caseStudy.quoteOrganization}</cite></footer></blockquote>
+            )}
+          </div>
+        </details>
         <Link className="case-reader-link" href={ctaHref} onClick={() => track120vcEvent({
           event: "case_story_cta_clicked",
           section: "client-results",
           ...analyticsProperties(caseStudy, current, sourcePage),
         })}>{ctaLabel} <span aria-hidden="true">→</span></Link>
       </article>
+      {cases.length > 1 && <div className="case-reader-controls" role="group" aria-label="Browse case studies">
+        <button type="button" onClick={() => goTo(current - 1)} onKeyDown={handleKeys} disabled={current === 0} aria-label="Previous case study"><span aria-hidden="true">←</span> Previous</button>
+        <p aria-live="polite" aria-atomic="true"><span className="sr-only">{caseStudy.title} Case </span><strong>{current + 1}</strong> of {cases.length}</p>
+        <button type="button" onClick={() => goTo(current + 1)} onKeyDown={handleKeys} disabled={current === cases.length - 1} aria-label="Next case study">Next <span aria-hidden="true">→</span></button>
+      </div>}
     </div>
   );
 }

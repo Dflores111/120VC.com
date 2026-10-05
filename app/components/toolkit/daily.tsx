@@ -1,0 +1,25 @@
+"use client";
+import { useState } from "react";
+import { dailyReport, dateISO, newId, validDate, type Commitment, type Daily } from "../../data/toolkit";
+import { CommitmentEditor } from "./commitments";
+import { Editor, ExportReport, Field, Issues, Steps } from "./primitives";
+import { useToolkit } from "./workspace";
+
+function DailyEntry({ date }: { date: string }) {
+  const { data, save } = useToolkit(); const [day, setDay] = useState<Daily>(() => structuredClone(data.daily.find(d => d.date === date) || { id: newId(), date, gratitude: ["", "", ""], today: "", tomorrow: "", reflection: "", calendarReviewed: false, completed: false }));
+  const [step, setStep] = useState(0); const [issues, setIssues] = useState<string[]>([]); const [editing, setEditing] = useState<Commitment | null>(null);
+  const unfinished = data.commitments.filter(c => c.due <= date && c.status !== "done" && c.status !== "parked");
+  const set = <K extends keyof Daily>(key: K, value: Daily[K]) => setDay(d => ({ ...d, [key]: value, completed: false }));
+  function saveDay() { return save(d => { const i = d.daily.findIndex(v => v.date === date); if (i < 0) d.daily.push(day); else d.daily[i] = day; }); }
+  if (editing) return <><p className="tk-hint">Your daily draft was saved before opening this commitment.</p><CommitmentEditor initial={editing} onClose={() => setEditing(null)} /></>;
+  return <><Steps names={["Gratitude · 5m", "Today · 5m", "Tomorrow · 5m", "Reflect · 5m", "Reset calendar · 10m"]} step={step} onChange={setStep} /><Issues items={issues} /><Editor draft={day} savedDraft={data.daily.find(d => d.date === date)} label="Save daily draft" onSave={saveDay}>
+    <div className="tk-step-panel" key={step}>{step === 0 && <><h2>Notice what helped.</h2>{day.gratitude.map((g, i) => <Field key={i} label={`Gratitude ${i + 1}`} value={g} onChange={v => set("gratitude", day.gratitude.map((value, index) => index === i ? v : value))} />)}</>}
+      {step === 1 && <><h2>What did today change?</h2><Field label="Today’s actions and outcomes" value={day.today} onChange={v => set("today", v)} multiline hint="Pair the action with what it accomplished. ‘Reviewed scope; sponsor accepted the reduced launch.’" /></>}
+      {step === 2 && <><h2>Make tomorrow intentional.</h2><Field label="Tomorrow’s actions and intended outcomes" value={day.tomorrow} onChange={v => set("tomorrow", v)} multiline hint="This is a report draft. Edit the shared commitment record separately to change its date or calendar blocks." /></>}
+      {step === 3 && <><h2>What will you do differently?</h2><Field label="Private reflection" value={day.reflection} onChange={v => set("reflection", v)} multiline hint="Excluded from the Eyes Up report. Included in full browser backups and form drafts." /></>}
+      {step === 4 && <><h2>Reset your calendar.</h2><p>Close completed commitments. Re-scope, reschedule, or park unfinished work. Nothing automatically rolls into tomorrow.</p>{unfinished.map(c => <div key={c.id} className="tk-record-row"><span>{c.title} · due {c.due}</span><button type="button" onClick={() => { if (saveDay()) setEditing(c); }}>Resolve commitment</button></div>)}{!unfinished.length && <p>No overdue or due-today commitments remain open.</p>}<label className="tk-check"><input type="checkbox" checked={day.calendarReviewed} onChange={e => set("calendarReviewed", e.target.checked)} />I checked tomorrow’s actual calendar and resolved unfinished work.</label><button type="button" className="tk-primary" onClick={() => { const errors = []; if (!day.calendarReviewed || unfinished.length) errors.push("Resolve open commitments due today or earlier, then confirm your calendar review."); if (!day.gratitude.every(g => g.trim()) || !day.today.trim() || !day.tomorrow.trim()) errors.push("Add three gratitudes, today’s outcomes, and tomorrow’s plan."); setIssues(errors); if (!errors.length) { const complete = { ...day, completed: true }; if (save(d => { const i = d.daily.findIndex(v => v.date === date); if (i < 0) d.daily.push(complete); else d.daily[i] = complete; })) setDay(complete); } }}>Complete daily focusing</button>{day.completed && <p className="tk-status" role="status">Daily focusing saved as complete. Your report is ready to review.</p>}</>}
+    </div>
+    <div className="tk-step-controls"><button type="button" disabled={step === 0} onClick={() => setStep(s => s - 1)}>← Previous</button><span>{step + 1} of 5</span><button type="button" disabled={step === 4} onClick={() => setStep(s => s + 1)}>Next →</button></div>
+  </Editor><details className="tk-report-disclosure"><summary>Review / export Eyes Up report</summary><ExportReport text={dailyReport(day)} filename={`eyes-up-${date}`} /></details></>;
+}
+export function DailyFocusing() { const [date, setDate] = useState(dateISO()); return <><div className="tk-week-picker"><Field label="Entry date" type="date" value={date} onChange={v => { if (validDate(v) && window.confirm("Open another day? Save your current daily draft first. Each day starts separately; completed work is not carried forward.")) setDate(v); }} /></div><DailyEntry key={date} date={date} /></>; }

@@ -1,16 +1,13 @@
 import type { ExecutionIconName } from "../components/execution-icon";
 import type { SitePage } from "../site-data";
+import { toolkitTools, toolHref } from "./toolkit-manifest.ts";
 
 export type ResourceCategory = "frameworks" | "guides" | "insights";
 export type ResourceItem = { category: ResourceCategory; icon: ExecutionIconName; title: string; description: string; href: string; action: string; external?: boolean };
 
 export const resourceItems: readonly ResourceItem[] = [
   { category: "guides", icon: "decisions", title: "Execution Decision Brief", description: "Six questions. One practical next step and a brief for your leadership meeting. No email required.", href: "/resources/execution-decision-brief", action: "Build your brief" },
-  { category: "frameworks", icon: "two-by-two", title: "2×2 Prioritization Matrix", description: "Make urgency and strategic value visible before capacity is committed.", href: "/resources/tools/2x2-prioritization-matrix", action: "Explore framework" },
-  { category: "frameworks", icon: "one-three-one", title: "1-3-1 Decision Builder", description: "Move from one problem through three options to one recommendation.", href: "/resources/tools/1-3-1-decision-builder", action: "Explore framework" },
-  { category: "frameworks", icon: "challenge", title: "Challenge · Opportunity Builder", description: "Frame the condition to change before prescribing the work.", href: "/resources/tools/challenge-opportunity-builder", action: "Explore framework" },
-  { category: "frameworks", icon: "weekly-doing", title: "Weekly Team Doing", description: "Make commitments and dependencies visible in a weekly operating rhythm.", href: "/resources/tools/weekly-team-doing", action: "Explore framework" },
-  { category: "frameworks", icon: "three-pillars", title: "Three Pillars Decision Filter", description: "Consider customer satisfaction, team satisfaction, and profitability together.", href: "/resources/tools/three-pillars-decision-filter", action: "Explore framework" },
+  ...toolkitTools.map(tool => ({ category: "frameworks" as const, icon: (tool.id === "focus" ? "two-by-two" : tool.id === "decision" ? "one-three-one" : tool.id === "pillars" ? "three-pillars" : "weekly-doing") as ExecutionIconName, title: tool.title, description: tool.description, href: toolHref(tool.id), action: "Open tool" })),
   { category: "guides", icon: "weekly-doing", title: "How to establish a weekly operating rhythm", description: "Turn a status meeting into a review of commitments, decisions, and what needs to change.", href: "/resources/guides/weekly-operating-rhythm", action: "Read the guide" },
   { category: "guides", icon: "commitments", title: "How to clarify ownership across teams", description: "Name the outcome owner, the decision owner, and the commitments between teams.", href: "/resources/guides/ownership-across-teams", action: "Read the guide" },
   { category: "insights", icon: "execution", title: "Why digital transformations stall", description: "Look beyond implementation milestones to decisions, adoption, and operating change.", href: "/resources/insights/why-digital-transformations-stall", action: "Read the insight" },

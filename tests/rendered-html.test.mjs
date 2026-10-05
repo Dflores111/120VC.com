@@ -1,8 +1,21 @@
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
 import test from "node:test";
+import { toolkitTools, toolHref } from "../app/data/toolkit-manifest.ts";
 
 const readSource = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
+
+test("all toolkit routes render the shared shell, complete navigation and a no-script fallback", async () => {
+  for (const id of ["home", ...toolkitTools.map(tool => tool.id)]) {
+    const { status, html } = await render(toolHref(id));
+    assert.equal(status, 200);
+    assert.match(html, new RegExp(`data-toolkit="${id}"`));
+    assert.equal((mainMarkup(html).match(/<h1\b/g) || []).length, 1);
+    assert.match(html, /<noscript>[\s\S]*need JavaScript[\s\S]*weekly rhythm guide/);
+    for (const tool of toolkitTools) assert.ok(html.includes(`href="${toolHref(tool.id)}"`));
+    assert.doesNotMatch(mainMarkup(html), /Interactive tool not available|tool is not yet available/);
+  }
+});
 
 function findSourceFiles(path) {
   const directory = new URL(`../${path}/`, import.meta.url);
@@ -124,6 +137,7 @@ function visibleText(markup) {
 }
 
 function primaryHero(html) {
+  if (html.includes('class="tk-page-heading"')) return extractElement(html, "header", "tk-page-heading");
   const [hero] = majorSections(html);
   assert.ok(hero, "expected a primary hero section");
   return hero;
@@ -222,9 +236,9 @@ const canonicalOfferAndToolHeadlines = [
   ["Project Portfolio Services", "/roi-driven-project-portfolio-services", "Project portfolio management that makes every initiative earn its funding."],
   ["Project Leadership Managed Services", "/project-leadership-managed-services", "Enterprise project management for initiatives that cannot afford to drift."],
   ["Smartsheet Portfolio Visibility", "/smartsheet-dashboards", "Smartsheet project portfolio management."],
-  ["Prioritization Matrix", "/resources/tools/2x2-prioritization-matrix", "A prioritization matrix for making real trade-offs."],
-  ["1-3-1 Decision Builder", "/resources/tools/1-3-1-decision-builder", "A decision-making framework for turning problems into accountable recommendations."],
-  ["Weekly Team DOING", "/resources/tools/weekly-team-doing", "A weekly operating rhythm for decisions, commitments, and blockers."],
+  ["Prioritization Matrix", "/resources/tools/2x2-prioritization-matrix", "2×2 Focus Board"],
+  ["1-3-1 Decision Builder", "/resources/tools/1-3-1-decision-builder", "1–3–1 Decision Builder"],
+  ["Weekly Team DOING", "/resources/tools/weekly-team-doing", "Weekly Team DOING"],
 ];
 
 const canonicalOfferActions = [
@@ -559,18 +573,18 @@ test("keeps the homepage chapter order and approved-only proof architecture expl
   assert.match(proofComponent, /const caseStudy = cases\[current\]/i);
   assert.match(proofComponent, /data-active="true"[\s\S]*aria-label=\{`Case \$\{current \+ 1\} of \$\{cases\.length\}/i, "only the current case enters the rendered reading path");
   assert.doesNotMatch(proofComponent, /useScrollScene|ProofComparison|case-story-nav|Scroll to advance|ProofStageIcon|ProofPointIcon/, "cases have no nested story controls or scroll runway");
-  assert.match(proofComponent, /AnimatedResultValue[\s\S]*sr-only/i, "animated results retain a static text equivalent");
-  assert.equal((proofComponent.match(/<AnimatedResultValue\b/g) || []).length, 1, "each case renders one primary result");
+  assert.match(proofComponent, /className="case-reader-value">\{caseStudy.resultValue\}/, "the actual metric remains immediately readable without animation");
+  assert.equal((proofComponent.match(/className="case-reader-result"/g) || []).length, 1, "each case renders one primary result");
   assert.doesNotMatch(proofComponent, /supportingResults\.map/, "secondary metrics stay off the homepage");
-  assert.match(proofComponent, /proofStatus === "approved" \? "Case study" : "Illustrative case study"/i);
-  assert.match(proofComponent, /Placeholder — not approved for publication/i, "development examples are unmistakably marked");
+  assert.match(proofComponent, /Client story/);
+  assert.match(proofComponent, /Illustrative placeholder — not client proof and not approved for publication/i, "development examples are unmistakably marked");
   assert.match(proofComponent, /proofStatus === "approved" && caseStudy\.quote/, "invented demo testimonials are not shown");
-  assertOrdered(proofComponent.slice(proofComponent.indexOf('className="case-reader-story"')), ["case-reader-context", "<h3>", "case-reader-narrative", "<dt>Before", "<dt>What 120VC changed", "<dt>After", "case-reader-result", "case-reader-link"], "one linear proof reading path");
-  assertOrdered(proofComponent.slice(proofComponent.indexOf("export function FeaturedCaseCarousel")), ["case-reader-controls", "case-reader-story"], "stable controls above the changing story");
+  assertOrdered(proofComponent.slice(proofComponent.indexOf('className="case-reader-story"')), ["case-reader-context", "<h3>", "case-reader-result", "case-reader-intervention", '<details className="case-reader-detail"', "<dt>Before", "<dt>Intervention", "<dt>After", "case-reader-link"], "result and intervention precede optional supporting detail");
+  assertOrdered(proofComponent.slice(proofComponent.indexOf("export function FeaturedCaseCarousel")), ["case-reader-story", "case-reader-controls"], "browsing follows the case in the reading path");
   assert.match(proofComponent, /cases\.length > 1 && <div className="case-reader-controls"/, "one case does not show meaningless browsing controls");
   assert.match(proofComponent, /if \(!caseStudy\) return null/, "empty governed proof cannot crash the shared carousel");
   assert.match(readerCss, /\.case-reader-narrative dd\s*\{[^}]*font-size:\s*17px/is);
-  assert.match(proofComponent, /className="case-reader-after"[\s\S]*?<strong>\{caseStudy\.afterSummary\}<\/strong>/, "the outcome has semantic emphasis without rewriting evidence");
+  assert.match(proofComponent, /className="case-reader-after"[\s\S]*?<strong>\{caseStudy\.afterState\}<\/strong>/, "expanded detail preserves the full outcome");
   assert.match(readerCss, /\.case-reader-narrative > div \+ div\s*\{[^}]*border-top:/is, "quiet dividers separate the narrative beats");
   assert.match(readerCss, /\.case-reader-change dt\s*\{[^}]*var\(--accent-on-dark\)/is, "orange distinguishes the intervention");
   assert.match(readerCss, /\.case-reader-result\s*\{[^}]*border-inline-start:[^;]*var\(--sage\)[^}]*background:/is, "one restrained result surface carries the payoff");
@@ -704,11 +718,14 @@ test("keeps industry statistics sourced, dated, and scoped to the research", asy
 
 test("keeps company statistics in local design review, never production or RSC output", async () => {
   const { getCompanyStatisticsForReview } = await import(new URL("../app/data/evidence-statistics.ts", import.meta.url));
-  const statistics = getCompanyStatisticsForReview("development");
+  const statistics = getCompanyStatisticsForReview("development", true);
   assert.deepEqual(statistics.map((stat) => stat.value), ["227%", "98%", "25+"]);
   assert.ok(statistics.every((stat) => /to be confirmed/.test(stat.qualification)));
+  assert.deepEqual(getCompanyStatisticsForReview("development"), []);
+  assert.deepEqual(getCompanyStatisticsForReview("development", false), []);
   for (const environment of ["production", "test", undefined]) {
     assert.deepEqual(getCompanyStatisticsForReview(environment), []);
+    assert.deepEqual(getCompanyStatisticsForReview(environment, true), []);
   }
   const component = readSource("app/components/evidence-statistics.tsx");
   assert.match(component, /Review only · Not approved for publication/);
@@ -890,7 +907,7 @@ test("adds finite text entrances and truthful disclosure feedback without changi
   const controller = readSource("app/components/scroll-narrative-motion.tsx");
   const css = readSource("app/purposeful-motion.css");
 
-  for (const [path, expectedCount] of [["/", 7], ["/problems-we-solve", 1], ["/leadership-system", 3], ["/leadership-services", 2], ["/resources", 1], ["/results", 3]]) {
+  for (const [path, expectedCount] of [["/", 7], ["/problems-we-solve", 1], ["/leadership-system", 3], ["/leadership-services", 2], ["/resources", 2], ["/results", 3]]) {
     const main = mainMarkup((await render(path)).html);
     assert.equal((main.match(/class="scroll-words"/g) || []).length, expectedCount, `${path}: a bounded set of motion headlines`);
     const hero = main.match(/<h1\b[^>]*>[\s\S]*?<\/h1>/i)?.[0] || "";
@@ -1207,7 +1224,8 @@ test("keeps audience mode clean and review mode outside the audience composition
   const contentSource = readSource("app/components/content-page.tsx");
   const panelSource = readSource("app/components/review-mode-panel.tsx");
 
-  assert.doesNotMatch(homeSource, /query\.review|getHomepageCaseProof/, "homepage never injects local review placeholders");
+  assert.doesNotMatch(homeSource, /getHomepageCaseProof/, "homepage never injects illustrative case studies");
+  assert.match(homeSource, /process\.env\.NODE_ENV === "development" && query\.review === "1"/, "homepage statistics require explicit development review");
   for (const [label, source] of [["dynamic route", routeSource]]) {
     assert.match(source, /query\.review === "1" && process\.env\.NODE_ENV !== "production"/, `${label}: explicit nonproduction review query`);
   }
@@ -1273,7 +1291,7 @@ test("keeps the commercial core and declared content-page next steps intact", as
     ["/results", /Know what evidence to ask for/i],
     ["/results/methodology", /Every claim needs a definition/i],
     ["/resources", /Practical tools and ideas for better strategy execution/i],
-    ["/resources/tools", /See the system in practice/i],
+    ["/resources/tools", /Turn clarity into action/i],
     ["/for-leaders", /Built for executives accountable/i],
     ["/about/the-120-standard", /Not a slogan\. A way of operating/i],
   ]) {
@@ -1359,10 +1377,10 @@ test("gives the priority supporting pages distinct jobs and familiar interaction
   assert.match(resources, /role="tablist" aria-label="Choose how to use the resource library"/i);
   assert.match(resources, /role="tab"[^>]*aria-selected="true"/i);
   assert.match(resources, /role="tabpanel"/i);
-  assert.match(resources, /2×2 Prioritization Matrix/i);
+  assert.match(resources, /2×2 Focus Board/i);
   assert.match(resources, /FRAMEWORKS/i);
   for (const filter of ["all", "frameworks", "guides", "insights"]) assert.match(resources, new RegExp(`id="resource-tab-${filter}"`));
-  assert.match(readSource("app/components/resource-explorer.tsx"), /do not save or submit your work/i, "frameworks are not presented as state-saving tools");
+  assert.match(readSource("app/components/resource-explorer.tsx"), /Save your working records in this browser/i, "framework tools describe their actual local saving boundary");
 
   const consultation = mainMarkup((await render("/consultation")).html);
   assertOrdered(consultation, ["Tell us what", "Review the context", "Talk about the real condition", "Leave with a recommendation"], "consultation journey");
@@ -1564,7 +1582,8 @@ test("offers executive value before contact details and keeps method examples di
   for (const route of ["/", "/resources"]) {
     const markup = mainMarkup((await render(route)).html);
     assert.ok(markup.includes(`href="${path}"`), route);
-    assert.match(visibleText(markup), /Example output · Not client evidence/);
+    assert.match(visibleText(markup), /No email required/);
+    assert.doesNotMatch(markup, /class="executive-brief-sample"/, "the invitation does not compete with a second sample reading lane");
   }
   for (const route of ["/leadership-system", "/results"]) {
     assert.match(visibleText(mainMarkup((await render(route)).html)), /Illustrative working record · Not client evidence/);
@@ -1613,7 +1632,7 @@ test("restores the homepage visual hierarchy with original generated assets and 
   assert.match(css, /homepage-offer-card:nth-child\(2\)[^}]*var\(--sage\)/);
   assert.match(css, /homepage-offer-card:nth-child\(3\)[^}]*var\(--ink-deep\)/);
   assert.match(css, /homepage-heading h2[^}]*max-width: 40ch/);
-  assert.match(css, /@media \(prefers-reduced-motion: no-preference\)[\s\S]*homepage-system-outcomes/);
+  assert.match(css, /@media \(prefers-reduced-motion: no-preference\)[\s\S]*data-scroll-role="image"/);
   assert.doesNotMatch(main, /This Isn’t Theory|227%|98%|25\+/, "the requested proof block remains a qualified local design preview, not public evidence");
 });
 

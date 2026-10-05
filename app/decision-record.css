@@ -1,0 +1,140 @@
+/* Optional, local meeting record within the existing Execution Decision Brief. */
+.executive-brief-site .brief-meeting-record {
+  margin-top: 28px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+.brief-meeting-record h2 {
+  margin: 0 0 12px;
+  font-size: clamp(27px, 3vw, 36px);
+  line-height: 1.1;
+}
+.brief-meeting-record > p {
+  max-width: 64ch;
+  margin: 0 0 18px;
+  color: var(--graphite);
+  font-size: 17px;
+  line-height: 1.5;
+}
+.brief-record-editor summary {
+  padding: 12px 0;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.brief-record-editor summary span {
+  margin-left: 10px;
+  color: var(--graphite);
+  font-size: 15px;
+  font-weight: 400;
+}
+.brief-record-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+  min-width: 0;
+  margin: 16px 0 0;
+  padding: 0;
+  border: 0;
+}
+.brief-record-field {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.brief-record-field-outcome,
+.brief-record-field-blockedDecision,
+.brief-record-field-nextCommitment { grid-column: 1 / -1; }
+.brief-record-field input,
+.brief-record-field textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 12px;
+  border: 1px solid #8d837d;
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+  line-height: 1.45;
+}
+.brief-record-field textarea { resize: vertical; }
+.brief-record-field :is(input, textarea)::placeholder { color: #625953; }
+.brief-record-field :is(input, textarea):focus-visible,
+.brief-record-editor summary:focus-visible {
+  outline: 3px solid var(--action-orange);
+  outline-offset: 3px;
+}
+.brief-record-note {
+  margin: 14px 0 0;
+  color: var(--graphite);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.brief-record-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  margin: 16px 0 0;
+  border-top: 1px solid var(--line);
+}
+.brief-record-summary > div {
+  min-width: 0;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.brief-record-summary-outcome,
+.brief-record-summary-blockedDecision,
+.brief-record-summary-nextCommitment { grid-column: 1 / -1; }
+.brief-record-summary-accountableOwner { padding-right: 20px !important; }
+.brief-record-summary dt {
+  margin-bottom: 6px;
+  color: var(--accent-text);
+  font-size: 15px;
+  font-weight: 700;
+}
+.brief-record-summary dd {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+@media screen {
+  .brief-record-editor[open] + .brief-record-summary { display: none; }
+}
+@media (max-width: 600px) {
+  .executive-brief-site .brief-meeting-record { padding: 20px 18px; }
+  .brief-record-fields,
+  .brief-record-summary { grid-template-columns: minmax(0, 1fr); }
+  .brief-record-summary-accountableOwner { padding-right: 0 !important; }
+}
+@media print {
+  .executive-brief-site .brief-meeting-record {
+    margin-top: 14px;
+    padding: 0;
+    border: 0;
+    background: white;
+    break-inside: avoid;
+  }
+  .brief-meeting-record > p,
+  .brief-record-editor { display: none !important; }
+  .brief-meeting-record:not(:has(.brief-record-summary)) { display: none !important; }
+  .brief-meeting-record h2 { margin-bottom: 8px; font-size: 20px; }
+  .brief-record-summary { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-top: 6px; }
+  .brief-record-summary > div { padding: 6px 0; }
+  .brief-record-summary dt { margin-bottom: 3px; color: #333; font-size: 10px; }
+  .brief-record-summary dd { font-size: 11px; line-height: 1.35; }
+  .executive-brief-site .brief-working-output { margin-top: 14px; }
+  .executive-brief-site .brief-working-output h2 { font-size: 20px; }
+  .executive-brief-site .brief-working-output h3 { margin-top: 10px; }
+  .executive-brief-site .brief-agenda { margin: 12px 0; }
+  .executive-brief-site .brief-agenda li { padding: 6px 0; font-size: 11px; }
+  .executive-brief-site .brief-result-context,
+  .executive-brief-site .brief-working-output p { font-size: 11px; line-height: 1.4; }
+}

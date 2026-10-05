@@ -30,15 +30,15 @@ export function IndustryStatistics() {
   );
 }
 
-export function CompanyTrackRecord({ proposedHeadline }: { proposedHeadline?: string } = {}) {
-  const statistics = getCompanyStatisticsForReview(process.env.NODE_ENV);
+export function CompanyTrackRecord({ proposedHeadline, reviewMode = false, compact = false }: { proposedHeadline?: string; reviewMode?: boolean; compact?: boolean } = {}) {
+  const statistics = getCompanyStatisticsForReview(process.env.NODE_ENV, reviewMode);
   if (statistics.length === 0) return null;
 
   return (
-    <aside className="evidence-stats evidence-track-record" aria-label="120VC company-reported figures for review">
+    <aside className={`evidence-stats evidence-track-record${compact ? " evidence-track-record-compact" : ""}`} aria-label="120VC company-reported figures for review">
       <div className="evidence-stats-heading">
         <p className="evidence-stats-eyebrow">120VC, by the numbers</p>
-        <span className="evidence-review-status">Review only · Not approved for publication</span>
+        <span className="evidence-review-status">{compact ? "Company-reported · Verification pending" : "Review only · Not approved for publication"}</span>
       </div>
       {proposedHeadline && <h3 className="evidence-proposed-headline">{proposedHeadline}</h3>}
       <dl className="evidence-stats-grid">
@@ -47,12 +47,12 @@ export function CompanyTrackRecord({ proposedHeadline }: { proposedHeadline?: st
             <dt><span className="evidence-stat-value">{stat.value}</span></dt>
             <dd>
               <p className="evidence-stat-label">{stat.label}</p>
-              <p className="evidence-stat-context">{stat.qualification}</p>
+              {!compact && <p className="evidence-stat-context">{stat.qualification}</p>}
             </dd>
           </div>
         ))}
       </dl>
-      <p className="evidence-stats-note">Company-reported figures; not independently validated. Hidden from production until substantiated and approved. <a className="evidence-stat-source" href={companyStatisticsSource}>View 120VC&apos;s published claims<span aria-hidden="true"> ↗</span></a></p>
+      {compact ? <p className="evidence-stats-note">Local review only. Evidence and publication approval are still required. <a className="evidence-stat-source" href={companyStatisticsSource}>Company source ↗</a></p> : <p className="evidence-stats-note">Company-reported figures; not independently validated. Hidden from production until substantiated and approved. <a className="evidence-stat-source" href={companyStatisticsSource}>View 120VC&apos;s published claims<span aria-hidden="true"> ↗</span></a></p>}
     </aside>
   );
 }

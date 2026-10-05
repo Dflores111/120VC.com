@@ -1,0 +1,108 @@
+.guided-content-page .page-availability {
+  width: min(100% - clamp(32px, 8vw, 160px), 1480px);
+  margin: clamp(40px, 7vw, 96px) auto 0;
+  padding: clamp(34px, 5vw, 72px);
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+  border: 1px solid rgba(34, 30, 31, .22);
+  background: var(--paper);
+}
+
+.guided-content-page .page-availability-legal-policy {
+  background: var(--clay);
+}
+
+.guided-content-page .page-availability-resource-collection {
+  background: var(--sage);
+}
+
+.page-availability-marker {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+}
+
+.page-availability-marker span {
+  width: 34px;
+  height: 2px;
+  display: block;
+  background: var(--ink);
+  transform: rotate(-42deg);
+}
+
+.page-availability-label {
+  margin: 0 0 18px;
+  color: var(--graphite);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.page-availability-copy h2 {
+  max-width: 22ch;
+  margin: 0;
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: clamp(38px, 4.8vw, 68px);
+  font-weight: 800;
+  letter-spacing: -.025em;
+  line-height: .98;
+}
+
+.page-availability-copy > p:not(.page-availability-label) {
+  max-width: 64ch;
+  margin: 24px 0 0;
+  color: var(--graphite);
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.62;
+}
+
+.page-availability-actions {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  align-items: center;
+}
+
+@media (max-width: 680px) {
+  .guided-content-page .page-availability {
+    width: min(100% - 32px, 1480px);
+    margin-top: 24px;
+    padding: 28px 24px 32px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .page-availability-marker {
+    width: 52px;
+    height: 52px;
+  }
+
+  .page-availability-marker span {
+    width: 24px;
+  }
+
+  .page-availability-copy h2 {
+    max-width: 18ch;
+    font-size: clamp(34px, 10.5vw, 46px);
+  }
+
+  .page-availability-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .page-availability-actions .button,
+  .page-availability-actions .quiet-link {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

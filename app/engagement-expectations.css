@@ -1,0 +1,97 @@
+/* A compact evaluation record: output, participation, responsibility, first signal.
+ * These are visible facts about an engagement, not a new interactive story.
+ */
+.engagement-expectations {
+  padding: clamp(40px, 5vw, 64px) max(var(--journey-gutter), calc((100vw - var(--journey-max)) / 2));
+  background: var(--sage);
+  color: var(--ink);
+}
+.engagement-expectations-inner { max-width: 1120px; }
+.engagement-expectations-heading { margin-bottom: 24px; }
+.hierarchy-site .engagement-expectations h2 {
+  max-width: 30ch;
+  margin: 0;
+  font-size: clamp(34px, 3.7vw, 48px);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+.engagement-role-split {
+  max-width: 66ch;
+  margin: 18px 0 0;
+  font-size: clamp(18px, 1.5vw, 20px);
+  line-height: 1.55;
+  font-weight: 600;
+}
+.engagement-expectations-list { margin: 0; }
+.engagement-expectations-list > div {
+  display: grid;
+  grid-template-columns: minmax(180px, .65fr) minmax(0, 1.6fr);
+  align-items: start;
+  gap: clamp(20px, 3vw, 40px);
+  padding: 20px 0;
+  border-top: 1px solid #b4c0ae;
+}
+.engagement-expectations-list dt { font-size: 18px; line-height: 1.5; font-weight: 700; }
+.engagement-expectations-list dd { min-width: 0; margin: 0; color: #41483e; font-size: 18px; line-height: 1.55; }
+.engagement-expectations-list ul { display: grid; gap: 8px; margin: 0; padding-left: 20px; }
+.engagement-expectations-list li { padding-left: 4px; }
+.engagement-expectations-list li::marker { color: var(--accent-text); }
+.engagement-expectations-list .engagement-first-signal {
+  margin-top: 4px;
+  padding: 20px;
+  border: 0;
+  border-left: 3px solid var(--action-orange);
+  border-radius: 6px;
+  background: var(--paper);
+}
+.engagement-first-signal dt { color: var(--accent-text); }
+.engagement-first-signal dd { color: var(--ink); font-weight: 600; }
+.engagement-comparison-list > div { align-items: center; }
+.engagement-comparison-list > div:last-child { border-bottom: 1px solid #b4c0ae; }
+.engagement-offer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 6px 8px;
+  margin-left: -8px;
+  border-radius: 6px;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-text);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+.engagement-offer-link span { flex-shrink: 0; color: var(--accent-text); font-size: 24px; }
+.engagement-offer-link:hover { background: var(--paper); }
+.engagement-offer-link:focus-visible { outline: 3px solid var(--action-orange); outline-offset: 3px; }
+.engagement-scope-note { max-width: 74ch; margin: 24px 0 0; color: #41483e; font-size: 16px; line-height: 1.6; }
+.engagement-scope-note strong { color: var(--ink); }
+.engagement-related-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 44px;
+  margin-top: 16px;
+  padding: 8px 12px;
+  border: 1px solid #8e9b87;
+  border-radius: 6px;
+  font-size: 17px;
+  line-height: 1.45;
+  font-weight: 600;
+}
+.engagement-related-link span { flex-shrink: 0; color: var(--accent-text); }
+.engagement-related-link:hover { background: var(--paper); }
+.engagement-related-link:focus-visible { outline: 3px solid var(--action-orange); outline-offset: 3px; }
+@media (max-width: 760px) {
+  .engagement-expectations-list > div { grid-template-columns: 1fr; gap: 8px; padding-block: 18px; }
+  .engagement-expectations-list dd { font-size: 17px; }
+  .engagement-expectations-list .engagement-first-signal { padding: 18px; }
+  .engagement-comparison-list > div { gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) { .engagement-offer-link { transition: none; } }
+@media print {
+  .engagement-expectations { padding: 24px 0; color: #111; background: white; }
+  .engagement-expectations-list > div { break-inside: avoid; }
+}

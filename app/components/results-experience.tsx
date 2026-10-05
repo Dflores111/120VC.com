@@ -49,7 +49,7 @@ export function ResultsExperience({ reviewMode = false }: { reviewMode?: boolean
               <h2 id="results-case-title"><ScrollWords>Before. What changed. After.</ScrollWords></h2>
               <p>Each story connects a problem in the work to the change 120VC helped install and the result that followed.</p>
             </header>
-            <CompanyTrackRecord />
+            <CompanyTrackRecord reviewMode={reviewMode} />
             <FeaturedCaseCarousel cases={cases} sourcePage="results" />
           </section>
         ) : (
